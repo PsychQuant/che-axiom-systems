@@ -1,0 +1,44 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# R workspace
+.Rhistory
+.Rproj.user/
+.RData
+.RDataTmp
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.pytest_cache/
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# Third-party copyrighted reference material — DO NOT commit
+# These can be regenerated locally with the scripts in
+# domains/apa7-style/06_reference/ (download_apastyle.py, split_manual.py)
+# but the outputs themselves are APA / Apple / SAS copyrighted.
+*.pdf
+domains/apa7-style/06_reference/APA7manual*
+domains/apa7-style/06_reference/apa7_images/
+domains/apa7-style/06_reference/apastyle_mirror/
+domains/apa7-style/06_reference/JARS/
+domains/apa7-style/06_reference/archive/
