@@ -1,0 +1,26 @@
+{
+  "name": "che-axiom-systems",
+  "owner": {
+    "name": "Che Cheng"
+  },
+  "description": "Axiomatization Systems marketplace — 跨領域形式化公理體系（基於 ASBE 方法論）。",
+  "plugins": [
+    {
+      "name": "che-axiom-systems",
+      "source": "./plugins/che-axiom-systems",
+      "description": "建立、驗證、查詢跨領域公理化系統。內建 12+ 領域作為參考資料（statistics、asbe、apa7-style、musical-composition 等）。",
+      "version": "1.0.0",
+      "author": {
+        "name": "Che Cheng"
+      },
+      "category": "knowledge-management",
+      "keywords": [
+        "axiomatization",
+        "formal-systems",
+        "asbe",
+        "knowledge-graph",
+        "domain-modeling"
+      ]
+    }
+  ]
+}

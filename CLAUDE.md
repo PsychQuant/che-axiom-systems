@@ -1,29 +1,21 @@
-# che-axiom-systems
+# che-axiom-systems (marketplace root)
 
-跨領域形式化公理體系。目標：將所有知識領域公理化。
+此 repo 是 Claude Code marketplace，散發 `che-axiom-systems` plugin。
 
 ## 結構
 
-- `foundations/` — 元層級：跨領域原則 + ASBE 方法論
-- `domains/` — 各知識領域的公理化系統
-- `templates/` — 建立新領域的模板
-- `skills/` — 三個操作 skill
+- `.claude-plugin/marketplace.json` — marketplace manifest
+- `plugins/che-axiom-systems/` — 唯一的 plugin（含 skills、domains、foundations、templates 等所有實作）
+- `README.md` — marketplace 對外介紹
+- `LICENSE` — MIT（biblatex-apa 子目錄保留 LPPL 1.3c）
 
-## Skills
+## 給未來 Claude 的 note
 
-| Skill | 用途 |
-|-------|------|
-| `axiom-create` | 建立新領域或在既有領域新增公理 |
-| `axiom-validate` | 驗證結構完整性 + 跨域一致性 |
-| `axiom-lookup` | 全域搜尋公理 |
+當使用者要求修改公理、添加新領域、改 skill 邏輯時：**所有實作都在 `plugins/che-axiom-systems/` 底下**，root 只保留 marketplace metadata 與整體文件。
 
-## 核心原則
+## 重要區分
 
-1. **SCD2 (Add Only)** — 公理只能新增，不能修改或刪除
-2. **Domain Independence** — 各領域自成體系
-3. **Consistency Requirement** — 跨領域不得矛盾
-4. **ASBE Compliance** — 每條公理需雙層表達 + 範例錨定
+- 「marketplace」=本 repo 整體（散發容器）
+- 「plugin」=`plugins/che-axiom-systems/`（功能本體）
 
-## 領域清單
-
-掃描 `domains/` 目錄取得最新清單。
+不要把兩者混在一起。

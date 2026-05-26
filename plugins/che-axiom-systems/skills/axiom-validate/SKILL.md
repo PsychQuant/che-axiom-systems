@@ -8,6 +8,10 @@ user_invocable: true
 
 驗證公理化系統品質。兩個層級的檢查。
 
+## 資料路徑
+
+公理與方法論資料隨 plugin 散布，存放在 `${CLAUDE_PLUGIN_ROOT}/domains/` 與 `${CLAUDE_PLUGIN_ROOT}/foundations/`。`${CLAUDE_PLUGIN_ROOT}` 是 Claude Code 自動提供的 env var（plugin 安裝根目錄），可在 Bash 中以 `echo $CLAUDE_PLUGIN_ROOT` 取得。本檔內所有 `domains/`、`foundations/` 都指 plugin-root-relative 位置。
+
 ## 流程
 
 ### Step 1: 選擇驗證範圍
@@ -19,7 +23,7 @@ user_invocable: true
 
 ### Step 2: 結構驗證（Domain 內）
 
-讀取 `foundations/asbe-methodology.md` 中的 ASBE 5 條公理作為檢查標準。
+讀取 `${CLAUDE_PLUGIN_ROOT}/foundations/asbe-methodology.md` 中的 ASBE 5 條公理作為檢查標準。
 
 對目標 domain 中的每條公理/定理，檢查：
 
@@ -48,8 +52,8 @@ user_invocable: true
 
 ### Step 3: 跨領域一致性檢查
 
-1. 讀取 `foundations/cross-domain-principles.md`
-2. 掃描所有 `domains/` 中每個領域的公理摘要
+1. 讀取 `${CLAUDE_PLUGIN_ROOT}/foundations/cross-domain-principles.md`
+2. 掃描所有 `${CLAUDE_PLUGIN_ROOT}/domains/` 中每個領域的公理摘要
 3. 識別**重疊概念** — 不同領域涉及相同概念的公理（例如 statistics 和 decision-making 都涉及 probability）
 4. 對重疊的公理對，分析是否存在矛盾
 5. Flag 潛在衝突，附上理由，讓使用者 review

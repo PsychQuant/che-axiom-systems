@@ -8,6 +8,10 @@ user_invocable: true
 
 在所有公理化領域中搜尋。
 
+## 資料路徑
+
+公理資料隨 plugin 散布，存放在 `${CLAUDE_PLUGIN_ROOT}/domains/`。`${CLAUDE_PLUGIN_ROOT}` 是 Claude Code 自動提供的 env var（plugin 安裝根目錄），可在 Bash 中以 `echo $CLAUDE_PLUGIN_ROOT` 取得。本檔內所有 `domains/`、`foundations/`、`templates/` 都指 plugin-root-relative 位置，不是使用者 cwd。
+
 ## 觸發方式
 
 - `/axiom-lookup [query]` — 搜尋關鍵字
@@ -20,12 +24,12 @@ user_invocable: true
 
 從使用者輸入判斷：
 - **有指定 domain** → 只搜尋該 domain
-- **沒有指定 domain** → 搜尋所有 `domains/` 下的領域
-- **`--list`** → 掃描 `domains/` 列出總覽
+- **沒有指定 domain** → 搜尋所有 `${CLAUDE_PLUGIN_ROOT}/domains/` 下的領域
+- **`--list`** → 掃描 `${CLAUDE_PLUGIN_ROOT}/domains/` 列出總覽
 
 ### Step 2: 搜尋
 
-使用 Grep 在 `domains/` 目錄中搜尋匹配的內容：
+使用 Grep 在 `${CLAUDE_PLUGIN_ROOT}/domains/` 目錄中搜尋匹配的內容：
 - 搜尋 axiom/theorem 的 `id`、`name`、`one_liner`
 - 搜尋 `statement_natural` 和 `statement_formal` 的內容
 - 搜尋 Markdown 檔案中的標題和內文
@@ -54,7 +58,7 @@ user_invocable: true
 
 ### `--list` 模式
 
-掃描所有 `domains/` 子目錄，對每個領域顯示：
+掃描所有 `${CLAUDE_PLUGIN_ROOT}/domains/` 子目錄，對每個領域顯示：
 ```
 📚 Axiomatization Systems — 12 domains
 
