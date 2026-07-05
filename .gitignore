@@ -8,6 +8,8 @@ Thumbs.db
 *.swp
 *.swo
 *~
+*.Rproj
+*.code-workspace
 
 # R workspace
 .Rhistory
@@ -34,11 +36,12 @@ venv/
 
 # Third-party copyrighted reference material — DO NOT commit
 # These can be regenerated locally with the scripts in
-# domains/apa7-style/06_reference/ (download_apastyle.py, split_manual.py)
-# but the outputs themselves are APA / Apple / SAS copyrighted.
+# plugins/che-axiom-systems/domains/apa7-style/06_reference/
+# (download_apastyle.py, split_manual.py) but the outputs themselves
+# are APA / Apple / SAS copyrighted.
 *.pdf
-domains/apa7-style/06_reference/APA7manual*
-domains/apa7-style/06_reference/apa7_images/
-domains/apa7-style/06_reference/apastyle_mirror/
-domains/apa7-style/06_reference/JARS/
-domains/apa7-style/06_reference/archive/
+plugins/che-axiom-systems/domains/apa7-style/06_reference/APA7manual*
+plugins/che-axiom-systems/domains/apa7-style/06_reference/apa7_images/
+plugins/che-axiom-systems/domains/apa7-style/06_reference/apastyle_mirror/
+plugins/che-axiom-systems/domains/apa7-style/06_reference/JARS/
+plugins/che-axiom-systems/domains/apa7-style/06_reference/archive/
