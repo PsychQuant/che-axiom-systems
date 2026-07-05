@@ -4,8 +4,11 @@ Technical tools and modules for implementing APA 7 style.
 
 ## Contents
 
-### [biblatex-apa/](biblatex-apa/)
-Official BibLaTeX implementation of APA citation style (git subrepo).
+### biblatex-apa
+Official BibLaTeX implementation of APA citation style. The canonical
+copy lives in [`../06_reference/biblatex-apa/`](../06_reference/biblatex-apa/)
+(LPPL 1.3c, © Philip Kime); a duplicate git-subrepo copy that used to sit
+here was removed in favour of the single reference copy.
 
 **Provides:**
 - APA-compliant citation formatting (`.cbx` files)

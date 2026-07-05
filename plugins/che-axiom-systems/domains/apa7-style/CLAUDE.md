@@ -88,8 +88,8 @@ Axiomatization_of_APA7/
 │
 ├── 03_citation_system/           # BibTeX/BibLaTeX citation system
 ├── 04_decision_trees/            # Machine-readable decision trees
-├── 05_tools/                     # Technical tools (biblatex-apa)
-├── 06_reference/                 # APA 7 manual and references
+├── 05_tools/                     # Technical tools (see 06_reference/biblatex-apa)
+├── 06_reference/                 # APA 7 manual, references, biblatex-apa package
 │   ├── APA7manual.md             # Full manual (corrected OCR)
 │   └── APA7manual/               # Split by chapter (17 files)
 └── archive/                      # Original .md axiom files
@@ -124,8 +124,8 @@ biber document
 pdflatex document.tex
 pdflatex document.tex
 
-# Test biblatex-apa package
-cd 05_tools/biblatex-apa
+# Test biblatex-apa package (canonical copy lives in 06_reference/biblatex-apa)
+cd 06_reference/biblatex-apa/doc
 pdflatex biblatex-apa-test.tex
 biber biblatex-apa-test
 pdflatex biblatex-apa-test.tex
