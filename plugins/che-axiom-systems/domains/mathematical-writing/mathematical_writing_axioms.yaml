@@ -1,0 +1,116 @@
+# ASBE Domain — Mathematical Writing
+# Follows templates/domain-template.yaml. Validate with /axiom-validate.
+
+meta:
+  domain: "Mathematical Writing"
+  version: "1.0.0"
+  author: "Che Cheng"
+  created: "2026-07-05"
+  description: |
+    Axiomatizes the craft of producing formal mathematical prose for readers:
+    where mathematical material is placed and how claims are set out — the
+    theorem / proposition / definition / remark architecture and the rigor
+    conventions of exposition. Sibling to `mathematical-learning` under a
+    consume/produce symmetry: learning concerns acquiring mathematics, writing
+    concerns setting it out; the two share primitives (theorem, proof,
+    definition) but operate on them in opposite directions. Distinct from
+    `note-writing` (personal notes); this domain is formal exposition addressed
+    to peer readers. Seeded with statement placement (A1); designed to accrete
+    further exposition axioms (constructive-over-existential presentation,
+    avoidance of "obviously"/"clearly", direction discipline for bounds,
+    definition-scope hygiene, equation numbering).
+
+# Primitive terms — undefined concepts that form the foundation
+primitives:
+  - term: "Object-level statement"
+    intuition: |
+      A claim quantifying over the specific objects of a theory and asserting a
+      relation among them — how one quantity stands relative to another.
+  - term: "Meta-level statement"
+    intuition: |
+      A claim quantifying over the theory or framework itself and asserting a
+      property of the machinery — that a quantity the framework reads off is
+      invariant under a perturbation, that a construction is well-defined, that
+      adding some term changes nothing the framework computes.
+  - term: "Container"
+    intuition: |
+      The structural slot a statement is placed in: a Theorem / Proposition /
+      Lemma (load-bearing, proved) versus a Remark (commentary, interpretation).
+  - term: "Altitude"
+    intuition: |
+      The level at which a statement quantifies — over objects of the theory
+      (object-level) or over the framework (meta-level). Altitude is relative to
+      the system one is writing inside: the same sentence can be a remark in a
+      manuscript yet an axiom in a system that axiomatizes the manuscript's craft.
+
+axioms:
+  - id: "A1_altitude_placement"
+    name: "Statement placement by altitude"
+    one_liner: "Object-level relations earn theorem status; meta-level framework properties belong in remarks; never state the same content in both."
+
+    statement_natural: |
+      A mathematical statement is placed by its altitude. If it asserts a relation
+      among specific objects of the theory — how one quantity stands relative to
+      another — it is object-level and belongs in a theorem (or proposition /
+      lemma). If it asserts a property of the theory or framework itself — that a
+      quantity the framework reads off is invariant under a perturbation, that a
+      construction is well-defined, that adding some term changes nothing the
+      framework computes — it is meta-level and belongs in a remark. A single
+      theorem should hold one altitude: a meta-level clause grafted onto an
+      object-level result dilutes the result's structure and forces the reader to
+      switch levels mid-statement. And the same content must not appear in both
+      containers: once the object-level core is a theorem, the remark points to it
+      and interprets, rather than restating it.
+
+    statement_formal: |
+      For a statement S about a theory T with object domain Obj(T):
+        level(S) = object   if S asserts  R(o_1, …, o_n)  for specific o_i ∈ Obj(T)
+                            (a relation among specific objects of the theory)
+        level(S) = meta     if S asserts  P(T) — a property of the framework itself,
+                            e.g. (∀ q ∈ Reads(T)) Inv(q, δ) for a perturbation δ,
+                            where Reads(T) is the set of quantities the framework
+                            reads off
+      Placement rule:
+        level(S) = object  ⟹  container(S) = Theorem   (or Proposition / Lemma)
+        level(S) = meta    ⟹  container(S) = Remark
+      Single-altitude:   ∀ Θ ∈ Theorems, ∀ clause c ∈ Θ :  level(c) = object
+      Non-duplication:   ¬∃ S :  content(S) placed in Theorem ∧ content(S) placed in Remark
+
+    rationale: |
+      A theorem is read as "these specific objects stand in this relation." A
+      framework-robustness claim answers a different question at a higher altitude
+      — "is the machinery well-defined / stable under this perturbation?" Fusing
+      the two costs the theorem its clean structure and forces an altitude switch
+      inside one statement. Separating them gives each container one job — the
+      theorem states the object-level fact, the remark interprets and reports
+      framework-level robustness — and removes the redundancy of saying one thing
+      twice.
+
+    violations:
+      - description: "Meta-level invariance folded into an object-level dichotomy theorem"
+        content: |
+          Theorem. (i) If r_D > 0, the full sum exists and the gap D_J − D_{J,∞}
+          is beyond all orders. (ii) If r_D = 0, the series is only Poincaré
+          asymptotic. (iii) Moreover, every quantity the framework reads off — the
+          radius, the leading order, the deficiency coefficient — is a function of
+          the coefficients {Δ_k} alone, hence unchanged by any beyond-all-orders
+          residual.
+        explanation: |
+          Clause (iii) is meta-level: a well-definedness claim about the framework,
+          grafted onto an object-level (i)/(ii) dichotomy about where the sum
+          stands. It breaks the two-branch structure and switches altitude inside
+          the theorem.
+
+    compliant:
+      - description: "Object-level iff kept in the theorem; meta-level robustness moved to a remark"
+        content: |
+          Theorem (i). If r_D > 0, the gap D_J − D_{J,∞} is beyond all orders; and
+          equality D_J = D_{J,∞} holds if and only if D_J is analytic in z = 1/J
+          at 0.
+          Remark. Every quantity the framework reads off is a function of {Δ_k}
+          alone, so a beyond-all-orders residual changes nothing it computes.
+        explanation: |
+          The theorem asserts an object-level relation between D_J and D_{J,∞}
+          (the sharp iff included); the framework-invariance observation, being
+          meta-level, lives in the remark and does not restate the theorem — one
+          altitude per container, no duplication.
