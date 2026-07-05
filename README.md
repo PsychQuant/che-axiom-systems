@@ -42,7 +42,7 @@ Claude Code marketplace，散發 **跨領域形式化公理體系** plugin。
 
 ## 內建領域（plugin 自帶）
 
-詳見 [`plugins/che-axiom-systems/README.md`](plugins/che-axiom-systems/README.md)，含 12+ 個公理化領域：statistics / asbe / apa7-style / musical-composition / weight-control / japanese-narrative / ⋯。
+14 個公理化領域，完整清單見 [`plugins/che-axiom-systems/domains/INDEX.md`](plugins/che-axiom-systems/domains/INDEX.md)（含各領域的 format / maturity / entry point）。
 
 ## 核心原則
 

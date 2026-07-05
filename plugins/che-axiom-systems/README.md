@@ -21,15 +21,14 @@
 
 ## 內建領域
 
-Plugin 自帶 12+ 個已公理化的領域，安裝後可直接 `/axiom-lookup` 查詢：
+Plugin 自帶 **14 個**已公理化的領域，安裝後可直接 `/axiom-lookup` 查詢。完整清單（含 format / maturity / entry point）見 [`domains/INDEX.md`](domains/INDEX.md)，或跑 `/axiom-lookup --list`：
 
-- `statistics/` — 統計與資料科學
-- `asbe/` — ASBE 方法論自身（self-bootstrap）
-- `apa7-style/` — APA 第七版格式規範
-- `musical-composition/` — 音樂創作
-- `weight-control/` — 體重控制
-- `japanese-narrative/` — 日本文學敘事
-- ⋯（完整清單跑 `/axiom-lookup --list` 即可）
+| Maturity | 領域 |
+|----------|------|
+| `bootstrapped`（ASBE YAML schema）| `apa7-style`、`asbe`、`mathematical-writing`、`weight-control` |
+| `legacy`（markdown / freeform）| `statistics`、`decision-making`、`information-theory`、`japanese-narrative`、`language-learning`、`logic-and-language`、`mathematical-learning`、`musical-composition`、`note-writing`、`philosophy` |
+
+每個領域根目錄的 `domain.yaml` manifest 宣告其格式與成熟度，決定 `/axiom-validate` 的檢查級別。
 
 ## 寫入位置（axiom-create）
 
