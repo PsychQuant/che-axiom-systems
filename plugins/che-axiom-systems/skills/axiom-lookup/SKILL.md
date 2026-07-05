@@ -29,10 +29,15 @@ user_invocable: true
 
 ### Step 2: 搜尋
 
-使用 Grep 在 `${CLAUDE_PLUGIN_ROOT}/domains/` 目錄中搜尋匹配的內容：
-- 搜尋 axiom/theorem 的 `id`、`name`、`one_liner`
-- 搜尋 `statement_natural` 和 `statement_formal` 的內容
-- 搜尋 Markdown 檔案中的標題和內文
+**先讀目標 domain 的 `domain.yaml` manifest**（`format` 欄位）決定搜尋策略：
+
+| `format` | 策略 |
+|----------|------|
+| `yaml` | 欄位感知搜尋：`id`、`name`、`one_liner`、`statement_natural`、`statement_formal` |
+| `markdown` | 全文搜尋：標題 + 內文，以 `entry_points` 列的檔案優先 |
+| `freeform` | 全文搜尋，從 `entry_points`（如 `公理/INDEX.md`）進入該域自訂體系 |
+
+使用 Grep 在 `${CLAUDE_PLUGIN_ROOT}/domains/` 目錄中執行上述策略。
 
 ### Step 3: 呈現結果
 
@@ -58,15 +63,16 @@ user_invocable: true
 
 ### `--list` 模式
 
-掃描所有 `${CLAUDE_PLUGIN_ROOT}/domains/` 子目錄，對每個領域顯示：
-```
-📚 Axiomatization Systems — 12 domains
+**直接讀 `${CLAUDE_PLUGIN_ROOT}/domains/INDEX.md`**（決定性輸出，不靠即時掃描推測）。若要機器可讀版本，改讀各 domain 的 `domain.yaml` manifest。輸出格式：
 
-   statistics          — 統計與資料科學 (7 files)
-   decision-making     — 決策理論 (2 files)
-   weight-control      — 體重控制 (18 files)
-   japanese-narrative   — 日本文學敘事 (10+ files)
-   musical-composition — 音樂作曲理論 (4 files)
-   asbe                — 元方法論 (3 files)
+```
+📚 Axiomatization Systems — 14 domains
+
+   statistics           — 統計與資料科學            [markdown/legacy]
+   mathematical-writing — 數學寫作                  [yaml/bootstrapped]
+   weight-control       — 體重控制                  [yaml/bootstrapped]
+   japanese-narrative   — 日本文學敘事              [freeform/legacy]
    ...
 ```
+
+若發現 `domains/` 下有目錄不在 INDEX 中（或反之），提示使用者 INDEX 與 manifest 需要同步。
