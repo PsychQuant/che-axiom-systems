@@ -1,0 +1,85 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Manifest JSON validity
+        run: |
+          jq -e . .claude-plugin/marketplace.json > /dev/null
+          jq -e . plugins/che-axiom-systems/.claude-plugin/plugin.json > /dev/null
+          echo "both manifests are valid JSON"
+
+      - name: Version sync (marketplace.json == plugin.json)
+        run: |
+          MV=$(jq -r '.plugins[] | select(.name == "che-axiom-systems") | .version' .claude-plugin/marketplace.json)
+          PV=$(jq -r '.version' plugins/che-axiom-systems/.claude-plugin/plugin.json)
+          if [ "$MV" != "$PV" ]; then
+            echo "::error::version drift — marketplace.json=$MV plugin.json=$PV"
+            exit 1
+          fi
+          echo "versions in sync: $MV"
+
+      - name: Skills frontmatter lint
+        run: |
+          fail=0
+          for f in plugins/che-axiom-systems/skills/*/SKILL.md; do
+            head -1 "$f" | grep -qx -- '---' || { echo "::error file=$f::missing frontmatter"; fail=1; }
+            awk '/^---$/{n++} n==1' "$f" | grep -q '^name:' || { echo "::error file=$f::missing name:"; fail=1; }
+            awk '/^---$/{n++} n==1' "$f" | grep -q '^description:' || { echo "::error file=$f::missing description:"; fail=1; }
+          done
+          exit $fail
+
+      - name: Domain manifests + INDEX consistency
+        run: |
+          sudo apt-get install -y python3-yaml > /dev/null 2>&1 || pip install pyyaml > /dev/null
+          python3 - <<'EOF'
+          import glob, os, sys, yaml
+
+          root = "plugins/che-axiom-systems/domains"
+          fail = False
+
+          domains = sorted(
+              d for d in os.listdir(root)
+              if os.path.isdir(os.path.join(root, d))
+          )
+
+          # every domain has a valid manifest with required fields
+          for d in domains:
+              mf = os.path.join(root, d, "domain.yaml")
+              if not os.path.isfile(mf):
+                  print(f"::error::{d}: missing domain.yaml")
+                  fail = True
+                  continue
+              m = yaml.safe_load(open(mf))
+              for field in ("domain", "description", "format", "maturity", "entry_points"):
+                  if field not in m:
+                      print(f"::error file={mf}::missing field {field}")
+                      fail = True
+              if m.get("domain") != d:
+                  print(f"::error file={mf}::domain field '{m.get('domain')}' != dir name '{d}'")
+                  fail = True
+              if m.get("format") not in ("yaml", "markdown", "freeform"):
+                  print(f"::error file={mf}::invalid format {m.get('format')}")
+                  fail = True
+              if m.get("maturity") not in ("bootstrapped", "legacy"):
+                  print(f"::error file={mf}::invalid maturity {m.get('maturity')}")
+                  fail = True
+
+          # INDEX.md lists exactly the domains that exist
+          index = open(os.path.join(root, "INDEX.md")).read()
+          for d in domains:
+              if f"`{d}`" not in index:
+                  print(f"::error::domains/INDEX.md missing entry for {d}")
+                  fail = True
+
+          print(f"checked {len(domains)} domains")
+          sys.exit(1 if fail else 0)
+          EOF
