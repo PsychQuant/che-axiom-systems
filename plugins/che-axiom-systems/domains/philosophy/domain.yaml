@@ -1,0 +1,9 @@
+# Domain manifest — read by axiom-lookup / axiom-validate / axiom-create
+# format:   yaml(結構化 ASBE schema) | markdown(散文公理) | freeform(自訂體系)
+# maturity: bootstrapped(已符合 ASBE YAML schema，validate 跑 ERROR 級) | legacy(未遷移，validate 降級 WARNING)
+domain: philosophy
+description: 哲學隨筆：他者作為起點
+format: freeform
+maturity: legacy
+entry_points:
+  - My Essey/他者作為一切的起點 —— 對歐陸哲學的批判與重構.md

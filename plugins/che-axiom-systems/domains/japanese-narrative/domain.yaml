@@ -1,0 +1,9 @@
+# Domain manifest — read by axiom-lookup / axiom-validate / axiom-create
+# format:   yaml(結構化 ASBE schema) | markdown(散文公理) | freeform(自訂體系)
+# maturity: bootstrapped(已符合 ASBE YAML schema，validate 跑 ERROR 級) | legacy(未遷移，validate 降級 WARNING)
+domain: japanese-narrative
+description: 日本文學敘事構成（日文目錄體系：公理/理論/技術）
+format: freeform
+maturity: legacy
+entry_points:
+  - 公理/INDEX.md

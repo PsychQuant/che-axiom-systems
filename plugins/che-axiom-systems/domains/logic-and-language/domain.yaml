@@ -1,0 +1,9 @@
+# Domain manifest — read by axiom-lookup / axiom-validate / axiom-create
+# format:   yaml(結構化 ASBE schema) | markdown(散文公理) | freeform(自訂體系)
+# maturity: bootstrapped(已符合 ASBE YAML schema，validate 跑 ERROR 級) | legacy(未遷移，validate 降級 WARNING)
+domain: logic-and-language
+description: 邏輯系統與後設邏輯
+format: markdown
+maturity: legacy
+entry_points:
+  - axioms_of_logic.md

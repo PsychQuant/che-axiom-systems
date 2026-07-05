@@ -23,4 +23,4 @@ Skills 讀取 plugin 自帶資料時使用 `${CLAUDE_PLUGIN_ROOT}/` 前綴（Cla
 
 ## 領域清單
 
-掃描 `${CLAUDE_PLUGIN_ROOT}/domains/` 取得最新清單。
+讀 `${CLAUDE_PLUGIN_ROOT}/domains/INDEX.md`（人讀）或各 domain 的 `domain.yaml` manifest（機器讀）。新增/修改領域時兩者都要同步更新。manifest 的 `format`/`maturity` 決定 axiom-validate 的檢查級別與 axiom-lookup 的搜尋策略。

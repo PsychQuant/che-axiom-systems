@@ -21,11 +21,23 @@ user_invocable: true
 - **跨領域一致性** — 檢查所有 domain 之間是否有矛盾
 - **全部** — 兩者都做
 
+### Step 1.5: 讀取 domain manifest（決定檢查級別）
+
+每個 domain 根目錄有 `domain.yaml` manifest（schema 見 `${CLAUDE_PLUGIN_ROOT}/templates/domain-manifest.yaml`）。**先讀 manifest 再驗證** — 不同 format/maturity 適用的檢查不同，對 legacy domain 硬套 YAML schema 檢查會產生大量誤報 ERROR：
+
+| `format` | `maturity` | 檢查行為 |
+|----------|------------|----------|
+| `yaml` | `bootstrapped` | 完整 A1–A5 欄位級檢查，嚴重度照下表（ERROR 級生效）|
+| `markdown` | `legacy` | A1–A5 改為**結構性掃描**：缺欄位報 WARNING（遷移缺口），不報 ERROR |
+| `freeform` | `legacy` | 跳過欄位級檢查，只做 Step 3 跨域一致性掃描 + 一行說明 |
+
+manifest 缺失（使用者本地自建的舊 domain）→ 視同 `markdown/legacy`，並建議補 manifest。
+
 ### Step 2: 結構驗證（Domain 內）
 
 讀取 `${CLAUDE_PLUGIN_ROOT}/foundations/asbe-methodology.md` 中的 ASBE 5 條公理作為檢查標準。
 
-對目標 domain 中的每條公理/定理，檢查：
+對目標 domain 中的每條公理/定理，檢查（嚴重度以 Step 1.5 的級別為準；下表為 `bootstrapped` 級）：
 
 | ASBE 公理 | 檢查項目 | 嚴重度 |
 |-----------|----------|--------|

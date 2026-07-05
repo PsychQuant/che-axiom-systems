@@ -41,7 +41,8 @@ skill 開始前先檢查 cwd 判斷模式，並告知使用者目前是哪個模
      - 每條公理要有 `violations` + `compliant` 範例 (A2)
      - 公理之間要獨立、一致、充分 (A4)
 5. 依「資料路徑與寫入策略」判斷寫入位置：maintainer 模式寫 `<cwd>/domains/<domain-name>/`、使用者本地模式寫 `<cwd>/axioms/<domain-name>/`
-6. 讀取 `${CLAUDE_PLUGIN_ROOT}/foundations/cross-domain-principles.md`，檢查新公理是否與 plugin 內建領域矛盾
+6. **一併產生 domain manifest**：從 `${CLAUDE_PLUGIN_ROOT}/templates/domain-manifest.yaml` 複製為新領域的 `domain.yaml`，填入 `domain` / `description` / `format`（新領域一律 `yaml` + `bootstrapped`）/ `entry_points`；maintainer 模式下同步在 `domains/INDEX.md` 加一列
+7. 讀取 `${CLAUDE_PLUGIN_ROOT}/foundations/cross-domain-principles.md`，檢查新公理是否與 plugin 內建領域矛盾
 
 ### Step 3: 如果是擴充既有領域
 

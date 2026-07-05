@@ -1,0 +1,10 @@
+# Domain manifest — read by axiom-lookup / axiom-validate / axiom-create
+# format:   yaml(結構化 ASBE schema) | markdown(散文公理) | freeform(自訂體系)
+# maturity: bootstrapped(已符合 ASBE YAML schema，validate 跑 ERROR 級) | legacy(未遷移，validate 降級 WARNING)
+domain: apa7-style
+description: APA 第七版寫作與引用格式規範
+format: yaml
+maturity: bootstrapped
+entry_points:
+  - CLAUDE.md
+  - 01_core_axioms/writing_style.yaml

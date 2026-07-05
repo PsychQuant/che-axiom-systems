@@ -1,0 +1,9 @@
+# Domain manifest — read by axiom-lookup / axiom-validate / axiom-create
+# format:   yaml(結構化 ASBE schema) | markdown(散文公理) | freeform(自訂體系)
+# maturity: bootstrapped(已符合 ASBE YAML schema，validate 跑 ERROR 級) | legacy(未遷移，validate 降級 WARNING)
+domain: mathematical-writing
+description: 數學寫作（statement-placement 公理）
+format: yaml
+maturity: bootstrapped
+entry_points:
+  - mathematical_writing_axioms.yaml

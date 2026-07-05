@@ -1,0 +1,10 @@
+# Domain manifest — read by axiom-lookup / axiom-validate / axiom-create
+# format:   yaml(結構化 ASBE schema) | markdown(散文公理) | freeform(自訂體系)
+# maturity: bootstrapped(已符合 ASBE YAML schema，validate 跑 ERROR 級) | legacy(未遷移，validate 降級 WARNING)
+domain: statistics
+description: 統計與資料科學
+format: markdown
+maturity: legacy
+entry_points:
+  - 00_principles.md
+  - axiomatization_of_statistics_and_data_science.md

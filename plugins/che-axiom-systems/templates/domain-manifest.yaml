@@ -1,0 +1,20 @@
+# Domain manifest template — copy to domains/<your-domain>/domain.yaml
+# Read by axiom-lookup / axiom-validate / axiom-create.
+#
+# format:
+#   yaml     — 公理採 ASBE YAML schema（id / one_liner / statement_natural /
+#              statement_formal / violations / compliant），validate 可跑欄位級檢查
+#   markdown — 公理以散文 markdown 表達，validate 只做結構性掃描
+#   freeform — 自訂目錄體系（例：japanese-narrative 的 公理/理論/技術），
+#              validate 僅做跨域一致性掃描
+#
+# maturity:
+#   bootstrapped — 已符合 ASBE YAML schema，validate 的 A1–A5 檢查以 ERROR 級執行
+#   legacy       — 尚未遷移，validate 對缺欄位降級為 WARNING（不誤報 ERROR）
+
+domain: your-domain-name
+description: 一句話描述此領域公理化的範圍
+format: yaml
+maturity: bootstrapped
+entry_points:
+  - your_domain_axioms.yaml
