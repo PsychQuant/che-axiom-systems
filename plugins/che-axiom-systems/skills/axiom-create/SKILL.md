@@ -16,8 +16,8 @@ user_invocable: true
 
 | 情境 | 判斷 | 寫入位置 |
 |------|------|---------|
-| **Maintainer 模式** | cwd 在 che-axiom-systems repo（`git remote get-url origin` 包含 `che-axiom-systems`）| 直接寫入 cwd 的 `domains/<new-domain>/`，使用者後續可 commit/PR |
-| **使用者本地模式** | cwd 不是 maintainer repo | 寫入 cwd 的 `axioms/<new-domain>/`（使用者私有目錄），並在最後提示「想 contribute 回 plugin，請 fork repo 後重跑」|
+| **Maintainer 模式** | **結構偵測**：`ROOT=$(git rev-parse --show-toplevel)` 成功，且 `$ROOT/plugins/che-axiom-systems/.claude-plugin/plugin.json` 存在（repo 改名、fork、remote 別名都不影響判定）| 寫入 `$ROOT/plugins/che-axiom-systems/domains/<new-domain>/`，使用者後續可 commit/PR |
+| **使用者本地模式** | 非 maintainer repo；偵測失敗（含非 git cwd）一律 **fail-closed** 到此模式 | 寫入 cwd 的 `axioms/<new-domain>/`（使用者私有目錄），並在最後提示「想 contribute 回 plugin，請 fork repo 後重跑」|
 
 skill 開始前先檢查 cwd 判斷模式，並告知使用者目前是哪個模式。
 
@@ -40,8 +40,8 @@ skill 開始前先檢查 cwd 判斷模式，並告知使用者目前是哪個模
      - 每條公理要有 `statement_natural` + `statement_formal` (A1)
      - 每條公理要有 `violations` + `compliant` 範例 (A2)
      - 公理之間要獨立、一致、充分 (A4)
-5. 依「資料路徑與寫入策略」判斷寫入位置：maintainer 模式寫 `<cwd>/domains/<domain-name>/`、使用者本地模式寫 `<cwd>/axioms/<domain-name>/`
-6. **一併產生 domain manifest**：從 `${CLAUDE_PLUGIN_ROOT}/templates/domain-manifest.yaml` 複製為新領域的 `domain.yaml`，填入 `domain` / `description` / `format`（新領域一律 `yaml` + `bootstrapped`）/ `entry_points`；maintainer 模式下同步在 `domains/INDEX.md` 加一列
+5. 依「資料路徑與寫入策略」判斷寫入位置：maintainer 模式寫 `$ROOT/plugins/che-axiom-systems/domains/<domain-name>/`、使用者本地模式寫 `<cwd>/axioms/<domain-name>/`
+6. **一併產生 domain manifest**：從 `${CLAUDE_PLUGIN_ROOT}/templates/domain-manifest.yaml` 複製為新領域的 `domain.yaml`，填入 `domain` / `description` / `format`（新領域一律 `yaml` + `bootstrapped`）/ `entry_points`；maintainer 模式下同步在 `$ROOT/plugins/che-axiom-systems/domains/INDEX.md` 加一列
 7. 讀取 `${CLAUDE_PLUGIN_ROOT}/foundations/cross-domain-principles.md`，檢查新公理是否與 plugin 內建領域矛盾
 
 ### Step 3: 如果是擴充既有領域
