@@ -5,7 +5,7 @@
 ## 內部結構
 
 - `.claude-plugin/plugin.json` — plugin manifest
-- `skills/` — 3 個 skill：`axiom-create`、`axiom-validate`、`axiom-lookup`
+- `skills/` — 4 個 skill：`axiom-create`、`axiom-validate`、`axiom-lookup`、`axiom-capture`（對話中的公理輸入端，auto-trigger）
 - `domains/` — 各領域公理化系統（plugin 自帶 reference data）
 - `foundations/` — 元層級：跨領域原則 + ASBE 方法論
 - `templates/` — 建立新領域的 YAML 模板

@@ -45,7 +45,7 @@ argument-hint: "[query] | --domain <name> [query] | --list"
 
 使用 Grep 在 `${CLAUDE_PLUGIN_ROOT}/domains/`（+ 本地來源）中執行上述策略。
 
-**排除規則（一律套用）**：排除 `**/archive/**`、`**/archived/**`、`06_reference/` 等參考資料目錄、dotdirs（`.claude/`、`.vscode/`）與非文字資產（圖檔、PDF、網頁存檔）。archive 內是被取代的舊版公理，混入結果會讓使用者拿到新舊並列且無標記的答案。`yaml` domain 的欄位感知搜尋以該域公理 YAML 檔為目標（`entry_points` 所列檔案＋同層兄弟 `*.yaml`，例如 apa7-style 的 `01_core_axioms/*.yaml`）。
+**排除規則（一律套用）**：排除 `**/archive/**`、`**/archived/**`、`06_reference/` 等參考資料目錄、dotdirs（`.claude/`、`.vscode/`）與非文字資產（圖檔、PDF、網頁存檔）。archive 內是被取代的舊版公理，混入結果會讓使用者拿到新舊並列且無標記的答案。各域的 `candidates.md`（`/axiom-capture` 候選收件匣）**納入**搜尋，但結果一律標 `[candidate]` — 那是待 bootstrap 的候選，不是正式公理。`yaml` domain 的欄位感知搜尋以該域公理 YAML 檔為目標（`entry_points` 所列檔案＋同層兄弟 `*.yaml`，例如 apa7-style 的 `01_core_axioms/*.yaml`）。
 
 ### Step 3: 呈現結果（依 format 選模板）
 

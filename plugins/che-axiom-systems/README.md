@@ -18,6 +18,7 @@
 | `/axiom-lookup` | 全域搜尋公理、定理、概念 | 唯讀 |
 | `/axiom-validate` | 驗證 ASBE 結構合規 + 跨域一致性 | 唯讀 |
 | `/axiom-create` | 建立新領域或在既有領域新增公理 | 寫入（見「寫入位置」）|
+| `/axiom-capture` | 對話中偵測公理候選並詢問（auto-trigger）；快速記入 `candidates.md` 或委派 create | 寫入（同 create 模式規則）|
 
 ## 內建領域
 
