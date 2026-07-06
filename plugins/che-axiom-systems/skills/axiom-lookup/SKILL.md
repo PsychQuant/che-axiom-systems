@@ -10,7 +10,7 @@ argument-hint: "[query] | --domain <name> [query] | --list"
 
 ## 資料路徑
 
-公理資料隨 plugin 散布，存放在 `${CLAUDE_PLUGIN_ROOT}/domains/`。`${CLAUDE_PLUGIN_ROOT}` 是 Claude Code 自動提供的 env var（plugin 安裝根目錄），可在 Bash 中以 `echo $CLAUDE_PLUGIN_ROOT` 取得。本檔內所有 `domains/`、`foundations/`、`templates/` 都指 plugin-root-relative 位置，不是使用者 cwd。
+公理資料隨 plugin 散布，存放在 `${CLAUDE_PLUGIN_ROOT}/domains/`。`${CLAUDE_PLUGIN_ROOT}` 是 Claude Code 自動提供的 env var（plugin 安裝根目錄），可在 Bash 中以 `echo "$CLAUDE_PLUGIN_ROOT"` 取得。本檔內所有 `domains/`、`foundations/`、`templates/` 都指 plugin-root-relative 位置，不是使用者 cwd。
 
 **搜尋範圍 = plugin 內建 ∪ 本地**：若 cwd 存在 `domains/` 或 `axioms/`（`/axiom-create` 本地模式的產物），一併納入搜尋與 `--list`；結果標明來源 `[plugin]` / `[local]`。
 
@@ -40,6 +40,8 @@ argument-hint: "[query] | --domain <name> [query] | --list"
 | `yaml` | 欄位感知搜尋：`id`、`name`、`one_liner`、`statement_natural`、`statement_formal` |
 | `markdown` | 全文搜尋：標題 + 內文，以 `entry_points` 列的檔案優先 |
 | `freeform` | 全文搜尋，從 `entry_points`（如 `公理/INDEX.md`）進入該域自訂體系 |
+
+使用 `entry_points` 前先過**路徑邊界**：解析結果必須落在該 domain 目錄內，含 `..`／絕對路徑／跳出目錄 → 忽略該項並警告（詳錯誤處理表）。
 
 使用 Grep 在 `${CLAUDE_PLUGIN_ROOT}/domains/`（+ 本地來源）中執行上述策略。
 
