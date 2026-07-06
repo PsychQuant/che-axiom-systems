@@ -47,7 +47,7 @@ argument-hint: "[domain] | --cross | --all"
 
 manifest 缺失（使用者本地自建的舊 domain）→ 視同 `markdown/legacy`，並建議補 manifest。
 
-**驗證檔案集**：manifest `entry_points` 所列檔案＋其同層兄弟公理檔（如 `01_core_axioms/*.yaml`）。一律排除 `archive/`、`archived/`、`06_reference/` 等參考資料目錄與 dotdirs — archive 內是被取代的舊公理，納入會產生假重複/假矛盾誤報。`entry_points` 指向不存在的檔案 → WARNING。**路徑邊界**：entry_points 解析結果必須落在該 domain 目錄內；含 `..`、絕對路徑、或解析後跳出目錄 → WARNING + 忽略該項。
+**驗證檔案集**：manifest `entry_points` 所列檔案＋其同層兄弟公理檔（如 `01_core_axioms/*.yaml`）＋**該域根目錄的 `candidates.md`**（若存在——entry_points 可能在子目錄，此檔須明列才撈得到；僅作 context，見下方異質檔案條款）。一律排除 `archive/`、`archived/`、`06_reference/` 等參考資料目錄與 dotdirs — archive 內是被取代的舊公理，納入會產生假重複/假矛盾誤報。`entry_points` 指向不存在的檔案 → WARNING。**路徑邊界**：entry_points 解析結果必須落在該 domain 目錄內；含 `..`、絕對路徑、或解析後跳出目錄 → WARNING + 忽略該項。
 
 **檔案集內的異質檔案**：欄位級 A1–A5 檢查只套用於含 `axioms:`／`theorems:` 區塊的 YAML 檔；檔案集中的其他檔案（markdown 入口文件、轉換規則等輔助 YAML）只作 context，**不做欄位級檢查、不因缺 ASBE 欄位報錯** — yaml domain 的 entry_points 本來就可能混入非公理檔。各域的 `candidates.md`（`/axiom-capture` 候選收件匣）同屬 context：不跑欄位檢查，僅以 `ℹ️ N 條 [pending] 候選待 bootstrap` 回報。
 
