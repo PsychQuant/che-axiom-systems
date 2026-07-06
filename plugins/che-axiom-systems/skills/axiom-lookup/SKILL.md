@@ -39,7 +39,9 @@ user_invocable: true
 | `markdown` | 全文搜尋：標題 + 內文，以 `entry_points` 列的檔案優先 |
 | `freeform` | 全文搜尋，從 `entry_points`（如 `公理/INDEX.md`）進入該域自訂體系 |
 
-使用 Grep 在 `${CLAUDE_PLUGIN_ROOT}/domains/` 目錄中執行上述策略。
+使用 Grep 在 `${CLAUDE_PLUGIN_ROOT}/domains/`（+ 本地來源）中執行上述策略。
+
+**排除規則（一律套用）**：排除 `**/archive/**`、`**/archived/**`、`06_reference/` 等參考資料目錄、dotdirs（`.claude/`、`.vscode/`）與非文字資產（圖檔、PDF、網頁存檔）。archive 內是被取代的舊版公理，混入結果會讓使用者拿到新舊並列且無標記的答案。`yaml` domain 的欄位感知搜尋以該域公理 YAML 檔為目標（`entry_points` 所列檔案＋同層兄弟 `*.yaml`，例如 apa7-style 的 `01_core_axioms/*.yaml`）。
 
 ### Step 3: 呈現結果
 
