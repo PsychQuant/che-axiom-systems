@@ -45,23 +45,23 @@ skill 開始前先檢查 cwd 判斷模式，並告知使用者目前是哪個模
 
 ### Step 3: 如果是擴充既有領域
 
-0. **先讀該域的 `domain.yaml` manifest**（缺失 → 視同 `markdown/legacy`，建議補 manifest），依 `format` 分流：
-   - `yaml` → 依 ASBE schema 新增（下方 3–4 照舊）
+1. 列出 `${CLAUDE_PLUGIN_ROOT}/domains/`（plugin 內建）+ cwd 的 `domains/` 或 `axioms/`（本地）中的所有領域，**讓使用者先選定目標領域**，然後讀取該領域的現有公理
+2. **讀選定領域的 `domain.yaml` manifest**（缺失 → 視同 `markdown/legacy`，建議補 manifest），依 `format` 分流：
+   - `yaml` → 依 ASBE schema 新增（下方 4 照舊）
    - `markdown` → 在 `entry_points` 所列檔案以散文附加，沿用該文件既有的標題／編號慣例；可主動提議 bootstrap 一份平行的 `*_bootstrapped.yaml`（參照 asbe 域先例），**不要**在散文檔內混入 YAML 欄位
    - `freeform` → 從 `entry_points` 進入該域自訂體系（如 japanese-narrative 的 `公理/`），依其組織方式新增；不強加 ASBE 欄位
-1. **寫入位置**：maintainer 模式 → 直接改 `$ROOT/plugins/che-axiom-systems/domains/<domain>/`；**非 maintainer 模式擴充 plugin 內建域** → 寫 `<cwd>/axioms/<domain>/extensions.md|yaml` overlay（**絕不寫入 `${CLAUDE_PLUGIN_ROOT}` — 那是 plugin cache，下次更新即被清除**），lookup/validate 會以 `[local]` 來源顯示
-2. 列出 `${CLAUDE_PLUGIN_ROOT}/domains/`（plugin 內建）+ cwd 的 `domains/` 或 `axioms/`（本地）中的所有領域讓使用者選擇，然後讀取該領域的現有公理
-3. 引導使用者新增：
+3. **決定寫入位置**：maintainer 模式 → 直接改 `$ROOT/plugins/che-axiom-systems/domains/<domain>/`；**非 maintainer 模式擴充 plugin 內建域** → 寫 `<cwd>/axioms/<domain>/extensions.md|yaml` overlay（**絕不寫入 `${CLAUDE_PLUGIN_ROOT}` — 那是 plugin cache，下次更新即被清除**），lookup/validate 會以 `[local]` 來源顯示
+4. 引導使用者新增：
    - **新公理** — 必須與既有公理獨立（A4）
    - **新定理** — 必須標明 `derives_from` 指向父公理（A3；僅 yaml format）
    - **新範例** — 可以為既有公理補充 violations/compliant（僅 yaml format）
-4. 遵循 SCD2 原則：只新增，不修改既有公理。**maintainer 模式自檢**：寫入後跑 `git diff <files>`，確認對既有公理只有新增行；發現修改/刪除 → 還原，改為新增澄清條目
-5. 檢查跨域一致性：讀取 `${CLAUDE_PLUGIN_ROOT}/foundations/cross-domain-principles.md` 比對
-6. **同步 manifest 與 INDEX**：若本次擴充新增了檔案、或改變了該域的 format/maturity 實態，更新該域 `domain.yaml`（`entry_points` 等）；maintainer 模式下同步檢查 `domains/INDEX.md` 該列
+5. 遵循 SCD2 原則：只新增，不修改既有公理。**maintainer 模式自檢**：寫入後跑 `git diff <files>`，確認對既有公理只有新增行；發現修改/刪除 → 還原，改為新增澄清條目
+6. 檢查跨域一致性：讀取 `${CLAUDE_PLUGIN_ROOT}/foundations/cross-domain-principles.md` 比對
+7. **同步 manifest 與 INDEX**：若本次擴充新增了檔案、或改變了該域的 format/maturity 實態，更新該域 `domain.yaml`（`entry_points` 等）；maintainer 模式下同步檢查 `$ROOT/plugins/che-axiom-systems/domains/INDEX.md` 該列
 
 ### Step 4: 品質檢查（委派給 axiom-validate）
 
-建立完成後，讀取 `${CLAUDE_PLUGIN_ROOT}/skills/axiom-validate/SKILL.md`，依其 Step 1.5–2 流程對**本次新增的項目**執行單一領域驗證 — 檢查方式與嚴重度由該域 manifest 的 format/maturity 決定，不在此複製檢查清單（凍結的副本必然 drift）。
+建立完成後，讀取 `${CLAUDE_PLUGIN_ROOT}/skills/axiom-validate/SKILL.md`，依其 manifest 分級流程（format 決定檢查方式、maturity 決定嚴重度上限）對**本次新增的項目**執行單一領域驗證 — 不在此複製檢查清單、也不綁定對方的步驟編號（凍結的副本必然 drift）。
 
 有問題提示使用者修正；修正**尚未發布**的草稿不受 SCD2 限制（SCD2 約束的是已發布公理）。
 
