@@ -1,7 +1,6 @@
 ---
 name: axiom-create
-description: 建立新的公理化領域或在既有領域新增公理/定理。載入 ASBE 方法論引導結構化建立。
-user_invocable: true
+description: 建立新的公理化領域，或在既有領域新增公理/定理/範例。當使用者要求「公理化某領域」、「新增公理」、「加定理」、「建立 axiom domain」時使用。遵循 ASBE 方法論與 SCD2（只增不改）原則。Create or extend axiomatization domains following the ASBE methodology.
 ---
 
 # axiom-create
@@ -10,7 +9,7 @@ user_invocable: true
 
 ## 資料路徑與寫入策略
 
-**讀取**：方法論與既有 domain 從 `${CLAUDE_PLUGIN_ROOT}/foundations/`、`${CLAUDE_PLUGIN_ROOT}/domains/`、`${CLAUDE_PLUGIN_ROOT}/templates/` 載入（plugin 自帶的 reference data）。
+**讀取**：方法論與既有 domain 從 `${CLAUDE_PLUGIN_ROOT}/foundations/`、`${CLAUDE_PLUGIN_ROOT}/domains/`、`${CLAUDE_PLUGIN_ROOT}/templates/` 載入（plugin 自帶的 reference data）。`${CLAUDE_PLUGIN_ROOT}` 是 Claude Code 自動提供的 env var（plugin 安裝根目錄），可在 Bash 中以 `echo $CLAUDE_PLUGIN_ROOT` 取得；路徑慣例的 canonical 描述見 plugin CLAUDE.md「Skill 路徑慣例」。
 
 **寫入**：分兩種情境
 
