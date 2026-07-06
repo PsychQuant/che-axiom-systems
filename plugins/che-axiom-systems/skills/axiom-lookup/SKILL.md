@@ -18,7 +18,7 @@ argument-hint: "[query] | --domain <name> [query] | --list"
 
 - `/axiom-lookup [query]` — 搜尋關鍵字
 - `/axiom-lookup --domain statistics [query]` — 限定領域搜尋
-- `/axiom-lookup --list` — 列出所有領域及其公理數量
+- `/axiom-lookup --list` — 列出所有領域（format / maturity / entry point）
 
 ## 流程
 
@@ -43,31 +43,44 @@ argument-hint: "[query] | --domain <name> [query] | --list"
 
 **排除規則（一律套用）**：排除 `**/archive/**`、`**/archived/**`、`06_reference/` 等參考資料目錄、dotdirs（`.claude/`、`.vscode/`）與非文字資產（圖檔、PDF、網頁存檔）。archive 內是被取代的舊版公理，混入結果會讓使用者拿到新舊並列且無標記的答案。`yaml` domain 的欄位感知搜尋以該域公理 YAML 檔為目標（`entry_points` 所列檔案＋同層兄弟 `*.yaml`，例如 apa7-style 的 `01_core_axioms/*.yaml`）。
 
-### Step 3: 呈現結果
+### Step 3: 呈現結果（依 format 選模板）
 
-對每個匹配，顯示：
+**yaml domain** — 完整卡片（欄位真實存在才能這樣顯示）：
 ```
-📍 Domain: weight-control
+📍 weight-control [yaml/bootstrapped]
    A5_mass_conservation — Mass Conservation Axiom
    "Body mass change equals net mass flux"
    ΔM = Σ(mass_in) - Σ(mass_out)
-   File: domains/weight-control/weight_control_axioms.md:42
+   File: domains/weight-control/weight_control_axioms.yaml:42
 ```
 
-如果結果跨多個領域，按 domain 分組顯示。
+**markdown domain** — 標題 + 摘錄 + 位置：
+```
+📍 statistics [markdown/legacy]
+   § 最大概似原則
+   「…估計量的選擇以概似函數最大化為準…」
+   File: domains/statistics/00_principles.md:57
+```
+
+**freeform domain** — entry-point 相對路徑 + 摘錄：
+```
+📍 japanese-narrative [freeform/legacy]
+   公理/J04_物の哀れ.md — 「…無常の美意識を物語の緊張構造に…」
+```
+
+如果結果跨多個領域，按 domain 分組顯示。**嚴禁為 legacy domain 捏造 `id`／`one_liner`／formal statement 欄位** — 該 format 沒有的欄位就用對應模板呈現。
 
 ### Step 4: 深入查看
 
-問使用者是否要：
-- 展開某條公理的完整內容（含 violations/compliant 範例）
-- 查看該公理的推導鏈（derives_from 向上追溯）
-- 查看相關的跨域公理
+依結果的 format 提供選項：
+- `yaml` 結果 → 展開完整內容（violations/compliant 範例）、推導鏈（`derives_from` 向上追溯）、相關跨域公理
+- `markdown` / `freeform` 結果 → 開啟該檔案的完整段落（這些 format 沒有 violations/derives_from 欄位，不提供該選項）
 
 ## 特殊查詢
 
 ### `--list` 模式
 
-**直接讀 `${CLAUDE_PLUGIN_ROOT}/domains/INDEX.md`**（決定性輸出，不靠即時掃描推測）。若要機器可讀版本，改讀各 domain 的 `domain.yaml` manifest。輸出格式：
+**直接讀 `${CLAUDE_PLUGIN_ROOT}/domains/INDEX.md`** 作為輸出來源（決定性）；領域總數由 INDEX 列數推導，範例中的 14 只是示意。另以一次 `ls domains/` 交叉核對目錄與 INDEX 是否漂移（這不是輸出來源，只是 drift 檢查）。輸出格式：
 
 ```
 📚 Axiomatization Systems — 14 domains
