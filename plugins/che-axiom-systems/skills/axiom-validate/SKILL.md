@@ -34,11 +34,14 @@ argument-hint: "[domain] | --cross | --all"
 
 每個 domain 根目錄有 `domain.yaml` manifest（schema 見 `${CLAUDE_PLUGIN_ROOT}/templates/domain-manifest.yaml`）。**先讀 manifest 再驗證** — 不同 format/maturity 適用的檢查不同，對 legacy domain 硬套 YAML schema 檢查會產生大量誤報 ERROR：
 
-| `format` | `maturity` | 檢查行為 |
-|----------|------------|----------|
-| `yaml` | `bootstrapped` | 完整 A1–A5 欄位級檢查，嚴重度照下表（ERROR 級生效）|
-| `markdown` | `legacy` | A1–A5 改為**結構性掃描**：缺欄位報 WARNING（遷移缺口），不報 ERROR |
-| `freeform` | `legacy` | 跳過欄位級檢查，只做 Step 3 跨域一致性掃描 + 一行說明 |
+**兩條正交規則**（涵蓋全部 format × maturity 組合，不是列舉表）：
+
+| 軸 | 規則 |
+|----|------|
+| `format` → **檢查方式** | `yaml`：A1–A5 欄位級檢查；`markdown`：結構性掃描（在段落/標題層級找 A1–A5 的對應概念）；`freeform`：跳過欄位級，僅做 Step 3 跨域掃描 + 一行說明（單一領域範圍時改為**提議**跨域掃描，不逕自執行） |
+| `maturity` → **嚴重度上限** | `bootstrapped`：依下表原級（ERROR 生效）；`legacy`：一律降一級（ERROR→WARNING、WARNING→INFO） |
+
+例：`yaml/legacy`（遷移中最常見的中間態）→ 欄位級檢查、只報 WARNING；`markdown/bootstrapped` → 結構性掃描、缺漏可達 ERROR 級。
 
 manifest 缺失（使用者本地自建的舊 domain）→ 視同 `markdown/legacy`，並建議補 manifest。
 
@@ -58,9 +61,9 @@ manifest 缺失（使用者本地自建的舊 domain）→ 視同 `markdown/lega
 | A4 最小公理集 | 公理之間是否獨立？有無冗餘？ | WARNING |
 | A5 語意等價 | natural 和 formal 表達同一件事？ | WARNING |
 
-另外檢查：
-- ID 命名慣例（A/T/C/R prefix）
-- `meta` 欄位完整性（domain, version, author）
+另外檢查（**僅 `format: yaml` 的 domain**；嚴重度同樣受 maturity 上限規則約束）：
+- ID 命名慣例（A/T/C/R prefix）— WARNING。freeform 域的自訂 ID 體系（如 japanese-narrative 的 J/M prefix）依 cross-domain principle 6（Meta-Language Consistency）豁免，不是違規
+- `meta` 欄位完整性（domain, version, author）— WARNING；legacy 域本就無 meta 區塊，跳過
 - SCD2 合規：與上一版本相比，有無修改或刪除既有公理
 
 輸出格式 — **bootstrapped 級**（欄位級檢查，ERROR 生效）：
@@ -85,10 +88,12 @@ manifest 缺失（使用者本地自建的舊 domain）→ 視同 `markdown/lega
 ### Step 3: 跨領域一致性檢查
 
 1. 讀取 `${CLAUDE_PLUGIN_ROOT}/foundations/cross-domain-principles.md`
-2. 掃描所有 `${CLAUDE_PLUGIN_ROOT}/domains/` 中每個領域的公理摘要
-3. 識別**重疊概念** — 不同領域涉及相同概念的公理（例如 statistics 和 decision-making 都涉及 probability）
+2. 掃描每個領域的公理摘要。**掃描單位**（控制成本，不整檔全讀）：`yaml` 域 → `id` + `name` + `one_liner`；`markdown`/`freeform` 域 → 第一個 entry_point 檔案的標題列表
+3. 識別**重疊概念** — 不同領域涉及相同概念的公理（例如 statistics 和 decision-making 都涉及 probability）；只對被 flag 的配對才展開讀完整內容
 4. 對重疊的公理對，分析是否存在矛盾
 5. Flag 潛在衝突，附上理由，讓使用者 review
+
+**範圍規則**：驗證範圍是「全部」時做全域配對；範圍是「單一領域」而後接跨域檢查時，只比對 target ↔ 其他域，不做全對全。
 
 輸出格式：
 ```
