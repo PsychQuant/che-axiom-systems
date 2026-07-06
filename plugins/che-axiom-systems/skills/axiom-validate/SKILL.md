@@ -10,7 +10,9 @@ user_invocable: true
 
 ## 資料路徑
 
-公理與方法論資料隨 plugin 散布，存放在 `${CLAUDE_PLUGIN_ROOT}/domains/` 與 `${CLAUDE_PLUGIN_ROOT}/foundations/`。`${CLAUDE_PLUGIN_ROOT}` 是 Claude Code 自動提供的 env var（plugin 安裝根目錄），可在 Bash 中以 `echo $CLAUDE_PLUGIN_ROOT` 取得。本檔內所有 `domains/`、`foundations/` 都指 plugin-root-relative 位置。
+公理與方法論資料隨 plugin 散布，存放在 `${CLAUDE_PLUGIN_ROOT}/domains/` 與 `${CLAUDE_PLUGIN_ROOT}/foundations/`。`${CLAUDE_PLUGIN_ROOT}` 是 Claude Code 自動提供的 env var（plugin 安裝根目錄），可在 Bash 中以 `echo $CLAUDE_PLUGIN_ROOT` 取得。本檔內所有 `domains/`、`foundations/` 都指 plugin-root-relative 位置，不是使用者 cwd。
+
+**驗證範圍 = plugin 內建 ∪ 本地**：若 cwd 存在 `domains/` 或 `axioms/`（`/axiom-create` 本地模式的產物），也是合法驗證目標；報告標明來源 `[plugin]` / `[local]`。這讓 create → validate 的接力在本地模式也走得通。
 
 ## 流程
 
