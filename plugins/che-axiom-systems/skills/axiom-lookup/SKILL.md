@@ -1,6 +1,6 @@
 ---
 name: axiom-lookup
-description: 搜尋 plugin 內建 14 個公理化領域（statistics、apa7-style、weight-control、ASBE、japanese-narrative 等）與使用者本地領域的公理、定理與概念。當使用者要查某條公理、問某領域有哪些公理、或問哪個 domain 涵蓋某概念時使用。Search or list axioms across the bundled axiomatization domains.
+description: 搜尋 plugin 內建的公理化領域（statistics、apa7-style、weight-control、ASBE、japanese-narrative 等）與使用者本地領域的公理、定理與概念。當使用者要查某條公理、問某領域有哪些公理、或問哪個 domain 涵蓋某概念時使用。Search or list axioms across the bundled axiomatization domains.
 argument-hint: "[query] | --domain <name> [query] | --list"
 ---
 
@@ -48,10 +48,10 @@ argument-hint: "[query] | --domain <name> [query] | --list"
 **yaml domain** — 完整卡片（欄位真實存在才能這樣顯示）：
 ```
 📍 weight-control [yaml/bootstrapped]
-   A5_mass_conservation — Mass Conservation Axiom
+   A0_mass_conservation — Mass Conservation Axiom
    "Body mass change equals net mass flux"
    ΔM = Σ(mass_in) - Σ(mass_out)
-   File: domains/weight-control/weight_control_axioms.yaml:42
+   File: domains/weight-control/weight_control_axioms.yaml:390
 ```
 
 **markdown domain** — 標題 + 摘錄 + 位置：
