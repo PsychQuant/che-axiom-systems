@@ -52,15 +52,24 @@ manifest 缺失（使用者本地自建的舊 domain）→ 視同 `markdown/lega
 - `meta` 欄位完整性（domain, version, author）
 - SCD2 合規：與上一版本相比，有無修改或刪除既有公理
 
-輸出格式：
+輸出格式 — **bootstrapped 級**（欄位級檢查，ERROR 生效）：
 ```
-📋 Domain: statistics
-   ✅ A1 Dual Expression: 12/12 pass
-   ❌ A2 Example Grounding: 10/12 pass — A7, T3 missing violations
+📋 Domain: mathematical-writing [yaml/bootstrapped]
+   ✅ A1 Dual Expression: 1/1 pass
+   ❌ A2 Example Grounding: 0/1 — A1_statement_placement missing compliant example
    ✅ A3 Hierarchical Derivation: OK
-   ⚠️  A4 Minimal Axiom Set: A3 may be derivable from A1+A2
+   ⚠️  A4 Minimal Axiom Set: OK
    ✅ A5 Semantic Equivalence: OK
 ```
+
+**legacy 級**（結構性掃描，缺欄位是遷移缺口不是錯誤）：
+```
+📋 Domain: statistics [markdown/legacy]
+   ⚠️  A1/A2 structural scan: 散文公理無 statement_formal / violations 欄位 — 遷移缺口（legacy 預期）
+   ℹ️  升級路徑：可用 /axiom-create 協助 bootstrap 為 YAML schema
+```
+
+圖示紀律：`❌` = ERROR、`⚠️` = WARNING、`ℹ️` = INFO — 三個 Step 統一使用，Step 4 的彙總計數依此分類。
 
 ### Step 3: 跨領域一致性檢查
 
@@ -73,15 +82,15 @@ manifest 缺失（使用者本地自建的舊 domain）→ 視同 `markdown/lega
 輸出格式：
 ```
 🔗 Cross-Domain Consistency Check
-   Scanned: 12 domains, 87 axioms total
+   Scanned: 14 domains（實際數字以 INDEX 列數為準，勿照抄範例）
 
-   ⚠️  Potential overlap:
+   ℹ️  Potential overlap（相容性觀察 = INFO）:
    - statistics/A3 (probability interpretation) ↔ decision-making/A2 (subjective probability)
      Analysis: Compatible — statistics uses frequentist framing,
      decision-making uses Bayesian framing. No contradiction,
      but consider adding cross-reference annotation.
 
-   ✅ No contradictions detected.
+   ✅ No contradictions detected.（真矛盾才用 ⚠️/❌）
 ```
 
 ### Step 4: 報告
