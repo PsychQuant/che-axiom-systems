@@ -30,7 +30,7 @@ skill 開始前先檢查 cwd 判斷模式，並告知使用者目前是哪個模
 
 ### Step 2: 如果是新領域
 
-1. 詢問領域名稱和範圍描述
+1. 詢問領域名稱和範圍描述；**名稱碰撞檢查**：已存在於 plugin 內建 domains、maintainer repo、或本地 `axioms/` → 建議改走 Step 3 擴充或換名；目標目錄已存在 → 停下確認，不覆寫
 2. 讀取 `${CLAUDE_PLUGIN_ROOT}/foundations/asbe-methodology.md` 載入 ASBE 方法論
 3. 讀取 `${CLAUDE_PLUGIN_ROOT}/templates/domain-template.yaml` 作為起點
 4. 引導使用者定義：
@@ -45,24 +45,25 @@ skill 開始前先檢查 cwd 判斷模式，並告知使用者目前是哪個模
 
 ### Step 3: 如果是擴充既有領域
 
-1. 列出 `${CLAUDE_PLUGIN_ROOT}/domains/`（plugin 內建）+ cwd 的 `domains/` 或 `axioms/`（本地）中的所有領域讓使用者選擇
-2. 讀取該領域的現有公理
+0. **先讀該域的 `domain.yaml` manifest**（缺失 → 視同 `markdown/legacy`，建議補 manifest），依 `format` 分流：
+   - `yaml` → 依 ASBE schema 新增（下方 3–4 照舊）
+   - `markdown` → 在 `entry_points` 所列檔案以散文附加，沿用該文件既有的標題／編號慣例；可主動提議 bootstrap 一份平行的 `*_bootstrapped.yaml`（參照 asbe 域先例），**不要**在散文檔內混入 YAML 欄位
+   - `freeform` → 從 `entry_points` 進入該域自訂體系（如 japanese-narrative 的 `公理/`），依其組織方式新增；不強加 ASBE 欄位
+1. **寫入位置**：maintainer 模式 → 直接改 `$ROOT/plugins/che-axiom-systems/domains/<domain>/`；**非 maintainer 模式擴充 plugin 內建域** → 寫 `<cwd>/axioms/<domain>/extensions.md|yaml` overlay（**絕不寫入 `${CLAUDE_PLUGIN_ROOT}` — 那是 plugin cache，下次更新即被清除**），lookup/validate 會以 `[local]` 來源顯示
+2. 列出 `${CLAUDE_PLUGIN_ROOT}/domains/`（plugin 內建）+ cwd 的 `domains/` 或 `axioms/`（本地）中的所有領域讓使用者選擇，然後讀取該領域的現有公理
 3. 引導使用者新增：
    - **新公理** — 必須與既有公理獨立（A4）
-   - **新定理** — 必須標明 `derives_from` 指向父公理（A3）
-   - **新範例** — 可以為既有公理補充 violations/compliant
+   - **新定理** — 必須標明 `derives_from` 指向父公理（A3；僅 yaml format）
+   - **新範例** — 可以為既有公理補充 violations/compliant（僅 yaml format）
 4. 遵循 SCD2 原則：只新增，不修改既有公理
-5. 檢查跨域一致性
+5. 檢查跨域一致性：讀取 `${CLAUDE_PLUGIN_ROOT}/foundations/cross-domain-principles.md` 比對
+6. **同步 manifest 與 INDEX**：若本次擴充新增了檔案、或改變了該域的 format/maturity 實態，更新該域 `domain.yaml`（`entry_points` 等）；maintainer 模式下同步檢查 `domains/INDEX.md` 該列
 
-### Step 4: 品質檢查
+### Step 4: 品質檢查（委派給 axiom-validate）
 
-建立完成後，自動執行快速驗證：
-- 每條新公理/定理是否有雙層表達？
-- 每條是否有至少一個 violation 和一個 compliant 範例？
-- ID 命名是否遵循慣例（A/T/C/R prefix）？
-- 是否有與其他領域的潛在矛盾？
+建立完成後，讀取 `${CLAUDE_PLUGIN_ROOT}/skills/axiom-validate/SKILL.md`，依其 Step 1.5–2 流程對**本次新增的項目**執行單一領域驗證 — 檢查方式與嚴重度由該域 manifest 的 format/maturity 決定，不在此複製檢查清單（凍結的副本必然 drift）。
 
-如果有問題，提示使用者修正。
+有問題提示使用者修正；修正**尚未發布**的草稿不受 SCD2 限制（SCD2 約束的是已發布公理）。
 
 ## 完成後提示
 
