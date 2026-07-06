@@ -30,7 +30,7 @@ Claude Code marketplace，散發 **跨領域形式化公理體系** plugin。
 │       ├── .claude-plugin/
 │       │   └── plugin.json
 │       ├── skills/          # 三個 skill
-│       ├── domains/         # 12+ 個內建公理化領域
+│       ├── domains/         # 14 個內建公理化領域（見 domains/INDEX.md）
 │       ├── foundations/     # 跨領域原則 + ASBE 方法論
 │       ├── templates/       # YAML 模板
 │       ├── README.md        # plugin 使用說明

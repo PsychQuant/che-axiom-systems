@@ -32,8 +32,8 @@ Plugin 自帶 **14 個**已公理化的領域，安裝後可直接 `/axiom-looku
 
 ## 寫入位置（axiom-create）
 
-- 若你在 `che-axiom-systems` repo 的 clone 內跑 `/axiom-create` → 寫到 cwd 的 `domains/<new>/`（maintainer 模式，方便後續 commit/PR）
-- 若在其他 cwd → 寫到 cwd 的 `axioms/<new>/`（本地模式，私有領域）
+- **Maintainer 模式**（結構偵測：repo root 存在 `plugins/che-axiom-systems/.claude-plugin/plugin.json`）→ 寫到 `<repo-root>/plugins/che-axiom-systems/domains/<new>/`，方便後續 commit/PR
+- **本地模式**（其他 cwd；偵測失敗一律 fail-closed 到此）→ 寫到 cwd 的 `axioms/<new>/`（私有領域）；擴充 plugin 內建域時寫 `axioms/<domain>/extensions.*` overlay，絕不寫入 plugin cache
 
 ## 核心原則
 

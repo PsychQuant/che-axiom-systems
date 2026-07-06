@@ -12,7 +12,7 @@
 
 ## Skill 路徑慣例
 
-Skills 讀取 plugin 自帶資料時使用 `${CLAUDE_PLUGIN_ROOT}/` 前綴（Claude Code 自動提供的 env var）。寫入時依 cwd 判斷 maintainer / 使用者本地模式。詳見各 SKILL.md 開頭的「資料路徑」段落。
+Skills 讀取 plugin 自帶資料時使用 `${CLAUDE_PLUGIN_ROOT}/` 前綴（Claude Code 自動提供的 env var）。寫入採**結構偵測**：repo root（`git rev-parse --show-toplevel`）存在 `plugins/che-axiom-systems/.claude-plugin/plugin.json` → maintainer 模式，寫 `$ROOT/plugins/che-axiom-systems/domains/`；否則（含非 git cwd，fail-closed）→ 本地模式，寫 cwd 的 `axioms/`，擴充內建域用 `extensions.*` overlay、絕不寫入 plugin cache。詳見各 SKILL.md 開頭的「資料路徑」段落（本段為 canonical）。
 
 ## 核心原則
 
