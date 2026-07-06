@@ -45,7 +45,7 @@ skill 開始前先檢查 cwd 判斷模式，並告知使用者目前是哪個模
 
 ### Step 3: 如果是擴充既有領域
 
-1. 列出 `${CLAUDE_PLUGIN_ROOT}/domains/`（plugin 內建）+ cwd 的 `domains/` 或 `axioms/`（本地）中的所有領域，**讓使用者先選定目標領域**，然後讀取該領域的現有公理
+1. 列出 `${CLAUDE_PLUGIN_ROOT}/domains/`（plugin 內建）+ cwd 的 `domains/` 或 `axioms/`（本地）中的所有領域，**讓使用者先選定目標領域**，然後讀取該領域的現有公理。該域 `candidates.md` 有 `[pending]` 條目（`/axiom-capture` 的候選收件匣）→ 列出並提示要不要本次一併 bootstrap 成正式公理；完成的條目改標 `[promoted]` 並附公理 id，**不刪原條目**（審計軌跡）
 2. **讀選定領域的 `domain.yaml` manifest**（缺失 → 視同 `markdown/legacy`，建議補 manifest）。使用其 `entry_points` 前先過**路徑邊界**：解析結果必須落在該 domain 目錄內，含 `..`／絕對路徑／跳出目錄 → 忽略該項並警告——擴充是 write 面，逃逸的 entry_point 會把新增內容寫到目錄外。然後依 `format` 分流：
    - `yaml` → 依 ASBE schema 新增（下方 4 照舊）
    - `markdown` → 在 `entry_points` 所列檔案以散文附加，沿用該文件既有的標題／編號慣例；可主動提議 bootstrap 一份平行的 `*_bootstrapped.yaml`（參照 asbe 域先例），**不要**在散文檔內混入 YAML 欄位

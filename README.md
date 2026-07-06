@@ -11,13 +11,14 @@ Claude Code marketplace，散發 **跨領域形式化公理體系** plugin。
 /plugin install che-axiom-systems@che-axiom-systems
 ```
 
-安裝後即可使用三個 skill：
+安裝後即可使用四個 skill：
 
 | Skill | 用途 |
 |-------|------|
 | `/axiom-lookup` | 全域搜尋公理 |
 | `/axiom-validate` | 驗證結構完整性 + 跨域一致性 |
 | `/axiom-create` | 建立新領域或在既有領域新增公理 |
+| `/axiom-capture` | 對話中偵測公理候選、詢問後捕捉（auto-trigger）|
 
 ## Repo 結構
 
