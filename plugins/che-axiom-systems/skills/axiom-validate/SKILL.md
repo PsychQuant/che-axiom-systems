@@ -35,6 +35,8 @@ user_invocable: true
 
 manifest 缺失（使用者本地自建的舊 domain）→ 視同 `markdown/legacy`，並建議補 manifest。
 
+**驗證檔案集**：manifest `entry_points` 所列檔案＋其同層兄弟公理檔（如 `01_core_axioms/*.yaml`）。一律排除 `archive/`、`archived/`、`06_reference/` 等參考資料目錄與 dotdirs — archive 內是被取代的舊公理，納入會產生假重複/假矛盾誤報。`entry_points` 指向不存在的檔案 → WARNING。
+
 ### Step 2: 結構驗證（Domain 內）
 
 讀取 `${CLAUDE_PLUGIN_ROOT}/foundations/asbe-methodology.md` 中的 ASBE 5 條公理作為檢查標準。

@@ -8,3 +8,6 @@ maturity: bootstrapped
 entry_points:
   - CLAUDE.md
   - 01_core_axioms/writing_style.yaml
+  - 01_core_axioms/writing_guidelines.yaml
+  - 01_core_axioms/jars_standards.yaml
+  - 02_transformation/transformation_rules.yaml
