@@ -64,7 +64,7 @@ manifest 缺失（使用者本地自建的舊 domain）→ 視同 `markdown/lega
 另外檢查（**僅 `format: yaml` 的 domain**；嚴重度同樣受 maturity 上限規則約束）：
 - ID 命名慣例（A/T/C/R prefix）— WARNING。freeform 域的自訂 ID 體系（如 japanese-narrative 的 J/M prefix）依 cross-domain principle 6（Meta-Language Consistency）豁免，不是違規
 - `meta` 欄位完整性（domain, version, author）— WARNING；legacy 域本就無 meta 區塊，跳過
-- SCD2 合規：與上一版本相比，有無修改或刪除既有公理
+- SCD2 合規（**git-conditional**）：目標域所在目錄是 git repo 時，用 `git log -p -- <domain-dir>` 檢查既有公理是否曾被修改/刪除（只增不改）；**不是 git repo（如 plugin cache）→ 輸出「ℹ️ SCD2 不可驗證（無版本歷史），略過」**。絕不在沒有 baseline 的情況下報 pass/fail — 捏造的合規結論比沒有檢查更糟
 
 輸出格式 — **bootstrapped 級**（欄位級檢查，ERROR 生效）：
 ```
