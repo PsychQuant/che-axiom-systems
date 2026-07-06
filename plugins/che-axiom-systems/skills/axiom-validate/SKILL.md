@@ -1,7 +1,7 @@
 ---
 name: axiom-validate
-description: 驗證公理化系統的結構完整性（ASBE 合規）和跨領域一致性（無矛盾）。
-user_invocable: true
+description: 驗證公理化領域的 ASBE 結構合規（A1–A5，依 domain.yaml 的 format/maturity 分級）與跨領域一致性。新增或修改公理後、或使用者要求檢查公理系統品質時使用。Validate axiom domains for ASBE compliance and cross-domain consistency.
+argument-hint: "[domain] | --cross | --all"
 ---
 
 # axiom-validate
@@ -14,11 +14,18 @@ user_invocable: true
 
 **驗證範圍 = plugin 內建 ∪ 本地**：若 cwd 存在 `domains/` 或 `axioms/`（`/axiom-create` 本地模式的產物），也是合法驗證目標；報告標明來源 `[plugin]` / `[local]`。這讓 create → validate 的接力在本地模式也走得通。
 
+## 觸發方式
+
+- `/axiom-validate <domain>` — 驗證單一領域
+- `/axiom-validate --cross` — 只做跨領域一致性
+- `/axiom-validate --all` — 兩者都做
+- 無參數 → Step 1 詢問
+
 ## 流程
 
-### Step 1: 選擇驗證範圍
+### Step 1: 解析參數／選擇驗證範圍
 
-問使用者：
+有參數時依「觸發方式」直接決定範圍，**不再詢問**（讓 axiom-create 等 caller 可無人值守串接）。無參數才問使用者：
 - **單一領域** — 驗證某個 domain 的結構完整性
 - **跨領域一致性** — 檢查所有 domain 之間是否有矛盾
 - **全部** — 兩者都做

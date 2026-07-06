@@ -1,7 +1,7 @@
 ---
 name: axiom-lookup
-description: 搜尋公理化系統中的公理、定理和概念。支援跨領域全文搜尋和特定領域查詢。
-user_invocable: true
+description: 搜尋 plugin 內建 14 個公理化領域（statistics、apa7-style、weight-control、ASBE、japanese-narrative 等）與使用者本地領域的公理、定理與概念。當使用者要查某條公理、問某領域有哪些公理、或問哪個 domain 涵蓋某概念時使用。Search or list axioms across the bundled axiomatization domains.
+argument-hint: "[query] | --domain <name> [query] | --list"
 ---
 
 # axiom-lookup
