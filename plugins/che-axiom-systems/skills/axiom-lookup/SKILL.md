@@ -76,6 +76,15 @@ argument-hint: "[query] | --domain <name> [query] | --list"
 - `yaml` 結果 → 展開完整內容（violations/compliant 範例）、推導鏈（`derives_from` 向上追溯）、相關跨域公理
 - `markdown` / `freeform` 結果 → 開啟該檔案的完整段落（這些 format 沒有 violations/derives_from 欄位，不提供該選項）
 
+## 錯誤處理
+
+| 情況 | 行為 |
+|------|------|
+| 無參數裸呼叫 | 問使用者要搜尋什麼，或建議 `--list` 看領域總覽 |
+| `--domain` 名稱不存在 | 列出 INDEX 中可用領域（含本地來源），不猜測、不模糊匹配後逕自執行 |
+| 查無結果 | 輸出 `0 results for "<query>"` + 建議：放寬關鍵字／`--list`／移除 `--domain` 限定 |
+| `domain.yaml` 缺失（本地域常見） | 視同 `markdown/legacy` 全文搜尋，並建議補 manifest（與 axiom-validate 同措辭） |
+
 ## 特殊查詢
 
 ### `--list` 模式

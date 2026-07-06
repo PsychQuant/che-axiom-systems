@@ -47,6 +47,15 @@ manifest 缺失（使用者本地自建的舊 domain）→ 視同 `markdown/lega
 
 **驗證檔案集**：manifest `entry_points` 所列檔案＋其同層兄弟公理檔（如 `01_core_axioms/*.yaml`）。一律排除 `archive/`、`archived/`、`06_reference/` 等參考資料目錄與 dotdirs — archive 內是被取代的舊公理，納入會產生假重複/假矛盾誤報。`entry_points` 指向不存在的檔案 → WARNING。
 
+### Step 1.6: 錯誤處理（進 Step 2 前先過一遍）
+
+| 情況 | 行為 |
+|------|------|
+| `domain.yaml` 格式壞損／`format`、`maturity` 值不在 enum | 視同 manifest 缺失（`markdown/legacy`）+ WARNING 註明 parse 問題 |
+| 空 domain（驗證檔案集內找不到任何公理） | WARNING: no axioms found — 建議檢查 `entry_points` |
+| 指定的 domain 不存在 | 列出 INDEX 中可用領域（含本地來源）後停止 |
+| `entry_points` 指向不存在的檔案 | WARNING（同「驗證檔案集」規則） |
+
 ### Step 2: 結構驗證（Domain 內）
 
 讀取 `${CLAUDE_PLUGIN_ROOT}/foundations/asbe-methodology.md` 中的 ASBE 5 條公理作為檢查標準。
