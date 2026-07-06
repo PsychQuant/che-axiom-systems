@@ -12,6 +12,8 @@ user_invocable: true
 
 公理資料隨 plugin 散布，存放在 `${CLAUDE_PLUGIN_ROOT}/domains/`。`${CLAUDE_PLUGIN_ROOT}` 是 Claude Code 自動提供的 env var（plugin 安裝根目錄），可在 Bash 中以 `echo $CLAUDE_PLUGIN_ROOT` 取得。本檔內所有 `domains/`、`foundations/`、`templates/` 都指 plugin-root-relative 位置，不是使用者 cwd。
 
+**搜尋範圍 = plugin 內建 ∪ 本地**：若 cwd 存在 `domains/` 或 `axioms/`（`/axiom-create` 本地模式的產物），一併納入搜尋與 `--list`；結果標明來源 `[plugin]` / `[local]`。
+
 ## 觸發方式
 
 - `/axiom-lookup [query]` — 搜尋關鍵字
@@ -23,9 +25,9 @@ user_invocable: true
 ### Step 1: 解析查詢
 
 從使用者輸入判斷：
-- **有指定 domain** → 只搜尋該 domain
-- **沒有指定 domain** → 搜尋所有 `${CLAUDE_PLUGIN_ROOT}/domains/` 下的領域
-- **`--list`** → 掃描 `${CLAUDE_PLUGIN_ROOT}/domains/` 列出總覽
+- **有指定 domain** → 只搜尋該 domain（先在 plugin 內建找，再找本地來源）
+- **沒有指定 domain** → 搜尋所有 `${CLAUDE_PLUGIN_ROOT}/domains/` 下的領域 + 本地來源（見「資料路徑」）
+- **`--list`** → 列出總覽（plugin 內建讀 INDEX；本地來源即時掃描，標 `[local]`）
 
 ### Step 2: 搜尋
 
