@@ -29,7 +29,7 @@ argument-hint: "[domain:query | axiom-ID | 自然語言 | --list]（裸呼叫＝
 | # | Shape | 判準 | 路由 |
 |---|-------|------|------|
 | 1 | **domain-hint** | token 含 `:`，且 prefix（大小寫不敏感）匹配某 domain 名**或** TOPICS.yaml 該域的 `aliases` 之一 | 只在該 domain 內解析 remainder；prefix 不匹配任何 domain/alias → 整個 token（含冒號）當自然語言 |
-| 2 | **axiom ID** | token 匹配 `^[A-Z]{1,4}[0-9]+(_[a-z0-9_]+)?$`（如 `A0_mass_conservation`、`SM00`、`J04`）| 直接在 yaml domain 的 `id` 欄位與各域檔名中定位（先 plugin 內建、再本地）；查無 → 降級為自然語言 |
+| 2 | **axiom ID** | token 匹配 `^[A-Z]{1,4}[0-9]+(_[A-Za-z0-9_]+)?$`（如 `A0_mass_conservation`、`SM00`、`J04`）| 直接在 yaml domain 的 `id` 欄位與各域檔名中定位（先 plugin 內建、再本地）；查無 → 降級為自然語言 |
 | 3 | **--list** | literal `--list` | 領域總覽（見「--list 模式」）|
 | 4 | **自然語言** | 其餘一切 | 走「路由」|
 | 5 | **裸呼叫** | 無參數 | **不報錯、不逼問**；載入本指引待命，之後的問題按隱式規則處理 |

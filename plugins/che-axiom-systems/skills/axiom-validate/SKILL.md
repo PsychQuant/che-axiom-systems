@@ -125,6 +125,8 @@ manifest 缺失（使用者本地自建的舊 domain）→ 視同 `markdown/lega
 
 ### Step 3.5: TOPICS.yaml 路由層 drift 檢查
 
+本檢查在**所有驗證範圍**執行（單一 domain 或全域皆跑；成本僅一次檔案讀取與目錄比對）。
+
 `domains/TOPICS.yaml` 是 axiom-based 的 domain 級路由層，與 `domains/` 目錄雙向比對：
 
 - `domains/` 有目錄但 TOPICS.yaml 無條目 → WARNING（該域不會被自動觸發路由到）

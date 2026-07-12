@@ -25,4 +25,4 @@ Skills 讀取 plugin 自帶資料時使用 `${CLAUDE_PLUGIN_ROOT}/` 前綴（Cla
 
 ## 領域清單
 
-讀 `${CLAUDE_PLUGIN_ROOT}/domains/INDEX.md`（人讀）或各 domain 的 `domain.yaml` manifest（機器讀）。新增/修改領域時兩者都要同步更新。manifest 的 `format`/`maturity` 決定 axiom-validate 的檢查級別與 axiom-based 的搜尋策略；`domains/TOPICS.yaml` 是 axiom-based 的 domain 級路由層（三件套同步，見 INDEX.md）。
+讀 `${CLAUDE_PLUGIN_ROOT}/domains/INDEX.md`（人讀）或各 domain 的 `domain.yaml` manifest（機器讀）。新增/修改領域時三件套（含 TOPICS.yaml）都要同步更新。manifest 的 `format`/`maturity` 決定 axiom-validate 的檢查級別與 axiom-based 的搜尋策略；`domains/TOPICS.yaml` 是 axiom-based 的 domain 級路由層（三件套同步，見 INDEX.md）。
