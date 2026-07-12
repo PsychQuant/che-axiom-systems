@@ -40,7 +40,7 @@ skill 開始前先檢查 cwd 判斷模式，並告知使用者目前是哪個模
      - 每條公理要有 `violations` + `compliant` 範例 (A2)
      - 公理之間要獨立、一致、充分 (A4)
 5. 依「資料路徑與寫入策略」判斷寫入位置：maintainer 模式寫 `$ROOT/plugins/che-axiom-systems/domains/<domain-name>/`、使用者本地模式寫 `<cwd>/axioms/<domain-name>/`
-6. **一併產生 domain manifest**：從 `${CLAUDE_PLUGIN_ROOT}/templates/domain-manifest.yaml` 複製為新領域的 `domain.yaml`，填入 `domain` / `description` / `format`（新領域一律 `yaml` + `bootstrapped`）/ `entry_points`；maintainer 模式下同步在 `$ROOT/plugins/che-axiom-systems/domains/INDEX.md` 加一列
+6. **一併產生 domain manifest**：從 `${CLAUDE_PLUGIN_ROOT}/templates/domain-manifest.yaml` 複製為新領域的 `domain.yaml`，填入 `domain` / `description` / `format`（新領域一律 `yaml` + `bootstrapped`）/ `entry_points`；maintainer 模式下同步在 `$ROOT/plugins/che-axiom-systems/domains/INDEX.md` 加一列、在 `$ROOT/plugins/che-axiom-systems/domains/TOPICS.yaml` 補一條（`domain` / `aliases`（domain 名等價稱呼，中英）/ `keywords`（該域話題訊號）— axiom-based 的路由層）
 7. 讀取 `${CLAUDE_PLUGIN_ROOT}/foundations/cross-domain-principles.md`，檢查新公理是否與 plugin 內建領域矛盾
 
 ### Step 3: 如果是擴充既有領域
@@ -57,7 +57,7 @@ skill 開始前先檢查 cwd 判斷模式，並告知使用者目前是哪個模
    - **新範例** — 可以為既有公理補充 violations/compliant（僅 yaml format）
 5. 遵循 SCD2 原則：只新增，不修改既有公理。**maintainer 模式自檢**：寫入後跑 `git diff -- "<files>"`，確認對既有公理只有新增行；發現修改/刪除 → 還原，改為新增澄清條目（例外：`candidates.md` 的 `[pending]`→`[promoted]` 狀態標記變更是合法的收件匣 metadata 更新，不算修改公理、不還原）
 6. 檢查跨域一致性：讀取 `${CLAUDE_PLUGIN_ROOT}/foundations/cross-domain-principles.md` 比對
-7. **同步 manifest 與 INDEX**：若本次擴充新增了檔案、或改變了該域的 format/maturity 實態，更新該域 `domain.yaml`（`entry_points` 等）；maintainer 模式下同步檢查 `$ROOT/plugins/che-axiom-systems/domains/INDEX.md` 該列
+7. **同步 manifest 與 INDEX**：若本次擴充新增了檔案、或改變了該域的 format/maturity 實態，更新該域 `domain.yaml`（`entry_points` 等）；maintainer 模式下同步檢查 `$ROOT/plugins/che-axiom-systems/domains/INDEX.md` 該列與 `TOPICS.yaml` 該條（本次擴充若引入新主題，keywords 順手補上）
 
 ### Step 4: 品質檢查（委派給 axiom-validate）
 

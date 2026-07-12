@@ -59,6 +59,7 @@ manifest 缺失（使用者本地自建的舊 domain）→ 視同 `markdown/lega
 | 空 domain（驗證檔案集內找不到任何公理） | WARNING: no axioms found — 建議檢查 `entry_points` |
 | 指定的 domain 不存在 | 列出 INDEX 中可用領域（含本地來源）後停止 |
 | `entry_points` 指向不存在的檔案 | WARNING（同「驗證檔案集」規則） |
+| TOPICS.yaml 缺失或格式錯誤 | WARNING 後繼續其他檢查（不 abort）；報告內附三件套同步提醒 |
 
 ### Step 2: 結構驗證（Domain 內）
 
@@ -121,6 +122,17 @@ manifest 缺失（使用者本地自建的舊 domain）→ 視同 `markdown/lega
 
    ✅ No contradictions detected.（真矛盾才用 ⚠️/❌）
 ```
+
+### Step 3.5: TOPICS.yaml 路由層 drift 檢查
+
+`domains/TOPICS.yaml` 是 axiom-based 的 domain 級路由層，與 `domains/` 目錄雙向比對：
+
+- `domains/` 有目錄但 TOPICS.yaml 無條目 → WARNING（該域不會被自動觸發路由到）
+- TOPICS.yaml 有條目但 `domains/` 無目錄 → WARNING（幽靈條目）
+- 條目缺 `aliases` 或 `keywords` 欄位 → WARNING
+- TOPICS.yaml 整檔缺失 → WARNING（axiom-based 會 fallback 到 INDEX.md，但路由品質降級）
+
+報告時列出漂移方向與修復建議（補條目／刪幽靈條目／補欄位）。
 
 ### Step 4: 報告
 
