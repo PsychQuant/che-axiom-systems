@@ -5,7 +5,7 @@
 ## 內部結構
 
 - `.claude-plugin/plugin.json` — plugin manifest
-- `skills/` — 4 個 skill：`axiom-create`、`axiom-validate`、`axiom-lookup`、`axiom-capture`（對話中的公理輸入端，auto-trigger）
+- `skills/` — 4 個 skill：`axiom-create`、`axiom-validate`、`axiom-based`（把公理帶進對話，auto-trigger + 顯式查詢）、`axiom-capture`（對話中的公理輸入端，auto-trigger）
 - `domains/` — 各領域公理化系統（plugin 自帶 reference data）
 - `foundations/` — 元層級：跨領域原則 + ASBE 方法論
 - `templates/` — 建立新領域的 YAML 模板
@@ -25,4 +25,4 @@ Skills 讀取 plugin 自帶資料時使用 `${CLAUDE_PLUGIN_ROOT}/` 前綴（Cla
 
 ## 領域清單
 
-讀 `${CLAUDE_PLUGIN_ROOT}/domains/INDEX.md`（人讀）或各 domain 的 `domain.yaml` manifest（機器讀）。新增/修改領域時兩者都要同步更新。manifest 的 `format`/`maturity` 決定 axiom-validate 的檢查級別與 axiom-lookup 的搜尋策略。
+讀 `${CLAUDE_PLUGIN_ROOT}/domains/INDEX.md`（人讀）或各 domain 的 `domain.yaml` manifest（機器讀）。新增/修改領域時兩者都要同步更新。manifest 的 `format`/`maturity` 決定 axiom-validate 的檢查級別與 axiom-based 的搜尋策略；`domains/TOPICS.yaml` 是 axiom-based 的 domain 級路由層（三件套同步，見 INDEX.md）。

@@ -1,5 +1,5 @@
 # Domain manifest template — copy to domains/<your-domain>/domain.yaml
-# Read by axiom-lookup / axiom-validate / axiom-create.
+# Read by axiom-based / axiom-validate / axiom-create.
 #
 # format:
 #   yaml     — 公理採 ASBE YAML schema（id / one_liner / statement_natural /

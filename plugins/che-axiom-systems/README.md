@@ -15,14 +15,14 @@
 
 | Skill | 用途 | 副作用 |
 |-------|------|------|
-| `/axiom-lookup` | 全域搜尋公理、定理、概念 | 唯讀 |
+| `/axiom-based` | 把相關公理帶進對話（自動觸發）；查詢公理、定理、概念 | 唯讀 |
 | `/axiom-validate` | 驗證 ASBE 結構合規 + 跨域一致性 | 唯讀 |
 | `/axiom-create` | 建立新領域或在既有領域新增公理 | 寫入（見「寫入位置」）|
 | `/axiom-capture` | 對話中偵測公理候選並詢問（auto-trigger，best-effort 語意匹配）；快速記入 `candidates.md` 或委派 create | 寫入（同 create 模式規則）|
 
 ## 內建領域
 
-Plugin 自帶 **14 個**已公理化的領域，安裝後可直接 `/axiom-lookup` 查詢。完整清單（含 format / maturity / entry point）見 [`domains/INDEX.md`](domains/INDEX.md)，或跑 `/axiom-lookup --list`：
+Plugin 自帶 **14 個**已公理化的領域，安裝後聊到相關主題會自動帶入公理，也可 `/axiom-based` 直接查。完整清單（含 format / maturity / entry point）見 [`domains/INDEX.md`](domains/INDEX.md)，或跑 `/axiom-based --list`：
 
 | Maturity | 領域 |
 |----------|------|
