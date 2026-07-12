@@ -1,0 +1,50 @@
+# domains/TOPICS.yaml — domain 級路由層（llms.txt 角色）
+# Read by axiom-based（隱式觸發路由 + domain-hint alias 解析）。
+# 三件套同步：新增/修改領域時 domain.yaml + INDEX.md + 本檔三者一起更新
+#   - axiom-create 建新域 → 自動補一條
+#   - axiom-validate → 雙向 drift 檢查（domains/ 目錄 ↔ 本檔條目）
+# 欄位：
+#   aliases  — domain 名的等價稱呼（中英），供 `alias:query` hint prefix 解析
+#   keywords — 該域涵蓋的話題訊號，供對話自動觸發時的 domain 匹配
+- domain: apa7-style
+  aliases: [APA, apa7, APA格式]
+  keywords: [引用格式, citation, 參考文獻, reference, in-text citation, DOI, 期刊格式, 學術格式規範]
+- domain: asbe
+  aliases: [ASBE, asbe方法論]
+  keywords: [公理化方法, axiomatic specification, 範例錨定, 雙層表達, bootstrap, 公理 schema, specification by example]
+- domain: decision-making
+  aliases: [決策, decision]
+  keywords: [效用, utility, 偏好, preference, 悖論, paradox, 期望值, expected value, 風險決策, Allais, 選擇行為]
+- domain: information-theory
+  aliases: [資訊理論, information]
+  keywords: [熵, entropy, 互資訊, mutual information, KL divergence, 通道容量, channel, 資訊量, 資訊不等式]
+- domain: japanese-narrative
+  aliases: [日本敘事, 日文敘事]
+  keywords: [物語, 敘事構成, narrative, 物の哀れ, 日本文學, 起承転結, 余情]
+- domain: language-learning
+  aliases: [語言學習, language-acquisition]
+  keywords: [語言習得, acquisition, 第二語言, L2, 語感, 沉浸, input hypothesis, 學外語]
+- domain: logic-and-language
+  aliases: [邏輯, logic]
+  keywords: [命題, proposition, 推論, inference, 真值, truth, 後設邏輯, metalogic, 形式系統, Tarski, T-schema, 語意論]
+- domain: mathematical-learning
+  aliases: [數學學習]
+  keywords: [數學能力, 能力依賴, 學數學, 數學教育, 先備知識, 數學認知]
+- domain: mathematical-writing
+  aliases: [數學寫作, math-writing]
+  keywords: [定理陳述, statement placement, 證明寫作, proof writing, 數學論文, notation, 符號慣例]
+- domain: musical-composition
+  aliases: [作曲, 音樂理論]
+  keywords: [和聲, harmony, 旋律, melody, 編曲, arrangement, 曲式, 歌詞配置, 音樂結構]
+- domain: note-writing
+  aliases: [筆記]
+  keywords: [筆記原則, note-taking, 知識管理, 卡片盒, zettelkasten, 記錄方法]
+- domain: philosophy
+  aliases: [哲學]
+  keywords: [他者, the other, 批判與重構, 主體性, 存在, 倫理, 哲學隨筆]
+- domain: statistics
+  aliases: [統計, 統計學, stats]
+  keywords: [迴歸, regression, 尺度, rescaling, 最大概似, likelihood, 估計量, estimator, MSE, 變異數, 假設檢定, 統計推導, 資料科學]
+- domain: weight-control
+  aliases: [體重, 減重]
+  keywords: [碳平衡, carbon balance, 質量守恆, mass conservation, CO2, 體組成, 熱量, 代謝, 減肥]

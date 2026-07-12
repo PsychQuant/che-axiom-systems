@@ -1,6 +1,6 @@
 # Domains INDEX
 
-14 個內建公理化領域。每個領域的 `domain.yaml` manifest 是機器可讀的 source of truth；本表由 manifest 彙整（新增/修改領域後同步更新兩者）。
+14 個內建公理化領域。每個領域的 `domain.yaml` manifest 是機器可讀的 source of truth；本表由 manifest 彙整。新增/修改領域後三件套同步：`domain.yaml` + 本表 + [`TOPICS.yaml`](TOPICS.yaml)（axiom-based 的路由層）。
 
 | Domain | 描述 | Format | Maturity | Entry point |
 |--------|------|--------|----------|-------------|
