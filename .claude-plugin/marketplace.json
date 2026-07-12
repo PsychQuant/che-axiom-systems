@@ -8,8 +8,8 @@
     {
       "name": "che-axiom-systems",
       "source": "./plugins/che-axiom-systems",
-      "description": "捕捉、建立、驗證、查詢跨領域公理化系統。內建 14 個領域作為參考資料（statistics、asbe、apa7-style、mathematical-writing 等，見 domains/INDEX.md）。",
-      "version": "1.4.0",
+      "description": "捕捉、建立、驗證跨領域公理化系統，並以 axiom-based 自動把公理帶進對話。內建 14 個領域作為參考資料（statistics、asbe、apa7-style、mathematical-writing 等，見 domains/INDEX.md）。",
+      "version": "1.5.0",
       "author": {
         "name": "Che Cheng"
       },

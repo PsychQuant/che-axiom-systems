@@ -1,7 +1,7 @@
 {
   "name": "che-axiom-systems",
-  "description": "Axiomatization Systems — 跨領域形式化公理體系的建立、驗證與查詢。基於 ASBE (Axiomatic Specification by Example) 方法論。",
-  "version": "1.4.0",
+  "description": "Axiomatization Systems — 跨領域形式化公理體系的捕捉、建立、驗證與帶入（axiom-based 自動引用）。基於 ASBE (Axiomatic Specification by Example) 方法論。",
+  "version": "1.5.0",
   "author": {
     "name": "Che Cheng"
   },
