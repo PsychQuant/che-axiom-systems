@@ -38,6 +38,33 @@ future extension if they recur:
 - **Font / readability** — high contrast, easy-to-read font; font "personality"
   matters (Comic Sans inappropriate for a conference).
 
+## R2. Cheng et al. (2023), IMPS oral talk — user's own exemplar
+
+> Cheng, C., Yang, H.-H., & Hsu, Y.-F. (2023). *Identifiability of polychoric
+> models with latent elliptical distributions* [Oral presentation].
+> International Meeting of the Psychometric Society (IMPS), July 27.
+> Deck: `July 27-900a-Cheng.pptx` (32 slides + 32 speaker-notes pages).
+
+The author's own prior conference talk, kept as a first-person exemplar of the
+axioms in practice. Unlike R1 (external guidance), this is the source-of-truth
+for what the author actually does when the axioms are followed unselfconsciously.
+
+### What the deck demonstrates
+
+| Observed in the deck | Axiom / theorem instantiated |
+|----------------------|------------------------------|
+| Title → **Outline slide** (slide 2), then concepts before questions | **A5** Navigational Scaffolding |
+| Plain noun-phrase titles: "Outline", "Identifiability Constraints", "Research Questions", "General Discussion", "Conclusions", "Future directions" | **A4** Plain Register |
+| Slide 3 opens with a concrete claim + figure (7-point Likert as categorization of a normal variable) before the abstract identifiability machinery | **A1** Example-First Grounding |
+| "Identifiability" defined in place using multiple linear regression as the familiar example; "Definition of Polychoric Models" stated before use | **A7** Cross-Audience Term Grounding |
+| **"Research Questions" slide recurs at 14/15/18/20/24**, each return revealing the next answer | **T3** Recurring Anchor Slide |
+| Every one of the 32 slides carries a **complete spoken script in the speaker-notes layer** while the slide face stays sparse | **T2** Verbatim-Slide Crutch (notes-layer form — the general solution) |
+
+The notes-layer scripting is the important correction to any reading of T2 as
+"put verbatim on the slide": the author's established practice is a sparse slide
+face plus a full script in the notes, read from the confidence monitor. On-slide
+verbatim is the fallback for when no confidence monitor is available.
+
 ### One noted divergence — bullet points
 
 Chambers advises **against** bullet points: *"Sometimes you may feel a need to

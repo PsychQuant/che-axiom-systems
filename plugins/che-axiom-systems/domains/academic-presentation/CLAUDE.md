@@ -24,6 +24,7 @@
 |----|------|--------------|
 | T1 | Question Follows the Hook | A1 + A5 |
 | T2 | Verbatim-Slide Crutch is Conditional | A2 + A4 |
+| T3 | Recurring Anchor Slide | A5 + A1 |
 
 ## 與其他 domain 的關係
 

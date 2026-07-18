@@ -481,3 +481,52 @@ theorems:
         explanation: |
           The crutch is used where its precondition holds and is acknowledged as
           temporary.
+
+      - description: "Full verbatim script in the notes layer, sparse slide face"
+        content: |
+          The projected slide carries a plain title, a figure, and a few key
+          lines; the complete spoken sentences live in the speaker-notes layer,
+          read from the confidence monitor. (The user's 2023 identifiability
+          talk is built this way — every notes page is a complete script.)
+        explanation: |
+          Satisfies A2 (audience sees a clean slide) and A4 (slide face stays
+          plain) while still giving the speaker a full script to read. The
+          notes-layer route is the general solution; on-slide verbatim is the
+          fallback when no confidence monitor is available.
+
+  - id: "T3_recurring_anchor"
+    name: "Recurring Anchor Slide"
+    derives_from: ["A5_navigation", "A1_example_first"]
+
+    statement_natural: |
+      A structural slide — most often the research questions, or a roadmap —
+      may reappear at each major transition, each time revealing the next
+      answer or marking the next section reached. The recurring anchor lets the
+      audience track progress through the argument without the speaker having to
+      restate where they are.
+
+    statement_formal: |
+      ∃anchor-slide q (e.g. ResearchQuestions),
+        ∀major-transition t ∈ Talk, Reappears(q, t) ∧ RevealsNext(q, t)
+      ⇒ ∀moment, AudienceCanLocate(Position | q)
+
+    violations:
+      - description: "Answers scattered with no returning anchor"
+        content: |
+          Three research questions stated once on one slide, then each answered
+          many slides later with no return to the question slide, so the
+          audience loses which answer maps to which question.
+        explanation: |
+          Without the recurring anchor, the audience cannot bind results back to
+          the questions that motivated them.
+
+    compliant:
+      - description: "Research-questions slide reappears, revealing each answer"
+        content: |
+          The "Research Questions" slide returns before each result section,
+          the just-answered question now filled in, so the audience sees the
+          argument being completed one question at a time.
+        explanation: |
+          The anchor doubles as a progress bar and a binding between question
+          and answer. (Pattern demonstrated in the user's 2023 identifiability
+          talk, slides 14/15/18/20/24.)
