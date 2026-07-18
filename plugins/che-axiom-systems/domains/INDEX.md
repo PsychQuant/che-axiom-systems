@@ -4,6 +4,7 @@
 
 | Domain | 描述 | Format | Maturity | Entry point |
 |--------|------|--------|----------|-------------|
+| `academic-presentation` | 學術會議報告（投影片＋講稿）的建構與交付公理 | yaml | bootstrapped | `CLAUDE.md` |
 | `apa7-style` | APA 第七版寫作與引用格式規範 | yaml | bootstrapped | `CLAUDE.md` |
 | `asbe` | ASBE 方法論自身的公理化（self-bootstrap） | yaml | bootstrapped | `asbe_axioms_bootstrapped.yaml` |
 | `decision-making` | 決策理論：效用、偏好與悖論 | markdown | legacy | `axiomatization_of_decision_making.md` |

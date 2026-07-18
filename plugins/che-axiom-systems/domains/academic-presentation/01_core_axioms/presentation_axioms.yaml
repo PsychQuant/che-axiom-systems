@@ -1,0 +1,483 @@
+# Academic Presentation — ASBE Format
+# Source: distilled 2026-07-18 from the IMPS 2026 oral-slide build
+#   (measurement_paradigm_unification/article2_joint_thurstonian) and the
+#   貴德街 rehearsal feedback (Lay Keng-Ling, Hardy Yang, Li-Qin).
+
+meta:
+  domain: "Academic Presentation"
+  version: "1.0.0"
+  author: "Che Cheng"
+  created: "2026-07-18"
+  source: "IMPS 2026 slide build + rehearsal feedback; dissertation defense deck conventions"
+  description: |
+    Axiomatization of how to build and deliver an academic conference talk
+    (slides + spoken script), optimized for a mixed audience and, often, a
+    non-native speaker under a hard time budget. Covers opening, cognitive
+    load, source fidelity, register, navigation, figures, terminology,
+    honest result framing, and time discipline.
+  references:
+    - Chambers, R. (2014). Presenting your research effectively.
+      gradPSYCH Magazine, p. 28. American Psychological Association.
+      (Corroborates A1, A2, A6, A7, A8; see references.md for the mapping
+      and one noted divergence on bullet points.)
+
+# Primitive terms — undefined concepts that form the foundation
+primitives:
+  - term: "Slide"
+    intuition: "A single projected page. Carries text and/or figures."
+  - term: "Script"
+    intuition: "The speaker's spoken narration, per slide."
+  - term: "Audience"
+    intuition: "The listeners. Often mixed-background and time-limited; may not share the speaker's sub-field."
+  - term: "Mental load"
+    intuition: "The cognitive cost of processing slide text and speech at the same time. Bounded; if exceeded, comprehension drops."
+  - term: "Source of truth"
+    intuition: "The authoritative artifact the talk derives from (manuscript, dataset, accepted abstract). Claims are checked against it, not recalled."
+  - term: "Slot"
+    intuition: "The allotted speaking time. A hard ceiling, not a target."
+
+axioms:
+  - id: "A1_example_first"
+    name: "Example-First Grounding"
+    one_liner: "Open with a concrete instance the audience can enter, before any abstraction"
+
+    statement_natural: |
+      A talk must open with a concrete, relatable instance that lets the
+      audience enter the problem, and only then introduce the abstraction,
+      the model, or the formalism. The opening must also make the study's
+      question visible early. Procedural setup detail that does not serve
+      the hook is deferred or cut.
+
+    statement_formal: |
+      ∀talk T, Open(T) → (∃e, Concrete(e) ∧ Precedes(e, Abstraction(T)))
+                          ∧ QuestionVisibleEarly(T)
+      where Concrete(e) ≡ Relatable(e) ∧ InstanceOf(e, Problem(T))
+
+    rationale: |
+      An audience that cannot enter the situation disengages before the
+      contribution arrives. A concrete instance (a real item, a real
+      scenario) is a doorway; the abstraction is the room behind it.
+
+    violations:
+      - description: "Opening straight into the abstraction"
+        content: |
+          Slide 1 title: "Academic Attribution". First words: a definition of
+          the construct and its five dimensions, then the model family.
+        explanation: |
+          The audience is handed a construct with no reason to care yet.
+          They spend the first minute reconstructing why this matters instead
+          of following the argument.
+
+      - description: "Front-loading procedural setup"
+        content: |
+          "At Time 1, before the midterm, participants selected a course and
+          defined success criteria; at Time 2, after the midterm, they
+          evaluated..." — narrated in full before the research question appears.
+        explanation: |
+          Procedure detail that does not hook is dead weight at the opening.
+          Say "some judged success, some failure" and move to the question.
+
+    compliant:
+      - description: "Concrete scenario, then the question"
+        content: |
+          "Picture the most challenging course you are taking. The midterm is
+          over; you think you did well. Why?" — five causes shown — then:
+          "researchers ask this in two common ways, and which one to trust is
+          our question."
+        explanation: |
+          The audience is inside the problem within two sentences, and the
+          study question is already visible.
+
+  - id: "A2_single_channel"
+    name: "Single Channel per Moment"
+    one_liner: "Never force the audience to read dense text and parse speech at the same time"
+
+    statement_natural: |
+      At any moment a slide either (a) carries readable text that the speaker
+      reads or closely tracks, or (b) carries minimal text that the speaker
+      expands in speech. It must not carry dense prose that the audience is
+      expected to read independently while also parsing different spoken
+      words. The two channels must not compete.
+
+    statement_formal: |
+      ∀slide s, ∀moment m, ¬(DenseText(s) ∧ IndependentSpeech(s, m))
+      where the audience's mental load L(s, m) ≤ L_max must hold.
+
+    rationale: |
+      Reading and listening draw on overlapping working memory. When the
+      slide says one thing densely and the mouth says another, mental load
+      exceeds capacity and both channels are lost. Pick one carrier per moment.
+
+    violations:
+      - description: "Dense paragraph on the slide, different narration"
+        content: |
+          A slide packed with three full sentences of prose, while the speaker
+          ad-libs a paraphrase in different words.
+        explanation: |
+          The audience cannot read the paragraph and follow the paraphrase at
+          once. Both are half-received.
+
+    compliant:
+      - description: "Slide text is what is said"
+        content: |
+          The slide shows the key claim in a short line; the speaker reads that
+          line, then adds one supporting sentence not shown. (For a nervous or
+          non-native speaker under time pressure, the fuller crutch is to put
+          the sentence on the slide and read it verbatim.)
+        explanation: |
+          One channel leads at a time. The audience always knows where to look.
+
+  - id: "A3_source_fidelity"
+    name: "Source-of-Truth Fidelity"
+    one_liner: "Every claim, number, term, and citation on a slide traces to the authoritative source, verified not recalled"
+
+    statement_natural: |
+      Every factual element on a slide — a statistic, a sample size, a term of
+      art, an attributed citation, an item's wording — must trace to the
+      authoritative source (manuscript, dataset, accepted abstract) and be
+      checked against it, not reproduced from memory. When sources conflict,
+      the manuscript (or the most authoritative artifact) wins.
+
+    statement_formal: |
+      ∀claim c ∈ Slide, ∃src ∈ SourceOfTruth, Traces(c, src) ∧ Verified(c, src)
+      ∧ (Conflict(src_i, src_j) → Prefer(Authoritative))
+
+    rationale: |
+      Recalled facts drift. A wrong number or a misattributed citation is
+      caught by exactly the expert in the room you least want to lose. The
+      source is the only thing that does not move.
+
+    violations:
+      - description: "Citation attached to the wrong originator"
+        content: |
+          "Graded 6-point comparison (Thurstone, 1927)" — where Thurstone (1927)
+          is the binary law of comparative judgment and the graded ordinal form
+          is Agresti (1992).
+        explanation: |
+          The specific claim (graded form) is mis-sourced. The manuscript
+          attributes it to Agresti; the slide should too.
+
+      - description: "Number recalled, not checked"
+        content: |
+          Reporting n = 336 from an older deck when the manuscript reports
+          n = 396 / 330.
+        explanation: |
+          A stale figure carried from a prior version. Verify against the
+          current source.
+
+    compliant:
+      - description: "Terms and numbers taken from the manuscript"
+        content: |
+          Item wording "I performed well because I had worked hard" and the
+          term "test difficulty" used because the manuscript uses them; sr and
+          ΔR² values copied from the results chapter and cross-checked.
+        explanation: |
+          Nothing on the slide originates from memory where the source exists.
+
+  - id: "A4_plain_register"
+    name: "Plain Register"
+    one_liner: "Plain noun-phrase titles and complete plain statements; no ornament, no AI tells"
+
+    statement_natural: |
+      Slide titles are plain noun phrases naming the content. Body text uses
+      complete, plain statements. Avoid essayistic taglines, clever idioms,
+      em-dash chains, and prose semicolons stringing clauses together. The
+      goal is text that reads as a person's own, not as generated ornament.
+
+    statement_formal: |
+      ∀title t, NounPhrase(t) ∧ Names(t, Content)
+      ∀body b, Complete(b) ∧ ¬Ornament(b)
+      where Ornament ⊇ {essayistic-tagline, clever-idiom, em-dash-chain,
+                        clause-joining-semicolon}
+
+    rationale: |
+      Ornamented, essay-styled slide text is both harder to deliver and reads
+      as machine-generated. Plain noun-phrase titles ("Method", "General
+      Discussion") match how experienced presenters and the field's own
+      manuscripts title sections.
+
+    violations:
+      - description: "Essayistic title and clever tagline"
+        content: |
+          Title: "Why combine? CJ alone cannot locate the origin".
+          Tagline: "do their scores earn their keep?"
+        explanation: |
+          Rhetorical-question title and idiom read as generated and are awkward
+          to say aloud. Prefer "Scale Origin Problem" and a plain statement.
+
+      - description: "Em-dash chain / clause-joining semicolon"
+        content: |
+          "Each response is a difference, so LS response styles cancel — the
+          biases are partialled out; the origin, however, is lost."
+        explanation: |
+          Dashes and semicolons stitching clauses are an AI tell. Split into
+          complete statements.
+
+    compliant:
+      - description: "Plain title, complete statements"
+        content: |
+          Title: "Comparative Judgment Item (CJ)".
+          Bullet: "Because each response is a difference between two causes, the
+          LS response styles cancel out and the biases are partialled out."
+        explanation: |
+          Names the content; each point is a self-contained sentence.
+
+  - id: "A5_navigation"
+    name: "Navigational Scaffolding"
+    one_liner: "The audience must always know where they are: an outline up front and a per-slide position marker"
+
+    statement_natural: |
+      A talk provides an outline near the start so the audience knows what is
+      coming, and a lightweight position marker on each content slide so they
+      always know which part is being presented. Structure is made visible,
+      not left implicit.
+
+    statement_formal: |
+      ∀talk T, ∃outline near Start(T)
+      ∧ ∀content-slide s, ∃marker(s) indicating Position(s, Structure(T))
+
+    rationale: |
+      An audience that loses the thread cannot recover it from a dense slide.
+      A one-line outline bar answers "where are we?" without the speaker having
+      to say it.
+
+    violations:
+      - description: "No outline, no position cue"
+        content: |
+          Slides move from problem to model to results with no map at the start
+          and no per-slide indication of which section is current.
+        explanation: |
+          A listener who drifts for ten seconds cannot tell whether they are in
+          Method or Results.
+
+    compliant:
+      - description: "Outline slide plus per-slide bar"
+        content: |
+          An outline slide after the title, and a thin top or bottom bar on each
+          content slide highlighting the current section.
+        explanation: |
+          Position is always answerable at a glance.
+
+  - id: "A6_figure_over_dense_table"
+    name: "Figure over Dense Table"
+    one_liner: "When a relation can be shown, prefer a diagram or flow chart to a dense table"
+
+    statement_natural: |
+      When information is relational (a process, a mapping, a family of
+      objects), prefer a diagram or flow chart over a dense table. Tables are
+      for a few enumerable facts read at a glance; anything the audience must
+      trace across rows and columns is better shown as a picture.
+
+    statement_formal: |
+      ∀info i on a slide, Relational(i) → Prefer(Figure(i), DenseTable(i))
+      DenseTable admissible only when |cells| small ∧ ReadAtAGlance(i)
+
+    rationale: |
+      A dense table forces serial reading and hides structure. A flow chart
+      makes the structure the first thing seen. "More figures, fewer dense
+      tables" was the rehearsal's repeated note.
+
+    violations:
+      - description: "A mapping shown as a crowded table"
+        content: |
+          A five-row, six-column table listing how each of three data sources
+          maps through each scoring step, in small type.
+        explanation: |
+          The audience cannot hold the mapping while reading cells. A pipeline
+          diagram would show it instantly.
+
+    compliant:
+      - description: "The same mapping as a flow diagram"
+        content: |
+          Boxes for LS items and CJ pairs → an arrow into one latent continuum →
+          the three model variants, drawn once.
+        explanation: |
+          Structure is visible; no serial cell-reading required.
+
+  - id: "A7_term_grounding"
+    name: "Cross-Audience Term Grounding"
+    one_liner: "Define domain terms in place for a mixed audience, and cite the correct originator per claim"
+
+    statement_natural: |
+      For a mixed audience, define each domain term in place the first time it
+      is used, in plain words, and attribute each specific claim to the
+      originator of that specific claim (not to a famous name loosely
+      associated with the area).
+
+    statement_formal: |
+      ∀term x introduced, FirstUse(x) → InPlaceDefinition(x)
+      ∀claim c with citation, Cite(c, Originator(c)) ∧ ¬Cite(c, LooselyAssociated)
+
+    rationale: |
+      A cross-field audience cannot follow undefined jargon, and an expert
+      audience notices a citation pinned to the wrong author. Both are lost by
+      the same laziness: not naming precisely.
+
+    violations:
+      - description: "Undefined jargon for a mixed room"
+        content: |
+          "We use the cumulative probit link" with no gloss, to an audience that
+          includes non-psychometricians.
+        explanation: |
+          Part of the room is now lost. One clause of plain gloss keeps them.
+
+      - description: "Famous-name citation instead of the actual originator"
+        content: |
+          Attributing the graded ordinal comparison to Thurstone because
+          Thurstone is the comparative-judgment name.
+        explanation: |
+          The graded form's originator is Agresti (1992). Cite the claim's
+          actual source.
+
+    compliant:
+      - description: "In-place gloss and correct attribution"
+        content: |
+          "Comparative judgment, in Thurstone's (1927) tradition, here a graded
+          six-point form (Agresti, 1992)."
+        explanation: |
+          The term is placed in its tradition, and the specific graded form is
+          credited to its actual originator.
+
+  - id: "A8_honest_framing"
+    name: "Honest Result Framing"
+    one_liner: "Report results as found; frame what a result can and cannot show, without overclaiming"
+
+    statement_natural: |
+      Report null and negative results as found, plainly. Frame each result by
+      what it can and cannot establish, rather than inflating it. A source of
+      evidence that fails to separate methods is described as lacking that
+      resolution, not spun as a positive.
+
+    statement_formal: |
+      ∀result r, State(r) ≡ AsFound(r)
+      ∧ Frame(r) = (CanShow(r), CannotShow(r))
+      ∧ ¬Overclaim(r)
+
+    rationale: |
+      An audience of scientists trusts a speaker who states limits. Overclaimed
+      results invite exactly the question that exposes them. Honest framing is
+      both more credible and more defensible in Q&A.
+
+    violations:
+      - description: "Spinning a null into a positive"
+        content: |
+          "For convergent and discriminant evidence, a single format was
+          sufficient" — implying the single format did the job well.
+        explanation: |
+          The truthful reading is that this evidence lacked the resolution to
+          separate the methods, not that one format was adequate.
+
+    compliant:
+      - description: "Null stated with correct framing"
+        content: |
+          "On this source of evidence the three indicator types could not be
+          told apart; the finer differences appear only in the criterion
+          evidence."
+        explanation: |
+          States the null as found and frames precisely what it does and does
+          not show.
+
+  - id: "A9_time_budget"
+    name: "Time-Budget Discipline"
+    one_liner: "The script is budgeted to the slot with buffer, and its length is measured, not assumed"
+
+    statement_natural: |
+      The spoken script is written to fit the slot with a buffer, and its length
+      is verified by measurement (word count or read-through timing), not
+      assumed. When measurement shows overrun, the script is trimmed before the
+      talk, not discovered over-length at the podium.
+
+    statement_formal: |
+      ∀script S for slot with ceiling C,
+        MeasuredDuration(S) + Buffer ≤ C
+      ∧ Length(S) determined by Measurement, ¬by Assumption
+
+    rationale: |
+      A slot is a hard ceiling. Over-running steals the next speaker's time and
+      forces a panicked skip of the conclusion. Measuring length beforehand
+      turns a podium emergency into an edit.
+
+    violations:
+      - description: "Assumed length, discovered over-budget live"
+        content: |
+          A script that "feels about right" but runs 1,600 words for a 12-minute
+          slot, found out only when the chair signals time at the results.
+        explanation: |
+          Word count times a realistic pace already predicted overrun. It should
+          have been trimmed in advance.
+
+    compliant:
+      - description: "Measured and buffered"
+        content: |
+          Script counted at ~1,100 words, read-timed to ~10.5 minutes for a
+          12-minute slot, leaving buffer for pointing and pauses.
+        explanation: |
+          Length is a measured quantity with margin, not a hope.
+
+theorems:
+  - id: "T1_question_after_hook"
+    name: "Question Follows the Hook"
+    derives_from: ["A1_example_first", "A5_navigation"]
+
+    statement_natural: |
+      The study's research question should be stated immediately after the
+      concrete opening instance, so the audience carries a question into the
+      rest of the talk. The hook earns attention; the question directs it.
+
+    statement_formal: |
+      ∀talk T, Precedes(Hook(T), Question(T)) ∧ Adjacent(Hook(T), Question(T))
+      ∧ ∀later-slide s, Interpretable(s | Question(T))
+
+    violations:
+      - description: "Hook with no question stated"
+        content: |
+          A vivid opening scenario, then straight into method, with the research
+          question never made explicit.
+        explanation: |
+          The audience is engaged but rudderless. Every study needs a visible
+          question; the hook's job is to make the audience want its answer.
+
+    compliant:
+      - description: "Hook then question"
+        content: |
+          Scenario → "researchers ask this two ways, and which to trust is the
+          question" → method answers that question.
+        explanation: |
+          Attention is captured and then aimed.
+
+  - id: "T2_verbatim_crutch"
+    name: "Verbatim-Slide Crutch is Conditional, Not Default"
+    derives_from: ["A2_single_channel", "A4_plain_register"]
+
+    statement_natural: |
+      Putting the full spoken sentence on the slide and reading it verbatim is a
+      legitimate crutch when the speaker is non-native or under acute time
+      pressure and cannot ad-lib fluently. It resolves A2 (one channel: the
+      slide is the speech) at the cost of A4's brevity. It is a conditional
+      device, not the default; as fluency rises, text thins back toward
+      keywords.
+
+    statement_formal: |
+      VerbatimSlide(s) is admissible ⟺ (NonNativeSpeaker ∨ AcuteTimePressure)
+      ∧ resolves A2 by SlideText(s) ≡ Speech(s)
+      ∧ trades against A4.brevity
+      ∧ ¬Default(VerbatimSlide)
+
+    violations:
+      - description: "Treating verbatim slides as the universal ideal"
+        content: |
+          Every slide, for every talk, packed with the full script in all
+          conditions, including a fluent short informal talk.
+        explanation: |
+          Verbatim-on-slide is a scaffold for a specific hard case, not a style.
+          For a fluent speaker it violates A4 needlessly.
+
+    compliant:
+      - description: "Verbatim as a targeted scaffold"
+        content: |
+          For a first English conference talk under a tight deadline, the full
+          sentences go on the slides so the speaker can read and keep pace; the
+          plan is to thin them in later talks.
+        explanation: |
+          The crutch is used where its precondition holds and is acknowledged as
+          temporary.

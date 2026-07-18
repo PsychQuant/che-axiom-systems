@@ -6,6 +6,9 @@
 # 欄位：
 #   aliases  — domain 名的等價稱呼（中英），供 `alias:query` hint prefix 解析
 #   keywords — 該域涵蓋的話題訊號，供對話自動觸發時的 domain 匹配
+- domain: academic-presentation
+  aliases: [學術報告, conference talk, oral presentation, 投影片, slides, 簡報]
+  keywords: [投影片, slide deck, beamer, 講稿, talk script, 會議報告, conference presentation, example-first 開場, mental load, outline, 去AI感, source of truth, 時間 slot, 讀秒]
 - domain: apa7-style
   aliases: [APA, apa7, APA格式]
   keywords: [引用格式, citation, 參考文獻, reference, in-text citation, DOI, 期刊格式, 學術格式規範]
