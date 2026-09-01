@@ -1,6 +1,6 @@
 ---
 name: statistics
-description: 統計與資料科學的推導紀律。做統計推導或審查統計主張時使用——迴歸係數在尺度變換下怎麼變、估計量是否無偏、MSE 與偏誤變異數拆解、最大概似、假設檢定的解讀、模型近似的邊界。Use when deriving or reviewing statistical claims: rescaling invariance, estimator properties, bias-variance decomposition, likelihood, hypothesis testing, and the limits of model approximation.
+description: "統計與資料科學的推導紀律。做統計推導或審查統計主張時使用——迴歸係數在尺度變換下怎麼變、估計量是否無偏、MSE 與偏誤變異數拆解、最大概似、假設檢定的解讀、模型近似的邊界。Use when deriving or reviewing statistical claims: rescaling invariance, estimator properties, bias-variance decomposition, likelihood, hypothesis testing, and the limits of model approximation."
 argument-hint: "[自然語言 | 章節名]（裸呼叫＝載入本域待命）"
 ---
 
@@ -16,7 +16,7 @@ argument-hint: "[自然語言 | 章節名]（裸呼叫＝載入本域待命）"
 Skill(skill="che-axiom-systems:axiom-based", args="statistics: <查詢>")
 ```
 
-`axiom-based` 的 domain-hint shape 會直接命中本域，之後的搜尋、引用上限（inline 最多 3 條）、`📎 相關公理` 清單格式、以及「無足夠相關公理 → 靜默 no-op」都照它的契約走。
+`axiom-based` 的 domain-hint shape 會直接命中本域；之後的搜尋策略、呈現格式、以及「無足夠相關公理時不製造雜訊」都由它的契約決定，本檔不重述（該契約對顯式呼叫與隱式觸發的模板不同，寫死在這裡必然與它分岔）。
 
 ## 本域現有條目（供判斷相關性，非權威內容）
 

@@ -1,6 +1,6 @@
 ---
 name: language-learning
-description: 語言習得的模型與現象。討論學外語或設計語言教材時使用——輸入的角色、習得機制、語言表徵、溝通功能、發展階段的限制、可學習性與輸入充分性。Use when reasoning about second-language acquisition: the role of input, acquisition mechanisms, linguistic representation, communicative function, and developmental constraints.
+description: "語言習得的模型與現象。討論學外語或設計語言教材時使用——輸入的角色、習得機制、語言表徵、溝通功能、發展階段的限制、可學習性與輸入充分性。Use when reasoning about second-language acquisition: the role of input, acquisition mechanisms, linguistic representation, communicative function, and developmental constraints."
 argument-hint: "[自然語言 | 章節名]（裸呼叫＝載入本域待命）"
 ---
 
@@ -16,7 +16,7 @@ argument-hint: "[自然語言 | 章節名]（裸呼叫＝載入本域待命）"
 Skill(skill="che-axiom-systems:axiom-based", args="language-learning: <查詢>")
 ```
 
-`axiom-based` 的 domain-hint shape 會直接命中本域，之後的搜尋、引用上限（inline 最多 3 條）、`📎 相關公理` 清單格式、以及「無足夠相關公理 → 靜默 no-op」都照它的契約走。
+`axiom-based` 的 domain-hint shape 會直接命中本域；之後的搜尋策略、呈現格式、以及「無足夠相關公理時不製造雜訊」都由它的契約決定，本檔不重述（該契約對顯式呼叫與隱式觸發的模板不同，寫死在這裡必然與它分岔）。
 
 ## 本域現有條目（供判斷相關性，非權威內容）
 
@@ -27,6 +27,7 @@ Skill(skill="che-axiom-systems:axiom-based", args="language-learning: <查詢>")
 | 〈Axiom L3: Linguistic Representation〉 | 語言的心理表徵 |
 | 〈Axiom L4: Communicative Function〉 | 語言的溝通功能 |
 | 〈Axiom L5: Developmental Constraints〉 | 發展階段的限制 |
+| 〈P1: Learnability Principle〉 | 可學習性 |
 | 〈P2: Input Sufficiency Principle〉 | 輸入充分性 |
 
 權威內容以 `domains/language-learning/` 下的公理檔為準；上表只是章節摘要，不可用於引用。本域為 markdown 格式，引用時用章節名、**不捏造 ID**。 新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。

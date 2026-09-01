@@ -1,6 +1,6 @@
 ---
 name: apa7-style
-description: APA 第七版的寫作與引用規範。寫學術稿件或審稿時使用——in-text citation 與參考文獻格式、各段落該用什麼時態、主動被動語態、first person 能不能用、singular they、去冗詞、person-first 用語、避免擬人化（表格不會 show）。Use when writing or reviewing scholarly manuscripts under APA 7th: citation format, tense per section, voice, bias-free language, and conciseness rules.
+description: "APA 第七版的寫作與引用規範。寫學術稿件或審稿時使用——in-text citation 與參考文獻格式、各段落該用什麼時態、主動被動語態、first person 能不能用、singular they、去冗詞、person-first 用語、避免擬人化（表格不會 show）。Use when writing or reviewing scholarly manuscripts under APA 7th: citation format, tense per section, voice, bias-free language, and conciseness rules."
 argument-hint: "[自然語言 | axiom-ID]（裸呼叫＝載入本域待命）"
 ---
 
@@ -16,7 +16,7 @@ argument-hint: "[自然語言 | axiom-ID]（裸呼叫＝載入本域待命）"
 Skill(skill="che-axiom-systems:axiom-based", args="apa7-style: <查詢>")
 ```
 
-`axiom-based` 的 domain-hint shape 會直接命中本域，之後的搜尋、引用上限（inline 最多 3 條）、`📎 相關公理` 清單格式、以及「無足夠相關公理 → 靜默 no-op」都照它的契約走。
+`axiom-based` 的 domain-hint shape 會直接命中本域；之後的搜尋策略、呈現格式、以及「無足夠相關公理時不製造雜訊」都由它的契約決定，本檔不重述（該契約對顯式呼叫與隱式觸發的模板不同，寫死在這裡必然與它分岔）。
 
 ## 本域現有條目（供判斷相關性，非權威內容）
 
@@ -35,12 +35,12 @@ Skill(skill="che-axiom-systems:axiom-based", args="apa7-style: <查詢>")
 | `A6_replicability` | 量化研究必須可複製 |
 | `T1_mixed_methods_dual_standards` | 混合方法須同時滿足量化與質性標準 |
 
-權威內容以 `domains/apa7-style/` 下的公理檔為準；上表只是one-liner摘要，不可用於引用。新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
+權威內容以 `domains/apa7-style/` 下的公理檔為準；上表是代表性子集（本域共 40+ 條，分散於三個公理檔），不可用於引用。新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
 
 ## 邊界
 
 | 不屬於本域 | 去處 |
 |-----------|------|
 | 數學陳述的擺放 | `mathematical-writing` |
-| 學術引用格式 | `apa7-style` |
+| 投影片上的引用呈現 | `academic-presentation` |
 | 私人筆記 | `note-writing` |

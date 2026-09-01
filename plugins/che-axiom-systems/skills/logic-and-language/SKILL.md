@@ -1,6 +1,6 @@
 ---
 name: logic-and-language
-description: 邏輯系統與後設邏輯。處理形式推論或語意問題時使用——等式公理、命題邏輯、真值定義、object language 與 metalanguage 的區分、T-schema、形式系統的界限。Use when working with formal inference or semantics: equality and propositional axioms, truth definitions, the object-language / metalanguage distinction, T-schema, and the limits of formal systems.
+description: "邏輯系統與後設邏輯。處理形式推論時使用——等式的遞移性與同餘、部分與整體的量關係、命題邏輯的同一律、以及後設邏輯這一層本身（談論形式系統的層次）。Use when working with formal inference: equality axioms, propositional-logic axioms, the part-whole relation, and the metalogical layer that talks about formal systems."
 argument-hint: "[自然語言 | 章節名]（裸呼叫＝載入本域待命）"
 ---
 
@@ -16,7 +16,7 @@ argument-hint: "[自然語言 | 章節名]（裸呼叫＝載入本域待命）"
 Skill(skill="che-axiom-systems:axiom-based", args="logic-and-language: <查詢>")
 ```
 
-`axiom-based` 的 domain-hint shape 會直接命中本域，之後的搜尋、引用上限（inline 最多 3 條）、`📎 相關公理` 清單格式、以及「無足夠相關公理 → 靜默 no-op」都照它的契約走。
+`axiom-based` 的 domain-hint shape 會直接命中本域；之後的搜尋策略、呈現格式、以及「無足夠相關公理時不製造雜訊」都由它的契約決定，本檔不重述（該契約對顯式呼叫與隱式觸發的模板不同，寫死在這裡必然與它分岔）。
 
 ## 本域現有條目（供判斷相關性，非權威內容）
 

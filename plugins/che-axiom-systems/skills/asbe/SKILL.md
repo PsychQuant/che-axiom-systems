@@ -1,6 +1,6 @@
 ---
 name: asbe
-description: ASBE（Axiomatic Specification by Example）方法論本身。建立或審查任何公理化系統時使用——一條規則要不要同時有自然語言與形式表達、要不要附違反與合規範例、公理之間是否獨立、規則的推導層級（Axiom → Theorem → Corollary → Rule）、自然語言與形式表達是否等價。Use when authoring or reviewing an axiomatization: dual expression, example grounding, hierarchical derivation, minimal axiom set, semantic equivalence.
+description: "ASBE（Axiomatic Specification by Example）方法論本身。建立或審查任何公理化系統時使用——一條規則要不要同時有自然語言與形式表達、要不要附違反與合規範例、公理之間是否獨立、規則的推導層級（Axiom → Theorem → Corollary → Rule）、自然語言與形式表達是否等價。Use when authoring or reviewing an axiomatization: dual expression, example grounding, hierarchical derivation, minimal axiom set, semantic equivalence."
 argument-hint: "[自然語言 | axiom-ID]（裸呼叫＝載入本域待命）"
 ---
 
@@ -16,7 +16,7 @@ argument-hint: "[自然語言 | axiom-ID]（裸呼叫＝載入本域待命）"
 Skill(skill="che-axiom-systems:axiom-based", args="asbe: <查詢>")
 ```
 
-`axiom-based` 的 domain-hint shape 會直接命中本域，之後的搜尋、引用上限（inline 最多 3 條）、`📎 相關公理` 清單格式、以及「無足夠相關公理 → 靜默 no-op」都照它的契約走。
+`axiom-based` 的 domain-hint shape 會直接命中本域；之後的搜尋策略、呈現格式、以及「無足夠相關公理時不製造雜訊」都由它的契約決定，本檔不重述（該契約對顯式呼叫與隱式觸發的模板不同，寫死在這裡必然與它分岔）。
 
 ## 本域現有條目（供判斷相關性，非權威內容）
 
@@ -32,7 +32,7 @@ Skill(skill="che-axiom-systems:axiom-based", args="asbe: <查詢>")
 
 本域另含兩組**示範用**公理集（code review 的 `A1_correctness` 等、writing 的 `A1_purpose` 等），是 ASBE 的應用範例而非方法論自身的公理。
 
-權威內容以 `domains/asbe/asbe_axioms_bootstrapped.yaml`（該域 `domain.yaml` 宣告的 entry_point）為準；上表只是one-liner摘要，不可用於引用。新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
+權威內容以 `domains/asbe/asbe_axioms_bootstrapped.yaml`（該域 `domain.yaml` 宣告的 entry_point）為準；上表只列方法論自身的 7 條，不可用於引用。新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
 
 ## 邊界
 

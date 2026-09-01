@@ -1,6 +1,6 @@
 ---
 name: musical-composition
-description: 音楽作曲と理論の公理化。作曲、編曲或分析音樂時使用——音響物理的基礎、音樂時間與韻律、音高結構與階層、緊張與解決的力學、以及偶像音樂的情感喚起原則。Use when composing, arranging, or analysing music: acoustic foundations, musical time and meter, pitch hierarchy, tension-resolution dynamics, and emotion-first principles for idol music.
+description: "音楽作曲と理論の公理化。作曲、編曲或分析音樂時使用——音響物理的基礎、音樂時間與韻律、音高結構與階層、緊張與解決的力學、以及偶像音樂的情感喚起原則。Use when composing, arranging, or analysing music: acoustic foundations, musical time and meter, pitch hierarchy, tension-resolution dynamics, and emotion-first principles for idol music."
 argument-hint: "[自然語言 | 章節名]（裸呼叫＝載入本域待命）"
 ---
 
@@ -16,7 +16,7 @@ argument-hint: "[自然語言 | 章節名]（裸呼叫＝載入本域待命）"
 Skill(skill="che-axiom-systems:axiom-based", args="musical-composition: <查詢>")
 ```
 
-`axiom-based` 的 domain-hint shape 會直接命中本域，之後的搜尋、引用上限（inline 最多 3 條）、`📎 相關公理` 清單格式、以及「無足夠相關公理 → 靜默 no-op」都照它的契約走。
+`axiom-based` 的 domain-hint shape 會直接命中本域；之後的搜尋策略、呈現格式、以及「無足夠相關公理時不製造雜訊」都由它的契約決定，本檔不重述（該契約對顯式呼叫與隱式觸發的模板不同，寫死在這裡必然與它分岔）。
 
 ## 本域現有條目（供判斷相關性，非權威內容）
 

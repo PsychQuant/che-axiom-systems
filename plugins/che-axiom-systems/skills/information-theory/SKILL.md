@@ -1,6 +1,6 @@
 ---
 name: information-theory
-description: 資訊理論：測度與不等式。處理資訊量或編碼問題時使用——熵的公理刻畫、通道容量、編碼定理、data processing 不等式、最大熵原理、互資訊與 KL divergence。Use when reasoning about information measures: the axiomatic characterisation of entropy, channel capacity, coding, the data-processing inequality, and maximum entropy.
+description: "資訊理論：測度與不等式。處理資訊量或編碼問題時使用——熵的公理刻畫、通道容量、編碼定理、data processing 不等式、最大熵原理、互資訊與 KL divergence。Use when reasoning about information measures: the axiomatic characterisation of entropy, channel capacity, coding, the data-processing inequality, and maximum entropy."
 argument-hint: "[自然語言 | 章節名]（裸呼叫＝載入本域待命）"
 ---
 
@@ -16,7 +16,7 @@ argument-hint: "[自然語言 | 章節名]（裸呼叫＝載入本域待命）"
 Skill(skill="che-axiom-systems:axiom-based", args="information-theory: <查詢>")
 ```
 
-`axiom-based` 的 domain-hint shape 會直接命中本域，之後的搜尋、引用上限（inline 最多 3 條）、`📎 相關公理` 清單格式、以及「無足夠相關公理 → 靜默 no-op」都照它的契約走。
+`axiom-based` 的 domain-hint shape 會直接命中本域；之後的搜尋策略、呈現格式、以及「無足夠相關公理時不製造雜訊」都由它的契約決定，本檔不重述（該契約對顯式呼叫與隱式觸發的模板不同，寫死在這裡必然與它分岔）。
 
 ## 本域現有條目（供判斷相關性，非權威內容）
 
@@ -28,6 +28,9 @@ Skill(skill="che-axiom-systems:axiom-based", args="information-theory: <查詢>"
 | 〈A4: Coding Axiom〉 | 編碼的基本約束 |
 | 〈A5: Data Processing Axiom〉 | 處理不會增加資訊 |
 | 〈P1: Maximum Entropy Principle〉 | 最大熵原理 |
+| 〈P2: Channel Coding Principle〉 | 通道編碼原理 |
+| 〈T1: Source Coding Theorem〉 | 源編碼定理 |
+| 〈T2: Channel Coding Theorem〉 | 通道編碼定理 |
 
 權威內容以 `domains/information-theory/` 下的公理檔為準；上表只是章節摘要，不可用於引用。本域為 markdown 格式，引用時用章節名、**不捏造 ID**。 新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
 

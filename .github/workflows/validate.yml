@@ -29,13 +29,51 @@ jobs:
 
       - name: Skills frontmatter lint
         run: |
-          fail=0
-          for f in plugins/che-axiom-systems/skills/*/SKILL.md; do
-            head -1 "$f" | grep -qx -- '---' || { echo "::error file=$f::missing frontmatter"; fail=1; }
-            awk '/^---$/{n++} n==1' "$f" | grep -q '^name:' || { echo "::error file=$f::missing name:"; fail=1; }
-            awk '/^---$/{n++} n==1' "$f" | grep -q '^description:' || { echo "::error file=$f::missing description:"; fail=1; }
-          done
-          exit $fail
+          sudo apt-get install -y python3-yaml > /dev/null 2>&1 || pip install pyyaml > /dev/null
+          python3 - <<'EOF'
+          import glob, os, re, sys, yaml
+
+          # The frontmatter must PARSE, not merely contain lines that look like
+          # `name:` and `description:`. The previous version of this step used
+          # `grep -q '^name:'` / `grep -q '^description:'` on raw text, so 11
+          # skills whose description contained an unquoted `: ` — which
+          # terminates a YAML plain scalar and makes the whole block a parse
+          # error — passed CI green while being unloadable (#29 verify).
+          #
+          # That is the same defect class this repo's 四件套 rule exists to
+          # prevent: a check that looks like it guards something it never
+          # inspects. Parse it.
+          fail = False
+          for f in sorted(glob.glob("plugins/che-axiom-systems/skills/*/SKILL.md")):
+              slug = os.path.basename(os.path.dirname(f))
+              text = open(f, encoding="utf-8").read()
+              m = re.match(r"^---\n(.*?)\n---\n", text, re.S)
+              if not m:
+                  print(f"::error file={f}::missing or malformed frontmatter delimiters")
+                  fail = True
+                  continue
+              try:
+                  fm = yaml.safe_load(m.group(1))
+              except yaml.YAMLError as e:
+                  detail = str(e).replace("\n", " ")[:200]
+                  print(f"::error file={f}::frontmatter is not valid YAML: {detail}")
+                  print(f"::error file={f}::hint — an unquoted ': ' inside a value "
+                        f"ends the scalar; wrap the value in double quotes")
+                  fail = True
+                  continue
+              if not isinstance(fm, dict):
+                  print(f"::error file={f}::frontmatter must be a mapping")
+                  fail = True
+                  continue
+              for key in ("name", "description"):
+                  if not fm.get(key):
+                      print(f"::error file={f}::missing or empty {key}:")
+                      fail = True
+              if fm.get("name") and fm["name"] != slug:
+                  print(f"::error file={f}::name '{fm['name']}' != directory '{slug}'")
+                  fail = True
+          sys.exit(1 if fail else 0)
+          EOF
 
       - name: Domain manifests + INDEX consistency
         run: |
