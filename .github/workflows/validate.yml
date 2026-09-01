@@ -164,28 +164,35 @@ jobs:
                   fail = True
 
           # 四件套 #4 (#29): every domain has a trigger-surface skill. No exemption.
-          # An earlier revision allowed `trigger_surface: none` plus a free-text
-          # reason; #29 verify round 3 exempted a 23-axiom domain with the reason
-          # "x" and CI stayed green. An escape hatch whose only gate is that a
-          # human wrote *something* is a human review step wearing a CI badge, so
-          # the hatch is gone: a directory under domains/ is advertised in INDEX
-          # and TOPICS, and anything advertised gets a trigger surface.
+          # An earlier revision allowed `trigger_surface: none` plus a free-text reason;
+          # #29 verify round 3 exempted a 23-axiom domain with the reason "x" and CI
+          # stayed green. A gate whose only condition is that a human wrote *something*
+          # is a human review step wearing a CI badge, so the hatch is gone.
           for d in domains:
               sk = os.path.join(skills_root, d, "SKILL.md")
               if not os.path.isfile(sk):
                   print(f"::error::{d} has no trigger surface — expected {sk}")
                   fail = True
 
-          # Every row of a domain skill's entry table must resolve to a real
-          # heading or a real `id:` in that domain. Round 2 found a row citing
-          # 〈Metalogic〉, a section existing in no file, inside a table whose own
-          # caption says 嚴禁捏造 ID. A fabricated pointer reads exactly like a
-          # real one, so only a lookup tells them apart.
+          # ---- entry tables: rows resolve, and the declared coverage recomputes ----
+          #
+          # Round 2 found a row citing a section existing in no file. Round 3 found the
+          # check written for that could pass having inspected nothing, and that the
+          # hand-written counts beside those tables were wrong three times over — a
+          # green run proved rows existed *somewhere*, never that the prose was true.
+          # So the counts are no longer prose: each skill declares its sources in a
+          # fixed line and CI recomputes N, M and N-M. Deleting a row, miscounting, or
+          # attributing a row to the wrong file all break the arithmetic.
           FENCE = re.compile(r"^\s*(```|~~~)")
+          COV = re.compile(
+              r"^- `(?P<path>[^`]+)` · (?P<kind>id|h2|h3|h4) · 篩選 `(?P<filt>[^`]*)` — "
+              r"共 \*\*(?P<n>\d+)\*\* 條，上表 \*\*(?P<m>\d+)\*\* 條，未列 \*\*(?P<k>\d+)\*\* 條\s*$",
+              re.M,
+          )
 
-          def md_headings(text):
-              """Headings outside fenced code. A fence can hold an illustrative
-              `# Foo`, which is not a citable section."""
+          def md_headings(text, lvl):
+              """Headings at one level, outside fenced code. A fence can hold an
+              illustrative `# Foo`, which is not a citable section."""
               out, infence = [], False
               for line in text.splitlines():
                   if FENCE.match(line):
@@ -193,25 +200,19 @@ jobs:
                       continue
                   if infence:
                       continue
-                  m = re.match(r"^#{1,6}\s*(.+?)\s*$", line)
-                  if m:
-                      h = m.group(1).strip()
-                      out.append(h)
-                      # headings here often carry an emoji prefix
-                      # (#### 🔑 關鍵規則…); a table cites the text, so
-                      # accept the prefix-stripped form as well
-                      out.append(re.sub(r"^[^\w\u4e00-\u9fff]+", "", h).strip())
+                  m = re.match(r"^(#{1,6})\s*(.+?)\s*$", line)
+                  if m and len(m.group(1)) == lvl:
+                      out.append(m.group(2).strip())
               return out
 
           def yaml_ids(text, path):
-              """id VALUES, structurally. Regex over raw text also picks up YAML
+              """id VALUES, structurally. A regex over raw text also picks up YAML
               comments and the inside of block scalars, where anyone can write
               `id: anything` without declaring an entry."""
               try:
                   doc = yaml.safe_load(text)
               except yaml.YAMLError:
-                  print(f"  note: {path} does not parse; falling back to a text scan "
-                        f"for its ids (see #31)")
+                  print(f"  note: {path} does not parse; falling back to a text scan for its ids (see #31)")
                   return re.findall(r"^\s*-?\s*id:\s*[\"']?([A-Za-z0-9_.-]+)", text, re.M)
               found = []
               def walk(node):
@@ -227,48 +228,30 @@ jobs:
               walk(doc)
               return found
 
-          def head_ok(cited, heads):
-              """Exact match, or a prefix cut at a parenthesised / dashed gloss.
-              Substring matching is too loose: it accepts 〈Metalogic〉 against
-              "Metalogical Results" — the exact fabrication this check exists for."""
-              for x in heads:
-                  if cited == x:
-                      return True
-                  for sep in (" (", "（", " ——", " —"):
-                      if x.startswith(cited + sep):
+          def strip_lead(h):
+              return re.sub(r"^[^\w一-鿿]+", "", h).strip()
+
+          def head_ok(cited, pool):
+              """Exact match, or a prefix cut at a parenthesised / dashed gloss, on the
+              heading as written or with a leading emoji run removed. Substring matching
+              is too loose: it accepts 〈Metalogic〉 against "Metalogical Results" — the
+              exact fabrication this check exists for."""
+              for x in pool:
+                  for cand in (x, strip_lead(x)):
+                      if cited == cand:
                           return True
+                      for sep in (" (", "（", " ——", " —"):
+                          if cand.startswith(cited + sep):
+                              return True
               return False
 
           rows_checked = 0
-          # A skill is domain-bound iff domains/<slug>/ exists, so adding a core
-          # helper skill does not demand an entry table it has no reason to have.
+          # A skill is domain-bound iff domains/<slug>/ exists, so adding a core helper
+          # skill does not demand an entry table it has no reason to have.
           for sk in sorted(glob.glob(os.path.join(skills_root, "*", "SKILL.md"))):
               d = os.path.basename(os.path.dirname(sk))
               if not os.path.isdir(os.path.join(root, d)):
                   continue
-              heads, ids = [], []
-              for dp, _, fns in os.walk(os.path.join(root, d)):
-                  if "archive" in dp:
-                      continue
-                  for fn in fns:
-                      fp = os.path.join(dp, fn)
-                      if os.path.islink(fp) and not os.path.exists(fp):
-                          # a dangling symlink hides nothing citable; name it
-                          # rather than swallowing it, but do not red the build
-                          print(f"::warning::{fp} is a broken symlink — skipped")
-                          continue
-                      try:
-                          body = open(fp, encoding="utf-8", errors="replace").read()
-                      except OSError as e:
-                          print(f"::error::could not read {fp}: {e}")
-                          fail = True
-                          continue
-                      if fn.endswith(".md"):
-                          heads += md_headings(body)
-                      elif fn.endswith((".yaml", ".yml")):
-                          ids += yaml_ids(body, fp)
-              heads, ids = set(heads), set(ids)
-
               text = open(sk, encoding="utf-8").read()
               a, b = text.find("本域現有條目"), text.find("## 邊界")
               if a < 0 or b < 0:
@@ -276,35 +259,108 @@ jobs:
                   fail = True
                   continue
               if b < a:
-                  # str.find locates each marker independently; out of order the
-                  # slice is empty and the whole table is skipped in silence.
-                  print(f"::error file={sk}::## 邊界 appears before 本域現有條目 — "
-                        f"the entry table would be skipped")
+                  # str.find locates each marker independently; out of order the slice is
+                  # empty and the whole table would be skipped in silence.
+                  print(f"::error file={sk}::## 邊界 appears before 本域現有條目 — the entry table would be skipped")
                   fail = True
                   continue
               sec = text[a:b]
+
+              declared = [m.groupdict() for m in COV.finditer(sec)]
+              if not declared:
+                  print(f"::error file={sk}::no 涵蓋 lines — expected at least one line of the form "
+                        f"- `path` · kind · 篩選 `re` — 共 **N** 條，上表 **M** 條，未列 **K** 條")
+                  fail = True
+                  continue
+
+              pools, bad_src = [], False
+              for dec in declared:
+                  fp = os.path.join(root, d, dec["path"])
+                  if not os.path.isfile(fp):
+                      print(f"::error file={sk}::涵蓋 names {dec['path']}, which does not exist under domains/{d}/")
+                      fail = True
+                      bad_src = True
+                      continue
+                  body = open(fp, encoding="utf-8", errors="replace").read()
+                  raw = yaml_ids(body, fp) if dec["kind"] == "id" else md_headings(body, int(dec["kind"][1]))
+                  filt = dec["filt"]
+                  if filt == "-":
+                      pool = list(raw)
+                  else:
+                      pool = [x for x in raw if re.search(filt, x) or re.search(filt, strip_lead(x))]
+                  n = int(dec["n"])
+                  if len(pool) != n:
+                      print(f"::error file={sk}::涵蓋 says {dec['path']} [{dec['kind']}] has {n} entries; "
+                            f"recomputed {len(pool)}")
+                      fail = True
+                  pools.append((dec, pool, 0))
+              if bad_src:
+                  continue
+
               found = re.findall(r"^\|\s*(?:〈(.+?)〉|`([^`]+)`)\s*\|", sec, re.M)
               if not found:
-                  # A table whose rows stop matching contributes zero and would
-                  # otherwise be indistinguishable from one that is fully checked.
                   print(f"::error file={sk}::entry table yielded no recognised rows — "
                         f"每列第一欄要是 〈章節名〉 或 `id`")
                   fail = True
                   continue
+
+              counts = [0] * len(pools)
               for h, i in found:
                   rows_checked += 1
-                  if i and i not in ids:
-                      print(f"::error file={sk}::table cites id `{i}` — no such id in domains/{d}/")
+                  cited = i or h
+                  placed = False
+                  for idx, (dec, pool, _) in enumerate(pools):
+                      if (dec["kind"] == "id") != bool(i):
+                          continue
+                      if (cited in pool) if i else head_ok(cited, pool):
+                          counts[idx] += 1
+                          placed = True
+                          break
+                  if not placed:
+                      print(f"::error file={sk}::table row '{cited}' resolves to none of the 涵蓋 sources")
                       fail = True
-                  elif h and not head_ok(h, heads):
-                      print(f"::error file={sk}::table cites section 〈{h}〉 — no such heading in domains/{d}/")
+
+              for idx, (dec, pool, _) in enumerate(pools):
+                  n, m, k = int(dec["n"]), int(dec["m"]), int(dec["k"])
+                  if counts[idx] != m:
+                      print(f"::error file={sk}::涵蓋 says {m} rows from {dec['path']} [{dec['kind']}]; "
+                            f"the table has {counts[idx]}")
+                      fail = True
+                  if n - m != k:
+                      print(f"::error file={sk}::涵蓋 arithmetic for {dec['path']}: {n} - {m} != {k}")
+                      fail = True
+              if sum(int(dec["m"]) for dec, _, _ in pools) != len(found):
+                  print(f"::error file={sk}::涵蓋 rows total {sum(int(dec['m']) for dec, _, _ in pools)} "
+                        f"but the table has {len(found)} rows")
+                  fail = True
+
+          # Boundary tables must point at skills that exist. Three of them named
+          # `note-writing` while no such skill existed (#29 verify round 2): a
+          # dangling handoff reads exactly like a working one.
+          existing = {os.path.basename(os.path.dirname(p))
+                      for p in glob.glob(os.path.join(skills_root, "*", "SKILL.md"))}
+          boundary_checked = 0
+          for sk in sorted(glob.glob(os.path.join(skills_root, "*", "SKILL.md"))):
+              text = open(sk, encoding="utf-8").read()
+              i = text.find("## 邊界")
+              if i < 0:
+                  continue
+              for m in re.finditer(r"^\|[^|]+\|\s*`([^`]+)`", text[i:], re.M):
+                  boundary_checked += 1
+                  tgt = m.group(1).strip()
+                  if tgt not in existing:
+                      print(f"::error file={sk}::邊界 points at `{tgt}`, which is not a skill")
                       fail = True
 
           if rows_checked == 0:
               print("::error::no entry-table rows were inspected")
               fail = True
+          if boundary_checked == 0:
+              print("::error::no 邊界 targets were inspected")
+              fail = True
 
           print(f"checked {rows_checked} entry-table rows")
+          print(f"checked {boundary_checked} 邊界 targets")
           print(f"checked {len(domains)} domains")
           sys.exit(1 if fail else 0)
           EOF

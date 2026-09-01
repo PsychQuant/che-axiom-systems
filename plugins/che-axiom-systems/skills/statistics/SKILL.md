@@ -33,7 +33,15 @@ Skill(skill="che-axiom-systems:axiom-based", args="statistics: <查詢>")
 | 〈P1: Statistical Estimation Principle〉 | 估計量以偏誤、變異、一致性、效率評價；最大概似與動差法、貝氏法都在此節 |
 | 〈P2: Hypothesis Testing Principle〉 | 檢定衡量對虛無假設的證據，並權衡型一與型二錯誤 |
 
-權威內容以 `domains/statistics/axiomatization_of_statistics_and_data_science.md` 為準，該檔共 **23 條**：公理 S1–S2 與 DS1–DS5、原理 P1–P8、定理 S1–S3 與 DS1–DS5。上表取其中 **7 列**（S1、DS2、DS3、DS4、P1、P2、P3），**未列**的 16 條是 S2、DS1、DS5、P4–P8、Theorem S1–S3 與 Theorem DS1–DS5——7 ＋ 16 ＝ 23，兩邊相加等於總數。另三列出自同域**兩個**未列為 entry_point、只靠全文搜尋觸及的檔案：`Principle R1` 與 `Theorem RT1` 在 `SM00_1_rescaling_of_simple_linear_regression.md`，`Theorem SLR-T2: Gauss-Markov` 在 `SM00_simple_linear_regression.md`。宣告的第二個 entry_point `00_principles.md`（MP1–MP3、P1–P5、R1–R5）談的是公理化方法論本身、不是統計，該錯配另案處理（#31）。本域為 markdown 格式，引用時用章節名、**不捏造 ID**。 新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
+### 涵蓋（數字由 CI 重算，勿手改）
+
+- `axiomatization_of_statistics_and_data_science.md` · h3 · 篩選 `^(Axiom |P\d|Theorem )` — 共 **23** 條，上表 **7** 條，未列 **16** 條
+- `SM00_1_rescaling_of_simple_linear_regression.md` · h3 · 篩選 `^(Principle |Theorem )` — 共 **8** 條，上表 **2** 條，未列 **6** 條
+- `SM00_simple_linear_regression.md` · h3 · 篩選 `^(Principle |Theorem )` — 共 **6** 條，上表 **1** 條，未列 **5** 條
+
+每行的意思：`路徑` · 條目層級（`id`／`h2`–`h4`）· 篩選正規式（`-` ＝不篩）— 該檔符合條件的條目**共** N 條、**上表**列 M 條、**未列** N−M 條。`.github/workflows/validate.yml` 會重算這三個數並比對：**刪掉表中一列、少算一條、或把某列歸給錯的檔案，都會紅燈**。手寫的計數與省略清單已從下段移除——#29 的 R2 與 R3 各在那裡寫錯過一次（一次算少一條、一次省略清單與表格自相矛盾），這類錯誤靠人維護抓不住。
+
+權威內容以上方涵蓋段所列的三個檔案為準。第一個是本域的公理化本體（公理 S1–S2 與 DS1–DS5、原理 P1–P8、定理 S1–S3 與 DS1–DS5）；另兩個是尺度變換與簡單線性迴歸的推導檔，**未被列為 entry_point**、只靠全文搜尋觸及——上表中 `Principle R1` 與 `Theorem RT1` 出自前者，`Theorem SLR-T2: Gauss-Markov` 出自後者（涵蓋段逐檔標明，不會再混為一談）。宣告的第二個 entry_point `00_principles.md` 談的是公理化方法論本身、不是統計，該錯配另案處理（#31）。本域為 markdown 格式，引用時用章節名、**不捏造 ID**。新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
 
 ## 邊界
 

@@ -41,7 +41,13 @@ Skill(skill="che-axiom-systems:axiom-based", args="weight-control: <查詢>")
 | `R1_weight_decomposition` | 體重變化的分解規則 |
 | `R2_input_inference` | 從觀測反推控制輸入 |
 
-權威內容以 `domains/weight-control/weight_control_axioms.yaml` 為準。本域 `domain.yaml` 宣告 `format: yaml`，引用時用 **ID**——上表列的就是檔內 `id` 欄位的逐字值（`axiom-based` 自己的 yaml 範例用的正是本域的 `A0_mass_conservation`），可直接引用。該檔的頂層條目共 **23 個**：上表 18 個，**未列**的是 `B1_bayesian_personalization`（貝氏個人化）、`S1_weight_curve_structure`（體重曲線結構）、`FL1_body_composition_hierarchy`（體組成層次）、`MLP_comprehensive_inventory`（質量流失路徑清單）、`EP_chonna_tracking`（CHONNa 追蹤）；這五者各自另有巢狀子結構，也不在表內。**兩點誠實記錄**：(1) `weight_control_axioms.yaml` 目前無法被嚴格 parser 解析（見 #31），但 `axiom-based` 做的是欄位感知**搜尋**而非 parse，ID 仍可命中；(2) 並行的 `.md` 是第二個 entry_point，其中的 `T4. Respiratory Exchange Theorem` **只存在於 .md、yaml 沒有對應 id**，引用該條時只能用章節名。 新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
+### 涵蓋（數字由 CI 重算，勿手改）
+
+- `weight_control_axioms.yaml` · id · 篩選 `^(IC_foundation|A\d_|T\d_|D1_|R\d_|B1_|S1_|FL1_|MLP_|EP_)` — 共 **23** 條，上表 **18** 條，未列 **5** 條
+
+每行的意思：`路徑` · 條目層級（`id`／`h2`–`h4`）· 篩選正規式（`-` ＝不篩）— 該檔符合條件的條目**共** N 條、**上表**列 M 條、**未列** N−M 條。`.github/workflows/validate.yml` 會重算這三個數並比對：**刪掉表中一列、少算一條、或把某列歸給錯的檔案，都會紅燈**。手寫的計數與省略清單已從下段移除——#29 的 R2 與 R3 各在那裡寫錯過一次（一次算少一條、一次省略清單與表格自相矛盾），這類錯誤靠人維護抓不住。
+
+權威內容以上方涵蓋段所列的 `weight_control_axioms.yaml` 為準。本域 `domain.yaml` 宣告 `format: yaml`，引用時用 **ID**——上表列的就是檔內 `id` 欄位的逐字值（`axiom-based` 自己的 yaml 範例用的正是本域的 `A0_mass_conservation`），可直接引用。涵蓋段的篩選正規式界定「頂層條目」；未列的是 `B1_bayesian_personalization`、`S1_weight_curve_structure`、`FL1_body_composition_hierarchy`、`MLP_comprehensive_inventory`、`EP_chonna_tracking`，這五者各自另有巢狀子結構，也不在表內。**兩點誠實記錄**：(1) 該 yaml 目前無法被嚴格 parser 解析（見 #31），CI 對它退回文字掃描取 id，故本域的偽造防護弱於其他域；(2) 並行的 `.md` 是第二個 entry_point，其中的 `T4. Respiratory Exchange Theorem` **只存在於 .md、yaml 沒有對應 id**，引用該條時只能用章節名。新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
 
 ## 邊界
 

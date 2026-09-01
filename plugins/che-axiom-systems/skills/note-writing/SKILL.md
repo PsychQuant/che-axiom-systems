@@ -32,7 +32,15 @@ Skill(skill="che-axiom-systems:axiom-based", args="note-writing: <查詢>")
 | 〈Markdown 規範來源〉 | CommonMark、markdownlint、vscode-markdown 三個來源與其位置 |
 | 〈應用於教學筆記〉 | 這套格式落在教學筆記上的用法 |
 
-權威內容以 `domains/note-writing/README.md`（該域 `domain.yaml` 宣告的 entry_point）為準；上表取該檔的 7 個章節，**未列**的是〈概述〉〈相關資源〉〈線上工具〉〈VSCode 擴充套件〉這四個非規則性章節；〈關鍵規則（與筆記格式最相關）〉一節內含 14 條 markdownlint 規則（MD001／MD003／MD004／MD005／MD007／MD009／MD010／MD012／MD022／MD025／MD030／MD031／MD032／MD033），本表不逐條列。不可用於引用。新增內容後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
+### 涵蓋（數字由 CI 重算，勿手改）
+
+- `README.md` · h2 · 篩選 `-` — 共 **5** 條，上表 **2** 條，未列 **3** 條
+- `README.md` · h3 · 篩選 `-` — 共 **9** 條，上表 **4** 條，未列 **5** 條
+- `README.md` · h4 · 篩選 `-` — 共 **2** 條，上表 **1** 條，未列 **1** 條
+
+每行的意思：`路徑` · 條目層級（`id`／`h2`–`h4`）· 篩選正規式（`-` ＝不篩）— 該檔符合條件的條目**共** N 條、**上表**列 M 條、**未列** N−M 條。`.github/workflows/validate.yml` 會重算這三個數並比對：**刪掉表中一列、少算一條、或把某列歸給錯的檔案，都會紅燈**。手寫的計數與省略清單已從下段移除——#29 的 R2 與 R3 各在那裡寫錯過一次（一次算少一條、一次省略清單與表格自相矛盾），這類錯誤靠人維護抓不住。
+
+權威內容以上方涵蓋段所列的 `README.md`（該域 `domain.yaml` 宣告的 entry_point）為準。上表橫跨該檔的三個標題層級，故涵蓋段分三行。〈關鍵規則（與筆記格式最相關）〉一節內含 markdownlint 規則的對照表，本表不逐條列；**那些規則的權威定義指向 `git/markdownlint/doc/` ，該目錄不在本 repo 內**，故只有該節的對照表與檢查清單是自足可引用的。上表不可用於引用。新增內容後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
 
 ## 邊界
 

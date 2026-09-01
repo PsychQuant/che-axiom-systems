@@ -32,7 +32,14 @@ Skill(skill="che-axiom-systems:axiom-based", args="decision-making: <查詢>")
 | 〈P3: Value of Information Principle〉 | 資訊的價值：取得資訊值不值得付代價 |
 | 〈Allais Paradox〉 | 實際選擇違反獨立性公理的經典反例（在第二個 entry_point）|
 
-權威內容以該域 `domain.yaml` 宣告的兩個 entry_point 為準。`axiomatization_of_decision_making.md` 共 **15 條**（公理 D1–D5、原理 P1–P5、定理 D1–D5）；上表未列的是 P4、P5 與 Theorem D1–D5。`decision_models_and_paradoxes.md` 收各決策模型（期望值、期望效用、主觀期望效用、展望理論、累積展望理論、後悔理論）與四個悖論（St. Petersburg、Allais、Ellsberg、Newcomb），上表只列 Allais。本域為 markdown 格式，引用時用章節名、**不捏造 ID**。 新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
+### 涵蓋（數字由 CI 重算，勿手改）
+
+- `axiomatization_of_decision_making.md` · h3 · 篩選 `^(Axiom D|P\d|Theorem D)` — 共 **15** 條，上表 **8** 條，未列 **7** 條
+- `decision_models_and_paradoxes.md` · h3 · 篩選 `-` — 共 **16** 條，上表 **1** 條，未列 **15** 條
+
+每行的意思：`路徑` · 條目層級（`id`／`h2`–`h4`）· 篩選正規式（`-` ＝不篩）— 該檔符合條件的條目**共** N 條、**上表**列 M 條、**未列** N−M 條。`.github/workflows/validate.yml` 會重算這三個數並比對：**刪掉表中一列、少算一條、或把某列歸給錯的檔案，都會紅燈**。手寫的計數與省略清單已從下段移除——#29 的 R2 與 R3 各在那裡寫錯過一次（一次算少一條、一次省略清單與表格自相矛盾），這類錯誤靠人維護抓不住。
+
+權威內容以上方涵蓋段所列的兩個 entry_point 為準。第一檔是公理化本體（公理 D1–D5、原理 P1–P5、定理 D1–D5），第二檔收各決策模型與經典悖論（上表只列 Allais）。本域為 markdown 格式，引用時用章節名、**不捏造 ID**。新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
 
 ## 邊界
 

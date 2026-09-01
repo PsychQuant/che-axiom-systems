@@ -32,7 +32,14 @@ Skill(skill="che-axiom-systems:axiom-based", args="logic-and-language: <查詢>"
 | 〈Metalogical Results〉 | Gödel 不完備、Tarski 真值不可定義、Löwenheim–Skolem、緊緻性 |
 | 〈Applications to Language and Mathematics〉 | 形式文法與語言理論、數學基礎 |
 
-權威內容以 `domains/logic-and-language/` 下的兩個 entry_point（`axioms_of_logic.md`、`logical_systems_and_metalogic.md`）為準。上表是這兩檔的**全部二級章節**（封閉列舉）；個別公理（Axiom 1–5、P1–P4、Q1–Q3）與個別後設邏輯定理在各節之內，不另列。本域為 markdown 格式，引用時用**章節名**、**不捏造 ID**——上表的章節名逐字取自檔內標題，可直接引用。新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
+### 涵蓋（數字由 CI 重算，勿手改）
+
+- `axioms_of_logic.md` · h2 · 篩選 `-` — 共 **4** 條，上表 **4** 條，未列 **0** 條
+- `logical_systems_and_metalogic.md` · h2 · 篩選 `-` — 共 **5** 條，上表 **5** 條，未列 **0** 條
+
+每行的意思：`路徑` · 條目層級（`id`／`h2`–`h4`）· 篩選正規式（`-` ＝不篩）— 該檔符合條件的條目**共** N 條、**上表**列 M 條、**未列** N−M 條。`.github/workflows/validate.yml` 會重算這三個數並比對：**刪掉表中一列、少算一條、或把某列歸給錯的檔案，都會紅燈**。手寫的計數與省略清單已從下段移除——#29 的 R2 與 R3 各在那裡寫錯過一次（一次算少一條、一次省略清單與表格自相矛盾），這類錯誤靠人維護抓不住。
+
+權威內容以上方涵蓋段所列的兩個 entry_point 為準；上表已收錄兩檔的全部二級章節（涵蓋段的「未列 0 條」即此意）。個別公理（Axiom 1–5、P1–P4、Q1–Q3）與個別後設邏輯定理在各節之內，不另列。本域為 markdown 格式，引用時用**章節名**、**不捏造 ID**——上表的章節名逐字取自檔內標題，可直接引用。新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
 
 ## 邊界
 

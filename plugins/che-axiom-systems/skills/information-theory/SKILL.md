@@ -39,7 +39,14 @@ Skill(skill="che-axiom-systems:axiom-based", args="information-theory: <查詢>"
 | 〈4. Mutual Information〉 | 互資訊的定義與性質（在第二個 entry_point）|
 | 〈5. Relative Entropy (Kullback-Leibler Divergence)〉 | KL divergence 的定義與性質（同上）|
 
-權威內容以該域 `domain.yaml` 宣告的兩個 entry_point 為準。上表前 14 列是 `axiomatization_of_information_theory.md` 的**全部條目**（A1–A5、P1–P5、T1–T4），封閉列舉、無省略；後 2 列出自 `information_measures_and_inequalities.md`，該檔另收自資訊、熵、條件熵、條件互資訊，以及 Shannon／data-processing／Fano／Jensen／log-sum 等不等式與 Rényi 熵、交叉熵，**本表不列**，引用時直接用該檔章節名。本域為 markdown 格式，引用時用章節名、**不捏造 ID**。 新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
+### 涵蓋（數字由 CI 重算，勿手改）
+
+- `axiomatization_of_information_theory.md` · h3 · 篩選 `^(A|P|T)\d+:` — 共 **14** 條，上表 **14** 條，未列 **0** 條
+- `information_measures_and_inequalities.md` · h3 · 篩選 `-` — 共 **23** 條，上表 **2** 條，未列 **21** 條
+
+每行的意思：`路徑` · 條目層級（`id`／`h2`–`h4`）· 篩選正規式（`-` ＝不篩）— 該檔符合條件的條目**共** N 條、**上表**列 M 條、**未列** N−M 條。`.github/workflows/validate.yml` 會重算這三個數並比對：**刪掉表中一列、少算一條、或把某列歸給錯的檔案，都會紅燈**。手寫的計數與省略清單已從下段移除——#29 的 R2 與 R3 各在那裡寫錯過一次（一次算少一條、一次省略清單與表格自相矛盾），這類錯誤靠人維護抓不住。
+
+權威內容以上方涵蓋段所列的兩個 entry_point 為準。第一檔是公理化本體（A1–A5、P1–P5、T1–T4），上表已完整收錄；第二檔收各測度的定義與不等式，上表只列 description 明確廣告的互資訊與 KL divergence。本域為 markdown 格式，引用時用章節名、**不捏造 ID**。新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
 
 ## 邊界
 

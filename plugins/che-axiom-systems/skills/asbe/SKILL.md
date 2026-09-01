@@ -32,7 +32,13 @@ Skill(skill="che-axiom-systems:axiom-based", args="asbe: <查詢>")
 
 本域另含四條 meta-principle（`M1_llm_optimization`、`M2_human_readability`、`M3_incremental_elaboration`、`M4_dual_format`）——它們屬於方法論自身、只是不在上表；以及**示範用**公理集：writing 那組（`A1_purpose` 等）在現行的 `writing_style_asbe.yaml`；code review 那組（`A1_correctness` 等）**只存在於 `archive/test_output_code_review.yaml`**，而本 repo 的 entry-table CI 刻意跳過 `archive/`，故不可引用。兩組都是 ASBE 的應用範例而非方法論自身的公理。
 
-權威內容以 `domains/asbe/asbe_axioms_bootstrapped.yaml`（該域 `domain.yaml` 宣告的 entry_point）為準；上表列方法論自身的公理與定理共 7 條（A1–A5、T1–T2）；方法論自身的完整內容還要加上上一段的 4 條 meta-principle，合計 11 條。不可用於引用。新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
+### 涵蓋（數字由 CI 重算，勿手改）
+
+- `asbe_axioms_bootstrapped.yaml` · id · 篩選 `-` — 共 **11** 條，上表 **7** 條，未列 **4** 條
+
+每行的意思：`路徑` · 條目層級（`id`／`h2`–`h4`）· 篩選正規式（`-` ＝不篩）— 該檔符合條件的條目**共** N 條、**上表**列 M 條、**未列** N−M 條。`.github/workflows/validate.yml` 會重算這三個數並比對：**刪掉表中一列、少算一條、或把某列歸給錯的檔案，都會紅燈**。手寫的計數與省略清單已從下段移除——#29 的 R2 與 R3 各在那裡寫錯過一次（一次算少一條、一次省略清單與表格自相矛盾），這類錯誤靠人維護抓不住。
+
+權威內容以上方涵蓋段所列的檔案（該域 `domain.yaml` 宣告的 entry_point）為準。上表列的是方法論自身的公理與定理；同檔另有 meta-principle（`M1_llm_optimization`／`M2_human_readability`／`M3_incremental_elaboration`／`M4_dual_format`），也屬方法論自身、只是不在表內。**示範用**公理集另計：writing 那組（`A1_purpose` 等）在現行的 `writing_style_asbe.yaml`；code review 那組（`A1_correctness` 等）**只存在於 `archive/test_output_code_review.yaml`**，而 entry-table CI 刻意跳過 `archive/`，故不可引用。上表不可用於引用。新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
 
 ## 邊界
 

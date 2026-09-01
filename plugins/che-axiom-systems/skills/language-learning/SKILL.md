@@ -30,7 +30,13 @@ Skill(skill="che-axiom-systems:axiom-based", args="language-learning: <查詢>")
 | 〈P1: Learnability Principle〉 | 可學習性 |
 | 〈P2: Input Sufficiency Principle〉 | 輸入充分性 |
 
-權威內容以 `domains/language-learning/axiomatization_of_language_learning.md`（該域宣告的 entry_point）為準，該檔共 **15 條**：公理 L1–L5、原理 P1–P5、定理 L1–L5。上表取其中 7 列，**未列**的是 P3–P5 與 Theorem L1–L5。同域另有 `acquisition_models_and_phenomena.md`（未列為 entry_point）。本域為 markdown 格式，引用時用章節名、**不捏造 ID**。 新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
+### 涵蓋（數字由 CI 重算，勿手改）
+
+- `axiomatization_of_language_learning.md` · h3 · 篩選 `^(Axiom L|P\d|Theorem L)` — 共 **15** 條，上表 **7** 條，未列 **8** 條
+
+每行的意思：`路徑` · 條目層級（`id`／`h2`–`h4`）· 篩選正規式（`-` ＝不篩）— 該檔符合條件的條目**共** N 條、**上表**列 M 條、**未列** N−M 條。`.github/workflows/validate.yml` 會重算這三個數並比對：**刪掉表中一列、少算一條、或把某列歸給錯的檔案，都會紅燈**。手寫的計數與省略清單已從下段移除——#29 的 R2 與 R3 各在那裡寫錯過一次（一次算少一條、一次省略清單與表格自相矛盾），這類錯誤靠人維護抓不住。
+
+權威內容以上方涵蓋段所列的 entry_point 為準（公理 L1–L5、原理 P1–P5、定理 L1–L5）。同域另有 `acquisition_models_and_phenomena.md`，未列為 entry_point。本域為 markdown 格式，引用時用章節名、**不捏造 ID**。新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
 
 ## 邊界
 

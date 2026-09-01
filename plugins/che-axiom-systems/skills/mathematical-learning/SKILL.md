@@ -30,7 +30,13 @@ Skill(skill="che-axiom-systems:axiom-based", args="mathematical-learning: <查�
 | 〈Axiom M7: Procedural-Conceptual Separation Principle〉 | 會算不等於懂 |
 | 〈Axiom M8: Domain Independence〉 | 一個領域的精熟不自動轉移到另一個 |
 
-權威內容以 `domains/mathematical-learning/axiomatization_of_mathematical_learning.md`（該域宣告的 entry_point）為準，該檔共 **33 條**：公理 M1–M15（15）、原理 P1、P1a、P1b、P2–P12（14）、定理 T1–T4（4）。上表取其中 **7 列**（M1–M5、M7、M8），**未列**的 26 條是 M6、M9–M15、P1、P1a、P1b、P2–P12、T1–T4——7 ＋ 26 ＝ 33，兩邊相加等於總數。這是封閉列舉，不是「等」。同域另有五個未列為 entry_point 的檔案（`information_channel_interference_theory.md`、`humor_in_mathematical_instruction.md`、`mathematical_ability_dependencies.md`、`mathematical_learning_models.md`、`probabilistic_ability_model.md`）。本域為 markdown 格式，引用時用章節名、**不捏造 ID**。 新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
+### 涵蓋（數字由 CI 重算，勿手改）
+
+- `axiomatization_of_mathematical_learning.md` · h3 · 篩選 `^(Axiom M|P\d|T\d:)` — 共 **33** 條，上表 **7** 條，未列 **26** 條
+
+每行的意思：`路徑` · 條目層級（`id`／`h2`–`h4`）· 篩選正規式（`-` ＝不篩）— 該檔符合條件的條目**共** N 條、**上表**列 M 條、**未列** N−M 條。`.github/workflows/validate.yml` 會重算這三個數並比對：**刪掉表中一列、少算一條、或把某列歸給錯的檔案，都會紅燈**。手寫的計數與省略清單已從下段移除——#29 的 R2 與 R3 各在那裡寫錯過一次（一次算少一條、一次省略清單與表格自相矛盾），這類錯誤靠人維護抓不住。
+
+權威內容以上方涵蓋段所列的 entry_point 為準（公理 M1–M15、原理 P1／P1a／P1b／P2–P12、定理 T1–T4）。同域另有五個未列為 entry_point 的檔案（`information_channel_interference_theory.md`、`humor_in_mathematical_instruction.md`、`mathematical_ability_dependencies.md`、`mathematical_learning_models.md`、`probabilistic_ability_model.md`）。本域為 markdown 格式，引用時用章節名、**不捏造 ID**。新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
 
 ## 邊界
 
