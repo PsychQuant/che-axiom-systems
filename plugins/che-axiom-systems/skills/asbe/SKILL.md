@@ -32,7 +32,7 @@ Skill(skill="che-axiom-systems:axiom-based", args="asbe: <查詢>")
 
 本域另含兩組**示範用**公理集（code review 的 `A1_correctness` 等、writing 的 `A1_purpose` 等），是 ASBE 的應用範例而非方法論自身的公理。
 
-權威內容以 `domains/asbe/` 下的公理檔為準；上表只是one-liner摘要，不可用於引用。新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
+權威內容以 `domains/asbe/asbe_axioms_bootstrapped.yaml`（該域 `domain.yaml` 宣告的 entry_point）為準；上表只是one-liner摘要，不可用於引用。新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
 
 ## 邊界
 
