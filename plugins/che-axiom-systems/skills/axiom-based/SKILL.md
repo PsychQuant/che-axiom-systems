@@ -78,7 +78,7 @@ markdown domain — 標題 + 摘錄 + 位置：
 📍 statistics [markdown/legacy]
    § P1: Statistical Estimation Principle
    「…估計量的選擇以概似函數最大化為準…」
-   File: domains/statistics/00_principles.md:57
+   File: domains/statistics/axiomatization_of_statistics_and_data_science.md:42
 ```
 
 freeform domain — entry-point 相對路徑 + 摘錄：

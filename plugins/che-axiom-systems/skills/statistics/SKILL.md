@@ -33,7 +33,7 @@ Skill(skill="che-axiom-systems:axiom-based", args="statistics: <查詢>")
 | 〈P1: Statistical Estimation Principle〉 | 估計量以偏誤、變異、一致性、效率評價；最大概似與動差法、貝氏法都在此節 |
 | 〈P2: Hypothesis Testing Principle〉 | 檢定衡量對虛無假設的證據，並權衡型一與型二錯誤 |
 
-權威內容以 `domains/statistics/axiomatization_of_statistics_and_data_science.md` 為準，該檔共 **23 條**：公理 S1–S2 與 DS1–DS5、原理 P1–P8、定理 S1–S3 與 DS1–DS5。上表取其中 6 列，**未列**的是 S2、DS1、DS5、P4–P8、Theorem S1–S3 與 Theorem DS1–DS5。另三列（Principle R1、Theorem RT1、Theorem SLR-T2）出自同域的 `SM00_1_rescaling_of_simple_linear_regression.md`，該檔未被列為 entry_point、只靠全文搜尋觸及。宣告的第二個 entry_point `00_principles.md`（MP1–MP3、P1–P5、R1–R5）談的是公理化方法論本身、不是統計，該錯配另案處理（#31）。本域為 markdown 格式，引用時用章節名、**不捏造 ID**。 新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
+權威內容以 `domains/statistics/axiomatization_of_statistics_and_data_science.md` 為準，該檔共 **23 條**：公理 S1–S2 與 DS1–DS5、原理 P1–P8、定理 S1–S3 與 DS1–DS5。上表取其中 **7 列**（S1、DS2、DS3、DS4、P1、P2、P3），**未列**的 16 條是 S2、DS1、DS5、P4–P8、Theorem S1–S3 與 Theorem DS1–DS5——7 ＋ 16 ＝ 23，兩邊相加等於總數。另三列出自同域**兩個**未列為 entry_point、只靠全文搜尋觸及的檔案：`Principle R1` 與 `Theorem RT1` 在 `SM00_1_rescaling_of_simple_linear_regression.md`，`Theorem SLR-T2: Gauss-Markov` 在 `SM00_simple_linear_regression.md`。宣告的第二個 entry_point `00_principles.md`（MP1–MP3、P1–P5、R1–R5）談的是公理化方法論本身、不是統計，該錯配另案處理（#31）。本域為 markdown 格式，引用時用章節名、**不捏造 ID**。 新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
 
 ## 邊界
 

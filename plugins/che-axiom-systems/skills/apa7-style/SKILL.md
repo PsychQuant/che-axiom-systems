@@ -34,8 +34,12 @@ Skill(skill="che-axiom-systems:axiom-based", args="apa7-style: <查詢>")
 | `R_A2_table_references` | 表格是 present／display，不是 show／demonstrate |
 | `A6_replicability` | 量化研究必須可複製 |
 | `T1_mixed_methods_dual_standards` | 混合方法須同時滿足量化與質性標準 |
+| 〈Citation Commands〉 | in-text citation 的各種形式與特殊指令 |
+| 〈Entry Types and Fields〉 | 參考文獻條目的類型與 APA 專用欄位 |
 
-權威內容以該域宣告的三個 yaml entry_point 為準，合計 **41 條**：`writing_style.yaml` 15 條（A1–A9、T1–T3、R1–R3）、`writing_guidelines.yaml` 15 條（R_T1–R_T4、R_V1–R_V2、R_P1–R_P2、R_C1–R_C3、R_B1–R_B2、R_A1–R_A2）、`jars_standards.yaml` 11 條（A1–A6、T1–T3、R1–R2）。上表取其中 12 列，其餘 29 條未列——這是計數上的封閉陳述，不是「等」。不可用於引用。新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
+本域的權威內容分兩塊。**寫作規範**在三個 yaml entry_point，合計 **41 條**：`writing_style.yaml` 15 條（A1–A9、T1–T3、R1–R3）、`writing_guidelines.yaml` 15 條（R_T1–R_T4、R_V1–R_V2、R_P1–R_P2、R_C1–R_C3、R_B1–R_B2、R_A1–R_A2）、`jars_standards.yaml` 11 條（A1–A6、T1–T3、R1–R2）。上表前 12 列取自這 41 條，其餘 29 條未列——這是計數上的封閉陳述，不是「等」。
+
+**引用格式**（description 的第一個主題）**不在那 41 條裡**：三個 yaml 沒有任何一條談 in-text citation 或參考文獻格式。它在 `03_citation_system/apa_citation_guide.md`，已補列為 entry_point，上表最後 2 列即出自該檔（該檔另有 Setup Requirements、Entry Types and Fields、Date Formatting 等節，本表不列）。不可用於引用。新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
 
 ## 邊界
 

@@ -110,7 +110,7 @@ jobs:
           sys.exit(1 if fail else 0)
           EOF
 
-      - name: Domain manifests + INDEX + trigger-surface consistency
+      - name: Domain manifests + INDEX + trigger surface + entry tables
         run: |
           python3 -c 'import yaml' 2>/dev/null \
             || sudo apt-get install -y python3-yaml > /dev/null 2>&1 \
@@ -135,7 +135,6 @@ jobs:
               sys.exit(1)
 
           # every domain has a valid manifest with required fields
-          manifests = {}
           for d in domains:
               mf = os.path.join(root, d, "domain.yaml")
               if not os.path.isfile(mf):
@@ -143,7 +142,6 @@ jobs:
                   fail = True
                   continue
               m = yaml.safe_load(open(mf))
-              manifests[d] = m
               for field in ("domain", "description", "format", "maturity", "entry_points"):
                   if field not in m:
                       print(f"::error file={mf}::missing field {field}")
@@ -165,41 +163,70 @@ jobs:
                   print(f"::error::domains/INDEX.md missing entry for {d}")
                   fail = True
 
-          # 四件套 #4 (#29): every domain has a trigger-surface skill, unless the
-          # manifest explicitly exempts itself WITH a reason. Without this check the
-          # invariant survives only as long as someone remembers it — which is the
-          # exact drift #29 was filed for (academic-presentation sat in INDEX and
-          # TOPICS with no trigger surface from the day it was added).
-          exempt = 0
+          # 四件套 #4 (#29): every domain has a trigger-surface skill. No exemption.
+          # An earlier revision allowed `trigger_surface: none` plus a free-text
+          # reason; #29 verify round 3 exempted a 23-axiom domain with the reason
+          # "x" and CI stayed green. An escape hatch whose only gate is that a
+          # human wrote *something* is a human review step wearing a CI badge, so
+          # the hatch is gone: a directory under domains/ is advertised in INDEX
+          # and TOPICS, and anything advertised gets a trigger surface.
           for d in domains:
-              m = manifests.get(d, {})
               sk = os.path.join(skills_root, d, "SKILL.md")
-              ts = m.get("trigger_surface")
-              if ts == "none":
-                  reason = m.get("trigger_surface_reason")
-                  if not (isinstance(reason, str) and reason.strip()):
-                      print(f"::error file={root}/{d}/domain.yaml::"
-                            f"trigger_surface: none requires a non-empty trigger_surface_reason")
-                      fail = True
-                  if os.path.isfile(sk):
-                      print(f"::error::{d} declares trigger_surface: none but {sk} exists")
-                      fail = True
-                  exempt += 1
-                  continue
-              if ts is not None:
-                  print(f"::error file={root}/{d}/domain.yaml::"
-                        f"invalid trigger_surface '{ts}' (omit it, or set it to 'none')")
-                  fail = True
               if not os.path.isfile(sk):
-                  print(f"::error::{d} has no trigger surface — expected {sk} "
-                        f"(or declare trigger_surface: none + reason in its domain.yaml)")
+                  print(f"::error::{d} has no trigger surface — expected {sk}")
                   fail = True
 
           # Every row of a domain skill's entry table must resolve to a real
-          # heading or a real `id:` in that domain. #29 verify round 2 found a
-          # row citing 〈Metalogic〉, a section that exists in no file — inside a
-          # table whose own caption says 嚴禁捏造 ID. A fabricated pointer reads
-          # exactly like a real one, so only a lookup tells them apart.
+          # heading or a real `id:` in that domain. Round 2 found a row citing
+          # 〈Metalogic〉, a section existing in no file, inside a table whose own
+          # caption says 嚴禁捏造 ID. A fabricated pointer reads exactly like a
+          # real one, so only a lookup tells them apart.
+          FENCE = re.compile(r"^\s*(```|~~~)")
+
+          def md_headings(text):
+              """Headings outside fenced code. A fence can hold an illustrative
+              `# Foo`, which is not a citable section."""
+              out, infence = [], False
+              for line in text.splitlines():
+                  if FENCE.match(line):
+                      infence = not infence
+                      continue
+                  if infence:
+                      continue
+                  m = re.match(r"^#{1,6}\s*(.+?)\s*$", line)
+                  if m:
+                      h = m.group(1).strip()
+                      out.append(h)
+                      # headings here often carry an emoji prefix
+                      # (#### 🔑 關鍵規則…); a table cites the text, so
+                      # accept the prefix-stripped form as well
+                      out.append(re.sub(r"^[^\w\u4e00-\u9fff]+", "", h).strip())
+              return out
+
+          def yaml_ids(text, path):
+              """id VALUES, structurally. Regex over raw text also picks up YAML
+              comments and the inside of block scalars, where anyone can write
+              `id: anything` without declaring an entry."""
+              try:
+                  doc = yaml.safe_load(text)
+              except yaml.YAMLError:
+                  print(f"  note: {path} does not parse; falling back to a text scan "
+                        f"for its ids (see #31)")
+                  return re.findall(r"^\s*-?\s*id:\s*[\"']?([A-Za-z0-9_.-]+)", text, re.M)
+              found = []
+              def walk(node):
+                  if isinstance(node, dict):
+                      v = node.get("id")
+                      if isinstance(v, str):
+                          found.append(v)
+                      for x in node.values():
+                          walk(x)
+                  elif isinstance(node, list):
+                      for x in node:
+                          walk(x)
+              walk(doc)
+              return found
+
           def head_ok(cited, heads):
               """Exact match, or a prefix cut at a parenthesised / dashed gloss.
               Substring matching is too loose: it accepts 〈Metalogic〉 against
@@ -212,44 +239,59 @@ jobs:
                           return True
               return False
 
-          CORE = {"axiom-based", "axiom-create", "axiom-validate", "axiom-capture"}
           rows_checked = 0
+          # A skill is domain-bound iff domains/<slug>/ exists, so adding a core
+          # helper skill does not demand an entry table it has no reason to have.
           for sk in sorted(glob.glob(os.path.join(skills_root, "*", "SKILL.md"))):
               d = os.path.basename(os.path.dirname(sk))
-              if d in CORE:
+              if not os.path.isdir(os.path.join(root, d)):
                   continue
-              ddir = os.path.join(root, d)
-              blob = []
-              for dp, _, fns in os.walk(ddir):
+              heads, ids = [], []
+              for dp, _, fns in os.walk(os.path.join(root, d)):
                   if "archive" in dp:
                       continue
                   for fn in fns:
-                      if fn.endswith((".md", ".yaml", ".yml")):
-                          try:
-                              blob.append(open(os.path.join(dp, fn), encoding="utf-8",
-                                               errors="replace").read())
-                          except OSError:
-                              pass
-              blob = "\n".join(blob)
-              # Normalise away a leading emoji/symbol run so 〈關鍵規則…〉 matches
-              # "#### 🔑 關鍵規則…". Matching is EXACT after that, or a prefix cut
-              # at a parenthesised gloss — substring matching is too loose: it
-              # would accept 〈Metalogic〉 against "Metalogical Results", i.e. let
-              # through the exact fabrication this check exists to catch.
-              heads = set()
-              for h in re.findall(r"^#{1,6}\s*(.+?)\s*$", blob, re.M):
-                  heads.add(h.strip())
-                  heads.add(re.sub(r"^[^\w\u4e00-\u9fff]+", "", h).strip())
+                      fp = os.path.join(dp, fn)
+                      if os.path.islink(fp) and not os.path.exists(fp):
+                          # a dangling symlink hides nothing citable; name it
+                          # rather than swallowing it, but do not red the build
+                          print(f"::warning::{fp} is a broken symlink — skipped")
+                          continue
+                      try:
+                          body = open(fp, encoding="utf-8", errors="replace").read()
+                      except OSError as e:
+                          print(f"::error::could not read {fp}: {e}")
+                          fail = True
+                          continue
+                      if fn.endswith(".md"):
+                          heads += md_headings(body)
+                      elif fn.endswith((".yaml", ".yml")):
+                          ids += yaml_ids(body, fp)
+              heads, ids = set(heads), set(ids)
 
-              ids = set(re.findall(r"^\s*-?\s*id:\s*[\"']?([A-Za-z0-9_.-]+)", blob, re.M))
               text = open(sk, encoding="utf-8").read()
-              try:
-                  sec = text[text.index("本域現有條目"):text.index("## 邊界")]
-              except ValueError:
+              a, b = text.find("本域現有條目"), text.find("## 邊界")
+              if a < 0 or b < 0:
                   print(f"::error file={sk}::expected a 本域現有條目 table and a ## 邊界 section")
                   fail = True
                   continue
-              for h, i in re.findall(r"^\|\s*(?:〈(.+?)〉|`([^`]+)`)\s*\|", sec, re.M):
+              if b < a:
+                  # str.find locates each marker independently; out of order the
+                  # slice is empty and the whole table is skipped in silence.
+                  print(f"::error file={sk}::## 邊界 appears before 本域現有條目 — "
+                        f"the entry table would be skipped")
+                  fail = True
+                  continue
+              sec = text[a:b]
+              found = re.findall(r"^\|\s*(?:〈(.+?)〉|`([^`]+)`)\s*\|", sec, re.M)
+              if not found:
+                  # A table whose rows stop matching contributes zero and would
+                  # otherwise be indistinguishable from one that is fully checked.
+                  print(f"::error file={sk}::entry table yielded no recognised rows — "
+                        f"每列第一欄要是 〈章節名〉 或 `id`")
+                  fail = True
+                  continue
+              for h, i in found:
                   rows_checked += 1
                   if i and i not in ids:
                       print(f"::error file={sk}::table cites id `{i}` — no such id in domains/{d}/")
@@ -258,7 +300,11 @@ jobs:
                       print(f"::error file={sk}::table cites section 〈{h}〉 — no such heading in domains/{d}/")
                       fail = True
 
+          if rows_checked == 0:
+              print("::error::no entry-table rows were inspected")
+              fail = True
+
           print(f"checked {rows_checked} entry-table rows")
-          print(f"checked {len(domains)} domains ({exempt} exempt from a trigger surface)")
+          print(f"checked {len(domains)} domains")
           sys.exit(1 if fail else 0)
           EOF

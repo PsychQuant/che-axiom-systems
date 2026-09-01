@@ -30,7 +30,7 @@ Skill(skill="che-axiom-systems:axiom-based", args="mathematical-learning: <查�
 | 〈Axiom M7: Procedural-Conceptual Separation Principle〉 | 會算不等於懂 |
 | 〈Axiom M8: Domain Independence〉 | 一個領域的精熟不自動轉移到另一個 |
 
-權威內容以 `domains/mathematical-learning/axiomatization_of_mathematical_learning.md`（該域宣告的 entry_point）為準，該檔共 **32 條**：公理 M1–M15、原理 P1–P12（含 P1a、P1b）、定理 T1–T4。上表取其中 7 列，**未列**的是 M6–M15、P1a、P1b、P2–P12 與 T1–T4——這是封閉列舉，不是「等」。同域另有五個未列為 entry_point 的檔案（`information_channel_interference_theory.md`、`humor_in_mathematical_instruction.md`、`mathematical_ability_dependencies.md`、`mathematical_learning_models.md`、`probabilistic_ability_model.md`）。本域為 markdown 格式，引用時用章節名、**不捏造 ID**。 新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
+權威內容以 `domains/mathematical-learning/axiomatization_of_mathematical_learning.md`（該域宣告的 entry_point）為準，該檔共 **33 條**：公理 M1–M15（15）、原理 P1、P1a、P1b、P2–P12（14）、定理 T1–T4（4）。上表取其中 **7 列**（M1–M5、M7、M8），**未列**的 26 條是 M6、M9–M15、P1、P1a、P1b、P2–P12、T1–T4——7 ＋ 26 ＝ 33，兩邊相加等於總數。這是封閉列舉，不是「等」。同域另有五個未列為 entry_point 的檔案（`information_channel_interference_theory.md`、`humor_in_mathematical_instruction.md`、`mathematical_ability_dependencies.md`、`mathematical_learning_models.md`、`probabilistic_ability_model.md`）。本域為 markdown 格式，引用時用章節名、**不捏造 ID**。 新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
 
 ## 邊界
 

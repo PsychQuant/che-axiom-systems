@@ -19,10 +19,4 @@ maturity: bootstrapped
 entry_points:
   - your_domain_axioms.yaml
 
-# trigger_surface（選填，#29）：
-#   省略      — 預設。此域必須有對應的 skills/<domain>/SKILL.md 作為自動觸發面，
-#               CI 的 domain ↔ skill 對應檢查會強制此點
-#   none      — 豁免：此域沒有可觸發的公理條目，刻意不建 skill。必須同時填
-#               trigger_surface_reason（非空），CI 才接受；豁免要付出寫理由的代價
-# trigger_surface: none
-# trigger_surface_reason: "為什麼這個域沒有東西可觸發"
+# 每個域都要有對應的 skills/<domain>/SKILL.md 作為自動觸發面（#29，CI 無條件強制）。

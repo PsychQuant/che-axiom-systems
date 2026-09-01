@@ -1,6 +1,6 @@
 ---
 name: logic-and-language
-description: "邏輯系統與後設邏輯。處理形式推論、或談論形式系統本身時使用——等式的遞移性與同餘、部分與整體的量關係、命題與述詞邏輯的公理（同一律、矛盾律、排中律、modus ponens、量詞否定）、形式系統的一致性與健全性與完備性與可決定性，以及後設邏輯結果：Gödel 不完備、Tarski 真值不可定義（真值謂詞、T-schema）、對象語言與後設語言的區分、Löwenheim–Skolem、緊緻性。Use when working with formal inference or reasoning about formal systems: equality and propositional/predicate axioms, the part-whole relation, consistency/soundness/completeness/decidability, and the metalogical results — Godel incompleteness, Tarski undefinability, truth definitions, the object-language vs metalanguage distinction."
+description: "邏輯系統與後設邏輯。處理形式推論、或談論形式系統本身時使用——等式的遞移性與同餘、部分與整體的量關係、命題與述詞邏輯的公理（同一律、矛盾律、排中律、modus ponens、量詞否定）、形式系統的一致性與健全性與完備性與可決定性，以及後設邏輯結果：Gödel 不完備、Tarski 真值不可定義（真值謂詞、T-schema）、真值在對象語言中的不可表達性、Löwenheim–Skolem、緊緻性。Use when working with formal inference or reasoning about formal systems: equality and propositional/predicate axioms, the part-whole relation, consistency/soundness/completeness/decidability, and the metalogical results — Godel incompleteness, Tarski undefinability, truth definitions, and the inexpressibility of truth within the object language."
 argument-hint: "[自然語言 | 章節名]（裸呼叫＝載入本域待命）"
 ---
 

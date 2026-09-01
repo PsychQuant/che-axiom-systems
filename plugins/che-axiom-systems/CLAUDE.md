@@ -25,4 +25,4 @@ Skills 讀取 plugin 自帶資料時使用 `${CLAUDE_PLUGIN_ROOT}/` 前綴（Cla
 
 ## 領域清單
 
-讀 `${CLAUDE_PLUGIN_ROOT}/domains/INDEX.md`（人讀）或各 domain 的 `domain.yaml` manifest（機器讀）。新增/修改領域時**四件套**都要同步更新：`domain.yaml` + `INDEX.md` + `TOPICS.yaml` + `skills/<domain>/SKILL.md`。manifest 的 `format`/`maturity` 決定 axiom-validate 的檢查級別與 axiom-based 的搜尋策略；`domains/TOPICS.yaml` 是 axiom-based 的 domain 級路由層；`skills/<domain>/SKILL.md` 是該域的**自動觸發面**（#29 —— 沒有它，該域的公理不會在該用的時候被帶進對話）。**第四件的對應由 CI 強制**：每個域都要有同名 skill，除非該域 `domain.yaml` 明寫 `trigger_surface: none` ＋非空 `trigger_surface_reason`（目前只有 `philosophy` 豁免）。
+讀 `${CLAUDE_PLUGIN_ROOT}/domains/INDEX.md`（人讀）或各 domain 的 `domain.yaml` manifest（機器讀）。新增/修改領域時**四件套**都要同步更新：`domain.yaml` + `INDEX.md` + `TOPICS.yaml` + `skills/<domain>/SKILL.md`。manifest 的 `format`/`maturity` 決定 axiom-validate 的檢查級別與 axiom-based 的搜尋策略；`domains/TOPICS.yaml` 是 axiom-based 的 domain 級路由層；`skills/<domain>/SKILL.md` 是該域的**自動觸發面**（#29 —— 沒有它，該域的公理不會在該用的時候被帶進對話）。**第四件的對應由 CI 無條件強制**：`domains/` 下每個目錄都要有同名 skill，無豁免（曾有過的 `trigger_surface` 逃生口在 #29 R3 被實測可用一個字的理由關掉整個域的檢查，已移除）。

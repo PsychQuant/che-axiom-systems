@@ -50,8 +50,7 @@ skill 開始前先檢查 cwd 判斷模式，並告知使用者目前是哪個模
 
    **刻意薄**：路由、呈現契約（inline 上限、`📎 相關公理` 格式、靜默 no-op）、data-guard **一律不複製** —— 見下方 Step 4 的「凍結的副本必然 drift」。
 
-   **0 公理的新域先不建 skill**：一個會 fire 卻找不到任何公理的觸發面只是噪音。等該域有第一條公理時，由 Step 3 第 8 項補建。
-   **但豁免要寫下來**：在該域 `domain.yaml` 填 `trigger_surface: none` 加一句非空的 `trigger_surface_reason`——CI 以這兩個欄位判定豁免，漏填即紅燈。省略欄位＝此域必須有 skill。
+   **每個域都要有 skill，沒有例外**：`domains/` 下有目錄就會被 `INDEX.md` 與 `TOPICS.yaml` 廣告，被廣告的就要接得住。內容單薄的域照樣建，表格與描述誠實寫出它有多少東西即可（見 `skills/philosophy/SKILL.md`：一篇隨筆、無公理 id，照樣列得出六個章節）。
 8. 讀取 `${CLAUDE_PLUGIN_ROOT}/foundations/cross-domain-principles.md`，檢查新公理是否與 plugin 內建領域矛盾
 
 ### Step 3: 如果是擴充既有領域
@@ -76,11 +75,11 @@ skill 開始前先檢查 cwd 判斷模式，並告知使用者目前是哪個模
    | skill 已存在，本次新增了公理 | 把新條目補進 `## 本域現有條目` 表（該表明寫非權威，但過期會讓相關性判斷失準）|
    | skill 已存在，本次改變了該域主題範圍 | 一併更新 frontmatter `description` 的情境訊號 |
    | **skill 不存在，而該域本次從 0 條公理變成有公理** | **建 skill**，照 Step 2 第 7 項的形狀 |
-   | skill 不存在，該域仍為 0 條公理 | 不建，但在 `domain.yaml` 填 `trigger_surface: none` ＋非空 `trigger_surface_reason`（會 fire 卻找不到東西的觸發面是噪音；豁免要寫理由）|
+   | skill 不存在 | **一律建**（見 Step 2 第 7 項）|
 
    第三列是 0 公理域的接續點：Step 2 第 7 項刻意不為空域建 skill，該域長出第一條公理時由本項補上。**漏掉這一項，該域就會停在「有公理但無觸發面」** —— 那正是 #29 診斷期在 `academic-presentation` 上查到的實際 drift（12 條條目、在 INDEX 與 TOPICS 都有、唯獨不在觸發面上，自建立起從未可能被自動觸發）。
 
-   **這條不變式現在由 CI 強制**（`.github/workflows/validate.yml` 的 domain ↔ skill 對應檢查）：每個域都要有 `skills/<domain>/SKILL.md`，除非其 manifest 明寫 `trigger_surface: none` ＋ reason。**加這道機械檢查的理由**：#29 之後仍在 `note-writing` 上抓到同型 drift（該域有 markdownlint 規則體系與可引用章節、三個域 skill 的邊界表都指向它，卻沒有觸發面）——**規則叫人記得，遠弱於讓機器擋下來**。
+   **這條不變式現在由 CI 無條件強制**（`.github/workflows/validate.yml` 的 domain ↔ skill 對應檢查）：每個域都要有 `skills/<domain>/SKILL.md`。曾經有過一個 `trigger_surface: none` ＋自由文字理由的豁免，#29 R3 用理由 `"x"` 就豁免掉一個 23 條公理的域而 CI 全綠——**唯一閘門是「有人寫了字」的逃生口，是戴著 CI 徽章的人工複核**，已移除。**加這道機械檢查的理由**：#29 之後仍在 `note-writing` 上抓到同型 drift（該域有 markdownlint 規則體系與可引用章節、三個域 skill 的邊界表都指向它，卻沒有觸發面）——**規則叫人記得，遠弱於讓機器擋下來**。
 
 ### Step 4: 品質檢查（委派給 axiom-validate）
 
