@@ -29,7 +29,12 @@ jobs:
 
       - name: Skills frontmatter lint
         run: |
-          sudo apt-get install -y python3-yaml > /dev/null 2>&1 || pip install pyyaml > /dev/null
+          # Guard on the actual requirement, not on apt/pip succeeding: PyYAML is
+          # already on the runner image, and a bare `apt-get || pip` compound can
+          # red this step for a reason that has nothing to do with any skill file.
+          python3 -c 'import yaml' 2>/dev/null \
+            || sudo apt-get install -y python3-yaml > /dev/null 2>&1 \
+            || pip install pyyaml > /dev/null
           python3 - <<'EOF'
           import glob, os, re, sys, yaml
 
@@ -42,9 +47,23 @@ jobs:
           #
           # That is the same defect class this repo's 四件套 rule exists to
           # prevent: a check that looks like it guards something it never
-          # inspects. Parse it.
+          # inspects. Parse it. And parsing is not enough either — a green run
+          # must also prove it INSPECTED something (empty glob below) and that
+          # what it parsed is loadable by the skill loader, not merely truthy
+          # (type/length/slug checks below). #29 verify round 2.
+          NAME_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
+          MAX_NAME, MAX_DESC = 64, 1024
+
           fail = False
-          for f in sorted(glob.glob("plugins/che-axiom-systems/skills/*/SKILL.md")):
+          files = sorted(glob.glob("plugins/che-axiom-systems/skills/*/SKILL.md"))
+
+          # An empty glob is NOT a pass. A renamed path or a deleted tree would
+          # otherwise produce a green run identical to a fully-checked one.
+          if not files:
+              print("::error::skills glob matched no SKILL.md — the lint inspected nothing")
+              sys.exit(1)
+
+          for f in files:
               slug = os.path.basename(os.path.dirname(f))
               text = open(f, encoding="utf-8").read()
               m = re.match(r"^---\n(.*?)\n---\n", text, re.S)
@@ -65,31 +84,58 @@ jobs:
                   print(f"::error file={f}::frontmatter must be a mapping")
                   fail = True
                   continue
-              for key in ("name", "description"):
-                  if not fm.get(key):
+              # Truthiness is not the contract: a list or an int is truthy and
+              # would sail through, then be rejected by the skill loader.
+              for key, cap in (("name", MAX_NAME), ("description", MAX_DESC)):
+                  v = fm.get(key)
+                  if v is None or (isinstance(v, str) and not v.strip()):
                       print(f"::error file={f}::missing or empty {key}:")
                       fail = True
-              if fm.get("name") and fm["name"] != slug:
-                  print(f"::error file={f}::name '{fm['name']}' != directory '{slug}'")
-                  fail = True
+                  elif not isinstance(v, str):
+                      print(f"::error file={f}::{key}: must be a string, got {type(v).__name__}")
+                      fail = True
+                  elif len(v) > cap:
+                      print(f"::error file={f}::{key}: is {len(v)} chars, exceeds {cap}")
+                      fail = True
+              name = fm.get("name")
+              if isinstance(name, str) and name.strip():
+                  if not NAME_RE.match(name):
+                      print(f"::error file={f}::name '{name}' is not a lowercase-hyphen slug")
+                      fail = True
+                  if name != slug:
+                      print(f"::error file={f}::name '{name}' != directory '{slug}'")
+                      fail = True
+
+          print(f"checked {len(files)} skills")
           sys.exit(1 if fail else 0)
           EOF
 
-      - name: Domain manifests + INDEX consistency
+      - name: Domain manifests + INDEX + trigger-surface consistency
         run: |
-          sudo apt-get install -y python3-yaml > /dev/null 2>&1 || pip install pyyaml > /dev/null
+          python3 -c 'import yaml' 2>/dev/null \
+            || sudo apt-get install -y python3-yaml > /dev/null 2>&1 \
+            || pip install pyyaml > /dev/null
           python3 - <<'EOF'
-          import glob, os, sys, yaml
+          import glob, os, re, sys, yaml
 
           root = "plugins/che-axiom-systems/domains"
+          skills_root = "plugins/che-axiom-systems/skills"
           fail = False
+
+          if not os.path.isdir(root):
+              print(f"::error::{root} does not exist — this check inspected nothing")
+              sys.exit(1)
 
           domains = sorted(
               d for d in os.listdir(root)
               if os.path.isdir(os.path.join(root, d))
           )
+          if not domains:
+              print(f"::error::no domain directories under {root} — this check inspected nothing")
+              sys.exit(1)
 
           # every domain has a valid manifest with required fields
+          manifests = {}
           for d in domains:
               mf = os.path.join(root, d, "domain.yaml")
               if not os.path.isfile(mf):
@@ -97,6 +143,7 @@ jobs:
                   fail = True
                   continue
               m = yaml.safe_load(open(mf))
+              manifests[d] = m
               for field in ("domain", "description", "format", "maturity", "entry_points"):
                   if field not in m:
                       print(f"::error file={mf}::missing field {field}")
@@ -118,6 +165,100 @@ jobs:
                   print(f"::error::domains/INDEX.md missing entry for {d}")
                   fail = True
 
-          print(f"checked {len(domains)} domains")
+          # 四件套 #4 (#29): every domain has a trigger-surface skill, unless the
+          # manifest explicitly exempts itself WITH a reason. Without this check the
+          # invariant survives only as long as someone remembers it — which is the
+          # exact drift #29 was filed for (academic-presentation sat in INDEX and
+          # TOPICS with no trigger surface from the day it was added).
+          exempt = 0
+          for d in domains:
+              m = manifests.get(d, {})
+              sk = os.path.join(skills_root, d, "SKILL.md")
+              ts = m.get("trigger_surface")
+              if ts == "none":
+                  reason = m.get("trigger_surface_reason")
+                  if not (isinstance(reason, str) and reason.strip()):
+                      print(f"::error file={root}/{d}/domain.yaml::"
+                            f"trigger_surface: none requires a non-empty trigger_surface_reason")
+                      fail = True
+                  if os.path.isfile(sk):
+                      print(f"::error::{d} declares trigger_surface: none but {sk} exists")
+                      fail = True
+                  exempt += 1
+                  continue
+              if ts is not None:
+                  print(f"::error file={root}/{d}/domain.yaml::"
+                        f"invalid trigger_surface '{ts}' (omit it, or set it to 'none')")
+                  fail = True
+              if not os.path.isfile(sk):
+                  print(f"::error::{d} has no trigger surface — expected {sk} "
+                        f"(or declare trigger_surface: none + reason in its domain.yaml)")
+                  fail = True
+
+          # Every row of a domain skill's entry table must resolve to a real
+          # heading or a real `id:` in that domain. #29 verify round 2 found a
+          # row citing 〈Metalogic〉, a section that exists in no file — inside a
+          # table whose own caption says 嚴禁捏造 ID. A fabricated pointer reads
+          # exactly like a real one, so only a lookup tells them apart.
+          def head_ok(cited, heads):
+              """Exact match, or a prefix cut at a parenthesised / dashed gloss.
+              Substring matching is too loose: it accepts 〈Metalogic〉 against
+              "Metalogical Results" — the exact fabrication this check exists for."""
+              for x in heads:
+                  if cited == x:
+                      return True
+                  for sep in (" (", "（", " ——", " —"):
+                      if x.startswith(cited + sep):
+                          return True
+              return False
+
+          CORE = {"axiom-based", "axiom-create", "axiom-validate", "axiom-capture"}
+          rows_checked = 0
+          for sk in sorted(glob.glob(os.path.join(skills_root, "*", "SKILL.md"))):
+              d = os.path.basename(os.path.dirname(sk))
+              if d in CORE:
+                  continue
+              ddir = os.path.join(root, d)
+              blob = []
+              for dp, _, fns in os.walk(ddir):
+                  if "archive" in dp:
+                      continue
+                  for fn in fns:
+                      if fn.endswith((".md", ".yaml", ".yml")):
+                          try:
+                              blob.append(open(os.path.join(dp, fn), encoding="utf-8",
+                                               errors="replace").read())
+                          except OSError:
+                              pass
+              blob = "\n".join(blob)
+              # Normalise away a leading emoji/symbol run so 〈關鍵規則…〉 matches
+              # "#### 🔑 關鍵規則…". Matching is EXACT after that, or a prefix cut
+              # at a parenthesised gloss — substring matching is too loose: it
+              # would accept 〈Metalogic〉 against "Metalogical Results", i.e. let
+              # through the exact fabrication this check exists to catch.
+              heads = set()
+              for h in re.findall(r"^#{1,6}\s*(.+?)\s*$", blob, re.M):
+                  heads.add(h.strip())
+                  heads.add(re.sub(r"^[^\w\u4e00-\u9fff]+", "", h).strip())
+
+              ids = set(re.findall(r"^\s*-?\s*id:\s*[\"']?([A-Za-z0-9_.-]+)", blob, re.M))
+              text = open(sk, encoding="utf-8").read()
+              try:
+                  sec = text[text.index("本域現有條目"):text.index("## 邊界")]
+              except ValueError:
+                  print(f"::error file={sk}::expected a 本域現有條目 table and a ## 邊界 section")
+                  fail = True
+                  continue
+              for h, i in re.findall(r"^\|\s*(?:〈(.+?)〉|`([^`]+)`)\s*\|", sec, re.M):
+                  rows_checked += 1
+                  if i and i not in ids:
+                      print(f"::error file={sk}::table cites id `{i}` — no such id in domains/{d}/")
+                      fail = True
+                  elif h and not head_ok(h, heads):
+                      print(f"::error file={sk}::table cites section 〈{h}〉 — no such heading in domains/{d}/")
+                      fail = True
+
+          print(f"checked {rows_checked} entry-table rows")
+          print(f"checked {len(domains)} domains ({exempt} exempt from a trigger surface)")
           sys.exit(1 if fail else 0)
           EOF

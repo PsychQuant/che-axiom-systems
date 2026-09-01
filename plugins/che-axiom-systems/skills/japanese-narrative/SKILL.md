@@ -22,13 +22,14 @@ Skill(skill="che-axiom-systems:axiom-based", args="japanese-narrative: <查詢>"
 
 | 章節 | 一句話 |
 |------|--------|
-| 〈核心層公理 J0–J22〉 | 物語構成的核心公理群（22 條）|
-| 〈制度層公理 M1–M11〉 | 出版・讀者・媒體對敘事形式的制度性約束 |
-| 〈導出原理〉 | 由核心層與制度層導出的原理 |
+| 〈核心層公理 (Core Axioms: J0-J22)〉 | 物語構成的核心公理群 |
+| 〈制度層公理 (Institutional Layer: M1-M11)〉 | 出版・讀者・媒體對敘事形式的制度性約束 |
+| 〈導出原理 (Derived Principles)〉 | 由核心層與制度層導出的原理 |
+| 〈公理分類〉 | 依主題把公理分組的索引 |
 
 完整索引在 `domains/japanese-narrative/公理/INDEX.md`（本域為日文目錄體系）。
 
-權威內容以 `domains/japanese-narrative/` 下的公理檔為準；上表只是章節摘要，不可用於引用。本域用自訂體系、非 ASBE schema，故上表列**章節名**而非 ID——引用時同樣以章節名稱呼，**嚴禁捏造 ID**。 新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
+權威內容以 `domains/japanese-narrative/公理/INDEX.md`（該域宣告的 entry_point）為準。上表的四列是該索引中**收錄公理的四個章節**，章節名逐字取自檔內標題；該檔其餘三節（〈使用說明〉〈完成狀況〉〈統計〉）是編務資訊、不含公理，故不列。個別公理（J0–J22、M1–M11）在各節之內、也在 `公理/` 目錄的獨立檔案中，本表不逐條列。不可用於引用。本域用自訂體系、非 ASBE schema，故上表列**章節名**而非 ID——引用時同樣以章節名稱呼，**嚴禁捏造 ID**。 新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
 
 ## 邊界
 

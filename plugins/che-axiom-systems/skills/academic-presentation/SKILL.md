@@ -35,7 +35,7 @@ Skill(skill="che-axiom-systems:axiom-based", args="academic-presentation: <查�
 | `T2_verbatim_crutch` | 逐字投影片是條件性的，不是預設（由 A2 導出）|
 | `T3_recurring_anchor` | 重複出現的錨定投影片（由 A5 導出）|
 
-權威內容以 `domains/academic-presentation/01_core_axioms/presentation_axioms.yaml` 為準；上表只是 one-liner 摘要，不可用於引用。新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
+權威內容以 `domains/academic-presentation/01_core_axioms/presentation_axioms.yaml` 為準；上表是該檔的**全部 12 條**（公理 A1–A9、定理 T1–T3），封閉列舉、無省略，但只是 one-liner 摘要，不可用於引用。該域另兩個 entry_point（`CLAUDE.md`、`references.md`）是說明與參考資料，不含公理 id。新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
 
 ## 邊界
 

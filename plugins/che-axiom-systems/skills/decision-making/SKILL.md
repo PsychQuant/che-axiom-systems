@@ -29,8 +29,10 @@ Skill(skill="che-axiom-systems:axiom-based", args="decision-making: <查詢>")
 | 〈Axiom D5: Information〉 | 資訊在決策中的位置 |
 | 〈P1: Rationality Principle〉 | 理性的操作定義 |
 | 〈P2: Risk Attitude Principle〉 | 風險態度 |
+| 〈P3: Value of Information Principle〉 | 資訊的價值：取得資訊值不值得付代價 |
+| 〈Allais Paradox〉 | 實際選擇違反獨立性公理的經典反例（在第二個 entry_point）|
 
-權威內容以 `domains/decision-making/` 下的公理檔為準；上表只是章節摘要，不可用於引用。本域為 markdown 格式，引用時用章節名、**不捏造 ID**。 新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
+權威內容以該域 `domain.yaml` 宣告的兩個 entry_point 為準。`axiomatization_of_decision_making.md` 共 **15 條**（公理 D1–D5、原理 P1–P5、定理 D1–D5）；上表未列的是 P4、P5 與 Theorem D1–D5。`decision_models_and_paradoxes.md` 收各決策模型（期望值、期望效用、主觀期望效用、展望理論、累積展望理論、後悔理論）與四個悖論（St. Petersburg、Allais、Ellsberg、Newcomb），上表只列 Allais。本域為 markdown 格式，引用時用章節名、**不捏造 ID**。 新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
 
 ## 邊界
 

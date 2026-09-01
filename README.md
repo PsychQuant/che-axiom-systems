@@ -11,7 +11,7 @@ Claude Code marketplace，散發 **跨領域形式化公理體系** plugin。
 /plugin install che-axiom-systems@che-axiom-systems
 ```
 
-安裝後即可使用四個 skill：
+安裝後即可使用四個核心 skill（另有每個公理域各一個薄觸發面 skill，見下方「內建領域」）：
 
 | Skill | 用途 |
 |-------|------|
@@ -30,8 +30,8 @@ Claude Code marketplace，散發 **跨領域形式化公理體系** plugin。
 │   └── che-axiom-systems/   # 唯一的 plugin
 │       ├── .claude-plugin/
 │       │   └── plugin.json
-│       ├── skills/          # 四個 skill
-│       ├── domains/         # 14 個內建公理化領域（見 domains/INDEX.md）
+│       ├── skills/          # 4 個核心 skill + 14 個域觸發面 skill
+│       ├── domains/         # 15 個內建公理化領域（見 domains/INDEX.md）
 │       ├── foundations/     # 跨領域原則 + ASBE 方法論
 │       ├── templates/       # YAML 模板
 │       ├── README.md        # plugin 使用說明
@@ -43,7 +43,7 @@ Claude Code marketplace，散發 **跨領域形式化公理體系** plugin。
 
 ## 內建領域（plugin 自帶）
 
-14 個公理化領域，完整清單見 [`plugins/che-axiom-systems/domains/INDEX.md`](plugins/che-axiom-systems/domains/INDEX.md)（含各領域的 format / maturity / entry point）。
+15 個公理化領域，完整清單見 [`plugins/che-axiom-systems/domains/INDEX.md`](plugins/che-axiom-systems/domains/INDEX.md)（含各領域的 format / maturity / entry point）。
 
 ## 核心原則
 

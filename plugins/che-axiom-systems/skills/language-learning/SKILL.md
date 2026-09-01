@@ -30,7 +30,7 @@ Skill(skill="che-axiom-systems:axiom-based", args="language-learning: <查詢>")
 | 〈P1: Learnability Principle〉 | 可學習性 |
 | 〈P2: Input Sufficiency Principle〉 | 輸入充分性 |
 
-權威內容以 `domains/language-learning/` 下的公理檔為準；上表只是章節摘要，不可用於引用。本域為 markdown 格式，引用時用章節名、**不捏造 ID**。 新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
+權威內容以 `domains/language-learning/axiomatization_of_language_learning.md`（該域宣告的 entry_point）為準，該檔共 **15 條**：公理 L1–L5、原理 P1–P5、定理 L1–L5。上表取其中 7 列，**未列**的是 P3–P5 與 Theorem L1–L5。同域另有 `acquisition_models_and_phenomena.md`（未列為 entry_point）。本域為 markdown 格式，引用時用章節名、**不捏造 ID**。 新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
 
 ## 邊界
 

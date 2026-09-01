@@ -31,8 +31,15 @@ Skill(skill="che-axiom-systems:axiom-based", args="information-theory: <查詢>"
 | 〈P2: Channel Coding Principle〉 | 通道編碼原理 |
 | 〈T1: Source Coding Theorem〉 | 源編碼定理 |
 | 〈T2: Channel Coding Theorem〉 | 通道編碼定理 |
+| 〈P3: Rate-Distortion Principle〉 | 容許失真時所需的最小位元率 |
+| 〈P4: Information Bottleneck Principle〉 | 壓縮與保留相關資訊之間的取捨 |
+| 〈P5: Sufficient Statistic Principle〉 | 充分統計量不丟失關於參數的資訊 |
+| 〈T3: Rate-Distortion Theorem〉 | 率失真函數即該取捨的可達邊界 |
+| 〈T4: Asymptotic Equipartition Property〉 | 長序列幾乎都落在典型集內 |
+| 〈4. Mutual Information〉 | 互資訊的定義與性質（在第二個 entry_point）|
+| 〈5. Relative Entropy (Kullback-Leibler Divergence)〉 | KL divergence 的定義與性質（同上）|
 
-權威內容以 `domains/information-theory/` 下的公理檔為準；上表只是章節摘要，不可用於引用。本域為 markdown 格式，引用時用章節名、**不捏造 ID**。 新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
+權威內容以該域 `domain.yaml` 宣告的兩個 entry_point 為準。上表前 14 列是 `axiomatization_of_information_theory.md` 的**全部條目**（A1–A5、P1–P5、T1–T4），封閉列舉、無省略；後 2 列出自 `information_measures_and_inequalities.md`，該檔另收自資訊、熵、條件熵、條件互資訊，以及 Shannon／data-processing／Fano／Jensen／log-sum 等不等式與 Rényi 熵、交叉熵，**本表不列**，引用時直接用該檔章節名。本域為 markdown 格式，引用時用章節名、**不捏造 ID**。 新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
 
 ## 邊界
 

@@ -59,7 +59,7 @@ manifest 缺失（使用者本地自建的舊 domain）→ 視同 `markdown/lega
 | 空 domain（驗證檔案集內找不到任何公理） | WARNING: no axioms found — 建議檢查 `entry_points` |
 | 指定的 domain 不存在 | 列出 INDEX 中可用領域（含本地來源）後停止 |
 | `entry_points` 指向不存在的檔案 | WARNING（同「驗證檔案集」規則） |
-| TOPICS.yaml 缺失或格式錯誤 | WARNING 後繼續其他檢查（不 abort）；報告內附三件套同步提醒 |
+| TOPICS.yaml 缺失或格式錯誤 | WARNING 後繼續其他檢查（不 abort）；報告內附四件套同步提醒（domain.yaml + INDEX.md + TOPICS.yaml + skills/<domain>/SKILL.md） |
 
 ### Step 2: 結構驗證（Domain 內）
 

@@ -1,6 +1,6 @@
 # domains/TOPICS.yaml — domain 級路由層（llms.txt 角色）
 # Read by axiom-based（隱式觸發路由 + domain-hint alias 解析）。
-# 三件套同步：新增/修改領域時 domain.yaml + INDEX.md + 本檔三者一起更新
+# 四件套同步：新增/修改領域時 domain.yaml + INDEX.md + 本檔 + skills/<domain>/SKILL.md 四者一起更新（#29）
 #   - axiom-create 建新域 → 自動補一條
 #   - axiom-validate → 雙向 drift 檢查（domains/ 目錄 ↔ 本檔條目）
 # 欄位：

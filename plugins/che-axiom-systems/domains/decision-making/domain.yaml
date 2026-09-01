@@ -7,3 +7,4 @@ format: markdown
 maturity: legacy
 entry_points:
   - axiomatization_of_decision_making.md
+  - decision_models_and_paradoxes.md

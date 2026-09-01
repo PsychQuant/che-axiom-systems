@@ -7,3 +7,8 @@ format: freeform
 maturity: legacy
 entry_points:
   - My Essey/他者作為一切的起點 —— 對歐陸哲學的批判與重構.md
+# 觸發面豁免（#29）：本域沒有可觸發的公理條目，故不建 skills/philosophy/SKILL.md。
+# CI 以這兩個欄位判定豁免；reason 不可空——豁免要付出寫理由的代價，才不會變成預設。
+# 有第一條公理時，由 axiom-create Step 3 第 8 項補建 skill 並移除本欄位。
+trigger_surface: none
+trigger_surface_reason: "freeform 單篇隨筆（他者作為一切的起點），無可引用的公理或章節體系；會 fire 卻找不到東西的觸發面只是噪音"

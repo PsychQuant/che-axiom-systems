@@ -30,9 +30,9 @@ Skill(skill="che-axiom-systems:axiom-based", args="asbe: <查詢>")
 | `T1_counterexample_power` | 一個好的反例勝過數頁說明 |
 | `T2_layer_complementarity` | 自然層與形式層互相救援 |
 
-本域另含兩組**示範用**公理集（code review 的 `A1_correctness` 等、writing 的 `A1_purpose` 等），是 ASBE 的應用範例而非方法論自身的公理。
+本域另含四條 meta-principle（`M1_llm_optimization`、`M2_human_readability`、`M3_incremental_elaboration`、`M4_dual_format`）——它們屬於方法論自身、只是不在上表；以及兩組**示範用**公理集（code review 的 `A1_correctness` 等、writing 的 `A1_purpose` 等），那兩組是 ASBE 的應用範例而非方法論自身的公理。
 
-權威內容以 `domains/asbe/asbe_axioms_bootstrapped.yaml`（該域 `domain.yaml` 宣告的 entry_point）為準；上表只列方法論自身的 7 條，不可用於引用。新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
+權威內容以 `domains/asbe/asbe_axioms_bootstrapped.yaml`（該域 `domain.yaml` 宣告的 entry_point）為準；上表列方法論自身的公理與定理共 7 條（A1–A5、T1–T2）；方法論自身的完整內容還要加上上一段的 4 條 meta-principle，合計 11 條。不可用於引用。新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
 
 ## 邊界
 

@@ -28,7 +28,7 @@ Skill(skill="che-axiom-systems:axiom-based", args="musical-composition: <查詢>
 | 〈公理M4: 緊張と解決の力学〉 | 緊張與解決的力學 |
 | 〈アイドル原理A1: 感情喚起最優先原則〉 | 偶像音樂以情感喚起為最優先 |
 
-權威內容以 `domains/musical-composition/` 下的公理檔為準；上表只是章節摘要，不可用於引用。本域用自訂體系、非 ASBE schema，故上表列**章節名**而非 ID——引用時同樣以章節名稱呼，**嚴禁捏造 ID**。 新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
+權威內容以 `domains/musical-composition/音楽作曲と理論の公理化.md`（該域宣告的 entry_point）為準，該檔共 **29 個**可引用章節。上表取其中 5 列，**未列**的是公理M5、原理P1–P5（含 P3.1）、MTC1–MTC4、CHC1–CHC3、AE1–AE3、LC1–LC3、FTD1–FTD3、SAC1。不可用於引用。本域用自訂體系、非 ASBE schema，故上表列**章節名**而非 ID——引用時同樣以章節名稱呼，**嚴禁捏造 ID**。 新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
 
 ## 邊界
 

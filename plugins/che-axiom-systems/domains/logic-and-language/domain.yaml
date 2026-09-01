@@ -7,3 +7,4 @@ format: markdown
 maturity: legacy
 entry_points:
   - axioms_of_logic.md
+  - logical_systems_and_metalogic.md

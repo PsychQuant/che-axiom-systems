@@ -27,7 +27,7 @@ Skill(skill="che-axiom-systems:axiom-based", args="mathematical-writing: <查詢
 | `A3_replacement_precondition` | 搬動之前必須先知道引用集；引用定址容器而非內容，編譯器兩者都不檢查 |
 | `T1_negative_space_is_meta` | 「這條假設不給什麼」的主語是假設，故為 meta-level，連它的反例見證也進 remark |
 
-權威內容以 `domains/mathematical-writing/mathematical_writing_axioms.yaml` 為準；上表只是 one-liner 摘要，不可用於引用。新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
+權威內容以 `domains/mathematical-writing/mathematical_writing_axioms.yaml` 為準；上表是該檔的**全部 4 條**（A1–A3、T1），封閉列舉、無省略，但只是 one-liner 摘要，不可用於引用。新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
 
 ## 邊界
 

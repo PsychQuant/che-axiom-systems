@@ -39,7 +39,7 @@ argument-hint: "[domain:query | axiom-ID | 自然語言 | --list]（裸呼叫＝
 ## 路由（domain 級）
 
 1. **讀 `${CLAUDE_PLUGIN_ROOT}/domains/TOPICS.yaml`**（一次讀取）：以 `keywords`/`aliases` 對查詢或當前話題匹配 → domain 候選（可多個）。
-2. TOPICS.yaml 缺失、或條目與 `domains/` 目錄漂移 → **fallback**：讀 INDEX.md + `ls domains/` 路由，並警告需三件套同步。
+2. TOPICS.yaml 缺失、或條目與 `domains/` 目錄漂移 → **fallback**：讀 INDEX.md + `ls domains/` 路由，並警告需四件套同步（domain.yaml + INDEX.md + TOPICS.yaml + skills/<domain>/SKILL.md）。
 3. 本地來源：即時掃描 cwd `domains/`／`axioms/` 各域的 `domain.yaml`（名稱 + description）納入候選，標 `[local]`。
 4. 在候選 domain 內做 **format-aware 搜尋**（先讀該域 `domain.yaml` 的 `format`）：
 
@@ -59,7 +59,7 @@ argument-hint: "[domain:query | axiom-ID | 自然語言 | --list]（裸呼叫＝
 
 - 回答內 inline 引用**最多 3 條**：
   - yaml domain → `依 weight-control A0（質量守恆）…`
-  - markdown / freeform domain → `依 statistics〈最大概似原則〉…`（章節名；**嚴禁捏造 ID**）
+  - markdown / freeform domain → `依 statistics〈P1: Statistical Estimation Principle〉…`（章節名；**嚴禁捏造 ID**）
 - 回答末尾附「📎 相關公理」清單：每條 `id或章節 — one_liner或摘錄 — File: <path>:<line>`；註明可展開完整內容（violations、`derives_from` 推導鏈 — 僅 yaml domain 提供此選項）。
 
 **顯式查詢時**：沿用 format 對應的完整模板 —
@@ -76,7 +76,7 @@ yaml domain — 完整卡片（欄位真實存在才能這樣顯示）：
 markdown domain — 標題 + 摘錄 + 位置：
 ```
 📍 statistics [markdown/legacy]
-   § 最大概似原則
+   § P1: Statistical Estimation Principle
    「…估計量的選擇以概似函數最大化為準…」
    File: domains/statistics/00_principles.md:57
 ```
@@ -112,7 +112,7 @@ freeform domain — entry-point 相對路徑 + 摘錄：
    ...
 ```
 
-若發現 `domains/` 下有目錄不在 INDEX 中（或反之），提示使用者三件套需要同步。
+若發現 `domains/` 下有目錄不在 INDEX 中（或反之），提示使用者四件套需要同步（第四件是 `skills/<domain>/SKILL.md`，該域的自動觸發面）。
 
 ## 錯誤處理
 
@@ -121,7 +121,7 @@ freeform domain — entry-point 相對路徑 + 摘錄：
 | 裸呼叫 | 載入路由指引待命；不報錯、不逼問參數 |
 | domain-hint prefix 不匹配任何 domain/alias | 整個 token 當自然語言處理（不報錯）；若明顯是舊 `--domain` 語法，列出可用領域（含本地來源） |
 | axiom ID 查無 | 降級為自然語言路由；結果中註明「ID 未直接命中」 |
-| TOPICS.yaml 缺失或與 `domains/` 漂移 | fallback 到 INDEX.md + `ls domains/`，警告需三件套同步 |
+| TOPICS.yaml 缺失或與 `domains/` 漂移 | fallback 到 INDEX.md + `ls domains/`，警告需四件套同步 |
 | 隱式觸發無相關公理 | 靜默 no-op（正常回答，不輸出雜訊） |
 | 顯式查詢無結果 | `0 results for "<query>"` + 建議：放寬關鍵字／`--list` 看總覽／移除 domain 限定 |
 | `domain.yaml` 缺失（本地域常見） | 視同 `markdown/legacy` 全文搜尋，並建議補 manifest（與 axiom-validate 同措辭） |

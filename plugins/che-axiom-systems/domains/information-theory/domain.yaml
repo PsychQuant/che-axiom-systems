@@ -7,3 +7,4 @@ format: markdown
 maturity: legacy
 entry_points:
   - axiomatization_of_information_theory.md
+  - information_measures_and_inequalities.md
