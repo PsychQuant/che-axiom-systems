@@ -18,10 +18,21 @@ exposition).
 | ID | Name | One-liner |
 |----|------|-----------|
 | `A1_altitude_placement` | Statement placement by altitude | Object-level relations earn theorem status; meta-level framework properties belong in remarks; never state the same content in both. |
+| `A2_repair_accretion` | Altitude drift under repair | Repair rounds accrete meta-level qualifications inside statements; re-check altitude after repair, and relocate rather than delete. |
+| `A3_replacement_precondition` | Re-placement requires the citation set | A statement may not be relocated until what cites it is known; references address containers, not content, and the compiler checks neither. |
+
+## Theorems
+
+| ID | Derives from | One-liner |
+|----|--------------|-----------|
+| `T1_negative_space_is_meta` | `A1` | A claim that a hypothesis does *not* give a conclusion is meta-level — including its witness — so it belongs in a remark, not in the statement that assumes the hypothesis. |
 
 ## Growth path
 
-Seeded with statement placement (A1). Designed to accrete further exposition
+Seeded with statement placement (A1); extended with the revision dynamics that
+defeat it (A2: repair accretes meta-level material inside statements; A3:
+relocation is admissible only once the citation set is known) and with the
+negative-space corollary of A1 (T1). Designed to accrete further exposition
 axioms as they are articulated — candidates already in practice:
 
 - constructive-over-existential presentation (give the explicit witness, not "there exists");

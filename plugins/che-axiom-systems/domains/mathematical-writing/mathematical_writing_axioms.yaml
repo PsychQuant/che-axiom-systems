@@ -43,6 +43,19 @@ primitives:
       the system one is writing inside: the same sentence can be a remark in a
       manuscript yet an axiom in a system that axiomatizes the manuscript's craft.
 
+  - term: "Repair round"
+    intuition: |
+      A revision that corrects an identified defect in a statement. Its
+      characteristic move is to add a qualification at the point where the
+      defect was found, which is normally inside the statement being repaired,
+      because that is where the reader met the error.
+  - term: "Citation set"
+    intuition: |
+      The references that address a statement: those naming its label, and those
+      whose span contains it. A range reference covers whatever currently lies
+      between its endpoints, so a statement can enter or leave a citation set
+      without any reference to it being edited.
+
 axioms:
   - id: "A1_altitude_placement"
     name: "Statement placement by altitude"
@@ -114,3 +127,242 @@ axioms:
           (the sharp iff included); the framework-invariance observation, being
           meta-level, lives in the remark and does not restate the theorem — one
           altitude per container, no duplication.
+
+  - id: "A2_repair_accretion"
+    name: "Altitude drift under repair"
+    one_liner: "Repair rounds accrete meta-level qualifications inside statements; re-check altitude after repair, and relocate rather than delete."
+
+    statement_natural: |
+      Iterative repair drives altitude drift. When a defect is found in a
+      theorem, the correction gets written at the point of failure — inside the
+      statement — because that is where the reader met the error. Each such
+      qualification is individually justified and individually small, and no
+      single round violates A1. But what accumulates is meta-level: the limits of
+      a hypothesis, the scope of an index, what the result does not claim. After
+      several rounds the statement no longer holds one altitude, and it did so
+      without any round doing anything wrong.
+      Two consequences. First, altitude must be re-checked as an act distinct
+      from checking correctness, on a schedule set by the number of repair rounds
+      rather than by the size of any one change; no individual defect raises the
+      question, so nothing else will. Second, the remedy is relocation, not
+      deletion. Every accreted clause was earned by a defect someone actually
+      found, so cutting it for concision re-opens that defect and discards the
+      record of what was learned. Moving it to a remark achieves the same
+      concision and keeps both.
+
+    statement_formal: |
+      Let Θ₀ be a statement and Θ_{n+1} = repair(Θ_n, d_n) correct defect d_n by
+      adjoining qualification q_n.
+        typically   level(q_n) = meta                       (limits, scope, non-claims)
+        so          purity(Θ_n) := |{c ∈ Θ_n : level(c) = object}| / |clauses(Θ_n)|
+                    is non-increasing in n, while  correct(Θ_n) holds for every n.
+      Hence:  (∀n) correct(Θ_n)  ⊬  A1(Θ_n).       // correctness does not preserve altitude
+      Remedy — split, do not shrink:
+        concise(Θ_n) = (Θ′, R)  with  content(Θ′) ∪ content(R) = content(Θ_n),
+                       (∀c ∈ Θ′) level(c) = object,  (∀c ∈ R) level(c) = meta
+      Prohibited:
+        content(Θ′) ∪ content(R) ⊊ content(Θ_n)     // deletion in the name of concision
+
+    rationale: |
+      The failure is diachronic, so it is invisible to any single review. Each
+      round asks "is this sentence correct?" and each answer is yes; nobody asks
+      "is this statement still one altitude?", because no individual defect
+      raises that question. The remedy most readers reach for — it is too long,
+      cut it — is the one that loses information, since every clause marks a
+      defect that was actually found. A1 says where material belongs; A2 says
+      that repair systematically puts it somewhere else, and that noticing this
+      requires a check nobody is prompted to run.
+
+    violations:
+      - description: "A proposition grown to fifty-five lines over seven repair rounds, each round adding a meta-level clause to the statement"
+        content: |
+          Proposition (Truncation order and the superasymptotic bound).
+          (i) Attainability, from Assumption 3 alone. Suppose J ≥ K₀C(θ), so
+          that K*(J) ≥ K₀ and (5.8) is in force at that order. The bound
+          M k^p C^k k! J^{-k} is minimized over k ≥ K₀, to leading order, at
+          k = J/C, where it equals exp(−J/C) up to an algebraic factor. Since
+          t_k(J) never exceeds that bound there, [display]. Truncating at K*(J)
+          therefore achieves a term magnitude at most that size; for irregular
+          coefficients it can be far smaller. The statement does not assert that
+          K*(J) minimizes t_k(J): an upper bound on the coefficients cannot
+          decide where the terms themselves are smallest.
+          (ii) … The restriction to k ≥ k_LT is not cosmetic: (5.11) governs late
+          terms only and cannot speak to finitely many vanishing leading
+          coefficients, and this model has them — Δ₁ ≡ 0 throughout, so
+          t₁(J) = 0 is the minimum over all k ≥ 1 at every J. Only under this
+          hypothesis is K*(J) an optimal order among k ≥ k_LT, rather than merely
+          a good one. What (5.11) does not give is a single crossing. …
+          (iii) … The factor may not be absorbed into the exponential: J^q e^{−J/C}
+          is not O(e^{−J/C}).
+          In all three parts the exponential scale worsens as C(θ) grows, …
+        explanation: |
+          Every added clause was correct and each was earned by a real defect, so
+          no round violated A1 on its own. But "does not assert", "is not
+          cosmetic", "what (5.11) does not give", "may not be absorbed" are all
+          meta-level: they describe the limits of the hypotheses, not relations
+          among the objects. The three object-level assertions are now buried in
+          an essay about their own scope.
+
+    compliant:
+      - description: "The same content, split by altitude: three assertions in the proposition, the limits in the remark that follows"
+        content: |
+          Proposition (Truncation order and the superasymptotic bound).
+          Write t_k(J) := |Δ_k(θ)| J^{-k}; set K*(J) = ⌊J/C(θ)⌋. In (i) and (iii)
+          let J ≥ K₀C(θ), so that K*(J) ≥ K₀.
+          (i)   t_{K*(J)}(J) ≤ P(J) exp(−J/C(θ)).
+          (ii)  Let k_LT be an index beyond which Δ_k(θ) ≠ 0. For all J large,
+                t_k(J) attains its minimum over k ≥ k_LT at an order
+                J/C(θ) + o(√J), of size exp(−J/C(θ)) up to an algebraic factor.
+          (iii) |D_J − D_{J,K*(J)}| ≤ P̃(J) exp(−J/C(θ)).
+
+          Remark (What the three parts leave open). Part (i) is one-sided twice
+          over … The late-term restriction in (ii) is not cosmetic … Nor does (ii)
+          give a single crossing … In (iii) the algebraic factor may not be
+          absorbed into the exponential …
+        explanation: |
+          Nothing is deleted: every qualification survives, at the altitude A1
+          assigns it. The proposition halves in length and states three relations
+          among objects; the remark carries what the hypotheses fail to give.
+          Two of the removed sentences also turned out to be duplicates of lines
+          already in the proof, which only became visible once the material was
+          sorted by altitude.
+
+  - id: "A3_replacement_precondition"
+    name: "Re-placement requires the citation set"
+    one_liner: "A statement may not be relocated until what cites it is known; references address containers, not content, and the compiler checks neither."
+
+    statement_natural: |
+      Placement may be changed only after the citation set is known. References
+      address containers rather than content: they name a label, or a number, or
+      a part, or they span a range. So relocation can redirect a reference
+      without touching it. A remark promoted to a proposition takes a new number;
+      a clause moved from part (i) to part (ii) silently redirects everything
+      that cited part (i); and a range reference covers whatever now lies between
+      its endpoints, so reordering can sweep a third item into its scope while
+      both endpoints, and the direction of the reference, stay exactly as they
+      were.
+      None of this is reported by a compiler, which resolves labels rather than
+      meaning: a document with a citation pointing at the wrong object still
+      builds with zero undefined references. The citation set is therefore a
+      precondition of re-placement, not a check to run afterwards — afterwards
+      there is nothing left that distinguishes a correct reference from a
+      redirected one.
+
+    statement_formal: |
+      For a statement S, let
+        Cites(S) := { r : target(r) = label(S) }  ∪  { r : S ∈ span(r) }
+      where, for a range reference r = ⟨A, B⟩,
+        span(r) = { X : pos(A) ≤ pos(X) ≤ pos(B) }              // order-dependent
+      Admissibility of relocation:
+        relocate(S, c_old → c_new) admissible  ⟺  Cites(S) known
+                                                  ∧ (∀r ∈ Cites(S)) claim(r) holds of S at c_new
+      Silence of the compiler:
+        compiles(D) ∧ undefined(D) = ∅   ⊬   (∀r ∈ Refs(D)) claim(r) holds
+      Order-immunity of explicit endpoints:
+        span(⟨A, B⟩) varies under reordering;  {A} ∪ {B}  does not.
+
+    rationale: |
+      The failure mode is silent, which is what makes a precondition necessary
+      rather than a checklist item. Every automated signal a writer normally
+      trusts — zero undefined references, zero errors, an unchanged page count —
+      is satisfied by a document whose citations have been redirected. And the
+      cheapest defence is structural rather than procedural: a range reference
+      is order-dependent, a pair of explicit endpoints is not, so writing
+      "§A and §B" instead of "§A–§B" makes the question unnecessary.
+
+    violations:
+      - description: "Reordering three subsections silently widened a range reference; both endpoints unchanged, direction unchanged, compiler clean"
+        content: |
+          Text (unchanged by the edit):
+            "for the explicit risk differences of §entire–§finite, the gap is
+             exactly zero"
+          Edit: the three regime subsections were reordered from
+            entire → finite → zero   to   entire → zero → finite
+          Result: the range now spans three subsections instead of two, sweeping
+          in the zero-radius case, where r_D = 0 and the full sum does not exist.
+        explanation: |
+          The claim did not merely become false — it became undefined, since the
+          quantity it asserts to be zero does not exist in the swept-in case. The
+          line is context in the diff, not a changed line; a direction check on
+          each reference passes; the build reports zero undefined references. Only
+          knowing the citation set before reordering would have caught it.
+
+    compliant:
+      - description: "Citation set enumerated before relocating, and range references converted to explicit endpoints"
+        content: |
+          Before moving prop:superasymptotic's commentary:
+            grep for \ref{prop:superasymptotic}      → 12 sites, all cite (i)/(ii)/(iii)
+            grep for \ref{eq:superasymptotic_attain} →  1 site, inside the proof
+            grep for \ref{eq:superasymptotic_floor}  →  0 sites
+          Conclusion recorded before editing: the statement may be restructured
+          freely provided the part numbering (i)/(ii)/(iii) is preserved.
+          Separately: "§A–§B" rewritten as "§A and §B" wherever the two endpoints
+          were the intended scope.
+        explanation: |
+          The citation set determines what the restructure must preserve — here,
+          part numbering and nothing else — so the constraint is known before any
+          text moves rather than discovered by a reader afterwards. Converting
+          the range to explicit endpoints removes the order-dependence entirely,
+          which is a stronger remedy than remembering to check it.
+
+theorems:
+  - id: "T1_negative_space_is_meta"
+    name: "Claims about what a hypothesis does not give are meta-level"
+    derives_from: ["A1_altitude_placement"]
+
+    statement_natural: |
+      A claim that a hypothesis does not yield a conclusion is meta-level. Its
+      subject is the hypothesis and its entailments, not the objects the theory
+      is about, so by A1 it belongs in a remark rather than in the statement of
+      the result that assumes the hypothesis.
+      This holds even when the claim is the most substantial mathematics in the
+      neighbourhood. A counterexample witnessing that H does not entail C is a
+      genuine construction and may be harder to find than the result itself; it
+      is still meta-level, because what it is about is H. Placing it in the
+      statement makes the result appear to assert its own limitation, and makes
+      the reader carry a negation through the very hypothesis they are being
+      asked to assume.
+
+    statement_formal: |
+      S asserts  H ⊬ C   (equivalently: ∃ a model of H in which C fails)
+        ⟹  subject(S) = H ∈ Theory,  not  Obj(T)
+        ⟹  level(S) = meta                                   [primitive: Meta-level]
+        ⟹  container(S) = Remark                             [A1]
+      In particular, for a witness W with  W ⊨ H  and  W ⊭ C :
+        place(W) = Remark,  not  statement(result assuming H).
+
+    violations:
+      - description: "A counterexample to a stronger reading placed inside the proposition that assumes the hypothesis"
+        content: |
+          Proposition (ii). If the coefficients obey (5.11), then t_k(J) attains
+          its minimum over k ≥ k_LT at an order J/C(θ) + o(√J) … What (5.11) does
+          not give is a single crossing. It is an asymptotic equivalence and
+          constrains no smoothness, so |Δ_k(θ)| = A C^k Γ(k+β)(1 + (−1)^k k^{−1/4})
+          satisfies it while t_{k+1}/t_k crosses one repeatedly across a window of
+          width Θ((J/C(θ))^{3/4}). The terms fall before that window and rise
+          after it, without being monotone inside.
+        explanation: |
+          The witness is real mathematics and was worth finding — it is what
+          forced the localisation claim down from O(1) to o(√J). But its subject
+          is (5.11), not the coefficients of any particular comparison, so it is
+          meta-level. Inside the statement it reads as the proposition disowning
+          itself mid-assertion.
+
+    compliant:
+      - description: "Statement asserts what the hypothesis gives; the adjacent remark carries what it does not"
+        content: |
+          Proposition (ii). Let k_LT be an index beyond which Δ_k(θ) ≠ 0. For all
+          J large, t_k(J) attains its minimum over k ≥ k_LT at an order
+          J/C(θ) + o(√J), of size exp(−J/C(θ)) up to an algebraic factor.
+
+          Remark (What the three parts leave open). … Nor does (ii) give a single
+          crossing. Since (5.11) is an asymptotic equivalence and constrains no
+          smoothness, the sequence |Δ_k(θ)| = A C^k Γ(k+β)(1 + (−1)^k k^{−1/4})
+          satisfies it while t_{k+1}/t_k crosses one repeatedly across a window of
+          width Θ((J/C(θ))^{3/4}): the terms fall before that window and rise
+          after it, without being monotone inside.
+        explanation: |
+          The proposition states a relation among the objects; the remark states a
+          property of the hypothesis. The witness loses nothing by moving — it is
+          still displayed in full, one paragraph later — and the reader is no
+          longer asked to hold an assertion and its limitation in the same breath.

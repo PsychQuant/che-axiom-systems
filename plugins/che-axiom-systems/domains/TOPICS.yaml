@@ -35,7 +35,9 @@
   keywords: [數學能力, 能力依賴, 學數學, 數學教育, 先備知識, 數學認知]
 - domain: mathematical-writing
   aliases: [數學寫作, math-writing]
-  keywords: [定理陳述, statement placement, 證明寫作, proof writing, 數學論文, notation, 符號慣例]
+  keywords: [定理陳述, statement placement, 證明寫作, proof writing, 數學論文, notation, 符號慣例,
+            命題精簡, 高度漂移, altitude, 修訂累積, repair accretion, remark 擺放,
+            引用檢查, citation set, 區間引用, range reference]
 - domain: musical-composition
   aliases: [作曲, 音樂理論]
   keywords: [和聲, harmony, 旋律, melody, 編曲, arrangement, 曲式, 歌詞配置, 音樂結構]
