@@ -13,7 +13,7 @@
 | `language-learning` | 語言習得模型與現象 | markdown | legacy | `axiomatization_of_language_learning.md` |
 | `logic-and-language` | 邏輯系統與後設邏輯 | markdown | legacy | `axioms_of_logic.md` |
 | `mathematical-learning` | 數學學習：能力依賴與機率模型 | markdown | legacy | `axiomatization_of_mathematical_learning.md` |
-| `mathematical-writing` | 數學寫作（statement placement、修訂中的高度漂移、重置的引用前提） | yaml | bootstrapped | `mathematical_writing_axioms.yaml` |
+| `mathematical-writing` | 數學寫作（statement placement、修訂中的高度漂移、重置的引用前提、引用只向後） | yaml | bootstrapped | `mathematical_writing_axioms.yaml` |
 | `musical-composition` | 音樂作曲與理論（日文） | freeform | legacy | `音楽作曲と理論の公理化.md` |
 | `note-writing` | 筆記寫作原則 | markdown | legacy | `README.md` |
 | `philosophy` | 哲學隨筆：他者作為起點 | freeform | legacy | `My Essey/…批判與重構.md` |

@@ -305,6 +305,96 @@ axioms:
           the range to explicit endpoints removes the order-dependence entirely,
           which is a stronger remedy than remembering to check it.
 
+  - id: "A4_reading_order_dependence"
+    name: "Dependence runs backward in reading order"
+    one_liner: "A statement may lean only on what precedes it; a pointer ahead may say where, never use what."
+
+    statement_natural: |
+      A definition, proposition, remark or example may depend only on objects,
+      results and numbers the reader has already met. The text is read in one
+      direction, and at each point the reader holds exactly the prefix: a
+      reference to something later cannot be checked when it is read, and a
+      number quoted from later cannot be told apart from an assumption. Two kinds
+      of forward pointer remain legitimate, and both are roadmap rather than
+      dependence: a section overview announcing where a question will be
+      treated, and a pointer from the place where a case is left open to the
+      place where it is closed. What is prohibited is using the later material:
+      invoking a later proposition as a step, quoting a later value, resting a
+      bullet on a later corollary. The remedy is never to delete the dependence
+      but to reorder: move the dependent statement after what it depends on, or
+      split off the dependent sentence and place it where the cited result
+      lives, so that it cites backward. Reordering is a re-placement, so A3
+      applies: the citation set of what moves must be known before the move.
+
+    statement_formal: |
+      Let the document be the sequence S_1, …, S_N in reading order, and let
+      Uses(S_i) be the set of statements whose content S_i invokes — as a step,
+      a value, or a premise.
+        Backward dependence:   ∀ i, ∀ S_j ∈ Uses(S_i):  j < i
+        Roadmap exemption:     a pointer S_i → S_j with j > i is permitted
+                               iff S_j ∉ Uses(S_i)   (it names a location and
+                               supplies no content)
+      Remedy — reorder, do not delete:  if S_j ∈ Uses(S_i) with j > i, then
+        either  move S_i to a position i′ > j,
+        or      split the dependent clause c ⊂ S_i off and place it at a
+                position > j,
+      subject to A3: the citation set of the moved statement is known first.
+
+    rationale: |
+      A forward dependence puts the reader where the author never stands. The
+      author, holding the whole document, sees a closed chain; the reader,
+      holding the prefix, sees a claim resting on nothing yet available, and a
+      number quoted from a later example looks like an input rather than an
+      output. Roadmap pointers escape because they transfer no content: the
+      reader can carry on without them. The remedy must be reordering rather
+      than deletion because the dependence is usually real and useful — the
+      later result genuinely is what settles the point — so deleting it hides
+      a true link, while reordering keeps the link and turns it backward. And
+      because the fix moves statements, it is a re-placement: A3's precondition
+      applies, and the compiler will not report a citation redirected by the
+      move.
+
+    violations:
+      - description: "A remark placed after a theorem quotes a proposition from a later section and a number from a later example"
+        content: |
+          Remark 4.20 (The deficiency is defined on the scaled MSE). … the same
+          equation MSE_I(J + d_J, θ) = MSE_*(J, θ) has the limit d = Δ₂/(2α₁),
+          half the value of Theorem 4.19 … This is the case (m, k₀) = (2, 3) of
+          Proposition 5.33. For the equal-difficulty Rasch model at P = 0.30 the
+          exact truncated-binomial MSEs give −8.71 for the unscaled equation at
+          J = 200, 400 and 800, against d(θ) = −17.43 from Example 4.26.
+        explanation: |
+          Proposition 5.33 lives a section later and Example 4.26 six items
+          later, and the remark uses both as content: one as the general case
+          the remark instantiates, the other as the number it compares against.
+          A reader at 4.20 holds neither, so the comparison cannot be checked
+          when read and −17.43 reads as an assumption. In the same revision
+          Definition 4.16 pointed ahead to Remark 4.20, and the central bullet
+          of Example 4.26 quoted d(b) = −121/18 from a corollary a section later.
+          (PB-of-IRT-ability manuscript §4.5, 2026-09-02, commit 5a7a905.)
+
+    compliant:
+      - description: "The same content reordered so that every dependence points backward; the roadmap pointer is kept"
+        content: |
+          Example 4.25 (Equal-difficulty Rasch instantiation …). … d(θ) = 4 − 9/(2u),
+          equal to −17.4, −24.1 and −46.0 at P = 0.30, 0.20 and 0.10 …
+          Remark 4.26 (The deficiency is defined on the scaled MSE). … d = Δ₂/(2α₁),
+          half the value of Theorem 4.19 … the exact truncated-binomial MSEs give
+          −8.71 … against d(θ) = −17.43 from Example 4.25.
+          [§5.7.1] Remark (The unscaled MSE as a shift of orders). Remark 4.26 is
+          the case (m, k₀) = (2, 3) of Proposition 5.33: …
+          Corollary 4.24 (unchanged). Where α₁(θ) = 0 the ratio is undefined;
+          Proposition 5.33 extends the deficiency to that case.
+        explanation: |
+          The remark now follows the example it quotes, so −17.43 is a value the
+          reader has derived; the sentence instantiating Proposition 5.33 moved
+          to §5.7.1 and cites backward; the example's bullet points back to the
+          corollary's note instead of ahead to the later corollary's value. The
+          corollary's own pointer ahead is kept: it names where the α₁ = 0 case
+          is closed and uses nothing from there — roadmap, not dependence. Each
+          move was made after listing what cited the moved statement (A3).
+          (Same manuscript, commit 3840bee.)
+
 theorems:
   - id: "T1_negative_space_is_meta"
     name: "Claims about what a hypothesis does not give are meta-level"

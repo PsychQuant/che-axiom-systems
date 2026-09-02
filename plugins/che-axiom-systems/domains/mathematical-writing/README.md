@@ -20,6 +20,7 @@ exposition).
 | `A1_altitude_placement` | Statement placement by altitude | Object-level relations earn theorem status; meta-level framework properties belong in remarks; never state the same content in both. |
 | `A2_repair_accretion` | Altitude drift under repair | Repair rounds accrete meta-level qualifications inside statements; re-check altitude after repair, and relocate rather than delete. |
 | `A3_replacement_precondition` | Re-placement requires the citation set | A statement may not be relocated until what cites it is known; references address containers, not content, and the compiler checks neither. |
+| `A4_reading_order_dependence` | Dependence runs backward in reading order | A statement may lean only on what precedes it; a pointer ahead may say where, never use what. |
 
 ## Theorems
 
@@ -31,8 +32,9 @@ exposition).
 
 Seeded with statement placement (A1); extended with the revision dynamics that
 defeat it (A2: repair accretes meta-level material inside statements; A3:
-relocation is admissible only once the citation set is known) and with the
-negative-space corollary of A1 (T1). Designed to accrete further exposition
+relocation is admissible only once the citation set is known; A4: dependence
+may only point backward in reading order, forward pointers being roadmap alone)
+and with the negative-space corollary of A1 (T1). Designed to accrete further exposition
 axioms as they are articulated — candidates already in practice:
 
 - constructive-over-existential presentation (give the explicit witness, not "there exists");
