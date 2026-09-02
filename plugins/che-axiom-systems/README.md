@@ -19,14 +19,15 @@
 | `/axiom-validate` | 驗證 ASBE 結構合規 + 跨域一致性 | 唯讀 |
 | `/axiom-create` | 建立新領域或在既有領域新增公理 | 寫入（見「寫入位置」）|
 | `/axiom-capture` | 對話中偵測公理候選並詢問（auto-trigger，best-effort 語意匹配）；快速記入 `candidates.md` 或委派 create | 寫入（同 create 模式規則）|
+| `/<領域名>`（15 個，如 `/mathematical-writing`、`/statistics`、`/academic-presentation`）| 各領域的觸發面：對話碰到該領域主題時自動載入該域公理待命；也可帶自然語言或 axiom ID 直接查該域 | 唯讀 |
 
 ## 內建領域
 
-Plugin 自帶 **14 個**已公理化的領域，安裝後聊到相關主題會自動帶入公理，也可 `/axiom-based` 直接查。完整清單（含 format / maturity / entry point）見 [`domains/INDEX.md`](domains/INDEX.md)，或跑 `/axiom-based --list`：
+Plugin 自帶 **15 個**已公理化的領域，安裝後聊到相關主題會自動帶入公理，也可 `/axiom-based` 直接查。完整清單（含 format / maturity / entry point）見 [`domains/INDEX.md`](domains/INDEX.md)，或跑 `/axiom-based --list`：
 
 | Maturity | 領域 |
 |----------|------|
-| `bootstrapped`（ASBE YAML schema）| `apa7-style`、`asbe`、`mathematical-writing`、`weight-control` |
+| `bootstrapped`（ASBE YAML schema）| `academic-presentation`、`apa7-style`、`asbe`、`mathematical-writing`、`weight-control` |
 | `legacy`（markdown / freeform）| `statistics`、`decision-making`、`information-theory`、`japanese-narrative`、`language-learning`、`logic-and-language`、`mathematical-learning`、`musical-composition`、`note-writing`、`philosophy` |
 
 每個領域根目錄的 `domain.yaml` manifest 宣告其格式與成熟度，決定 `/axiom-validate` 的檢查級別。
