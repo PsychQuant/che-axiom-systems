@@ -1,0 +1,180 @@
+# ASBE Domain — Academic Writing
+# Follows templates/domain-template.yaml. Validate with /axiom-validate.
+
+meta:
+  domain: "Academic Writing"
+  version: "1.0.0"
+  author: "Che Cheng"
+  created: "2026-10-10"
+  source: "Revision of a philosophy manuscript (Leibniz on machine-generated proofs, for Synthese), 2026-10-10"
+  provenance: |
+    Seeded at the user's request, in their words:
+      「幫我寫在rule裡面與 axiomsystem裡面不能前向引用（所有文章都不適合，除非有例外）」
+    The request arose while removing a forward reference from the manuscript
+    cited in A1's examples (commits 543f22b → a0f987a).
+  description: |
+    Axiomatizes the craft of writing scholarly articles for peer readers in
+    any discipline — philosophy, the empirical sciences, mathematics: how the
+    argument is laid out so that a reader moving through the text in order
+    can follow and check it. Distinct from `mathematical-writing`, which
+    covers formal mathematical exposition (the theorem / proposition /
+    definition / remark architecture); where an axiom here generalizes one
+    there, the axiom names its parent by id. Distinct from `apa7-style`,
+    which covers formatting and citation style rather than the order and
+    structure of an argument. Seeded with reading-order dependence (A1).
+
+# Primitive terms — undefined concepts that form the foundation
+primitives:
+  - term: "Reading order"
+    intuition: |
+      The order in which a reader meets the sentences of an article: front to
+      back, section by section. At any point the reader holds exactly what
+      came before it, and nothing after it.
+  - term: "Item"
+    intuition: |
+      Anything a sentence can lean on that has to be given somewhere in the
+      article: a term, a symbol, a definition, a principle or premise, a
+      result, a number, a quotation. An item is introduced at the first place
+      where its content is actually supplied — not where it is first named.
+  - term: "Dependence"
+    intuition: |
+      A sentence depends on an item when the reader needs that item's content
+      to understand the sentence or to check it — when the item works as a
+      step, a value, a premise, or the meaning of a word in the sentence.
+  - term: "Forward pointer"
+    intuition: |
+      A sentence that refers to a place later in the article ("in Section 6",
+      "below", "as we will see").
+
+axioms:
+  - id: "A1_no_forward_dependence"
+    name: "No forward dependence in any scholarly article"
+    one_liner: "Rest only on items already met; a pointer ahead is a roadmap or a promissory note, nothing else."
+    generalizes: "mathematical-writing/A4_reading_order_dependence"
+
+    statement_natural: |
+      In a scholarly article of any discipline, a sentence may depend only on
+      terms, symbols, definitions, principles, results, numbers and
+      quotations that the reader has already met. The reader holds only what
+      came before: a sentence that leans on something supplied later cannot
+      be understood or checked when it is read, and a premise that will be
+      stated later looks, at that point, like nothing at all.
+      A forward pointer is allowed in exactly two cases. This list is closed:
+      no third case may be added because it resembles one of these two.
+        (1) Roadmap. The pointer names where a question is treated and
+            supplies no content the reader needs at that point. The overview
+            paragraph at the end of an introduction is of this kind.
+        (2) Promissory note. A claim or an open case is stated now, and it is
+            fully intelligible now — every term in it has already been
+            defined — while its argument or its resolution is placed later.
+      Anything else that points ahead is a forward dependence and a defect,
+      including a definition that is written early but whose content lies in
+      a later section: naming an item does not introduce it.
+      The remedy is to reorder, never to delete. Either move the definition
+      or principle to before its first use, or move the dependent sentence
+      to after what it depends on, so that it cites backward. Moving text is
+      a re-placement, so the set of places that cite the moved passage must
+      be known before it moves (mathematical-writing A3_replacement_precondition).
+      This axiom generalizes mathematical-writing A4_reading_order_dependence
+      from formal mathematics, where the units are definitions, propositions,
+      remarks and examples, to the prose of any article, where the unit is
+      the sentence and the items include terms, principles and quotations.
+      A4's two legitimate forward pointers — the section overview, and the
+      pointer from an open case to where it is closed — correspond to (1) and
+      (2) here; this axiom states the condition on (2) explicitly and closes
+      the list.
+
+    statement_formal: |
+      Let the article be the sentences s_1, …, s_N in reading order. For an
+      item x let intro(x) be the index of the sentence that first supplies
+      its content (naming x without supplying it does not count). Let
+      Needs(s_i) be the items whose content is required to understand or
+      check s_i.
+        Backward dependence:  ∀ i, ∀ x ∈ Needs(s_i):  intro(x) < i
+      A forward pointer s_i → s_j with j > i is permitted iff it is of kind
+      E1 or E2, and Exceptions = {E1, E2} is closed (no extension by analogy):
+        E1 (roadmap):          s_i names the location s_j and
+                               Needs(s_i) ∩ Content(s_j) = ∅
+        E2 (promissory note):  s_i states a claim or open case c with
+                               ∀ x ∈ Needs(c): intro(x) < i,
+                               and s_j holds only Argument(c) or Resolution(c)
+      Naming is not introducing:  "x denotes …, stated in s_j" with j > i
+                               leaves intro(x) = j, not i.
+      Remedy — reorder, do not delete:  if x ∈ Needs(s_i) and intro(x) > i,
+        either  move the passage introducing x to a position before i,
+        or      move s_i to a position after intro(x), citing backward,
+      subject to Cites(moved passage) known first
+      [mathematical-writing A3_replacement_precondition].
+      Relation to the parent: restricted to statements of formal mathematics
+      and to Uses ⊆ {step, value, premise}, this is
+      mathematical-writing A4_reading_order_dependence; E1 and E2 are A4's
+      roadmap pointers (s_j ∉ Uses(s_i)) with E2's condition made explicit.
+
+    rationale: |
+      The author holds the whole article and sees a closed argument; the
+      reader holds a prefix and sees a sentence resting on something not yet
+      given. Outside mathematics the defect is easier to miss, because prose
+      lets a forward reference sound like a definition: "L+ denotes these
+      assumptions together with the principle of Section 6.3" reads as if it
+      fixed what L+ is, while the reader still does not know what the
+      principle says. Two kinds of forward pointer survive because they
+      transfer nothing the reader needs yet: a roadmap only says where, and a
+      promissory note states something already intelligible and postpones
+      only its support. The list is closed because an open criterion
+      ("pointers that do no harm") lets each new case argue itself into the
+      exemption, and the violation below shows how plausible that argument
+      can look: a forward definition reads like a definition. The remedy is
+      reordering because the dependence is usually real — the later passage
+      really is what the sentence needs — so deleting the dependence loses a
+      true link, while reordering keeps it and turns it backward.
+
+    violations:
+      - description: "A symbol defined in §3.1 through a principle stated only in §6.3, then used in §4.3's central formula"
+        content: |
+          §3.1: "… where the subscript L signals a Leibnizian metaphysical
+          assumption, not a theorem of contemporary logic. Below, L+ denotes
+          these assumptions together with the expressive-value principle of
+          Section 6.3."
+          §4.3: "Second, the significance can be present without uptake. On
+          the Leibnizian assumptions together with the expressive-value
+          principle (L+, Section 3.1),
+            ◇_{L+} ∃p [P_T(p, φ) ∧ M_T(φ) ∧ X(p, φ) ∧ …]"
+          The principle itself is first stated in §6.3.
+        explanation: |
+          §3.1 looks like a definition but supplies no content: it names the
+          principle and points ahead to where the principle is stated, so
+          intro(L+) is §6.3, not §3.1. §4.3 then uses L+ and the principle
+          in the possibility formula that carries the strong thesis. A reader
+          at §3.1 or at §4.3 cannot know what the principle says, so cannot
+          tell what the formula claims. Neither exception applies: the
+          pointer supplies content the reader needs now (not a roadmap), and
+          the claim in §4.3 is not intelligible now (not a promissory note).
+          (Leibniz machine-proof manuscript for Synthese, 2026-10-10,
+          commit 543f22b.)
+
+    compliant:
+      - description: "The principle stated where it is first needed; the forward definition deleted; the later section refers back"
+        content: |
+          §4.3: "Second, the significance can be present without uptake. This
+          part needs a further premise, beyond the Leibnizian assumptions of
+          Section 3.1. I state it here and defend it in Section 6.3:
+            Expressive-value principle. Within a Leibnizian teleology, the
+            actual embodiment of a genuine, rationally accessible
+            demonstrative order may possess objective value as an expression
+            of an intelligible order ultimately grounded in divine wisdom,
+            whether or not its meaning is ever realized in the cognition of
+            finite rational spirits.
+          Let L+ denote the Leibnizian assumptions together with this
+          principle. On L+, ◇_{L+} ∃p [ … ]"
+          §3.1: the sentence defining L+ is removed.
+          §6.3: "The answer requires the expressive-value principle stated in
+          Section 4.3, which is not itself a theorem of logic."
+        explanation: |
+          The principle is now introduced, in full, before the first sentence
+          that needs it, and L+ is defined at the same place, so every
+          dependence points backward and §6.3 cites back to §4.3. The pointer
+          "defend it in Section 6.3" remains and is exception (2): the
+          principle is fully stated and intelligible in §4.3; only its defence
+          lies ahead. The fix reordered rather than deleted: the principle
+          and its defence are both still in the article. (Same manuscript,
+          commit a0f987a.)

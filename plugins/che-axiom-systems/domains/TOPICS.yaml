@@ -9,6 +9,11 @@
 - domain: academic-presentation
   aliases: [學術報告, conference talk, oral presentation, 投影片, slides, 簡報]
   keywords: [投影片, slide deck, beamer, 講稿, talk script, 會議報告, conference presentation, example-first 開場, mental load, outline, 去AI感, source of truth, 時間 slot, 讀秒]
+- domain: academic-writing
+  aliases: [學術寫作, 論文寫作, 哲學論文, academic writing, scholarly article, scholarly writing]
+  keywords: [前向引用, forward reference, 前向依賴, forward dependence, reading order, 閱讀順序,
+            論證順序, 先定義後使用, define before use, roadmap, promissory note, 期刊論文, journal article,
+            哲學寫作, philosophy paper, 論文結構, 段落重排, 引用方向]
 - domain: apa7-style
   aliases: [APA, apa7, APA格式]
   keywords: [引用格式, citation, 參考文獻, reference, in-text citation, DOI, 期刊格式, 學術格式規範]

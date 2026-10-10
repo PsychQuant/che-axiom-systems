@@ -1,6 +1,6 @@
 ---
 name: mathematical-writing
-description: "數學寫作的擺放與陳述紀律。動筆或修訂正式數學散文時使用——這段該放 theorem 還是 remark、命題陳述太長想精簡、修訂幾輪後但書越積越多、搬段落前要不要先查引用、「這條假設不給什麼」該寫在哪、counterexample 該擺哪裡。Use when writing or revising theorem/proposition/lemma/remark structure, trimming an overgrown statement, or relocating material in a manuscript. Covers statement placement by altitude, repair-driven altitude drift, and the citation-set precondition for re-placement."
+description: "數學寫作的擺放與陳述紀律。動筆或修訂正式數學散文時使用——這段該放 theorem 還是 remark、命題陳述太長想精簡、修訂幾輪後但書越積越多、搬段落前要不要先查引用、「這條假設不給什麼」該寫在哪、counterexample 該擺哪裡、remark 引用了後面才出現的命題或數字。Use when writing or revising theorem/proposition/lemma/remark structure, trimming an overgrown statement, or relocating material in a manuscript. Covers statement placement by altitude, repair-driven altitude drift, the citation-set precondition for re-placement, and backward-only dependence in reading order (generalized to articles in any discipline by academic-writing)."
 argument-hint: "[自然語言 | axiom-ID]（裸呼叫＝載入本域待命）"
 ---
 
@@ -25,11 +25,12 @@ Skill(skill="che-axiom-systems:axiom-based", args="mathematical-writing: <查詢
 | `A1_altitude_placement` | object-level 關係進 theorem、meta-level 框架性質進 remark，同一內容不兩處重複 |
 | `A2_repair_accretion` | 修訂會把 meta-level 但書堆進陳述裡；按輪數重查高度，且remedy 是搬移不是刪除 |
 | `A3_replacement_precondition` | 搬動之前必須先知道引用集；引用定址容器而非內容，編譯器兩者都不檢查 |
+| `A4_reading_order_dependence` | 陳述只能依賴前文；往後指只能說「在哪」、不能用「什麼」；修法是重排不是刪除（任何學科論文的推廣版：`academic-writing` 的 `A1_no_forward_dependence`）|
 | `T1_negative_space_is_meta` | 「這條假設不給什麼」的主語是假設，故為 meta-level，連它的反例見證也進 remark |
 
 ### 涵蓋（數字由 CI 重算，勿手改）
 
-- `mathematical_writing_axioms.yaml` · id · 篩選 `-` — 共 **4** 條，上表 **4** 條，未列 **0** 條
+- `mathematical_writing_axioms.yaml` · id · 篩選 `-` — 共 **5** 條，上表 **5** 條，未列 **0** 條
 
 每行的意思：`路徑` · 條目層級（`id`／`h2`–`h4`）· 篩選正規式（`-` ＝不篩）— 該檔符合條件的條目**共** N 條、**上表**列 M 條、**未列** N−M 條。`.github/workflows/validate.yml` 會重算這三個數並比對：**刪掉表中一列、少算一條、或把某列歸給錯的檔案，都會紅燈**。手寫的計數與省略清單已從下段移除——#29 的 R2 與 R3 各在那裡寫錯過一次（一次算少一條、一次省略清單與表格自相矛盾），這類錯誤靠人維護抓不住。
 
@@ -40,6 +41,7 @@ Skill(skill="che-axiom-systems:axiom-based", args="mathematical-writing: <查詢
 | 不屬於本域 | 去處 |
 |-----------|------|
 | 學習數學（認知、先備結構） | `mathematical-learning` |
+| 非數學的論文散文（哲學、實證論文）的前向依賴 | `academic-writing`（其 A1 推廣本域 A4）|
 | 私人筆記 | `note-writing` |
 | APA 引用格式 | `apa7-style` |
 | object-language / metalanguage 的**形式**區分 | `logic-and-language`（本域的 Altitude 是它在寫作工藝上的類比，非等同） |

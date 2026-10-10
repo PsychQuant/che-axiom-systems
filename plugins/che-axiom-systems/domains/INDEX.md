@@ -1,10 +1,11 @@
 # Domains INDEX
 
-15 個內建公理化領域。每個領域的 `domain.yaml` manifest 是機器可讀的 source of truth；本表由 manifest 彙整。新增/修改領域後**四件套**同步：`domain.yaml` + 本表 + [`TOPICS.yaml`](TOPICS.yaml)（axiom-based 的路由層）+ `skills/<domain>/SKILL.md`（該域的自動觸發面，#29）。
+16 個內建公理化領域。每個領域的 `domain.yaml` manifest 是機器可讀的 source of truth；本表由 manifest 彙整。新增/修改領域後**四件套**同步：`domain.yaml` + 本表 + [`TOPICS.yaml`](TOPICS.yaml)（axiom-based 的路由層）+ `skills/<domain>/SKILL.md`（該域的自動觸發面，#29）。
 
 | Domain | 描述 | Format | Maturity | Entry point |
 |--------|------|--------|----------|-------------|
 | `academic-presentation` | 學術會議報告（投影片＋講稿）的建構與交付公理 | yaml | bootstrapped | `CLAUDE.md` |
+| `academic-writing` | 學術論文寫作（任何學科的同儕讀者文章：論證的順序與結構；不前向依賴） | yaml | bootstrapped | `academic_writing_axioms.yaml` |
 | `apa7-style` | APA 第七版寫作與引用格式規範 | yaml | bootstrapped | `CLAUDE.md` |
 | `asbe` | ASBE 方法論自身的公理化（self-bootstrap） | yaml | bootstrapped | `asbe_axioms_bootstrapped.yaml` |
 | `decision-making` | 決策理論：效用、偏好與悖論 | markdown | legacy | `axiomatization_of_decision_making.md` |
