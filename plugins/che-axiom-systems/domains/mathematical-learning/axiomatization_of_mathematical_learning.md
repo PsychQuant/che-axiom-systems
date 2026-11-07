@@ -242,6 +242,7 @@ Observable Pattern:
   - **Worked Example Effect**: Studying worked examples is not merely supplementary but necessary for developing solution procedures
 
 ### Axiom M10: Instructional Event Organization Axiom
+> *Annotation (2026-11-07, cross-domain principle 7)*: this is a teaching-side entry, written before mathematics education was split into learning and teaching. It stays here (SCD2); new teaching entries go in the sibling domain `mathematical-teaching`. `mathematical-teaching` `T1_starting_point_by_learner_state` derives from this entry.
 - Teaching is fundamentally the strategic organization and sequencing of discrete instructional events
 - Learning outcomes are determined not only by individual event quality but critically by their temporal arrangement and relationships
 - Formally:
@@ -831,6 +832,7 @@ This principle emerged from a 2025 teaching practicum discussion where the stude
   - Enculturation into mathematics requires internalizing N
 
 ### P8: Event Coherence Principle
+> *Annotation (2026-11-07, cross-domain principle 7)*: this is a teaching-side entry, written before mathematics education was split into learning and teaching. It stays here (SCD2); new teaching entries go in the sibling domain `mathematical-teaching`.
 - Effective instruction requires coherent organization of instructional events with appropriate transitions
 - Derived from: Axiom M10 (Instructional Event Organization)
 - Formally:
@@ -1167,6 +1169,7 @@ Phase 4: Advanced Applications
 - Be patient with difficulty—threshold concepts are inherently troublesome
 
 ### P10: Pedagogical Realism Principle
+> *Annotation (2026-11-07, cross-domain principle 7)*: this is a teaching-side entry, written before mathematics education was split into learning and teaching. It stays here (SCD2); new teaching entries go in the sibling domain `mathematical-teaching`.
 
 **Core Statement**: Teaching effectiveness is determined jointly by theoretical ideal quality and practical feasibility. An ideal strategy that cannot be feasibly implemented is less effective than a sub-optimal but implementable strategy.
 
@@ -1565,6 +1568,7 @@ Result:
 **Inappropriate Use**: "This strategy requires more work; let me use a simpler one." ← This is not pedagogical realism; this is corner-cutting.
 
 ### P11: Pedagogical Method Contextualization Principle
+> *Annotation (2026-11-07, cross-domain principle 7)*: this is a teaching-side entry, written before mathematics education was split into learning and teaching. It stays here (SCD2); new teaching entries go in the sibling domain `mathematical-teaching`. `mathematical-teaching` `T1_starting_point_by_learner_state` derives from this entry.
 
 **Core Statement**: The effectiveness of a teaching method is not absolute but depends on the instructional context, including student background, prior knowledge, learning styles, and curricular goals. No single teaching method is universally optimal across all contexts.
 
@@ -2100,6 +2104,7 @@ P11 requires empirical validation through context-method interaction studies. Cu
 - But needs systematic experimental evidence
 
 ### P12: Mathematical Rigor in Instruction Principle
+> *Annotation (2026-11-07, cross-domain principle 7)*: this is a teaching-side entry, written before mathematics education was split into learning and teaching. It stays here (SCD2); new teaching entries go in the sibling domain `mathematical-teaching`.
 
 **Core Statement**: Teaching should maintain mathematical rigor and correctness. Instructional content that cannot be rigorously stated should be avoided or minimized, especially at the high school level where students are building foundational mathematical understanding.
 
