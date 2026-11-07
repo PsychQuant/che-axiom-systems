@@ -3,6 +3,7 @@
 # maturity: bootstrapped(已符合 ASBE YAML schema，validate 跑 ERROR 級) | legacy(未遷移，validate 降級 WARNING)
 domain: mathematical-learning
 description: 數學學習：能力依賴與機率模型
+parent: mathematical-education
 format: markdown
 maturity: legacy
 entry_points:

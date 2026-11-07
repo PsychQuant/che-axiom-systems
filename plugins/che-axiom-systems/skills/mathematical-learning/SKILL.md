@@ -1,6 +1,6 @@
 ---
 name: mathematical-learning
-description: "數學學習的認知結構。設計數學教材或診斷學習困難時使用——先備知識的依賴結構、學習進程的順序、概念發展的階段、表徵的基礎、認知負荷的上限、程序性與概念性理解的分離。Use when designing mathematics instruction or diagnosing a learning obstacle: prerequisite dependency, learning progression, representation, cognitive load, and the procedural/conceptual split."
+description: "數學學習的認知結構。要理解學生怎麼把數學學起來、或診斷學習困難時使用——先備知識的依賴結構、學習進程的順序、概念發展的階段、表徵的基礎、認知負荷的上限、程序性與概念性理解的分離。Use when reasoning about how students learn mathematics or diagnosing a learning obstacle: prerequisite dependency, learning progression, representation, cognitive load, and the procedural/conceptual split."
 argument-hint: "[自然語言 | 章節名]（裸呼叫＝載入本域待命）"
 ---
 
@@ -36,12 +36,16 @@ Skill(skill="che-axiom-systems:axiom-based", args="mathematical-learning: <查�
 
 每行的意思：`路徑` · 條目層級（`id`／`h2`–`h4`）· 篩選正規式（`-` ＝不篩）— 該檔符合條件的條目**共** N 條、**上表**列 M 條、**未列** N−M 條。`.github/workflows/validate.yml` 會重算這三個數並比對：**刪掉表中一列、少算一條、或把某列歸給錯的檔案，都會紅燈**。手寫的計數與省略清單已從下段移除——#29 的 R2 與 R3 各在那裡寫錯過一次（一次算少一條、一次省略清單與表格自相矛盾），這類錯誤靠人維護抓不住。
 
+本域是 `mathematical-education` 的子領域，兄弟領域是 `mathematical-teaching`（cross-domain-principles.md 第 7 條）。M10、P8、P10–P12 是分出子領域之前寫的教學條目，留在本域，標題下有註記；新的教學條目放在 `mathematical-teaching`。
+
 權威內容以上方涵蓋段所列的 entry_point 為準（公理 M1–M15、原理 P1／P1a／P1b／P2–P12、定理 T1–T4）。同域另有五個未列為 entry_point 的檔案（`information_channel_interference_theory.md`、`humor_in_mathematical_instruction.md`、`mathematical_ability_dependencies.md`、`mathematical_learning_models.md`、`probabilistic_ability_model.md`）。本域為 markdown 格式，引用時用章節名、**不捏造 ID**。新增公理後**本表要同步**（與 INDEX、TOPICS、domain.yaml 同批）。
 
 ## 邊界
 
 | 不屬於本域 | 去處 |
 |-----------|------|
+| 一堂課怎麼排、從哪裡開始、複習課與新課的差別 | `mathematical-teaching` |
+| 問題同時牽涉學與教，或不確定該查哪一邊 | `mathematical-education` |
 | 學術會議報告的投影片與講稿 | `academic-presentation` |
 | 數學論文的陳述擺放 | `mathematical-writing` |
 | 語言的習得 | `language-learning` |

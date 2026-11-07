@@ -35,9 +35,16 @@
 - domain: logic-and-language
   aliases: [邏輯, logic]
   keywords: [命題, proposition, 推論, inference, 真值, truth, 後設邏輯, metalogic, 形式系統, Tarski, T-schema, 語意論]
+- domain: mathematical-education
+  aliases: [數學教育, mathematics education, math-education]
+  keywords: [數學教育, 學習與教學, 教學還是學習, mathematics education, 教育公理]
 - domain: mathematical-learning
   aliases: [數學學習]
-  keywords: [數學能力, 能力依賴, 學數學, 數學教育, 先備知識, 數學認知]
+  keywords: [數學能力, 能力依賴, 學數學, 先備知識, 數學認知, 學生怎麼學, 學習困難]
+- domain: mathematical-teaching
+  aliases: [數學教學, mathematics teaching, math-teaching]
+  keywords: [教學設計, 教學流程, 教學順序, 一堂課怎麼排, 教學起點, 複習課, 總複習, 引起動機,
+             motivating example, 提取, retrieval practice, lesson planning, review session]
 - domain: mathematical-writing
   aliases: [數學寫作, math-writing]
   keywords: [定理陳述, statement placement, 證明寫作, proof writing, 數學論文, notation, 符號慣例,

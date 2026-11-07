@@ -1,6 +1,6 @@
 # Domains INDEX
 
-16 個內建公理化領域。每個領域的 `domain.yaml` manifest 是機器可讀的 source of truth；本表由 manifest 彙整。新增/修改領域後**四件套**同步：`domain.yaml` + 本表 + [`TOPICS.yaml`](TOPICS.yaml)（axiom-based 的路由層）+ `skills/<domain>/SKILL.md`（該域的自動觸發面，#29）。
+18 個內建公理化領域。每個領域的 `domain.yaml` manifest 是機器可讀的 source of truth；本表由 manifest 彙整。新增/修改領域後**四件套**同步：`domain.yaml` + 本表 + [`TOPICS.yaml`](TOPICS.yaml)（axiom-based 的路由層）+ `skills/<domain>/SKILL.md`（該域的自動觸發面，#29）。
 
 | Domain | Parent | 描述 | Format | Maturity | Entry point |
 |--------|--------|------|--------|----------|-------------|
@@ -13,7 +13,9 @@
 | `japanese-narrative` | — | 日本文學敘事構成（日文目錄體系） | freeform | legacy | `公理/INDEX.md` |
 | `language-learning` | — | 語言習得模型與現象 | markdown | legacy | `axiomatization_of_language_learning.md` |
 | `logic-and-language` | — | 邏輯系統與後設邏輯 | markdown | legacy | `axioms_of_logic.md` |
-| `mathematical-learning` | — | 數學學習：能力依賴與機率模型 | markdown | legacy | `axiomatization_of_mathematical_learning.md` |
+| `mathematical-education` | — | 數學教育：學習與教學兩個子領域的範圍與引用規則（父領域，不放公理） | markdown | legacy | `README.md` |
+| `mathematical-learning` | `mathematical-education` | 數學學習：能力依賴與機率模型 | markdown | legacy | `axiomatization_of_mathematical_learning.md` |
+| `mathematical-teaching` | `mathematical-education` | 數學教學：一堂課怎麼排、從哪裡開始 | yaml | bootstrapped | `mathematical_teaching_axioms.yaml` |
 | `mathematical-writing` | — | 數學寫作（statement placement、修訂中的高度漂移、重置的引用前提、引用只向後） | yaml | bootstrapped | `mathematical_writing_axioms.yaml` |
 | `musical-composition` | — | 音樂作曲與理論（日文） | freeform | legacy | `音楽作曲と理論の公理化.md` |
 | `note-writing` | — | 筆記寫作原則 | markdown | legacy | `README.md` |
@@ -23,6 +25,7 @@
 
 ## 欄位語意
 
+- **Parent** — 所屬的父領域（manifest 的 `parent`，選填）；`—` 表示頂層領域。只有一層，同父的兄弟領域可在 `derives_from` 寫 `<domain>:<entry>` 互相引用（[`../foundations/cross-domain-principles.md`](../foundations/cross-domain-principles.md) 第 7 條，CI 檢查）
 - **Format** — `yaml`：ASBE 結構化 schema，欄位級可驗證；`markdown`：散文公理；`freeform`：自訂體系
 - **Maturity** — `bootstrapped`：validate 以 ERROR 級執行 A1–A5；`legacy`：缺欄位降級 WARNING
 - 完整定義見 [`../templates/domain-manifest.yaml`](../templates/domain-manifest.yaml)

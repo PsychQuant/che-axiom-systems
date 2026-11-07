@@ -1,0 +1,12 @@
+# Domain manifest — read by axiom-based / axiom-validate / axiom-create
+# format:   yaml(結構化 ASBE schema) | markdown(散文公理) | freeform(自訂體系)
+# maturity: bootstrapped(已符合 ASBE YAML schema，validate 跑 ERROR 級) | legacy(未遷移，validate 降級 WARNING)
+#
+# 父領域（cross-domain-principles.md 第 7 條）：只寫範圍與子領域之間的引用規則，不放公理，
+# 所以用 markdown；新領域一律 yaml 的預設不適用於父領域。
+domain: mathematical-education
+description: 數學教育：學習與教學兩個子領域的範圍與引用規則（父領域，不放公理）
+format: markdown
+maturity: legacy
+entry_points:
+  - README.md

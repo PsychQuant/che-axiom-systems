@@ -1,0 +1,133 @@
+# ASBE Domain — Mathematical Teaching
+# Follows templates/domain-template.yaml. Validate with /axiom-validate.
+
+meta:
+  domain: "Mathematical Teaching"
+  version: "1.0.0"
+  author: "Che Cheng"
+  created: "2026-11-07"
+  provenance: |
+    Seeded at the maintainer's request, in their words:
+      「我發現我很久沒有建立axiom了，數學教學可以建立吧」
+    The request led to splitting mathematics education into learning and
+    teaching (PsychQuant/che-axiom-systems#32). T1 was drafted while asking
+    whether a review lesson should begin the way a first lesson does.
+  description: |
+    Axiomatizes how a mathematics lesson is arranged: which instructional
+    event comes first, how a review differs from a first lesson, and what a
+    teacher does with what students cannot retrieve. A child of
+    `mathematical-education`. Its sibling `mathematical-learning` covers how
+    students acquire mathematics; this domain covers how a teacher sequences
+    instruction for them. Entries here may derive from the sibling's entries
+    through the interface of cross-domain principle 7, written
+    `mathematical-learning:<full heading>`. Teaching entries written before
+    the split (M10, P8, P10–P12) remain in `mathematical-learning` and are
+    annotated there; they are not moved (SCD2). Seeded with the starting
+    point of a lesson (T1).
+
+# Primitive terms — undefined concepts that form the foundation
+primitives:
+  - term: "Learner state"
+    intuition: |
+      What a student holds of a concept K when a lesson begins: either K has
+      not been encoded (the student has not learned it), or it has been
+      encoded (the student learned it before, possibly in fragments).
+  - term: "Instructional sequence"
+    intuition: |
+      The ordered events of a lesson, in the sense of mathematical-learning
+      Axiom M10: motivational (M), definitional (D), exemplar (E), practice
+      (P), assessment (A) and consolidation (C) events.
+  - term: "Retrieval"
+    intuition: |
+      An assessment event whose purpose is for students to bring out, without
+      the material in front of them, what they already hold of K, so that
+      both they and the teacher see where the gaps are.
+
+# No axioms of its own yet: T1 rests on entries of the sibling domain
+# mathematical-learning (cross-domain principle 7).
+axioms: []
+
+theorems:
+  - id: "T1_starting_point_by_learner_state"
+    name: "Starting Point by Learner State"
+    one_liner: "A lesson on an unlearned concept starts with motivation; on a learned one, with retrieval."
+    derives_from:
+      - "mathematical-learning:Axiom M10: Instructional Event Organization Axiom"
+      - "mathematical-learning:Axiom M14: Self-Monitoring Axiom"
+      - "mathematical-learning:P11: Pedagogical Method Contextualization Principle"
+
+    statement_natural: |
+      The first event of an instructional sequence is set by the learner's
+      state with respect to the concept. If the concept has not been learned,
+      begin with a motivational event, so that students first see why they
+      need it. If it has been learned, begin with retrieval: let students
+      bring out what they hold, expose the gaps, and teach the gaps. Whatever
+      retrieval fails to bring out is treated as not yet learned, and its
+      sequence starts again from a motivational event.
+
+    statement_formal: |
+      Let K be a concept, s(K) ∈ {unencoded, encoded} the learner state, and
+      σ an instructional sequence over the event types of M10.
+        s(K) = unencoded  ⇒  first(σ) = M
+        s(K) = encoded    ⇒  first(σ) = A, an assessment event whose purpose
+                              is retrieval
+      For every K′ ⊆ K that A shows to be missing, set s(K′) = unencoded; the
+      sequence for K′ starts again from M.
+
+    rationale: |
+      M10 holds that the order of events determines what is learned, yet the
+      three sequences it lists all begin with M and place consolidation only
+      at the end, so it says nothing about a lesson that is wholly review. A
+      motivational event does the work of making a definition not appear from
+      nowhere; for a concept already encoded that work has been done, and
+      what remains is that the student's hold on it is fragmentary and the
+      student does not know where. M14 requires learners to monitor their
+      state of understanding; retrieval is that monitoring made into an
+      event, visible to the student and the teacher at once. P11 holds that a
+      method's effectiveness depends on context; the learner's state with
+      respect to K is such a context, and here it selects the first event.
+      The last clause keeps the rule honest for students who did not learn K
+      the first time: for them a review is a first lesson, and retrieval is
+      what reveals it.
+
+    violations:
+      - description: "A review lesson that opens every chapter as if it were new"
+        content: |
+          In a final review before an examination, each chapter opens with the
+          same motivating scenario used when it was first taught, and the
+          teacher then re-presents the definitions from the beginning.
+        explanation: |
+          The students have encoded these concepts. The motivating scenario
+          repeats work that was done the first time, and re-presenting the
+          definitions shows neither the students nor the teacher which parts
+          they cannot bring out — the gaps that review exists to find.
+      - description: "A new unit that opens with a quiz"
+        content: |
+          On the first day of a unit, before anything has been taught, the
+          lesson begins with a timed quiz on the unit's content.
+        explanation: |
+          The concepts are unencoded, so retrieval has nothing to bring out.
+          The quiz exposes no gap that teaching can fill; it only tells the
+          students that they cannot do something they were never shown.
+
+    compliant:
+      - description: "Retrieval first in review, motivation first for new material, in the same lesson"
+        content: |
+          The first part of a lesson reviews trigonometric ratios: students
+          close their notes and write down everything they remember, or work a
+          short timed set, and the teacher then teaches only what they could
+          not write or got wrong. The second part begins a new unit with a
+          problem the students cannot yet solve — the area under a curve.
+        explanation: |
+          Each part starts according to the learner state of its own concept:
+          the encoded one with retrieval, the unencoded one with motivation.
+      - description: "A gap found by retrieval is treated as unlearned"
+        content: |
+          During retrieval most students can write the formulas but none can
+          state the definition. The teacher treats the definition as not yet
+          learned and begins it again from the question of why such a
+          definition is needed.
+        explanation: |
+          Retrieval showed K′ (the definition) to be missing, so s(K′) is set
+          to unencoded and its sequence restarts from M, as the last clause of
+          T1 requires.
