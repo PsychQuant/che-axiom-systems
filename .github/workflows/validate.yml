@@ -135,13 +135,15 @@ jobs:
               sys.exit(1)
 
           # every domain has a valid manifest with required fields
+          manifests = {}
           for d in domains:
               mf = os.path.join(root, d, "domain.yaml")
               if not os.path.isfile(mf):
                   print(f"::error::{d}: missing domain.yaml")
                   fail = True
                   continue
-              m = yaml.safe_load(open(mf))
+              m = yaml.safe_load(open(mf)) or {}
+              manifests[d] = m
               for field in ("domain", "description", "format", "maturity", "entry_points"):
                   if field not in m:
                       print(f"::error file={mf}::missing field {field}")
@@ -162,6 +164,55 @@ jobs:
               if f"`{d}`" not in index:
                   print(f"::error::domains/INDEX.md missing entry for {d}")
                   fail = True
+
+          # ---- subordination (#32): cross-domain-principles.md principle 7 ----
+          # `parent` is optional. When present it names a top-level domain: one level
+          # deep, never itself. INDEX carries the same fact in its Parent column, and the
+          # two must agree — a hierarchy only the manifest knows is invisible to readers
+          # of the index, and one only the index knows is invisible to the tools.
+          parent_of = {}
+          for d, m in sorted(manifests.items()):
+              if "parent" not in m:
+                  continue
+              p = m["parent"]
+              mf = os.path.join(root, d, "domain.yaml")
+              if not isinstance(p, str) or not p.strip():
+                  print(f"::error file={mf}::{d}: parent must be a domain name, got {p!r}")
+                  fail = True
+              elif p == d:
+                  print(f"::error file={mf}::{d} cannot be its own parent")
+                  fail = True
+              elif p not in manifests:
+                  print(f"::error file={mf}::{d}: parent '{p}' is not a domain under {root}")
+                  fail = True
+              else:
+                  parent_of[d] = p
+          for d, p in sorted(parent_of.items()):
+              if p in parent_of:
+                  print(f"::error::{d}: parent '{p}' itself has a parent ('{parent_of[p]}') "
+                        f"— subordination is one level deep")
+                  fail = True
+
+          idx_lines = index.split("\n")
+          header = next((l for l in idx_lines if l.startswith("| Domain |")), None)
+          cols = [c.strip() for c in header.strip().strip("|").split("|")] if header else []
+          if "Parent" not in cols:
+              print("::error::domains/INDEX.md has no Parent column")
+              fail = True
+          else:
+              k = cols.index("Parent")
+              for d in domains:
+                  row = next((l for l in idx_lines if l.startswith(f"| `{d}` |")), None)
+                  if row is None:
+                      continue   # a missing row was reported above
+                  cells = [c.strip() for c in row.strip().strip("|").split("|")]
+                  cell = cells[k] if k < len(cells) else ""
+                  got = None if cell in ("", "—", "-") else cell.strip("`")
+                  want = parent_of.get(d)
+                  if got != want:
+                      print(f"::error::domains/INDEX.md Parent for {d} is {cell or '(empty)'}; "
+                            f"its manifest says {want or '(none)'}")
+                      fail = True
 
           # 四件套 #4 (#29): every domain has a trigger-surface skill. No exemption.
           # An earlier revision allowed `trigger_surface: none` plus a free-text reason;
@@ -334,6 +385,64 @@ jobs:
                         f"but the table has {len(found)} rows")
                   fail = True
 
+          # ---- sibling derivation (#32): principle 7's explicit interface ----
+          # A derives_from value with a colon is `<domain>:<entry>`, split at the FIRST
+          # colon (slugs have none; a markdown heading may). The domain must share this
+          # domain's parent, and the entry must resolve there by yaml id or by heading —
+          # a citation that resolves nowhere reads exactly like one that does.
+          def entry_pool(d):
+              ids, heads = [], []
+              for ep in manifests[d].get("entry_points") or []:
+                  fp = os.path.join(root, d, ep)
+                  if not os.path.isfile(fp):
+                      continue
+                  body = open(fp, encoding="utf-8", errors="replace").read()
+                  if fp.endswith((".yaml", ".yml")):
+                      ids += yaml_ids(body, fp)
+                  else:
+                      for lvl in (2, 3, 4):
+                          heads += md_headings(body, lvl)
+              return ids, heads
+
+          def derivations(node):
+              if isinstance(node, dict):
+                  v = node.get("derives_from")
+                  if isinstance(v, list):
+                      yield from (x for x in v if isinstance(x, str))
+                  for x in node.values():
+                      yield from derivations(x)
+              elif isinstance(node, list):
+                  for x in node:
+                      yield from derivations(x)
+
+          derivations_checked = 0
+          for d, m in sorted(manifests.items()):
+              if m.get("format") != "yaml":
+                  continue
+              for ep in m.get("entry_points") or []:
+                  fp = os.path.join(root, d, ep)
+                  if not fp.endswith((".yaml", ".yml")) or not os.path.isfile(fp):
+                      continue
+                  try:
+                      doc = yaml.safe_load(open(fp, encoding="utf-8"))
+                  except yaml.YAMLError:
+                      continue   # the parse failure is already noted by yaml_ids (#31)
+                  for ref in derivations(doc):
+                      if ":" not in ref:
+                          continue
+                      derivations_checked += 1
+                      tgt, entry = (s.strip() for s in ref.split(":", 1))
+                      mine = parent_of.get(d)
+                      if tgt not in manifests or tgt == d or mine is None or parent_of.get(tgt) != mine:
+                          print(f"::error file={fp}::derives_from '{ref}': {tgt} is not a sibling of {d} "
+                                f"(cross-domain-principles.md principle 7)")
+                          fail = True
+                          continue
+                      ids, heads = entry_pool(tgt)
+                      if entry not in ids and not head_ok(entry, heads):
+                          print(f"::error file={fp}::derives_from '{ref}' does not resolve to an id or a heading in {tgt}")
+                          fail = True
+
           # Boundary tables must point at skills that exist. Three of them named
           # `note-writing` while no such skill existed (#29 verify round 2): a
           # dangling handoff reads exactly like a working one.
@@ -362,5 +471,6 @@ jobs:
           print(f"checked {rows_checked} entry-table rows")
           print(f"checked {boundary_checked} 邊界 targets")
           print(f"checked {len(domains)} domains")
+          print(f"checked {derivations_checked} cross-domain derivations")
           sys.exit(1 if fail else 0)
           EOF

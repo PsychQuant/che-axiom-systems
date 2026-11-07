@@ -2,24 +2,24 @@
 
 16 個內建公理化領域。每個領域的 `domain.yaml` manifest 是機器可讀的 source of truth；本表由 manifest 彙整。新增/修改領域後**四件套**同步：`domain.yaml` + 本表 + [`TOPICS.yaml`](TOPICS.yaml)（axiom-based 的路由層）+ `skills/<domain>/SKILL.md`（該域的自動觸發面，#29）。
 
-| Domain | 描述 | Format | Maturity | Entry point |
-|--------|------|--------|----------|-------------|
-| `academic-presentation` | 學術會議報告（投影片＋講稿）的建構與交付公理 | yaml | bootstrapped | `CLAUDE.md` |
-| `academic-writing` | 學術論文寫作（任何學科的同儕讀者文章：論證的順序與結構；不前向依賴） | yaml | bootstrapped | `academic_writing_axioms.yaml` |
-| `apa7-style` | APA 第七版寫作與引用格式規範 | yaml | bootstrapped | `CLAUDE.md` |
-| `asbe` | ASBE 方法論自身的公理化（self-bootstrap） | yaml | bootstrapped | `asbe_axioms_bootstrapped.yaml` |
-| `decision-making` | 決策理論：效用、偏好與悖論 | markdown | legacy | `axiomatization_of_decision_making.md` |
-| `information-theory` | 資訊理論：測度與不等式 | markdown | legacy | `axiomatization_of_information_theory.md` |
-| `japanese-narrative` | 日本文學敘事構成（日文目錄體系） | freeform | legacy | `公理/INDEX.md` |
-| `language-learning` | 語言習得模型與現象 | markdown | legacy | `axiomatization_of_language_learning.md` |
-| `logic-and-language` | 邏輯系統與後設邏輯 | markdown | legacy | `axioms_of_logic.md` |
-| `mathematical-learning` | 數學學習：能力依賴與機率模型 | markdown | legacy | `axiomatization_of_mathematical_learning.md` |
-| `mathematical-writing` | 數學寫作（statement placement、修訂中的高度漂移、重置的引用前提、引用只向後） | yaml | bootstrapped | `mathematical_writing_axioms.yaml` |
-| `musical-composition` | 音樂作曲與理論（日文） | freeform | legacy | `音楽作曲と理論の公理化.md` |
-| `note-writing` | 筆記寫作原則 | markdown | legacy | `README.md` |
-| `philosophy` | 哲學隨筆：他者作為起點 | freeform | legacy | `My Essey/…批判與重構.md` |
-| `statistics` | 統計與資料科學 | markdown | legacy | `00_principles.md` |
-| `weight-control` | 體重控制：質量守恆與碳平衡 | yaml | bootstrapped | `weight_control_axioms.yaml` |
+| Domain | Parent | 描述 | Format | Maturity | Entry point |
+|--------|--------|------|--------|----------|-------------|
+| `academic-presentation` | — | 學術會議報告（投影片＋講稿）的建構與交付公理 | yaml | bootstrapped | `CLAUDE.md` |
+| `academic-writing` | — | 學術論文寫作（任何學科的同儕讀者文章：論證的順序與結構；不前向依賴） | yaml | bootstrapped | `academic_writing_axioms.yaml` |
+| `apa7-style` | — | APA 第七版寫作與引用格式規範 | yaml | bootstrapped | `CLAUDE.md` |
+| `asbe` | — | ASBE 方法論自身的公理化（self-bootstrap） | yaml | bootstrapped | `asbe_axioms_bootstrapped.yaml` |
+| `decision-making` | — | 決策理論：效用、偏好與悖論 | markdown | legacy | `axiomatization_of_decision_making.md` |
+| `information-theory` | — | 資訊理論：測度與不等式 | markdown | legacy | `axiomatization_of_information_theory.md` |
+| `japanese-narrative` | — | 日本文學敘事構成（日文目錄體系） | freeform | legacy | `公理/INDEX.md` |
+| `language-learning` | — | 語言習得模型與現象 | markdown | legacy | `axiomatization_of_language_learning.md` |
+| `logic-and-language` | — | 邏輯系統與後設邏輯 | markdown | legacy | `axioms_of_logic.md` |
+| `mathematical-learning` | — | 數學學習：能力依賴與機率模型 | markdown | legacy | `axiomatization_of_mathematical_learning.md` |
+| `mathematical-writing` | — | 數學寫作（statement placement、修訂中的高度漂移、重置的引用前提、引用只向後） | yaml | bootstrapped | `mathematical_writing_axioms.yaml` |
+| `musical-composition` | — | 音樂作曲與理論（日文） | freeform | legacy | `音楽作曲と理論の公理化.md` |
+| `note-writing` | — | 筆記寫作原則 | markdown | legacy | `README.md` |
+| `philosophy` | — | 哲學隨筆：他者作為起點 | freeform | legacy | `My Essey/…批判與重構.md` |
+| `statistics` | — | 統計與資料科學 | markdown | legacy | `00_principles.md` |
+| `weight-control` | — | 體重控制：質量守恆與碳平衡 | yaml | bootstrapped | `weight_control_axioms.yaml` |
 
 ## 欄位語意
 

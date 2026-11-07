@@ -19,4 +19,13 @@ maturity: bootstrapped
 entry_points:
   - your_domain_axioms.yaml
 
+# parent（選填，#32）：這個領域所屬的父領域。不屬於任何父領域就整行不寫。
+#   - 必須是 domains/ 底下已存在、而且自己沒有 parent 的領域（只有一層）
+#   - 同一個父領域底下的子領域，derives_from 可以寫 `<domain>:<entry>` 引用彼此的條目；
+#     entry 是 yaml id，或 markdown 領域的完整標題
+#   - 父領域只寫範圍與子領域之間的引用規則，不放公理
+#   - INDEX.md 的 Parent 欄要寫同一個值
+#   規則見 foundations/cross-domain-principles.md 第 7 條；以上都由 CI 檢查。
+# parent: your-parent-domain
+
 # 每個域都要有對應的 skills/<domain>/SKILL.md 作為自動觸發面（#29，CI 無條件強制）。
