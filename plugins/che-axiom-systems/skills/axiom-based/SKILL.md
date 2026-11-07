@@ -28,13 +28,15 @@ argument-hint: "[domain:query | axiom-ID | 自然語言 | --list]（裸呼叫＝
 
 | # | Shape | 判準 | 路由 |
 |---|-------|------|------|
-| 1 | **domain-hint** | token 含 `:`，且 prefix（大小寫不敏感）匹配某 domain 名**或** TOPICS.yaml 該域的 `aliases` 之一 | 只在該 domain 內解析 remainder；prefix 不匹配任何 domain/alias → 整個 token（含冒號）當自然語言 |
+| 1 | **domain-hint** | token 含 `:`，且 prefix（大小寫不敏感）匹配某 domain 名**或** TOPICS.yaml 該域的 `aliases` 之一 | 只在該 domain 內解析 remainder；prefix 是**父領域**（有其他域的 manifest 以它為 `parent`）→ 範圍是父領域加它的全部子領域；prefix 不匹配任何 domain/alias → 整個 token（含冒號）當自然語言 |
 | 2 | **axiom ID** | token 匹配 `^[A-Z]{1,4}[0-9]+(_[A-Za-z0-9_]+)?$`（如 `A0_mass_conservation`、`SM00`、`J04`）| 直接在 yaml domain 的 `id` 欄位與各域檔名中定位（先 plugin 內建、再本地）；查無 → 降級為自然語言 |
 | 3 | **--list** | literal `--list` | 領域總覽（見「--list 模式」）|
 | 4 | **自然語言** | 其餘一切 | 走「路由」|
 | 5 | **裸呼叫** | 無參數 | **不報錯、不逼問**；載入本指引待命，之後的問題按隱式規則處理 |
 
-範例：`/axiom-based 統計:尺度不變` → alias `統計` 命中 statistics → 域內解析「尺度不變」・`/axiom-based A0_mass_conservation` → ID 直達・`/axiom-based 寫證明時定理要放哪` → 自然語言 → mathematical-writing。
+範例：`/axiom-based 統計:尺度不變` → alias `統計` 命中 statistics → 域內解析「尺度不變」・`/axiom-based 數學教育:複習課從哪裡開始` → alias 命中父領域 mathematical-education → 在它與 mathematical-learning、mathematical-teaching 一起解析・`/axiom-based A0_mass_conservation` → ID 直達・`/axiom-based 寫證明時定理要放哪` → 自然語言 → mathematical-writing。
+
+**從屬關係**（cross-domain-principles.md 第 7 條）：子領域的 manifest 有 `parent`。yaml 條目的 `derives_from` 若寫成 `<domain>:<entry>`（例如 `mathematical-learning:Axiom M10: Instructional Event Organization Axiom`），那是引用兄弟領域的條目；展開推導鏈時從第一個 `:` 切開，到該領域找 id 或完整標題，結果標出它來自哪個領域。
 
 ## 路由（domain 級）
 
@@ -110,6 +112,14 @@ freeform domain — entry-point 相對路徑 + 摘錄：
    weight-control       — 體重控制                  [yaml/bootstrapped]
    japanese-narrative   — 日本文學敘事              [freeform/legacy]
    ...
+```
+
+INDEX 的 Parent 欄不是 `—` 的領域，縮排列在它的父領域底下（父領域照字母序排在頂層）：
+
+```
+   mathematical-education — 數學教育（父領域）       [markdown/legacy]
+     ├ mathematical-learning — 數學學習             [markdown/legacy]
+     └ mathematical-teaching — 數學教學             [yaml/bootstrapped]
 ```
 
 若發現 `domains/` 下有目錄不在 INDEX 中（或反之），提示使用者四件套需要同步（第四件是 `skills/<domain>/SKILL.md`，該域的自動觸發面）。

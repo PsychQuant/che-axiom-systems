@@ -47,6 +47,12 @@ argument-hint: "[domain] | --cross | --all"
 
 manifest 缺失（使用者本地自建的舊 domain）→ 視同 `markdown/legacy`，並建議補 manifest。
 
+**從屬關係**（`parent`，選填；cross-domain-principles.md 第 7 條）：manifest 有 `parent` 的是子領域，被其他域當作 `parent` 的是父領域。
+
+- **父領域**只放範圍與引用規則、不放公理，所以**不跑 Step 2 的 A1–A5**，改成一行 `ℹ️ parent domain — no axioms by design (principle 7)`；Step 1.6 的「空 domain」WARNING 也不適用於它。
+- **子領域**照常驗證。它的條目可以只有從兄弟領域推導出來的定理、沒有自己的公理；這是第 7 條允許的，A4 不因此報 WARNING。
+- 本地 `axioms/` 領域的 `parent` 若指向 plugin 內建領域：本版不支援 → WARNING，不解析跨域引用。
+
 **驗證檔案集**：manifest `entry_points` 所列檔案＋其同層兄弟公理檔（如 `01_core_axioms/*.yaml`）＋**該域根目錄的 `candidates.md`**（若存在——entry_points 可能在子目錄，此檔須明列才撈得到；僅作 context，見下方異質檔案條款）。一律排除 `archive/`、`archived/`、`06_reference/` 等參考資料目錄與 dotdirs — archive 內是被取代的舊公理，納入會產生假重複/假矛盾誤報。`entry_points` 指向不存在的檔案 → WARNING。**路徑邊界**：entry_points 解析結果必須落在該 domain 目錄內；含 `..`、絕對路徑、或解析後跳出目錄 → WARNING + 忽略該項。
 
 **檔案集內的異質檔案**：欄位級 A1–A5 檢查只套用於含 `axioms:`／`theorems:` 區塊的 YAML 檔；檔案集中的其他檔案（markdown 入口文件、轉換規則等輔助 YAML）只作 context，**不做欄位級檢查、不因缺 ASBE 欄位報錯** — yaml domain 的 entry_points 本來就可能混入非公理檔。各域的 `candidates.md`（`/axiom-capture` 候選收件匣）同屬 context：不跑欄位檢查，僅以 `ℹ️ N 條 [pending] 候選待 bootstrap` 回報。
@@ -71,7 +77,7 @@ manifest 缺失（使用者本地自建的舊 domain）→ 視同 `markdown/lega
 |-----------|----------|--------|
 | A1 雙層表達 | 有 `statement_natural` 和 `statement_formal`？ | ERROR |
 | A2 範例錨定 | 有至少 1 個 `violations` 和 1 個 `compliant`？ | ERROR |
-| A3 層級推導 | 非公理的項目有 `derives_from`？DAG 無環？ | ERROR |
+| A3 層級推導 | 非公理的項目有 `derives_from`？DAG 無環？帶 `:` 的值（`<domain>:<entry>`）指向同一父領域的兄弟領域、且在那裡解析得到 id 或完整標題？ | ERROR |
 | A4 最小公理集 | 公理之間是否獨立？有無冗餘？ | WARNING |
 | A5 語意等價 | natural 和 formal 表達同一件事？ | WARNING |
 
@@ -133,6 +139,11 @@ manifest 缺失（使用者本地自建的舊 domain）→ 視同 `markdown/lega
 - TOPICS.yaml 有條目但 `domains/` 無目錄 → WARNING（幽靈條目）
 - 條目缺 `aliases` 或 `keywords` 欄位 → WARNING
 - TOPICS.yaml 整檔缺失 → WARNING（axiom-based 會 fallback 到 INDEX.md，但路由品質降級）
+
+同一步也比對**從屬關係**（CI 對內建領域機械強制同樣的規則；這裡讓本地領域與 plugin cache 也看得到）：
+
+- `parent` 指向不存在的領域、指向自己、或父領域自己也有 `parent`（超過一層）→ ERROR
+- INDEX.md 的 Parent 欄與 manifest 的 `parent` 不一致 → WARNING
 
 報告時列出漂移方向與修復建議（補條目／刪幽靈條目／補欄位）。
 

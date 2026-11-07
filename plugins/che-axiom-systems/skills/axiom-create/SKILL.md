@@ -31,6 +31,10 @@ skill 開始前先檢查 cwd 判斷模式，並告知使用者目前是哪個模
 ### Step 2: 如果是新領域
 
 1. 詢問領域名稱和範圍描述；**名稱碰撞檢查**：已存在於 plugin 內建 domains、maintainer repo、或本地 `axioms/` → 建議改走 Step 3 擴充或換名；目標目錄已存在 → 停下確認，不覆寫
+1a. **詢問有沒有父領域**（cross-domain-principles.md 第 7 條）：列出現有的頂層領域（INDEX 的 Parent 欄是 `—` 的）讓使用者選，或選「沒有」。規則：
+   - 父領域必須是頂層領域，只有一層；選了就把 `parent: <父領域>` 寫進第 6 項的 manifest，INDEX 的 Parent 欄寫同一個值
+   - 要的父領域還不存在 → **先建父領域**（同一套四件套），再建子領域。父領域只寫範圍與子領域之間的引用規則、不放公理，所以**例外地用 `markdown` / `legacy`**，entry point 是一份含 h2 章節的 `README.md`（範例：`domains/mathematical-education/`）
+   - 本地 `axioms/` 領域這一版不能以 plugin 內建領域為父領域
 2. 讀取 `${CLAUDE_PLUGIN_ROOT}/foundations/asbe-methodology.md` 載入 ASBE 方法論
 3. 讀取 `${CLAUDE_PLUGIN_ROOT}/templates/domain-template.yaml` 作為起點
 4. 引導使用者定義：
@@ -40,7 +44,7 @@ skill 開始前先檢查 cwd 判斷模式，並告知使用者目前是哪個模
      - 每條公理要有 `violations` + `compliant` 範例 (A2)
      - 公理之間要獨立、一致、充分 (A4)
 5. 依「資料路徑與寫入策略」判斷寫入位置：maintainer 模式寫 `$ROOT/plugins/che-axiom-systems/domains/<domain-name>/`、使用者本地模式寫 `<cwd>/axioms/<domain-name>/`
-6. **一併產生 domain manifest**：從 `${CLAUDE_PLUGIN_ROOT}/templates/domain-manifest.yaml` 複製為新領域的 `domain.yaml`，填入 `domain` / `description` / `format`（新領域一律 `yaml` + `bootstrapped`）/ `entry_points`；maintainer 模式下同步在 `$ROOT/plugins/che-axiom-systems/domains/INDEX.md` 加一列、在 `$ROOT/plugins/che-axiom-systems/domains/TOPICS.yaml` 補一條（`domain` / `aliases`（domain 名等價稱呼，中英）/ `keywords`（該域話題訊號）— axiom-based 的路由層）
+6. **一併產生 domain manifest**：從 `${CLAUDE_PLUGIN_ROOT}/templates/domain-manifest.yaml` 複製為新領域的 `domain.yaml`，填入 `domain` / `description` / `format`（新領域一律 `yaml` + `bootstrapped`，唯一例外是 1a 的父領域）/ `entry_points`，有父領域再加 `parent`；maintainer 模式下同步在 `$ROOT/plugins/che-axiom-systems/domains/INDEX.md` 加一列、在 `$ROOT/plugins/che-axiom-systems/domains/TOPICS.yaml` 補一條（`domain` / `aliases`（domain 名等價稱呼，中英）/ `keywords`（該域話題訊號）— axiom-based 的路由層）
 7. **一併產生該域的觸發面 skill**（四件套的第四件，#29）：maintainer 模式下建 `$ROOT/plugins/che-axiom-systems/skills/<domain>/SKILL.md`，照既有域 skill 的形狀寫（任取一個當樣板，例如 `skills/mathematical-writing/SKILL.md`）：
 
    - **frontmatter `description` 寫情境、不寫主題標籤** —— 「該放 theorem 還是 remark」「陳述太長想精簡」這種讀者實際會遇到的處境，而不是「數學寫作」。這是整個 skill 唯一的觸發面
@@ -63,7 +67,7 @@ skill 開始前先檢查 cwd 判斷模式，並告知使用者目前是哪個模
 3. **決定寫入位置**：maintainer 模式 → 直接改 `$ROOT/plugins/che-axiom-systems/domains/<domain>/`；**非 maintainer 模式擴充 plugin 內建域** → 寫 `<cwd>/axioms/<domain>/extensions.md|yaml` overlay（**絕不寫入 `${CLAUDE_PLUGIN_ROOT}` — 那是 plugin cache，下次更新即被清除**），axiom-based/validate 會以 `[local]` 來源顯示
 4. 引導使用者新增：
    - **新公理** — 必須與既有公理獨立（A4）
-   - **新定理** — 必須標明 `derives_from` 指向父公理（A3；僅 yaml format）
+   - **新定理** — 必須標明 `derives_from` 指向父公理（A3；僅 yaml format）。目標領域有 `parent` 時，`derives_from` 也可以引用**兄弟領域**（同一個父領域底下）的條目，寫成 `<domain>:<entry>`：對方是 yaml 寫 id，是 markdown 寫完整標題（例：`mathematical-learning:Axiom M10: Instructional Event Organization Axiom`）。推導的理由寫在本條的 `rationale`。不同父領域的領域不能這樣推導（第 7 條；CI 檢查）
    - **新範例** — 可以為既有公理補充 violations/compliant（僅 yaml format）
 5. 遵循 SCD2 原則：只新增，不修改既有公理。**maintainer 模式自檢**：寫入後跑 `git diff -- "<files>"`，確認對既有公理只有新增行；發現修改/刪除 → 還原，改為新增澄清條目（例外：`candidates.md` 的 `[pending]`→`[promoted]` 狀態標記變更是合法的收件匣 metadata 更新，不算修改公理、不還原）
 6. 檢查跨域一致性：讀取 `${CLAUDE_PLUGIN_ROOT}/foundations/cross-domain-principles.md` 比對
