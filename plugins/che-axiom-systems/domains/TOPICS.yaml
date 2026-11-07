@@ -16,7 +16,7 @@
             哲學寫作, philosophy paper, 論文結構, 段落重排, 引用方向]
 - domain: apa7-style
   aliases: [APA, apa7, APA格式]
-  keywords: [引用格式, citation, 參考文獻, reference, in-text citation, DOI, 期刊格式, 學術格式規範]
+  keywords: [引用格式, citation, 參考文獻, reference, in-text citation, DOI, 期刊格式, 學術格式規範, biblatex-apa-zh, 中文引用, 全形括號]
 - domain: asbe
   aliases: [ASBE, asbe方法論]
   keywords: [公理化方法, axiomatic specification, 範例錨定, 雙層表達, bootstrap, 公理 schema, specification by example]

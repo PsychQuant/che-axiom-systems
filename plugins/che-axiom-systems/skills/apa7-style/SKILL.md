@@ -1,6 +1,6 @@
 ---
 name: apa7-style
-description: "APA 第七版的寫作與引用規範。寫學術稿件或審稿時使用——in-text citation 與參考文獻格式、各段落該用什麼時態、主動被動語態、first person 能不能用、singular they、去冗詞、person-first 用語、避免擬人化（表格不會 show）。Use when writing or reviewing scholarly manuscripts under APA 7th: citation format, tense per section, voice, bias-free language, and conciseness rules."
+description: "APA 第七版的寫作與引用規範。寫學術稿件或審稿時使用——in-text citation 與參考文獻格式（含中文稿件用 biblatex-apa-zh 排出全形括號、等人、與）、各段落該用什麼時態、主動被動語態、first person 能不能用、singular they、去冗詞、person-first 用語、避免擬人化（表格不會 show）。Use when writing or reviewing scholarly manuscripts under APA 7th: citation format, tense per section, voice, bias-free language, and conciseness rules."
 argument-hint: "[自然語言 | axiom-ID]（裸呼叫＝載入本域待命）"
 ---
 
@@ -36,13 +36,14 @@ Skill(skill="che-axiom-systems:axiom-based", args="apa7-style: <查詢>")
 | `T1_mixed_methods_dual_standards` | 混合方法須同時滿足量化與質性標準 |
 | 〈Citation Commands〉 | in-text citation 的各種形式與特殊指令 |
 | 〈Entry Types and Fields〉 | 參考文獻條目的類型與 APA 專用欄位 |
+| 〈Chinese Prose (biblatex-apa-zh)〉 | 中文行文的引用：全形括號與逗號、等人與「與」逐筆切換、中英文獻並存的參考文獻表 |
 
 ### 涵蓋（數字由 CI 重算，勿手改）
 
 - `01_core_axioms/writing_style.yaml` · id · 篩選 `-` — 共 **15** 條，上表 **6** 條，未列 **9** 條
 - `01_core_axioms/writing_guidelines.yaml` · id · 篩選 `-` — 共 **15** 條，上表 **4** 條，未列 **11** 條
 - `01_core_axioms/jars_standards.yaml` · id · 篩選 `-` — 共 **11** 條，上表 **2** 條，未列 **9** 條
-- `03_citation_system/apa_citation_guide.md` · h2 · 篩選 `-` — 共 **12** 條，上表 **2** 條，未列 **10** 條
+- `03_citation_system/apa_citation_guide.md` · h2 · 篩選 `-` — 共 **13** 條，上表 **3** 條，未列 **10** 條
 
 每行的意思：`路徑` · 條目層級（`id`／`h2`–`h4`）· 篩選正規式（`-` ＝不篩）— 該檔符合條件的條目**共** N 條、**上表**列 M 條、**未列** N−M 條。`.github/workflows/validate.yml` 會重算這三個數並比對：**刪掉表中一列、少算一條、或把某列歸給錯的檔案，都會紅燈**。手寫的計數與省略清單已從下段移除——#29 的 R2 與 R3 各在那裡寫錯過一次（一次算少一條、一次省略清單與表格自相矛盾），這類錯誤靠人維護抓不住。
 

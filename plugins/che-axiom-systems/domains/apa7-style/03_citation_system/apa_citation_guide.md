@@ -245,6 +245,56 @@ title = {The Great Book of Examples},  % Correct
 3. Compile again: `lualatex document.tex`
 4. Compile once more: `lualatex document.tex`
 
+## Chinese Prose (biblatex-apa-zh)
+
+When the running text is Traditional Chinese, load `biblatex-apa-zh` after
+`biblatex-apa` (Che Cheng, LPPL 1.3c, <https://github.com/kiki830621/biblatex-apa-zh>;
+v0.2.0). `biblatex-apa` ships localisation files for more than twenty languages but
+none for Chinese, so without it Chinese prose gets half-width citation punctuation
+and one global `andothers` string for every entry.
+
+```latex
+\usepackage[style=apa, backend=biber]{biblatex}
+\usepackage[prose=chinese]{biblatex-apa-zh}   % must come after biblatex
+\addbibresource{refs.bib}
+```
+
+Two different things are both called "language", and they are set in two places:
+
+| Axis | Decides | Set by | Scope |
+|------|---------|--------|-------|
+| Language of the running text | citation punctuation: full-width or half-width parentheses and comma | package option `prose=chinese` or `prose=english` | the whole document |
+| Language of each cited work | name strings (`et al.` or 等人, `&` or 與) and bibliography punctuation | the entry's `langid` field (`langid = {chinese}`) | each entry |
+
+Rendered output, from the package's test fixture `chinese-prose`
+(`prose=chinese`, `foreignandothers=etal`):
+
+| Cited work | `\parencite` | `\textcite` |
+|------------|--------------|-------------|
+| Western, 2 authors | （Meehl & Hathaway，1946） | Meehl and Hathaway（1946） |
+| Western, 3 or more | （Haladyna et al.，2002） | Haladyna et al.（2002） |
+| Chinese, 2 authors | （王四與李五，2021） | 王四與李五（2021） |
+| Chinese, 3 or more | （陳一等人，2019） | 陳一等人（2019） |
+
+Rules:
+
+- In Chinese prose a parenthetical citation uses full-width parentheses and a
+  full-width comma. The split between `&` (parenthetical) and `and` (narrative) is
+  APA's own and stays.
+- In the reference list, an English entry keeps APA's English punctuation, including
+  half-width `(2002)` and `15(3)`; a Chinese entry uses Chinese punctuation:
+  `王四與李五（2021）。學習動機量表的跨年級測量恆等性。教育心理學報，52(3)，45–68。`
+- Italics are `biblatex-apa`'s and are not changed: the journal title and volume
+  number, a dataset title, and the title of a conference presentation (checked
+  2026-11-07 by compiling a reference list with these entry types).
+- `foreignandothers=etal` (the default) keeps `et al.` for Western works in Chinese
+  prose; `foreignandothers=zh` prints 等人 instead. Chinese works always get 等人 and 與.
+- Do not redefine `\bibopenparen` as full-width: that also changes the half-width
+  parentheses that APA requires in the English reference list.
+- Limits of v0.2.0: Traditional Chinese (Taiwan convention) only; the Chinese
+  bibliography format is tuned for journal articles and books, not yet for
+  proceedings or theses; no stroke-order or zhuyin sorting.
+
 ## Integration with Our Axiomatization
 
 This practical guide implements the formal rules defined in our axiomatization system:
