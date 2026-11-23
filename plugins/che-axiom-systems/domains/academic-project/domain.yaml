@@ -1,0 +1,9 @@
+# Domain manifest — read by axiom-based / axiom-validate / axiom-create
+# format:   yaml(結構化 ASBE schema) | markdown(散文公理) | freeform(自訂體系)
+# maturity: bootstrapped(已符合 ASBE YAML schema，validate 跑 ERROR 級) | legacy(未遷移，validate 降級 WARNING)
+domain: academic-project
+description: 學術研究專案的管理（一篇稿件的資料夾：引用文獻的全文與正本、數字的來源紀錄、原始資料、不進 remote 的材料、封存、外部 repo 的角色、凍結的量測工具、改稿後編譯）
+format: yaml
+maturity: bootstrapped
+entry_points:
+  - academic_project_axioms.yaml

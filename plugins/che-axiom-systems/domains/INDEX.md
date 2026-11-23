@@ -1,10 +1,11 @@
 # Domains INDEX
 
-18 個內建公理化領域。每個領域的 `domain.yaml` manifest 是機器可讀的 source of truth；本表由 manifest 彙整。新增/修改領域後**四件套**同步：`domain.yaml` + 本表 + [`TOPICS.yaml`](TOPICS.yaml)（axiom-based 的路由層）+ `skills/<domain>/SKILL.md`（該域的自動觸發面，#29）。
+19 個內建公理化領域。每個領域的 `domain.yaml` manifest 是機器可讀的 source of truth；本表由 manifest 彙整。新增/修改領域後**四件套**同步：`domain.yaml` + 本表 + [`TOPICS.yaml`](TOPICS.yaml)（axiom-based 的路由層）+ `skills/<domain>/SKILL.md`（該域的自動觸發面，#29）。
 
 | Domain | Parent | 描述 | Format | Maturity | Entry point |
 |--------|--------|------|--------|----------|-------------|
 | `academic-presentation` | — | 學術會議報告（投影片＋講稿）的建構與交付公理 | yaml | bootstrapped | `CLAUDE.md` |
+| `academic-project` | — | 學術研究專案的管理（引用文獻的全文與正本、數字的來源紀錄、原始資料、不進 remote 的材料、封存、外部 repo 的角色、凍結的量測工具、改稿後編譯） | yaml | bootstrapped | `academic_project_axioms.yaml` |
 | `academic-writing` | — | 學術論文寫作（任何學科的同儕讀者文章：論證的順序與結構；不前向依賴；每個元素由前文引出；文獻隨對象介紹、大範圍回顧放後） | yaml | bootstrapped | `academic_writing_axioms.yaml` |
 | `apa7-style` | — | APA 第七版寫作與引用格式規範 | yaml | bootstrapped | `CLAUDE.md` |
 | `asbe` | — | ASBE 方法論自身的公理化（self-bootstrap） | yaml | bootstrapped | `asbe_axioms_bootstrapped.yaml` |
