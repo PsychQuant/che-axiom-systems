@@ -5,7 +5,7 @@
 | Domain | Parent | 描述 | Format | Maturity | Entry point |
 |--------|--------|------|--------|----------|-------------|
 | `academic-presentation` | — | 學術會議報告（投影片＋講稿）的建構與交付公理 | yaml | bootstrapped | `CLAUDE.md` |
-| `academic-writing` | — | 學術論文寫作（任何學科的同儕讀者文章：論證的順序與結構；不前向依賴；每個元素由前文引出） | yaml | bootstrapped | `academic_writing_axioms.yaml` |
+| `academic-writing` | — | 學術論文寫作（任何學科的同儕讀者文章：論證的順序與結構；不前向依賴；每個元素由前文引出；文獻隨對象介紹、大範圍回顧放後） | yaml | bootstrapped | `academic_writing_axioms.yaml` |
 | `apa7-style` | — | APA 第七版寫作與引用格式規範 | yaml | bootstrapped | `CLAUDE.md` |
 | `asbe` | — | ASBE 方法論自身的公理化（self-bootstrap） | yaml | bootstrapped | `asbe_axioms_bootstrapped.yaml` |
 | `decision-making` | — | 決策理論：效用、偏好與悖論 | markdown | legacy | `axiomatization_of_decision_making.md` |
