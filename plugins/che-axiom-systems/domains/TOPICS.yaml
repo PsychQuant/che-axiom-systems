@@ -9,6 +9,12 @@
 - domain: academic-presentation
   aliases: [學術報告, conference talk, oral presentation, 投影片, slides, 簡報]
   keywords: [投影片, slide deck, beamer, 講稿, talk script, 會議報告, conference presentation, example-first 開場, mental load, outline, 去AI感, source of truth, 時間 slot, 讀秒]
+- domain: academic-project
+  aliases: [學術專案, 研究專案管理, 專案管理, academic project, research project, project management]
+  keywords: [references 資料夾, references folder, 參考文獻資料夾, 全文, full text, 文獻正本, 匯出副本,
+            數字來源, provenance, 可重現, reproducibility, 原始資料, raw data, data/raw, data/processed,
+            gitignore, 不進 remote, 逐字稿, 著作權, archive, 封存, submodule, repos 資料夾, deps, instruments,
+            凍結的工具, deviation note, pre-registration, 編譯, compile, undefined reference, 重複 label]
 - domain: academic-writing
   aliases: [學術寫作, 論文寫作, 哲學論文, academic writing, scholarly article, scholarly writing]
   keywords: [前向引用, forward reference, 前向依賴, forward dependence, reading order, 閱讀順序,

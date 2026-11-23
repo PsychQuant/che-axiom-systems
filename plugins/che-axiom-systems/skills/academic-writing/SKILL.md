@@ -41,4 +41,5 @@ Skill(skill="che-axiom-systems:axiom-based", args="academic-writing: <查詢>")
 | 數學陳述該放 theorem 還是 remark、正式數學散文的定理架構（本域 A1 的母公理 A4 也在這裡） | `mathematical-writing` |
 | APA 引用與格式 | `apa7-style` |
 | 口頭報告、投影片、講稿 | `academic-presentation` |
+| 專案資料夾怎麼管：references 放哪些全文、數字的來源紀錄、原始資料、什麼不能推上 remote | `academic-project` |
 | 私人筆記 | `note-writing` |

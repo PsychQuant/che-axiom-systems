@@ -1,0 +1,678 @@
+# ASBE Domain — Academic Project Management
+# Follows templates/domain-template.yaml. Validate with /axiom-validate.
+
+meta:
+  domain: "Academic Project Management"
+  version: "1.0.0"
+  author: "Che Cheng"
+  created: "2026-11-23"
+  source: "The author's standing project rules, collected and confirmed on 2026-11-23"
+  provenance: |
+    Seeded at the author's request, in their words:
+      「che-axioms我想要加入一個 academic project的管理的axioms，例如： references
+      資料夾裡面要放所有這篇文章會引用到的文獻」
+    That example is A1. The other eight axioms were offered to the author as
+    candidates, each taken from a rule the author had already written down
+    or from the practice of their projects, and the author chose all eight
+    the same day. Each axiom's rationale names the rule it comes from.
+  description: |
+    Axiomatizes how a research project is kept: the folder that holds one
+    manuscript (an article, a conference paper, a chapter) with the
+    literature it cites, the data and programs behind its numbers, and the
+    tools it measures with. The axioms say what the folder must contain,
+    where each kind of material goes, what may leave the author's machine,
+    and what must hold before the manuscript is handed to anyone. Distinct
+    from `academic-writing`, which governs the text of the article (the
+    order and structure of its argument), and from `apa7-style`, which
+    governs citation format. Here the subject is the project around the
+    text.
+
+# Primitive terms — undefined concepts that form the foundation
+primitives:
+  - term: "Project"
+    intuition: |
+      The folder, usually a git repository, that holds the work towards one
+      manuscript: the manuscript source, the literature it cites, the data,
+      the programs and their outputs.
+  - term: "Manuscript"
+    intuition: |
+      The text that will be submitted or circulated, in its source form
+      (for example LaTeX with a bibliography file), together with the
+      document compiled from it.
+  - term: "Cited work"
+    intuition: |
+      A work that the manuscript cites and that has a text: an article, a
+      book, a chapter or a report, as listed in its references. A cited data
+      set or program is not a cited work in this sense; it is kept under the
+      data and repository rules (A4, A5, A7).
+  - term: "Full text"
+    intuition: |
+      The work itself, not its record: the PDF of the article or book, and
+      a text conversion of it that can be searched and quoted.
+  - term: "Library"
+    intuition: |
+      The author's reference library (for example Akashic), which holds one
+      record per work and one stored copy of each full text, identified by
+      its content digest.
+  - term: "Remote"
+    intuition: |
+      A place a copy of project material can be sent to. This list is
+      closed: (1) a git host, public or private, with or without other
+      people on the repository; (2) a hosted service that keeps its own copy
+      of project files, such as an online LaTeX editor; (3) a folder shared
+      with anyone other than the author. The one exclusion is the author's own synced storage that
+      is shared with no one.
+  - term: "Instrument"
+    intuition: |
+      A program or tool whose own behaviour the study measures or compares:
+      the engine whose accuracy a benchmark measures, or the scorer whose
+      scores are the outcome being compared. General-purpose software that
+      merely computes a reported estimate (a statistics package) is not an
+      instrument; its version is recorded under A3.
+  - term: "Study"
+    intuition: |
+      The runs carried out under one design for one manuscript, whether or
+      not each run's results are reported. It uses an instrument from its
+      first run to its last.
+
+axioms:
+  - id: "A1_references_hold_every_cited_work"
+    name: "The references folder holds the full text of every cited work"
+    one_liner: "Every work the manuscript cites has its full text in the project's references folder."
+
+    statement_natural: |
+      The project has a references folder, and every work the manuscript
+      cites has its full text there: the PDF (or the original file), and a
+      text conversion of it that can be searched. The folder may also hold
+      works under consideration that are not cited; it never holds fewer
+      than the cited ones.
+      A citation whose full text is not in the folder is a defect. The
+      remedy is to obtain the full text, store it in the library and export
+      it into the folder (A2). A work that one tool cannot reach is first
+      sought by another route (another site, the author's own browser
+      session, the authors); the citation is replaced or dropped only when
+      the work truly cannot be obtained.
+      The folder is the author's working copy of the literature. Copyrighted
+      full texts in it stay off the remote (A5), and each PDF in it is a copy
+      exported from the library (A2).
+
+    statement_formal: |
+      Let Cited(M) be the set of works cited by the manuscript M, and let
+      Held(R) be the set of works whose full text is in the references
+      folder R.
+        Coverage:     Cited(M) ⊆ Held(R)
+        Not required: Held(R) ⊆ Cited(M)
+      For w ∈ Held(R): R contains file(w), the original, and text(w), a
+      searchable conversion of file(w).
+      Defect:  w ∈ Cited(M) \ Held(R)
+      Remedy:  obtain w (by another route if one fails), store it in the
+               library, export file(w) into R (A2);
+               replace or drop w only if no route can obtain it.
+
+    rationale: |
+      A citation is checked against the cited passage, and the passage can
+      only be checked if the full text is at hand. If the full texts live
+      only in a download folder or in memory, the check is skipped exactly
+      when it matters: when writing quickly, or when a reviewer asks where a
+      claim comes from. Keeping every cited work in the project makes the
+      check a lookup. The text conversion is kept beside the PDF because a
+      claim is checked by searching for its wording.
+      The author's rule for manuscripts already requires the full text to be
+      in the references folder and read at the cited place before a claim is
+      attributed to a source; this axiom states the same as a property of
+      the project. The remedy prefers another route to another source
+      because of the author's rule that a page a tool cannot read is a
+      limit of the tool, not of the work.
+
+    violations:
+      - description: "A claim cited to a book that is not in the project"
+        content: |
+          Manuscript: "... the estimator is asymptotically efficient
+          (Author, 1999, p. 451)."
+          references/: holds twelve PDFs; the 1999 book is not among them.
+          The page number was copied from a secondary source.
+        explanation: |
+          The cited work is not in the folder, so the page cannot be checked,
+          and the secondary source may have the page or the wording wrong.
+          Cited(M) ⊄ Held(R).
+      - description: "A cited article replaced because one tool could not open it"
+        content: |
+          The publisher's page returned an error to the automated fetcher, so
+          the article was removed from the manuscript and another one cited
+          in its place.
+        explanation: |
+          The remedy was skipped: the article had not been sought by another
+          route, and the author's browser opens that publisher's pages. The
+          replacement changes the evidence for the claim.
+
+    compliant:
+      - description: "Every cited work held, with a text conversion"
+        content: |
+          references/
+            Author-1999-Title.pdf
+            Author-1999-Title.md        (text conversion of the PDF)
+            Other-2014-Title.pdf
+            Other-2014-Title.md
+          Every entry of the manuscript's bibliography has a pair here.
+        explanation: |
+          Cited(M) ⊆ Held(R), and each held work can be searched for the
+          wording of the claim that cites it.
+
+  - id: "A2_one_original_per_full_text"
+    name: "Each work has one original full text, in the library; the project holds exported copies"
+    one_liner: "A PDF in the project is a copy exported from the library's original, never a file copied from elsewhere."
+
+    statement_natural: |
+      Each work held in the references folder has one original full text,
+      the copy stored in the library and identified by its content digest. The full texts in a
+      project's references folder are copies exported from that original,
+      not files copied from a download folder or a temporary directory. A
+      text conversion records the digest of the PDF it was made from.
+      A copy is never edited. When the original changes (a corrected
+      version, the published version replacing an author's manuscript), the
+      copy is exported again, and the text conversion is made again from the
+      new copy.
+      When a work has more than one full text in the library (the published
+      version and an author's manuscript), the original is the one the
+      author designates; when none is designated, it is the published
+      version; when there is no published version, it is the latest version
+      its authors released. Copies inside archive/ are records and are not
+      re-exported (A6).
+
+    statement_formal: |
+      For a work w let orig(w) be the full text stored in the library, with
+      digest d(w).
+        Copies:      ∀ f ∈ R with work(f) = w:  sha256(f) = d(w)
+        Provenance:  f was written by export(orig(w)), not by copy(g) for
+                     a file g outside the library
+        Conversions: source_digest(text(w)) = sha256(file(w))
+        Immutability: a copy is replaced, never modified in place
+      When orig(w) changes to orig′(w):  re-export file(w), then rebuild text(w).
+      Scope: f ∈ R, the references folder; copies under archive/ are exempt (A6).
+      Choice of original (closed):  designated by the author;
+                                    else the published version;
+                                    else the latest version its authors released.
+
+    rationale: |
+      The author's rule, in their words (2026-11-20): 「每一個pdf在library要有一
+      個原版，然後原版可以匯出到外面，向這編reference應該是要員版匯出，這樣才能
+      保證版本不要錯誤吧」 (recorded in Akashic-Library #825). A citation is
+      read in the copy and checked against the library; if the copy came from
+      somewhere else, the two can differ without anyone noticing: a wrong
+      file, an author's manuscript where the library holds the published
+      version, or a copy that stayed behind when the original was replaced.
+      Recording the digest makes the difference checkable.
+
+    violations:
+      - description: "Copies taken from a temporary directory"
+        content: |
+          After a batch of full texts was stored in the library, the PDFs for
+          the project were copied from the batch's temporary directory, and
+          one was named after the wrong title before it was renamed.
+        explanation: |
+          The copies may happen to match the originals, but nothing in the
+          process would notice if they did not. The provenance condition is
+          not met.
+
+    compliant:
+      - description: "Copies exported from the library, conversions tied to them"
+        content: |
+          The copies in references/ were exported from the library by
+          citekey. Each .md conversion records the sha256 of the PDF it was
+          made from, and that sha256 equals the digest of the library's
+          original.
+        explanation: |
+          Every copy and conversion can be traced to the original and checked
+          against it.
+
+  - id: "A3_every_number_traceable"
+    name: "Every number in the manuscript can be traced to what produced it"
+    one_liner: "Each value the study computed, and each table and figure built from them, has a record of how to reproduce it."
+
+    statement_natural: |
+      Every value the study computed and the manuscript reports (an
+      estimate, a statistic, a simulation result, a run time), and every
+      table and figure built from such values, has a record in the project
+      that says how it was produced: the program, its inputs, the versions
+      of the program and of the tools it uses, the command that reproduces
+      it, the random seed if it uses one, and the machine if the value
+      depends on it (a run time). A value typed in by hand, or copied from a
+      run whose program is no longer known, has no record and is a defect.
+      A value derived by hand from recorded ones (a difference, a ratio)
+      has a record of its own: the recorded values and the arithmetic.
+      Three kinds of number need no record. This list is closed:
+        (1) values quoted from a cited work (A1 holds the source);
+        (2) constants chosen by the design (a sample size, a significance
+            level, a grid);
+        (3) bibliographic numbers (years, volumes, pages).
+      The record says which program produced which number. It is kept in the
+      project, and it is updated whenever the number is.
+
+    statement_formal: |
+      Let Nums(M) be the values the study computed and M reports, and the
+      tables and figures built from them. Exempt (closed): quoted values,
+      design constants, bibliographic numbers.
+        ∀ x ∈ Nums(M): ∃ rec(x) ∈ Project with
+          rec(x) = ⟨program, inputs, versions, command, seed?, machine?⟩
+          or rec(x) = ⟨{y_1, …, y_k}, arithmetic⟩, each y_i a computed value
+             with a record of its own, reported or not
+        Reproduction: running command(rec(x)) with inputs(rec(x)) under
+          versions(rec(x)) yields x, or, for a run time or a simulation
+          without a fixed seed, a value within the tolerance the record states.
+        Currency: x changes ⇒ rec(x) is updated in the same change.
+      Defect:  x ∈ Nums(M) with no rec(x).
+
+    rationale: |
+      A reported number is a claim the reader cannot check without knowing
+      how it was obtained, and the author cannot recheck it later without
+      the same knowledge. A number without a record cannot be regenerated
+      after a correction upstream, so a corrected manuscript may keep a
+      stale value. The author's articles keep such a record in an appendix
+      that lists which program produced which number, with versions,
+      reruns and hashes; this axiom requires the record of every project,
+      whether or not it is published with the manuscript.
+
+    violations:
+      - description: "A table column filled in by hand"
+        content: |
+          Table 2 reports run times for four methods. Three come from a
+          timing script; the fourth was typed in from a note, and the
+          machine and version it was measured on are not recorded.
+        explanation: |
+          The fourth value has no record and cannot be rerun under the same
+          conditions, so it may not be comparable with the other three.
+
+    compliant:
+      - description: "A record per number"
+        content: |
+          The project's record lists, for each reported value: the script,
+          the input file, the package versions, the command, and the date of
+          the last rerun. A rerun after a correction regenerated the table
+          and the record together.
+        explanation: |
+          Every reported value can be reproduced from its record.
+
+  - id: "A4_raw_data_immutable"
+    name: "Raw data are never modified; derived data can be regenerated"
+    one_liner: "Raw data stay as received, processed data come from programs, outputs go apart; paths start at the analysis root."
+
+    statement_natural: |
+      The analysis part of a project has a root, the folder in which its
+      programs are run. The data and outputs under it are of three kinds.
+      This list is closed:
+        (1) data/raw/: the data as received. They are never modified.
+        (2) data/processed/: files produced by programs from the raw data.
+            Each can be deleted and regenerated.
+        (3) output/: results, tables and figures.
+      The programs, and any repositories of A7 placed under the root, may
+      also sit there; they are not data or outputs, except that a data
+      repository under data/ (A7, role 3) is raw data: it is read and
+      never modified, and pulling a newer upstream version of it is a new
+      arrival of raw data, with its version recorded.
+      Programs write paths from the analysis root (data/raw/...), not with
+      ../, a change of working directory, or an absolute path.
+      Where the whole folder is the analysis, its top level is the analysis
+      root. Where the project is mainly documents (a proposal, a manuscript)
+      and the analysis is one part of it, the analysis root is that part's
+      own folder.
+
+    statement_formal: |
+      Let Root be the analysis root. The data and outputs under Root:
+        Kinds = {raw, processed, output} (closed)
+        Raw = data/raw ∪ the data repositories under data/ (A7, role 3)
+        raw:        ∀ f ∈ Raw: content(f) at every time = content(f) at arrival;
+                    a newer upstream version of a data repository is a new
+                    arrival, with its version recorded
+        processed:  ∀ f ∈ data/processed: ∃ program p, inputs ⊆ Raw ∪
+                    data/processed with run(p, inputs) = f
+        output:     results, tables, figures only
+      Paths:  every path a program opens is relative to Root and has no
+              ".." component; no change of working directory; no absolute path.
+
+    rationale: |
+      Raw data are the only part that cannot be regenerated: an edit to them
+      silently changes every later result, and nothing records that it
+      happened. Processed data that can be regenerated may be deleted
+      without loss, so the folder can be cleaned and the pipeline rerun to
+      confirm it still produces them. Paths from the root let the project be
+      moved or cloned and still run.
+      This is the author's rule for analysis folders (2026-11-14), written
+      after they found that the apparent choice between "data beside the
+      analysis" and "data inside the analysis" was only a choice of which
+      folder is the analysis root.
+
+    violations:
+      - description: "Cleaning the raw file in place"
+        content: |
+          A script reads data/raw/survey.csv, removes the duplicate rows and
+          writes the result back to data/raw/survey.csv.
+        explanation: |
+          The file as received is lost, and the removal cannot be undone or
+          checked. The cleaned file belongs in data/processed/.
+      - description: "A path that depends on where the script is run"
+        content: |
+          read.csv("../../data/raw/survey.csv") after setwd("~/projects/x/analysis/scripts")
+        explanation: |
+          The script runs only from one folder on one machine.
+
+    compliant:
+      - description: "Raw kept, processed regenerated, paths from the root"
+        content: |
+          analysis/            (the analysis root)
+            data/raw/survey.csv
+            data/processed/survey_clean.csv   (written by R/clean.R)
+            output/table2.csv
+            R/clean.R reads "data/raw/survey.csv"
+        explanation: |
+          The raw file is untouched, the cleaned file can be deleted and
+          regenerated by R/clean.R, and the paths start at the root.
+
+  - id: "A5_third_party_and_copyrighted_off_remote"
+    name: "Raw third-party material, copyrighted full texts and restricted data stay off the remote"
+    one_liner: "Three kinds of material never go to a remote; the author's own writing, code and edited transcripts may."
+
+    statement_natural: |
+      Three kinds of material in a project never go to a remote, whether the
+      remote is public or private. This list is closed:
+        (1) Raw third-party words: recordings, raw transcripts and machine
+            notes of spoken conversations with collaborators, students or
+            participants, with the speakers' own wording. Email
+            correspondence to which the author is a party is not of this
+            kind.
+        (2) Full texts of works by others that are under copyright, such as
+            the copies in the references folder.
+        (3) Data the author is not permitted to pass on, under the terms of
+            the archive or agreement that supplied them.
+      They stay on the author's machine and in their own synced storage, and
+      the project's ignore rules keep them out of version control.
+      Everything else may go to a remote, including the author's own writing
+      and code. An edited product the author has made from material of kind
+      (1), such as an edited transcript or a handout, is the author's own
+      writing and is not of kind (1). Conversions, excerpts and processed
+      versions of material of kinds (2) and (3) stay in those kinds.
+      Sending material directly to a collaborator is governed by that
+      material's own terms (for kind (3), the agreement), not by this axiom.
+
+    statement_formal: |
+      Let Off = Raw3P ∪ Copyrighted ∪ Restricted (closed).
+        ∀ f ∈ Off:  f ∉ Remote, for every remote (public or private)
+        ∀ f ∈ Off:  ignore-rules(Project) match f
+      Edited(f) — the author's edited product of f ∈ Raw3P — ∉ Raw3P.
+      Derived(f) — a conversion, excerpt or processed version — of f ∈
+      Copyrighted ∪ Restricted stays in the same kind as f.
+      A private remote is a remote: privacy of the host does not move f out of Off.
+
+    rationale: |
+      A private repository is still stored on someone else's servers. The
+      harm of these three kinds leaving the machine is large and cannot be
+      undone: other people's unguarded words and personal data, unpublished
+      research, a publisher's copyright, a data agreement that ends the
+      author's access. The benefit of putting them on the remote, a backup,
+      is already provided by the author's own synced storage. The line is
+      drawn between raw material and the author's own products because the
+      edited product is the author's writing, while the raw material is
+      someone else's.
+      This is the author's standing privacy rule for git remotes, together
+      with their rule that copyrighted full texts are kept out of git and the
+      use terms of a data archive they use, which forbid passing its data on.
+
+    violations:
+      - description: "Raw transcripts in a private repository"
+        content: |
+          The project's git repository, private on a public host, contains the
+          raw transcripts of interviews, exported from the recorder.
+        explanation: |
+          Kind (1), and a private repository is still a remote.
+      - description: "The references folder pushed with the code"
+        content: |
+          git add references/ ; git push
+          The folder holds publishers' PDFs of the cited articles.
+        explanation: |
+          Kind (2). The folder belongs in the ignore rules.
+
+    compliant:
+      - description: "Ignore rules for the three kinds"
+        content: |
+          .gitignore
+            *.srt
+            *.m4a
+            **/*_notes.md
+            references/
+            data/raw/licensed/
+            data/processed/licensed/
+          The edited transcript, written as a handout, is tracked.
+        explanation: |
+          The three kinds stay local; the author's edited product goes to
+          the remote.
+
+  - id: "A6_archive_append_only"
+    name: "The archive is append-only"
+    one_liner: "Nothing under archive/ is deleted, moved, overwritten or edited; new things may be added."
+
+    statement_natural: |
+      A project's archive folder (archive/; archived/ in older projects)
+      holds superseded versions kept as a record. Nothing under it is
+      deleted, moved, overwritten or edited. New items may be added. To
+      change something in the archive, unlock the protection explicitly,
+      make the change, and lock it again.
+      archive/ is the canonical name. An archived/ folder met during work is
+      renamed archive/ in the same change, with the references to it; the
+      rename is itself a move, so it is done between an unlock and the next
+      lock.
+
+    statement_formal: |
+      Let A(t) be the set of (path, content) pairs under archive/ at time t.
+        Append-only:  t1 < t2 ⇒ A(t1) ⊆ A(t2)
+      An operation that would make A(t2) ⊉ A(t1) (delete, move, overwrite,
+      edit) is permitted only between an explicit unlock and the next lock.
+      Name:  archived/ ↦ archive/ when met, with every reference updated,
+             between an unlock and the next lock.
+
+    rationale: |
+      The archive is what lets a later reader see what a document said
+      before it changed, for example what an earlier version of a manuscript
+      claimed. An archive that may be edited is only a second working copy.
+      The author's projects protect it with a hook that blocks destructive
+      operations on these paths, and their rule renames the older form when
+      it is met.
+
+    violations:
+      - description: "Tidying the archive"
+        content: |
+          rm archive/manuscript_v3_old.tex   (judged a duplicate)
+        explanation: |
+          A delete under archive/ without an unlock. Whether it is a
+          duplicate is the question the archive exists to let someone check.
+
+    compliant:
+      - description: "Superseding by adding"
+        content: |
+          The current manuscript is copied to archive/2026-11-23_before_rewrite/
+          before the rewrite; nothing already in archive/ is touched.
+        explanation: |
+          A(t1) ⊆ A(t2).
+
+  - id: "A7_nested_repos_named_by_role"
+    name: "A repository placed inside a project is named by its role"
+    one_liner: "Another repository inside a project lives in a folder named for what the project does with it."
+
+    statement_natural: |
+      When a project holds another git repository (a clone, a submodule or a
+      link), the folder that holds it is named by the role it plays in the
+      project. This list of roles is closed; a repository that fits none of
+      them is asked about, not given a new role by analogy:
+        (1) references/repos/: third-party code kept for reading only. It is
+            not run or changed.
+        (2) deps/: build dependencies, used when the project is built or run.
+        (3) data/: repositories of data the project reads.
+        (4) instruments/: frozen measuring instruments (A8). They are used
+            to measure and not upgraded, except after a deviation note (A8).
+        (5) a folder named for its content (code/, analysis/, …): the
+            project's own code, including its own forks.
+      A bare repos/ folder says only that another history lives there, not
+      what it is for or whether it may be changed. Existing repos/ folders
+      are renamed when the project is next worked on, not all at once.
+
+    statement_formal: |
+      Roles = {reference, dependency, data, instrument, own} (closed)
+      folder(reference)  = references/repos/
+      folder(dependency) = deps/
+      folder(data)       = data/
+      folder(instrument) = instruments/
+      folder(own)        = a name for its content
+        ∀ nested repository r in Project:  path(r) ⊆ folder(role(r))
+        role(r) undetermined ⇒ ask; no new role by analogy
+      Permissions: reference — read only; instrument — no upgrade without a
+      deviation note (A8); dependency, data, own — as their own projects allow.
+
+    rationale: |
+      The name of the folder is what a reader, or a program, uses to decide
+      whether the code in it may be run, changed or upgraded. The author's
+      rule (2026-11-22), in their words: 「我有些專案是用「repos」來接著專案，
+      這是不是其實沒有很好，因為他沒有描述是什麼功能」. At that time thirteen
+      repos/ folders mixed build dependencies, data, frozen instruments,
+      read-only references and the author's own code.
+
+    violations:
+      - description: "Everything under repos/"
+        content: |
+          repos/
+            measure-engine/     (the frozen measuring instrument)
+            parser-lib/         (a build dependency)
+            upstream-ocr/       (read-only reference code)
+        explanation: |
+          The folder name does not say which of the three may be upgraded or
+          changed, so an upgrade of the instrument looks as ordinary as an
+          upgrade of the dependency.
+
+    compliant:
+      - description: "Folders named by role"
+        content: |
+          instruments/measure-engine/
+          deps/parser-lib/
+          references/repos/upstream-ocr/
+        explanation: |
+          Each repository's role, and what may be done to it, can be read off
+          its path.
+
+  - id: "A8_frozen_instruments"
+    name: "A measuring instrument is frozen while the study uses it"
+    one_liner: "An instrument is not upgraded during a study; an upgrade needs a deviation note first, and versions are recorded with the results."
+
+    statement_natural: |
+      An instrument, a program or tool whose own behaviour the study
+      measures or compares (see the primitive), is pinned to one version for
+      as long as the study uses it.
+      It is not upgraded to the latest version. If it has to be upgraded, a
+      deviation note is written first, saying what changes and why, and the
+      results measured before and after are treated as different
+      conditions: they are not ranked together.
+      The version of every instrument is recorded with each result it
+      produced, including results that are not reported in the manuscript
+      (for those A3 does not apply).
+      Tools that are not instruments need not be pinned; where a reported
+      value depends on them, their versions are recorded under A3.
+
+    statement_formal: |
+      Let I be an instrument of study S, and Results(S, I) the results it
+      produced.
+        Pin:     during S, version(I) changes from v_0 to v_1 only after a
+                 deviation note ⟨v_0, v_1, reason, date⟩ is recorded
+        Conditions: r ∈ Results(v_0), r′ ∈ Results(v_1) ⇒ r, r′ are
+                    different conditions; not compared in one ranking
+        Record:  ∀ r ∈ Results(S, I): version(I at r) is stored with r
+      Non-instruments: no pin required; versions recorded where A3 applies.
+
+    rationale: |
+      Upgrading an instrument changes what a measured value means, so values
+      from before and after the upgrade are not comparable, and the change
+      cannot be undone once the old results are mixed with the new. The
+      author's rule for their own tools is to keep them up to date, with
+      instruments of a study in progress as the first exception: such an
+      instrument is pinned by the study's pre-registration, and upgrading it
+      needs a deviation note. Recording the version with each result is what
+      keeps the before and after apart; an upgrade without that record
+      silently mixes two conditions in one evidence base.
+
+    violations:
+      - description: "Upgrading the engine under measurement"
+        content: |
+          Half-way through a benchmark, the OCR engine under test is upgraded
+          to the latest release because it fixes a bug, and the new runs are
+          added to the same table.
+        explanation: |
+          No deviation note, and the table now ranks two versions of the
+          engine as one condition.
+
+    compliant:
+      - description: "A pinned instrument and a recorded deviation"
+        content: |
+          instruments/measure-engine is pinned at v2.3. A deviation note,
+          dated before the upgrade, records the move to v2.4 and its reason; results
+          carry the version, and v2.4 results are reported as a separate
+          condition.
+        explanation: |
+          The pin, the note and the recorded versions keep the two
+          conditions apart.
+
+  - id: "A9_compile_after_every_edit"
+    name: "The manuscript is compiled and checked after every edit"
+    one_liner: "After any change to the manuscript source, run the full compile and check five counts are zero before committing."
+
+    statement_natural: |
+      This axiom is for manuscripts written in LaTeX. The manuscript source
+      is, as a closed list: the main file and every file it includes or
+      inputs (sections, tables), the bibliography, the class and style
+      files, and the figures it includes. After every change to the
+      manuscript source, the full compile chain is run, and the change is
+      committed only when these five counts are zero. This list is closed:
+        (1) undefined references and citations;
+        (2) multiply-defined labels;
+        (3) duplicate hyperlink destinations;
+        (4) errors;
+        (5) bibliography-processor errors and warnings.
+      The page count is also compared with the previous compile, and a
+      change that does not fit the edit (pages lost after adding text) is
+      looked into. Where the change may have broken something the counts do
+      not show, the compiled document is read at that place.
+      Changes to files that are not manuscript source (notes, a README) need
+      no compile. A change inside a commented-out passage still does.
+
+    statement_formal: |
+      Let e be an edit to manuscript source, and C(e) the full compile after e.
+        Commit(e) ⇒ Counts(C(e)) = 0 for
+          Counts = {undefined, multiply_defined_labels, duplicate_destinations,
+                    errors, bib_errors_and_warnings} (closed)
+        Pages: |pages(C(e)) − pages(C(prev))| inconsistent with e ⇒ inspect
+      Exempt: e touches no manuscript source.
+      Not exempt: e inside commented-out source.
+
+    rationale: |
+      A compile failure often shows only when someone reads the document: a
+      "??" for a misspelt label, a missing author-year, a paragraph set in
+      the wrong mode. Committing first and compiling later hands the broken
+      document to a collaborator or a reviewer. The second count was added
+      to the author's rule after a duplicate label made new references point
+      silently to an older remark while the compile reported no undefined
+      reference: a check list that misses a failure makes the failure look
+      like a pass.
+
+    violations:
+      - description: "Committing a new remark without a compile"
+        content: |
+          A new remark is added with \label{rem:x}; the commit is made
+          without compiling. An older remark later in the document has the
+          same label.
+        explanation: |
+          Every \ref to the new remark resolves to the older one. The compile
+          would have reported a multiply-defined label.
+
+    compliant:
+      - description: "The compile check before the commit"
+        content: |
+          pdflatex; biber; pdflatex; pdflatex
+          undefined 0, multiply defined 0, destination duplicates 0,
+          errors 0, biber warnings 0; 63 pages (63 before)
+          then git commit
+        explanation: |
+          All five counts are zero and the page count fits the edit.
