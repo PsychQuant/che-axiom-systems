@@ -487,6 +487,122 @@ axioms:
           then gives the numbers. The example is the same, and so are its numbers; only its
           position and its first sentence change.
 
+  - id: "A6_prior_result_attribution"
+    name: "A result already in the literature is cited, not claimed as new"
+    one_liner: "Before a result is stated as the manuscript's own, the literature is searched for it; a published result that is the same or more general is cited where the result is stated, and may be cited instead of proved."
+
+    statement_natural: |
+      A result the author has derived looks new to the author, whether or not
+      it is. So before a manuscript states a theorem, lemma, formula or
+      expansion as its own, the literature is searched for it. A published
+      result is related to the manuscript's result in the sense of this axiom
+      when it stands in one of four relations to it (a closed list; a result
+      in none of the four is related work to be reviewed, not a result to be
+      attributed, and "similar" is not a fifth relation):
+        (1) Same: the two statements coincide after a change of notation,
+            scale or parametrization that the manuscript can write down.
+        (2) More general: the manuscript's statement follows from the
+            published one by specializing its model, assumptions or
+            parameters.
+        (3) Special case: the published statement follows from the
+            manuscript's in the same way, so the manuscript extends it.
+        (4) Same conclusion, different assumptions: the conclusions coincide
+            and neither set of assumptions contains the other.
+      When one of the four holds, the manuscript does three things at the
+      place where its own result is stated: it cites the published result
+      with a locator (theorem, equation or page), it names which relation
+      holds, and it gives the map between the two notations when they differ.
+      Under (1) and (2) the result is attributed to the source and is not
+      listed among the manuscript's contributions. The manuscript may then
+      cite instead of proving, on one condition: it checks that the
+      hypotheses of the published result cover the present setting, and says
+      so. A proof may still be given for self-containedness, and is then
+      labelled as a proof of a known result. Under (3) and (4) the manuscript
+      states exactly what it adds: the wider model, the weaker assumption, or
+      the case not covered. What the manuscript claims as new is only what
+      goes beyond the cited results.
+
+    statement_formal: |
+      Let R be a result stated in manuscript M, and let L be the published
+      literature. For R' ∈ L write
+        Same(R, R')      ⇔  R = τ(R') for an explicit map τ of notation,
+                            scale or parametrization
+        General(R, R')   ⇔  R' ⇒ R by specializing model, assumptions or
+                            parameters of R'
+        Special(R, R')   ⇔  R ⇒ R' in the same way
+        Parallel(R, R')  ⇔  Concl(R) = Concl(R') and neither Hyp(R) ⊆ Hyp(R')
+                            nor Hyp(R') ⊆ Hyp(R)
+        Rel(R, R')       ⇔  exactly one of the four holds.
+      Search:       ∀ R stated as M's own, L is searched for an R' with
+                    Rel(R, R') before R is so stated.
+      Citation:     Rel(R, R')  ⇒  at the statement of R, M gives
+                    (i) a citation of R' with a locator,
+                    (ii) which of the four relations holds,
+                    (iii) τ, when the notations differ.
+      Attribution:  Same(R, R') ∨ General(R, R')  ⇒  R ∉ Contributions(M).
+      Cite-not-prove:
+                    Same(R, R') ∨ General(R, R')  ⇒  M may omit the proof of R
+                    iff M verifies Setting(M) ⊨ Hyp(R') and states it;
+                    a proof that is kept is labelled as a proof of a known
+                    result.
+      Novelty:      Special(R, R') ∨ Parallel(R, R')  ⇒  M states
+                    New(R) := what R asserts that R' does not.
+      Closure:      ¬Rel(R, R')  ⇒  R' is not attributed as a source of R
+                    (it may still be reviewed as related work).
+
+    rationale: |
+      The order of work produces the defect. The author derives first and
+      searches afterwards, if at all, and a derivation done independently
+      feels like a discovery. A referee who knows the literature then finds a
+      known result presented as a contribution, and reads the rest of the
+      manuscript with less trust; meanwhile the part that is new is buried
+      among results that are not. Citing costs the author nothing that
+      matters: a cited result needs no proof in the manuscript, the pages go
+      to what is new, and the reader is told how the manuscript's notation
+      maps onto the literature's, which is what makes the two comparable. The
+      relations are a closed list because "similar" is a judgment made by
+      feel, and the feel is wrong in both directions: it lets an author skip
+      a result that is in fact the same in other notation, and it lets an
+      author cite a merely neighbouring paper as if it carried the result.
+      The condition on citing instead of proving is there because a published
+      theorem is true under its own hypotheses, not under the manuscript's.
+      Occasion (2026-11-24): a lemma drafted as new, with its own proof, was
+      found by a literature sweep run after drafting to coincide, in the
+      special case checked, with a term published more than a decade earlier
+      in a more general model. The sweep was run because the author asked
+      whether anything had been missed, not because the workflow required it.
+
+    violations:
+      - description: "A textbook result is stated as the manuscript's own and proved from scratch"
+        content: |
+          Proposition 1. Suppose √n (T_n − θ) converges in distribution to
+          N(0, σ²) and g is differentiable at θ. Then √n (g(T_n) − g(θ))
+          converges in distribution to N(0, g′(θ)² σ²).
+          Proof. (One page.) …
+          In Section 6 we list Proposition 1 among our contributions.
+        explanation: |
+          Proposition 1 is the delta method. The relation is Same: no map of
+          notation is even needed. The manuscript gives no citation, proves
+          it in full, and counts it as a contribution. A reader who knows the
+          result now doubts the other items on that list. (The example is
+          constructed for this axiom; it is not taken from a manuscript.)
+
+    compliant:
+      - description: "The known result is cited with a locator; the proof is replaced by a check of its hypotheses; the contribution is what goes beyond it"
+        content: |
+          By the delta method (van der Vaart, 1998, Theorem 3.1), whose
+          hypotheses hold here because g is differentiable at θ and
+          √n (T_n − θ) is asymptotically normal by Lemma 2,
+          √n (g(T_n) − g(θ)) converges in distribution to N(0, g′(θ)² σ²).
+          This first-order statement is known. Proposition 1 below gives the
+          term of order n⁻¹ in the variance, which the delta method does not.
+        explanation: |
+          The known result is cited with its theorem number, its hypotheses
+          are checked against the present setting, and no proof is repeated.
+          The sentence that follows says what the manuscript adds. The
+          relation of Proposition 1 to the cited theorem is Special: the
+          theorem is the first-order part of it.
+
 theorems:
   - id: "T1_negative_space_is_meta"
     name: "Claims about what a hypothesis does not give are meta-level"

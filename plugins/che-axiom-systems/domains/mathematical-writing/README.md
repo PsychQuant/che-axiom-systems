@@ -22,6 +22,7 @@ exposition).
 | `A3_replacement_precondition` | Re-placement requires the citation set | A statement may not be relocated until what cites it is known; references address containers, not content, and the compiler checks neither. |
 | `A4_reading_order_dependence` | Dependence runs backward in reading order | A statement may lean only on what precedes it; a pointer ahead may say where, never use what. |
 | `A5_motivated_by_prefix` | Each element is called for by what precedes it | An article is read in order, not checked item by item: a concrete example, a definition or a result arrives only after the reader holds the question it answers. |
+| `A6_prior_result_attribution` | A result already in the literature is cited, not claimed as new | Before a result is stated as the manuscript's own, the literature is searched for it; a published result that is the same or more general is cited where the result is stated, and may be cited instead of proved. |
 
 ## Theorems
 
