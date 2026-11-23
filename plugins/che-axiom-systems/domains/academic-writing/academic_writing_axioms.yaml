@@ -22,6 +22,7 @@ meta:
     there, the axiom names its parent by id. Distinct from `apa7-style`,
     which covers formatting and citation style rather than the order and
     structure of an argument. Seeded with reading-order dependence (A1).
+    A2 (each element called for by what precedes it) was added on 2026-11-23.
 
 # Primitive terms — undefined concepts that form the foundation
 primitives:
@@ -178,3 +179,107 @@ axioms:
           lies ahead. The fix reordered rather than deleted: the principle
           and its defence are both still in the article. (Same manuscript,
           commit a0f987a.)
+
+  - id: "A2_motivated_by_prefix"
+    name: "Each element of a scholarly article is called for by what precedes it"
+    one_liner: "An article is read in order, not checked item by item: an example, a definition, a finding or a quotation arrives only after the reader holds the question it answers."
+    generalizes: "mathematical-writing/A5_motivated_by_prefix"
+
+    statement_natural: |
+      In a scholarly article of any discipline, being right sentence by
+      sentence is not enough: each element must also be called for by what the
+      reader has already read. When the reader reaches a concrete example or
+      case, a definition, a figure or table, a finding, or a quotation, the
+      preceding text must already have raised the question it answers or the
+      need it meets. An element that arrives before its question breaks the
+      flow even when it is accurate and depends on nothing later: the reader
+      has to hold it without knowing what it is for, and to work out
+      afterwards why it was there. The commonest case is a vivid case or a
+      worked example placed first to catch interest: it answers "does this
+      matter?" or "what does this look like?", and that question has to be
+      asked before the case can answer it. The remedy is to reorder, or to
+      write the transition that raises the question: state the debate, the
+      claim, the gap or the choice, then bring the element in as the answer,
+      saying in the sentence that introduces it which question it answers. A1
+      governs what a sentence may lean on; this axiom governs when an element
+      may appear. An element can satisfy either one and still violate the
+      other.
+
+    statement_formal: |
+      Let S_1, …, S_N be the article in reading order, let E ⊆ {1, …, N} be
+      the positions of its elements (examples and cases, definitions and
+      notations, figures and tables, findings and results, a theorem
+      included, and quotations; a sentence that raises a question, a
+      transition or a statement of the setting is not an element), and for
+      i ∈ E let Q(S_i) be the question or need S_i answers: for an example or case, the claim it
+      illustrates or the doubt it settles; for a definition, the term the
+      argument is about to need; for a figure, table or finding, the question
+      it settles; for a quotation, the claim it supports or the view it
+      represents.
+        Motivated:   ∀ i ∈ E,  ∃ j < i  such that S_j raises Q(S_i)
+        Announced:   ∀ i ∈ E,  S_i itself, or the sentence just before it in
+                     the same paragraph, names Q(S_i); or S_i immediately
+                     follows the S_j that raises it.
+      Independence from A1:
+        A1 constrains what S_i depends on;  A2 constrains Q(S_i), the purpose
+        S_i serves. Either can hold while the other fails.
+      Remedy — reorder or write the transition, do not delete:
+        if no j < i raises Q(S_i), then
+        either  move S_i after the S_j that raises Q(S_i),
+        or      insert before S_i a sentence that raises Q(S_i).
+
+    rationale: |
+      The writer knows why each element is there, so an element that comes
+      too early looks fine to the writer: it is accurate, it depends on nothing
+      later (A1 passes), and its purpose becomes clear a page later. The
+      reader, who holds only what came before, meets it without its purpose.
+      Checks that look at one sentence at a time (is it true, is it cited, does
+      it lean on later material) cannot see the defect, because the defect is
+      a property of the sequence. The principle is not specific to formal
+      mathematics: an empirical article that opens on a participant's story,
+      or a philosophy paper that opens on a thought experiment, has the same
+      problem when the question the story or the experiment answers is raised
+      only afterwards. It generalizes mathematical-writing's A5, as A1
+      generalizes that domain's A4. The remedy is reordering or a transition
+      rather than deletion, because the element is usually worth having.
+
+    violations:
+      - description: "An empirical article opens on a result before the reader knows what question it settles"
+        content: |
+          ¶1. Sleep and memory have been studied for more than a century.
+          ¶2. In our sample of 120 students, sleep after learning a word list
+          improved recall a day later by 18 percentage points for lists
+          learned in the morning and by 17 for lists learned in the evening.
+          ¶3. Two accounts of this kind of effect compete …
+        explanation: |
+          ¶2 reports a finding before the reader knows that there is a
+          question it settles. The competing accounts, and so the reason the
+          morning and evening lists are compared, arrive only in ¶3, so the
+          reader cannot tell on first reading which part of the result is the
+          point.
+          The numbers may be right and nothing depends on later material: A1 is
+          satisfied and the opening still breaks the flow. (The example is
+          constructed for this axiom; it is not taken from a manuscript.)
+
+    compliant:
+      - description: "The open question comes first; the result arrives as its answer"
+        content: |
+          ¶1. Sleep after learning improves later recall, but two accounts of
+          why compete. If sleep mainly shields new memories from the
+          interference of waking activity, its benefit should be larger for
+          lists learned in the evening, which go straight to sleep, than for
+          lists learned in the morning, which meet a day of waking activity
+          first; if sleep replays and strengthens new memories, the benefit
+          should not depend on when the list was learned.
+          ¶2. Comparing morning and evening lists therefore tells the accounts
+          apart, provided the comparison can detect the evening advantage of
+          about 10 percentage points that the shielding account predicts. In
+          our sample of 120 students, sleep improved recall a day later by 18
+          percentage points for lists learned in the morning and by 17 for
+          lists learned in the evening: a difference of 1 point (95% CI −4 to
+          6), well short of that advantage.
+        explanation: |
+          ¶1 raises the question (which account?) and says what would settle
+          it. ¶2 opens with the sentence that names how its finding settles the
+          question and then gives the finding. The finding is the same; only its
+          position and its first sentence change.

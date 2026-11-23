@@ -13,7 +13,8 @@
   aliases: [學術寫作, 論文寫作, 哲學論文, academic writing, scholarly article, scholarly writing]
   keywords: [前向引用, forward reference, 前向依賴, forward dependence, reading order, 閱讀順序,
             論證順序, 先定義後使用, define before use, roadmap, promissory note, 期刊論文, journal article,
-            哲學寫作, philosophy paper, 論文結構, 段落重排, 引用方向]
+            哲學寫作, philosophy paper, 論文結構, 段落重排, 引用方向,
+            flow, 行文順序, 例子擺放, motivation, 承接, transition, 開場例子]
 - domain: apa7-style
   aliases: [APA, apa7, APA格式]
   keywords: [引用格式, citation, 參考文獻, reference, in-text citation, DOI, 期刊格式, 學術格式規範, biblatex-apa-zh, 中文引用, 全形括號]
@@ -50,7 +51,8 @@
   keywords: [定理陳述, statement placement, 證明寫作, proof writing, 數學論文, notation, 符號慣例,
             命題精簡, 高度漂移, altitude, 修訂累積, repair accretion, remark 擺放,
             前向引用, forward reference, 引用方向, reading order,
-            引用檢查, citation set, 區間引用, range reference]
+            引用檢查, citation set, 區間引用, range reference,
+            flow, 行文順序, 例子擺放, worked example, motivation, 承接, transition]
 - domain: musical-composition
   aliases: [作曲, 音樂理論]
   keywords: [和聲, harmony, 旋律, melody, 編曲, arrangement, 曲式, 歌詞配置, 音樂結構]
