@@ -21,7 +21,8 @@
             論證順序, 先定義後使用, define before use, roadmap, promissory note, 期刊論文, journal article,
             哲學寫作, philosophy paper, 論文結構, 段落重排, 引用方向,
             flow, 行文順序, 例子擺放, motivation, 承接, transition, 開場例子,
-            literature review, 文獻回顧, related work, 引用文獻放哪, 第一次介紹, introduce with citation]
+            literature review, 文獻回顧, related work, 引用文獻放哪, 第一次介紹, introduce with citation,
+            引言, introduction, 研究問題, research question, 研究結果, 結果預告, 太早揭露, own results, preview of results]
 - domain: apa7-style
   aliases: [APA, apa7, APA格式]
   keywords: [引用格式, citation, 參考文獻, reference, in-text citation, DOI, 期刊格式, 學術格式規範, biblatex-apa-zh, 中文引用, 全形括號]

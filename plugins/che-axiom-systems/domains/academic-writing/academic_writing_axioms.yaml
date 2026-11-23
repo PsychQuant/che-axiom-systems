@@ -28,6 +28,10 @@ meta:
       「在academic writing的時候應該說每一個東西被介紹出來的時候，都會跟著短短的一兩句的
       literature review，然後大範圍的review才會放後面專門章節。因為漸近有效是很重要的特性，
       所以第一次就可以介紹」「這是academic writing的 axiom」
+    A4 (in the Introduction, the article's own results come after the
+    research question) was added on 2026-11-23, at the author's request, in
+    their words:
+      「在學術寫作的axiom裡面可以說通常是到引言的研究問題出來知後才會說一些自己的研究結果吧」
 
 # Primitive terms — undefined concepts that form the foundation
 primitives:
@@ -408,3 +412,128 @@ axioms:
           a word that page does not use; an article that wants that word adds
           a citation for it or marks it as its own step. (Constructed for this
           axiom, like the violation.)
+
+  - id: "A4_own_results_after_question"
+    name: "In the Introduction, the article's own results come after the research question"
+    one_liner: "Before the Introduction states the research question it gives what is known, the setting and the gap; what the article itself establishes comes after the question."
+
+    statement_natural: |
+      In a scholarly article whose Introduction states a research question
+      (an aim or a hypothesis counts as one), the sentences of the
+      Introduction that come before that statement give only three kinds of
+      thing: what is already known, with its citations; the definitions,
+      notation and setting the question needs; and what is not known, the
+      gap. A result of the article itself appears in the Introduction only
+      after the question has been stated.
+      "Own result" is a statement that the article proves, computes or finds
+      and that bears on the answer to its question. It includes a statement
+      that says or implies which way the answer goes (which of the compared
+      things is better, the sign or the size of an effect, that a conjecture
+      holds), and it includes a result that changes how the question is
+      posed (for example, that two of the procedures to be compared are the
+      same one). A result of the second kind does not go before the
+      question: the question is asked in a form that does not use it, and
+      the result follows directly after.
+      Two things are not own results for this axiom. The list is closed (no
+      third may be added because it resembles one of these):
+        (1) an illustration of the setting: a value obtained directly from
+            definitions already given and stated without saying which way
+            the answer goes ("the two reported values are 0.41 and 0.47");
+            once the sentence adds a direction ("the first is the more
+            accurate"), it is an own result;
+        (2) a roadmap pointer in the sense of A1, which says where something
+            is treated and gives no content.
+      The axiom is conditional on the Introduction stating a question. The
+      abstract is not part of the Introduction and states results first. An
+      article written to the convention in which the opening paragraph
+      states the main theorem (common in mathematics) has no question
+      sentence before that statement, and this axiom places no constraint on
+      it; an article follows one of the two conventions throughout and does
+      not mix them.
+      A1 governs what a sentence may depend on and A2 whether an element is
+      called for by what precedes it. A result placed before the question
+      can satisfy both: its terms are defined, and the sentence before it
+      leads to it. This axiom governs one order that those two do not see.
+
+    statement_formal: |
+      Let q be the first sentence of the Introduction that states the
+      research question. Let Own be the sentences of the Introduction that
+      state a result established by the article and bearing on the answer to
+      q, excluding the closed set Exempt = {illustration without direction,
+      roadmap pointer}.
+        Order:      ∀ s ∈ Own, pos(s) > pos(q).
+        Before q:   every sentence s with pos(s) < pos(q) is one of
+                    {known and cited, definition or setting, gap, Exempt}.
+        Reposing:   if r ∈ Own changes the form of the question, q is stated
+                    without r and r is the next statement after q.
+        Vacuous:    if the Introduction has no q, Order constrains nothing.
+      Independence from A1 and A2:
+        s ∈ Own with pos(s) < pos(q) can have every item it depends on
+        introduced before it (A1 holds) and can answer a question raised by
+        the sentence before it (A2 holds); Order still fails.
+      Remedy — move, do not delete:
+        move s to a position after q; where s stood, state what is known or
+        what is open, or nothing.
+
+    rationale: |
+      An answer needs its question. Before the question, a reader is
+      collecting background, and a statement met there is filed as something
+      known; it is not weighed as a claim. When it turns out later to be the
+      article's own result, the reader has to go back and reclassify it, and
+      a referee cannot tell at each sentence of the opening whose claim is
+      being read. A result stated before the question also has nothing yet
+      to answer, so the reader cannot judge what it settles. Placed after
+      the question, the same sentence is read as what the article adds. The
+      illustration is exempt because it shows the reader the situation the
+      question is about and takes no side; the moment it takes one, it has
+      begun to answer. The convention of stating the main theorem first is
+      left alone because there the statement of the theorem does the work of
+      the question, and the reader is told so by the form of the article.
+
+    violations:
+      - description: "A result that the article proves is the claim of the Introduction's second paragraph, before the question"
+        content: |
+          ¶1. Why the score of the scale matters in practice.
+          ¶2. Three scoring rules are in use: A, B and C (with their
+          sources). Rules B and C always give the same score
+          (Proposition 1), so only two rules need to be compared.
+          ¶3. What is not known about rule A on short forms.
+          ¶4. This article asks which scoring rule predicts the criterion
+          best on a form of a given length.
+        explanation: |
+          "Rules B and C always give the same score" is proved in the
+          article, and it stands in ¶2 among the things already known. The
+          reader files it with the cited background. Every term in it is
+          defined, so A1 holds, and the list of three rules does lead to it,
+          so A2 holds. (Constructed for this axiom; not quoted from a
+          manuscript.)
+      - description: "An illustration that says which way the answer goes, before the question"
+        content: |
+          ¶2. On a 12-item form a respondent answers 8 items in the keyed
+          direction. Rule A gives 0.41 and rule B gives 0.47; rule A is the
+          more accurate of the two here.
+          ¶4. This article asks which scoring rule is the more accurate on a
+          form of a given length.
+        explanation: |
+          The two values show the setting and would be exempt. The clause
+          after the semicolon gives part of the answer to a question the
+          reader meets two paragraphs later. (Constructed for this axiom.)
+
+    compliant:
+      - description: "The same material with the article's results after the question"
+        content: |
+          ¶1. Why the score of the scale matters in practice.
+          ¶2. Three scoring rules are in use: A, B and C (with their
+          sources). On a 12-item form with 8 items answered in the keyed
+          direction, rule A gives 0.41 and rule B gives 0.47.
+          ¶3. What is not known about rule A on short forms.
+          ¶4. This article asks which of these scoring rules predicts the
+          criterion best on a form of a given length. Rules B and C always
+          give the same score (Proposition 1), so two rules are compared.
+          ¶5. What the article finds.
+        explanation: |
+          Before the question the reader meets what is known, the setting
+          with an illustration that takes no side, and the gap. The question
+          is asked of the three rules, and the result that reduces them to
+          two follows it directly. (Constructed for this axiom, like the
+          violations.)
