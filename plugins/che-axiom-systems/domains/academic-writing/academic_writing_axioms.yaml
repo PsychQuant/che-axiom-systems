@@ -23,6 +23,11 @@ meta:
     which covers formatting and citation style rather than the order and
     structure of an argument. Seeded with reading-order dependence (A1).
     A2 (each element called for by what precedes it) was added on 2026-11-23.
+    A3 (each object introduced with its own literature; the broad review
+    later) was added on 2026-11-23, at the author's request, in their words:
+      「在academic writing的時候應該說每一個東西被介紹出來的時候，都會跟著短短的一兩句的
+      literature review，然後大範圍的review才會放後面專門章節。因為漸近有效是很重要的特性，
+      所以第一次就可以介紹」「這是academic writing的 axiom」
 
 # Primitive terms — undefined concepts that form the foundation
 primitives:
@@ -42,6 +47,13 @@ primitives:
       A sentence depends on an item when the reader needs that item's content
       to understand the sentence or to check it — when the item works as a
       step, a value, a premise, or the meaning of a word in the sentence.
+  - term: "Object from prior work"
+    intuition: |
+      Something the article takes from earlier literature and uses as a unit
+      of its argument: an estimator or statistic, a method or algorithm, a
+      model, a measure or instrument, a data set, or a theorem or named
+      result. Its introduction is the first place where its content is
+      supplied, as for an item.
   - term: "Forward pointer"
     intuition: |
       A sentence that refers to a place later in the article ("in Section 6",
@@ -283,3 +295,116 @@ axioms:
           it. ¶2 opens with the sentence that names how its finding settles the
           question and then gives the finding. The finding is the same; only its
           position and its first sentence change.
+
+  - id: "A3_literature_at_introduction"
+    name: "Each object is introduced with its own literature; the broad review comes later"
+    one_liner: "Where an object from prior work first appears, one or two sentences give its source and the property the article relies on; the wider review goes in a later section of its own."
+
+    statement_natural: |
+      In a scholarly article of any discipline, the place where an object
+      from prior work is first introduced also gives one or two sentences of
+      its literature: where the object comes from, and the property of it
+      that the article relies on or that the reader needs in order to judge
+      it. For an estimator that property is often its large-sample behaviour.
+      An important property is stated at this first mention, not held back to
+      a later section. The broad review — the wider history, the
+      alternatives, the debates and the comparison with related work — goes
+      in a section of its own, placed after the objects it discusses have been
+      introduced (a related-work section or the discussion).
+      "Object from prior work" is a closed list: an estimator or statistic, a
+      method or algorithm, a model, a measure or instrument, a data set, a
+      theorem or named result. Two exemptions, also closed (no third may be
+      added because it resembles one of these):
+        (1) an object the article itself defines for the first time, which
+            has no prior literature; its definition is enough;
+        (2) a basic concept taught in undergraduate courses and used in its
+            standard meaning (a mean, a variance, a likelihood).
+      The one or two sentences are claims about the literature, so each must
+      say what the cited passage states. If the source states the property in
+      other terms, the sentence uses the source's terms; a further step drawn
+      from it is either cited to a source that states it or marked as the
+      article's own.
+      A2 governs when an element may appear; this axiom governs where the
+      literature of an object goes. An object can be called for by what
+      precedes it and still arrive without its literature, and the reverse.
+
+    statement_formal: |
+      Let O be the objects from prior work used in the article, excluding the
+      closed set Exempt = {self-defined, undergraduate-standard}. For o ∈ O
+      let intro(o) be the sentence that first supplies its content (as in
+      A1), Source(o) its origin in the literature, and Key(o) the property of
+      o the article relies on.
+        Attached:   ∀ o ∈ O, one or two sentences adjacent to intro(o), in the
+                    same paragraph, state Source(o) and Key(o) with citations.
+        Key first:  the first sentence of the article that states Key(o) is
+                    one of these attached sentences.
+        Review apart: a sentence about o's literature beyond Source(o) and
+                    Key(o) (history, alternatives, debate, comparison) lies in
+                    a dedicated section R, and every object R discusses is
+                    introduced before R begins.
+        Faithful:   each attached sentence attributes to a cited passage only
+                    what that passage states; a further step has its own
+                    citation or is marked as the article's own.
+      Independence from A2:
+        A2 constrains when an element appears (after its question); A3
+        constrains where an object's literature appears (with the object).
+        Either can hold while the other fails.
+      Remedy — move, do not delete:
+        if Source(o) or Key(o) is first stated outside the attached sentences,
+        move those sentences to intro(o), leaving the wider review in R.
+
+    rationale: |
+      A reader meets an object at its introduction and judges it there: what
+      it is, where it comes from, and why it can be trusted for the role the
+      argument gives it. If the source and the key property arrive only in a
+      review section several pages later, the reader carries the object
+      without its credentials, and a property the argument relies on early
+      looks unsupported when it is first used. The reverse failure is a
+      review placed before the objects: the reader reads a history of things
+      not yet introduced, which strains A2. One or two sentences at the point
+      of introduction give the reader what is needed to follow the argument,
+      and the dedicated section keeps the wider review from interrupting the
+      argument's order. The faithfulness condition is part of the axiom
+      because a short sentence about a source invites paraphrase: compressing
+      what a paper showed into a standard property can attribute to its
+      author a word the author did not use.
+
+    violations:
+      - description: "An estimator introduced without its source; its key property first appears in a related-work section"
+        content: |
+          §2. The information-based standard error of an ability estimate is
+          1/sqrt(I(θ-hat)), where I is the test information function.
+          §3–§6 use it throughout.
+          §7, Related work. Lord (1983, p. 234), applying the theorems of
+          Bradley and Gart (1962), showed that the maximum likelihood estimator
+          is consistent and asymptotically normal with variance 1/I(θ) …
+        explanation: |
+          The property that explains why 1/sqrt(I(θ-hat)) is reported as the
+          standard error at all is the one Lord's result supplies, and the
+          reader meets it only in §7, after the comparison it underlies. At §2
+          the formula has no source and no reason. Nothing here is a forward
+          dependence in A1's sense, since no sentence of §2 leans on §7, and
+          the definition may well be called for by what precedes it (A2), so
+          the defect is this axiom's alone. (The example is constructed for
+          this axiom; it is not quoted from a manuscript.)
+
+    compliant:
+      - description: "The source and the key property attached at the introduction; the wider review kept for a later section"
+        content: |
+          §2. The information-based standard error of an ability estimate is
+          1/sqrt(I(θ-hat)), where I is the test information function. Lord
+          (1983, p. 234), applying the theorems of Bradley and Gart (1962),
+          showed that the maximum likelihood estimator is consistent and
+          asymptotically normal with variance 1/I(θ); this is why
+          1/sqrt(I(θ-hat)) is reported as its standard error.
+          §7, Related work: corrections to the information formula, Monte
+          Carlo studies of short tests, and other estimators of the standard
+          error.
+        explanation: |
+          The source and the property arrive with the formula, in two
+          sentences, and the wider literature stays in §7. The second sentence
+          says what Lord's page states — consistency and asymptotic normality
+          with variance 1/I(θ) — and not that the estimator is "efficient",
+          a word that page does not use; an article that wants that word adds
+          a citation for it or marks it as its own step. (Constructed for this
+          axiom, like the violation.)
