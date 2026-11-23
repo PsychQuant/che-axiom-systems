@@ -21,6 +21,7 @@ exposition).
 | `A2_repair_accretion` | Altitude drift under repair | Repair rounds accrete meta-level qualifications inside statements; re-check altitude after repair, and relocate rather than delete. |
 | `A3_replacement_precondition` | Re-placement requires the citation set | A statement may not be relocated until what cites it is known; references address containers, not content, and the compiler checks neither. |
 | `A4_reading_order_dependence` | Dependence runs backward in reading order | A statement may lean only on what precedes it; a pointer ahead may say where, never use what. |
+| `A5_motivated_by_prefix` | Each element is called for by what precedes it | An article is read in order, not checked item by item: a concrete example, a definition or a result arrives only after the reader holds the question it answers. |
 
 ## Theorems
 
