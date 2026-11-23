@@ -19,6 +19,7 @@ follow and check it.
 | ID | Name | One-liner |
 |----|------|-----------|
 | `A1_no_forward_dependence` | No forward dependence in any scholarly article | Rest only on items already met; a pointer ahead is a roadmap or a promissory note, nothing else. Generalizes `mathematical-writing/A4_reading_order_dependence`. |
+| `A2_motivated_by_prefix` | Each element of a scholarly article is called for by what precedes it | An example, a definition, a finding or a quotation arrives only after the reader holds the question it answers. Generalizes `mathematical-writing/A5_motivated_by_prefix`. |
 
 ## Provenance
 
@@ -32,7 +33,8 @@ violation and compliant examples are the before and after of that fix.
 
 ## Growth path
 
-Seeded with reading-order dependence (A1). Further axioms of article craft
+Seeded with reading-order dependence (A1); A2 (each element called for by what
+precedes it) was added on 2026-11-23 at the author's request. Further axioms of article craft
 belong here when they hold across disciplines; axioms specific to formal
 mathematical exposition stay in `mathematical-writing`.
 

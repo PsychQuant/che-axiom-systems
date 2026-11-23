@@ -395,6 +395,98 @@ axioms:
           move was made after listing what cited the moved statement (A3).
           (Same manuscript, commit 3840bee.)
 
+  - id: "A5_motivated_by_prefix"
+    name: "Each element is called for by what precedes it"
+    one_liner: "An article is read in order, not checked item by item: a concrete example, a definition or a result arrives only after the reader holds the question it answers."
+
+    statement_natural: |
+      A manuscript is read in sequence, so being correct is not enough: each
+      element must also be called for by what the reader has already read. When
+      the reader reaches a concrete example, a definition, a notation or a
+      result, the preceding text must already have raised the question it
+      answers or the need it meets. An element that arrives before its question
+      breaks the flow even when every number in it is right and it depends on
+      nothing later: the reader has to hold it without knowing what it is for,
+      and to reconstruct afterwards why it was there. Concrete examples are the
+      commonest case, because an example is the answer to "does this matter?" or
+      "what does this look like?", and that question has to be asked first. The
+      remedy is to reorder, or to write the transition that raises the question:
+      state the choice, the claim or the gap, then bring the element in as the
+      answer, saying in the sentence that introduces it which question it
+      answers. A4 governs what an element may use; this axiom governs when it
+      may appear. An element can satisfy either one and still violate the other.
+
+    statement_formal: |
+      Let S_1, …, S_N be the document in reading order, let E ⊆ {1, …, N} be
+      the positions of its elements (concrete examples, definitions,
+      notations and results; a sentence that raises a question, a transition
+      or a statement of the setting is not an element), and for i ∈ E let
+      Q(S_i) be the question or need S_i answers: for an example, the claim it illustrates or
+      the doubt it settles; for a definition or notation, the object the next
+      statements must name; for a result, the question it settles.
+        Motivated:   ∀ i ∈ E,  ∃ j < i  such that S_j raises Q(S_i)
+                     (S_j states the choice, claim or gap that Q(S_i) names)
+        Announced:   ∀ i ∈ E,  S_i itself, or the sentence just before it in
+                     the same paragraph, names Q(S_i); or S_i immediately
+                     follows the S_j that raises it.
+      Independence from A4:
+        A4 constrains Uses(S_i) (content invoked);  A5 constrains Q(S_i)
+        (purpose served). An S_i with Uses(S_i) ⊆ {S_j : j < i} can still
+        violate A5, and an S_i whose question is raised beforehand can still
+        violate A4.
+      Remedy — reorder or write the transition, do not delete:
+        if no j < i raises Q(S_i), then
+        either  move S_i after the S_j that raises Q(S_i),
+        or      insert before S_i a sentence that raises Q(S_i),
+      subject to A3 when anything moves.
+
+    rationale: |
+      The author knows why each element is there, so an element that comes too
+      early looks fine to the author: it is correct, it depends on nothing later
+      (A4 passes), and its purpose becomes clear a page later. The reader, who
+      holds only the prefix, meets the element without its purpose and has to
+      park it. Item-by-item checks (is this true, is this cited, does this
+      depend on later material) cannot see the defect, because the defect is a
+      property of the sequence, not of any item. That is why it needs its own
+      axiom rather than a clause of A4. The remedy is reordering or a
+      transition rather than deletion, because the element is usually worth
+      having: a concrete example is often what makes the abstract claim
+      believable, and it does that best right after the claim is made.
+
+    violations:
+      - description: "A worked example opens the section before the reader knows what question it answers"
+        content: |
+          ¶1. Consider n = 10 independent draws whose squared deviations from
+          the sample mean sum to 36. Dividing by n gives 3.6; dividing by n − 1
+          gives 4.0.
+          ¶2. The first is the maximum-likelihood estimate of the variance
+          under a normal model; the second is unbiased. …
+        explanation: |
+          ¶1 opens the section on a specific sample of ten draws and a sum of
+          36 before the reader knows there is a choice between two divisors,
+          so the reader has no reason yet to care about these numbers. The
+          estimators the numbers belong to are named only in ¶2, so the
+          example carries the setting instead of answering a question the
+          setting raised. Every number is correct and nothing
+          depends on later material: A4 is satisfied and the passage still
+          breaks the flow. (The example is constructed for this axiom; it is
+          not taken from a manuscript.)
+
+    compliant:
+      - description: "The choice and the question come first; the example arrives as the answer to 'does the choice matter?'"
+        content: |
+          ¶1. The sum of squared deviations can be divided by n, for the
+          maximum-likelihood estimate of the variance under a normal model, or
+          by n − 1, for an unbiased one. For large n the choice hardly matters;
+          for small n it might.
+          ¶2. For ten draws it already does: with squared deviations summing
+          to 36, the two divisors give 3.6 and 4.0.
+        explanation: |
+          ¶1 states the choice and raises the question (does it matter for
+          small n?). ¶2 opens with the clause that answers that question and
+          then gives the numbers. The example is the same, and so are its numbers; only its
+          position and its first sentence change.
+
 theorems:
   - id: "T1_negative_space_is_meta"
     name: "Claims about what a hypothesis does not give are meta-level"

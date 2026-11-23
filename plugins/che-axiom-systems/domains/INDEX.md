@@ -5,7 +5,7 @@
 | Domain | Parent | 描述 | Format | Maturity | Entry point |
 |--------|--------|------|--------|----------|-------------|
 | `academic-presentation` | — | 學術會議報告（投影片＋講稿）的建構與交付公理 | yaml | bootstrapped | `CLAUDE.md` |
-| `academic-writing` | — | 學術論文寫作（任何學科的同儕讀者文章：論證的順序與結構；不前向依賴） | yaml | bootstrapped | `academic_writing_axioms.yaml` |
+| `academic-writing` | — | 學術論文寫作（任何學科的同儕讀者文章：論證的順序與結構；不前向依賴；每個元素由前文引出） | yaml | bootstrapped | `academic_writing_axioms.yaml` |
 | `apa7-style` | — | APA 第七版寫作與引用格式規範 | yaml | bootstrapped | `CLAUDE.md` |
 | `asbe` | — | ASBE 方法論自身的公理化（self-bootstrap） | yaml | bootstrapped | `asbe_axioms_bootstrapped.yaml` |
 | `decision-making` | — | 決策理論：效用、偏好與悖論 | markdown | legacy | `axiomatization_of_decision_making.md` |
@@ -16,7 +16,7 @@
 | `mathematical-education` | — | 數學教育：學習與教學兩個子領域的範圍與引用規則（父領域，不放公理） | markdown | legacy | `README.md` |
 | `mathematical-learning` | `mathematical-education` | 數學學習：能力依賴與機率模型 | markdown | legacy | `axiomatization_of_mathematical_learning.md` |
 | `mathematical-teaching` | `mathematical-education` | 數學教學：一堂課怎麼排、從哪裡開始 | yaml | bootstrapped | `mathematical_teaching_axioms.yaml` |
-| `mathematical-writing` | — | 數學寫作（statement placement、修訂中的高度漂移、重置的引用前提、引用只向後） | yaml | bootstrapped | `mathematical_writing_axioms.yaml` |
+| `mathematical-writing` | — | 數學寫作（statement placement、修訂中的高度漂移、重置的引用前提、引用只向後、每個元素由前文引出） | yaml | bootstrapped | `mathematical_writing_axioms.yaml` |
 | `musical-composition` | — | 音樂作曲與理論（日文） | freeform | legacy | `音楽作曲と理論の公理化.md` |
 | `note-writing` | — | 筆記寫作原則 | markdown | legacy | `README.md` |
 | `philosophy` | — | 哲學隨筆：他者作為起點 | freeform | legacy | `My Essey/…批判與重構.md` |
