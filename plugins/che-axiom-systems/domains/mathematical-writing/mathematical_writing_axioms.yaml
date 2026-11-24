@@ -489,289 +489,94 @@ axioms:
 
   - id: "A6_prior_result_attribution"
     name: "A result already in the literature is cited, not claimed as new"
-    one_liner: "Before a result is presented as the manuscript's own, the literature is searched for it; a source that already proves the result, proves a part of it, is a short step from it, or states it without proof is cited at the statement with what it has, and the manuscript claims only what goes beyond it."
+    one_liner: "Before a result is presented as the manuscript's own, the literature is searched for it; a source that has the result, a part of it, a short step to it, or a statement of it without proof is cited at the statement with what it has; the manuscript claims only what goes beyond every source found, and never cites an unproved source in place of a proof."
 
     statement_natural: |
       A result the author has derived looks new to the author, whether or not
-      it is. So before a manuscript presents a result as its own, the author
-      searches the literature for it, compares what is found with the result,
-      and writes the outcome at the result.
+      it is. Five duties follow.
 
-      Terms. The manuscript's result has settings (the models, parameter
-      values and assumptions under which it is asserted) and a conclusion.
-      A source is any citable work: an article, a book, a thesis, a preprint
-      or a report. A published result is a statement that a source proves;
-      what a source derives formally or heuristically, conjectures, or shows
-      numerically, or asserts without proof is not a published result and
-      falls under (P4) below. The unit that gets a case is one published
-      result, or one such unproved item: a source that contains several is
-      compared item by item. Several published results may also be compared
-      together; putting them side by side with "and" is not a step, while
-      chaining them is a further argument. When a set compared together
-      gives (K), that is the case of the manuscript's result, and it
-      replaces the kinds found for the members one by one; each member is
-      still cited.
+      (1) Search. Before a result is presented as the manuscript's own, that
+      is, stated without attribution, listed as a contribution, or called
+      new, the author looks for it in three places at least: the standard
+      textbooks, monographs and surveys of the field, in their sections on
+      the topic; the works the manuscript cites on the topic, and the
+      sources those works give; one bibliographic index that also lists
+      preprints, queried by the names the result would go under and by the
+      distinctive terms of its statement, and then over the works that cite
+      the closest source found. The author keeps a note of what was searched
+      (the works, the index, the queries, the date). The note is not part of
+      the manuscript. A statement that no earlier source exists is worded as
+      the author's knowledge ("to our knowledge"), because a search does not
+      establish absence.
 
-      Comparison. A published result is compared with the manuscript's result
-      after an explicit translation: the map of notation, units, scale and
-      parametrization under which the two are stated in the same terms. A
-      translation renames and rescales; it uses no theorem. Carrying a limit
-      law or an expansion through a nonlinear change of parameter uses the
-      delta method and is a further argument. A statement follows
-      immediately from a published result when it is
-      obtained from the translated result by steps of four kinds only (a
-      closed list). Anything else, however short, is a further argument:
-      applying another theorem or inequality, summing or integrating,
-      differentiating, taking a limit, algebra that cannot be reversed.
-        (d1) choosing values of its parameters and evaluating its
-             expressions at them;
-        (d2) restricting its model or its assumptions to a special case;
-        (d3) rearranging its conclusion by reversible algebra (solving for a
-             quantity, multiplying by a nonzero known factor, taking a root
-             or a logarithm of positive quantities);
-        (d4) weakening its conclusion in one of nine ways (a closed
-             list of standard weakenings, used without proof): from several
-             assertions to one of them; from joint convergence to marginal
-             convergence; from convergence with an error of a stated order
-             to convergence; from a limit law at a scale r_n that diverges
-             to an error of order 1/r_n in probability and to convergence
-             in probability; from almost sure convergence to convergence in
-             probability, and from that to convergence in distribution;
-             from convergence in mean of order p to convergence in
-             probability; from an expansion to its leading terms; from an
-             exact value to a bound; from a bound or an error order to a
-             larger one.
-      The check that the manuscript's setting satisfies the published
-      assumptions is not a step. It may use the manuscript's own lemmas and
-      may be long; the case is decided by the steps, not by the check.
-      What follows from what is judged on the statements, not on how their
-      assumptions are worded or listed.
+      (2) Compare. A source is compared with the manuscript's result after
+      the two are put in the same terms: notation, units, scale,
+      parametrization. A source is related to the result when, so compared,
+      it has the result; or a part of it (a special case, one of several
+      assertions, a weaker conclusion); or a statement from which the result
+      follows by an argument the author can write in a paragraph; or the
+      statement, or the formula the result is about, without a proof of it
+      (a conjecture, an assertion, a formal or heuristic derivation,
+      numerical evidence, or a proof for a different quantity with the same
+      expression). When it is unclear whether a source is related, it is
+      treated as related.
 
-      The cases. For each published result or unproved item, and for each
-      set compared together, they are tested in this order and the first
-      that holds is the case, so exactly one holds.
-        (K) Known. The manuscript's result follows immediately from the
-            published result. An identical result is the case in which no
-            step is needed.
-        (P) Partly known. (K) fails and one of four kinds holds (a closed
-            list; "similar" is not a fifth). The kinds are also tested in
-            order, and the first that holds is the kind.
-            (P1) A case. The published result immediately gives the
-                 manuscript's result on some, but not all, of its settings.
-                 A published special case is of this kind, and so is a
-                 published result with the same or a stronger conclusion
-                 under assumptions that overlap the manuscript's without
-                 covering them.
-            (P2) A weaker form. On all or some of the settings, the
-                 published result immediately gives a statement to which
-                 the manuscript's conclusion weakens by (d4): one of its
-                 assertions, its leading term, a bound or an error order it
-                 sharpens, convergence where it gives an error order or a
-                 limit law.
-            (P3) A short step. The manuscript's result is obtained from the
-                 published conclusion, or from several published
-                 conclusions together, by a further argument short enough
-                 to be written out in one paragraph. This is judged on
-                 whether the author knows such an argument, not on how the
-                 manuscript's own proof goes. When it is unclear whether
-                 one paragraph suffices, (P3) is taken to hold.
-            (P4) Stated, not proved. The source contains, without a
-                 proof of it, the manuscript's statement or a statement
-                 that would give (K), (P1) or (P2) if the source proved it
-                 (a case, a weaker form or a stronger form of the
-                 manuscript's statement); or it contains the formula,
-                 expression or procedure that the result is about, or a
-                 general one from which it is obtained by (d1) to (d3).
-                 What the source gives is not a proof of the manuscript's
-                 statement: a
-                 conjecture, an assertion without proof, a formal or
-                 heuristic derivation, an expansion with no control of its
-                 remainder, numerical evidence, or a proof for a different
-                 quantity that has the same expression. A different
-                 quantity is one defined differently, even when the two are
-                 related: the variance of a limit law and the limit of a
-                 variance, or the same estimator under another model.
-        (U) Unrelated. Neither (K) nor (P) holds. The source is then not
-            presented as a source of the result. It may be discussed as
-            related work. A published result that the manuscript's proof
-            uses at one of its steps, with (P3) failing, is in this case:
-            it is cited at that step, as any tool is.
-      One rule holds whatever the case. When the author suspects that a
-      short argument leads from a published result to the manuscript's
-      result and has not found one, the source is cited at the statement as
-      closely related, and the manuscript says that the step from it was
-      not found.
+      (3) Cite at the statement. For each related source the manuscript
+      gives, in the sentence that introduces the result or in a remark after
+      it, and not in the body of a theorem-like environment (A1): the
+      citation with a locator (theorem, equation or page); what the source
+      has, in plain words; how the source's terms map onto the manuscript's,
+      when they differ; and what the manuscript adds. The citation alone may
+      also stand in the heading of the environment. What the abstract and
+      the list of contributions say about the result agrees with this.
 
-      What the manuscript writes. Under (K) and (P) it writes four things:
-        (w1) the citation, with a locator (theorem, equation or page);
-        (w2) the case and the kind, said in the manuscript's own words
-             ("is known", "is the case ... of", "the first assertion is due
-             to", "follows from ... by", "the formula appears in ... as a
-             formal expansion"); the labels K and P1 to P4 belong to this
-             axiom, not to the manuscript;
-        (w3) the translation, when the two are not stated in the same terms;
-        (w4) under (K), the steps that give the result, with the check that
-             the manuscript's setting satisfies the published assumptions;
-             under (P), what the source has and what the manuscript adds.
-      (w1) may stand in the heading of the theorem-like environment, as in
-      "Theorem 2 ([source], Theorem 3)". (w2) to (w4) stand in the sentence
-      that introduces the environment or in a remark after it, not in its
-      body: an attribution is not part of the mathematical statement (A1).
-      A check or a translation too long for that place stands in a section
-      or an appendix, and the sentence or remark points to it. A result
-      stated in running text carries them in the same paragraph.
-      What the abstract and the list of contributions say about the result
-      agrees with them. Written before the environment, (w4) says where the
-      statement that follows stands in the literature and uses nothing from
-      it, so the condition of A4 is met. If applying this axiom moves or
-      renumbers a statement, A3 applies.
+      (4) Claim only what is beyond the sources. What the manuscript claims
+      as new about a result is what goes beyond every related source. A
+      result that a source proves is attributed to it and is not among the
+      contributions. Neither is what follows from a proved source by a
+      paragraph of argument: the manuscript writes that argument out and
+      claims no more than the step. A new proof of a known result may be
+      claimed, as a proof. A result that the author knows to be in standard
+      use in the field, and for which no proof is found in print, is said to
+      be well known and is not claimed as new.
 
-      What may be claimed, and what is proved.
-        Under (K) the result is attributed to the source and is not among
-        the manuscript's contributions. It may stay in a numbered
-        environment or be stated in the text. Its proof may be omitted;
-        (w4) then stands in its place. A proof that is kept, for
-        self-containedness or because the proof is new, is labelled as a
-        proof of a known result; a new proof may be claimed as a
-        contribution under that name only. When the check of assumptions
-        needs results of its own, those are results of the manuscript and
-        are claimed as what they are: the verification that the published
-        result applies in the manuscript's setting. (w2) then reads
-        "follows from ..., once its assumptions are verified", not "is
-        known".
-        Under (P1) and (P2) the published part may be cited instead of
-        proved, with the same check of assumptions; the manuscript proves
-        what the published part does not give and claims only that. When
-        the published form is a weakening of the whole conclusion, that is
-        the whole result as stated, and what is claimed is what the result
-        asserts beyond the published form.
-        Under (P3) the manuscript writes out the short argument from the
-        published conclusion, with the same check of assumptions, so that
-        the reader sees that the result is one step from the source. It may
-        keep its own independent proof beside that argument. What it claims
-        is the step, or the alternative proof as a proof, not the result as
-        new.
-        Under (P4) that source is not cited in place of a proof. The
-        statement or the formula is attributed to it. When no other source
-        proves the statement, the manuscript proves it in full and claims
-        the proof: the statement as a proved one, and the statement itself
-        where the source has only the formula.
-      When several units bear on one result, each is written up in this
-      way, and the duties combine. For claims: the manuscript claims as new
-      only what goes beyond all of them. For proofs: a part of the result
-      may be cited in place of proving it when some unit with case (K), or
-      kind (P1) or (P2), proves that part, and the manuscript proves what
-      no such unit proves. When some unit gives (K), the short argument of
-      (P3) need not be written out.
-
-      The search. It is the author's duty. It is done before a result is
-      presented as the manuscript's own: stated without attribution in a
-      theorem-like environment or in the text as a result the manuscript
-      derives, listed as a contribution, or called new anywhere. The minimum is these three things (more may
-      be done):
-        (s1) the textbooks, monographs and surveys that the author would
-             name as the standard references of the field, whether or not
-             the manuscript cites them yet: their chapters or sections on
-             the topic, found from the contents and the index; the note
-             below names the works and the sections;
-        (s2) the works the manuscript cites on the topic, and the source
-             each of them gives for each ingredient of the result, one
-             level back;
-        (s3) one bibliographic index that also lists preprints and theses,
-             or one index and one preprint server, queried by the names
-             under which the result would be known and by the distinctive
-             terms of its statement, over all works and then over the works
-             that cite the closest source found in (s1) and (s2); for each
-             query the first page of results is read by title and abstract.
-      For an auxiliary lemma that the manuscript does not list as a
-      contribution, (s1) and (s2) are enough. The author keeps a note of
-      what was searched (the works, the index, the queries, the date). The
-      note is not part of the manuscript; it is what shows that the duty
-      was met, and the duty is met when the three things are done and
-      noted. When the search finds nothing, the
-      manuscript may present the result as its own, and a statement that no
-      earlier source exists is worded as the author's knowledge ("to our
-      knowledge"), because a search does not establish absence. A result
-      that the author knows to be in standard use in the field is said to
-      be well known when the search finds no source that proves it. A
-      source that states it without proof is cited; when there is none, the
-      manuscript remarks that no reference was found. The result is not
-      claimed as new, and neither is its proof; a proof may be given for
-      the record. This takes precedence over the claim allowed under (P4).
+      (5) Never cite an unproved source in place of a proof. What a source
+      proves may be cited instead of proved, with a check that the
+      manuscript's setting satisfies the source's assumptions. What a source
+      only states, derives formally or supports numerically is attributed to
+      it and is still proved in the manuscript, unless another source proves
+      it.
 
     statement_formal: |
-      Let R be a result of manuscript M, with settings Set(R) and conclusion
-      Concl(R). Let R' be a published result (a statement proved in a
-      source), or the conjunction of finitely many, and τ the translation of
-      R' into the terms of M. Let F be an item in a source that is not a
-      published result (a conjecture, an assertion without proof, a formal
-      derivation, numerical evidence). The case is assigned to each R', each
-      F and each set of results compared together; K for a set replaces the
-      kinds of its members.
-        τ(R') ⊢ S   ⇔  S is obtained from τ(R') by steps (d1)–(d4) only.
-        K(R, R')    ⇔  τ(R') ⊢ R.
-        P1(R, R')   ⇔  ∃ A, ∅ ≠ A ⊊ Set(R):  τ(R') ⊢ R restricted to A.
-        P2(R, R')   ⇔  ∃ A, ∅ ≠ A ⊆ Set(R), ∃ W ≠ Concl(R):  Concl(R)
-                        weakens to W by (d4), and τ(R') ⊢ W on A.
-        P3(R, R')   ⇔  the author knows an argument of at most one
-                        paragraph from Concl(τ(R')) to R that is not a chain
-                        of (d1)–(d4); unclear whether one paragraph suffices
-                        ⇒ P3.
-        P4(R, X)    ⇔  X ∈ {R', F}, and X is F or is a proved statement
-                        about a different quantity, and X contains the
-                        statement of R, or a statement that would give K, P1
-                        or P2 if X proved it, or the formula, expression or
-                        procedure that R is about, or one that gives it by
-                        (d1)–(d3).
-        case        =  K if K;  else P with kind the first of P1, P2, P3, P4
-                        that holds;  else U.
-      Exactly one case, and under P exactly one kind, holds for each unit,
-      by construction. A further argument is any derivation that is not a
-      chain of (d1)–(d4). The check Setting(M) ⊨ Hyp(R') is not a step. τ
-      renames and rescales and uses no theorem.
-      Suspected:    in every case, if the author suspects an argument of at
-                    most one paragraph from Concl(τ(R')) to R and knows
-                    none, M cites R' at the statement as closely related and
-                    says that the step was not found.
-      Search:       ∀ R that M states without attribution in a theorem-like
-                    environment or in the text as a result it derives, lists
-                    as a contribution or calls new:
-                    before R is so presented the author has done (s1)–(s3)
-                    ((s1)–(s2) for an auxiliary lemma not listed as a
-                    contribution) and keeps the note of it.
-      Nothing found: M may present R as its own; "no earlier source" is
-                    stated only as the author's knowledge. In standard
-                    use and proved in no source found  ⇒  M says that R is
-                    well known, cites a source that states it if there is
-                    one, and neither R nor its proof ∈ Contributions(M);
-                    this overrides the claim under P4.
-      Writing:      K ∨ P  ⇒  M gives (w1) in the heading of the environment
-                    or beside it, and (w2)–(w4) beside it, outside its body.
-      Attribution:  K  ⇒  M attributes R to R'  and  R ∉ Contributions(M);
-                          a new proof of R may be in Contributions(M) as a
-                          proof of a known result.
-                    P4 ⇒  M attributes the statement or the formula to X.
-      Proof:        K   ⇒  M may omit the proof of R, and (w4) stands in its
-                           place; a proof that is kept is labelled as a
-                           proof of a known result.
-                    P1, P2  ⇒  M may cite the published part in place of
-                           proving it, with the check of assumptions.
-                    P3  ⇒  M gives the short argument from Concl(R'), with
-                           the check of assumptions, unless some unit gives
-                           K; it may keep an independent proof beside it.
-                    P4  ⇒  X is not cited in place of a proof.
-                    all units together  ⇒  M proves every part of R that no
-                           unit with K, P1 or P2 proves.
-      Novelty:      what M claims as new about R  ⊆  ⋂ New(R, X) over all
-                    sources with K or P, where New(R, X) is: nothing under
-                    K, apart from results of M used in the check of
-                    assumptions; R outside the published part under P1 and
-                    P2; the step, or an alternative proof as a proof, under
-                    P3; under P4 the proof, and the statement where X has
-                    only the formula.
-      Closure:      U  ⇒  X is not presented as a source of R; it may be
-                          discussed as related work; a result used at a step
-                          of the proof is cited at that step.
+      Let R be a result of manuscript M and X a source; τ puts X in the
+      terms of M.
+        Related(R, X)  ⇔  after τ, X has R, or a part of R, or a statement
+                          from which R follows by an argument of at most one
+                          paragraph known to the author, or the statement or
+                          the formula of R without a proof of it.
+                          Unclear  ⇒  Related.
+        Proves(X, S)   ⇔  X contains a proof of the statement S.
+      Search:    ∀ R that M states without attribution, lists as a
+                 contribution or calls new: before that, the author has
+                 searched the standard references, the cited works and
+                 their sources, and one index that lists preprints, and
+                 keeps a note of it. "No earlier source" is stated only as
+                 the author's knowledge.
+      Citing:    Related(R, X)  ⇒  at the statement of R and outside the
+                 body of its environment, M gives the citation with a
+                 locator, what X has, τ when the terms differ, and what M
+                 adds; the abstract and the list of contributions agree.
+      Novelty:   what M claims as new about R  ⊆  what R asserts beyond
+                 every X with Related(R, X). If some X proves R, R is
+                 attributed to X and R ∉ Contributions(M). If R follows from
+                 what X proves by an argument of at most one paragraph, M
+                 writes that argument out and claims the step only. A new
+                 proof may be in Contributions(M) as a proof. A result in
+                 standard use with no proof found in print is called well
+                 known and R ∉ Contributions(M).
+      Proof:     M may cite X in place of proving S only if Proves(X, S) and
+                 M checks that its setting satisfies the assumptions of X.
+                 ¬Proves(X, S) for every X found  ⇒  M proves S.
 
     rationale: |
       The order of work produces the defect. The author derives first and
@@ -779,40 +584,38 @@ axioms:
       feels like a discovery. A referee who knows the literature then finds a
       known result presented as a contribution and reads the rest of the
       manuscript with less trust; meanwhile the part that is new is buried
-      among results that are not. Citing costs the author little: under (K)
-      the check of assumptions can replace a proof, the pages go to what is
-      new, and the reader is told how the manuscript's notation maps onto
-      the literature's, which is what makes the two comparable. The cases
-      and the kinds are tested in a fixed order because "similar" is a
-      judgment made by feel, and the feel is wrong in both directions: it
-      lets an author skip a result that is the same in other notation, and
-      it lets an author cite a neighbouring paper as if it carried the
-      result. Immediate derivation is defined by its steps because the
-      alternative, comparing how the assumptions are listed, lets one pair
-      of results fit two cases with opposite duties. (P3) is judged on
-      whether the author knows a short argument, not on the manuscript's
-      proof,
+      among results that are not. Citing costs the author little: when a
+      source proves the result, the check of its assumptions can replace a
+      proof, the pages go to what is new, and the reader is told how the
+      manuscript's notation maps onto the literature's, which is what makes
+      the two comparable. The short step is judged on whether the author
+      knows such an argument, not on how the manuscript's own proof goes,
       because the author who has not seen the source proves the result
-      independently, and that is the case this axiom is for. What may be
-      cited in place of a proof differs by kind because a formal derivation
+      independently, and that is the situation this axiom is for. An
+      unproved source is never cited as a proof because a formal derivation
       or a conjecture proves nothing. The search has a stated minimum and a
       note because without them the duty can never be shown to have been
       met.
+      The test of "related" is left open on purpose and only in one
+      direction: doubt is resolved towards citing. Citing a source that
+      turns out to be a neighbour costs a sentence; not citing one that has
+      the result costs the manuscript its credit.
       Occasion (2026-11-24): a coefficient that an author had derived, and
       proved as part of a lemma, was found by a literature sweep run after
       drafting to be the value, at the manuscript's model, of a term in a
       general expansion published more than a decade earlier. The published
       expansion is a formal one, for a related quantity; the lemma is a
-      statement with a controlled remainder. That is kind (P4): the formula
-      is attributed, and the lemma is claimed as a proved statement. The
-      sweep was run
-      because the author asked whether anything had been missed, not
-      because the workflow required it. An earlier draft of this axiom
-      listed four relations (same, more general, special case, same
-      conclusion under different assumptions); an independent reading
-      showed that an identical result fitted three of them, that one pair
-      could fit two with opposite duties, and that the occasion itself
-      fitted none.
+      statement with a controlled remainder. So the formula is attributed
+      to the source, the lemma is still proved, and what is claimed is the
+      proved statement. The sweep was run because the author asked whether
+      anything had been missed, not because the workflow required it.
+      History of the text: five earlier drafts sorted every pair of results
+      into ordered cases (known; partly known, of four kinds; unrelated),
+      with closed lists of the steps and weakenings that count as immediate.
+      Five independent readings each found a defect at the edge of one of
+      those lists, and each repair lengthened the text. The duties above
+      are the part that every reading left standing. The cases survive only
+      as the examples below, which illustrate and do not define.
 
     violations:
       - description: "A textbook result is stated as the manuscript's own and proved from scratch"
@@ -823,32 +626,31 @@ axioms:
           Proof. (One page.) …
           In Section 6 we list Proposition 1 among our contributions.
         explanation: |
-          Proposition 1 is the delta method. Against a textbook statement
-          that covers it, it is case (K). The manuscript gives no citation,
-          proves it in full with no label, and counts it as a contribution.
-          A reader who knows the result now doubts the other items on that
+          Proposition 1 is the delta method, which textbooks prove. The
+          manuscript gives no citation, proves it in full with no label, and
+          counts it as a contribution: duties (3) and (4) are both broken. A
+          reader who knows the result now doubts the other items on that
           list. (The example is constructed for this axiom; it is not taken
           from a manuscript.)
 
     compliant:
-      - description: "Case (K): the known result keeps its number, is attributed in the heading, and the check of assumptions replaces the proof"
+      - description: "A source proves the result: it is attributed, and the check of assumptions replaces the proof"
         content: |
-          Proposition 1 is known: it is the delta method, in the case of a
-          real-valued map and the rate √n. Its assumptions hold in our
-          setting, since g is differentiable at θ and √n (T_n − θ) converges
-          in distribution to N(0, σ²) by Lemma 2. We state it for reference
-          and do not repeat the proof.
+          Proposition 1 follows from the delta method ([textbook], Theorem
+          [number]) for a real-valued map: g is differentiable at θ, and
+          √n (T_n − θ) converges in distribution to N(0, σ²) by Lemma 2. We
+          state it for reference and do not repeat the proof.
           Proposition 1 ([textbook], Theorem [number]). √n (g(T_n) − g(θ))
           converges in distribution to N(0, g′(θ)² σ²).
         explanation: |
-          (w1) is in the heading; the bracketed reference stands for
-          whichever textbook the manuscript uses, because the example is
-          constructed. (w2) "is known ... in the case of". (w3) is not
-          needed: the two are stated in the same terms. (w4) the steps are
-          (d1), the rate, and (d2), the real-valued map, and the assumptions
-          are checked against Lemma 2. The proposition keeps its number, has
-          no proof, and is not among the manuscript's contributions.
-      - description: "Kind (P2): the published weaker form is named and what the manuscript adds is stated before the theorem"
+          The citation with its locator is given before the proposition and
+          in its heading; the bracketed reference stands for whichever
+          textbook the manuscript uses, because the example is constructed.
+          The sentence says what the source has (the delta method) and
+          checks its assumptions in the manuscript's setting. The
+          proposition has no proof and is not among the contributions.
+          Lemma 2 is the manuscript's own and is claimed as what it is.
+      - description: "A source proves a weaker form: it is named, and what the manuscript adds is said before the theorem"
         content: |
           Convergence of the estimator to θ in probability under (A1) and
           (A2) is known ([source], Theorem [number]). Theorem 1 adds the
@@ -856,16 +658,33 @@ axioms:
           Theorem 1. Under (A1), (A2) and (A3), √n (θ̂_n − θ) converges in
           distribution to N(0, v(θ)).
         explanation: |
-          The source gives convergence in probability under (A1) to (A3) by
-          step (d2). The conclusion of Theorem 1 weakens to it by (d4), from
-          a limit law at the scale √n to convergence in probability, so the
-          kind is (P2); (K) and
-          (P1) fail because the source gives the limit law on no setting.
-          The sentences before the theorem carry the citation, the kind
-          ("is known ... Theorem 1 adds") and what is added; no translation
-          is needed. Theorem 1 is proved in full, and its contribution is
-          the rate and the limit law, not the convergence. (The example is
-          constructed for this axiom.)
+          The sentences before the theorem carry the citation, what the
+          source has and what is added; no map of terms is needed. Theorem 1
+          is proved in full, and its contribution is the rate and the limit
+          law, not the convergence.
+      - description: "The result is a short step from a source: the step is written out and nothing more is claimed"
+        content: |
+          By [source] (Theorem [number]), E|X_n|² ≤ C/n. Chebyshev's
+          inequality then gives X_n = O_p(n^{-1/2}); we record this as
+          Lemma 3 for later use.
+        explanation: |
+          The rate in probability is one line from a published moment
+          bound. The manuscript writes the line, cites the bound at the
+          statement, and does not list Lemma 3 as a contribution, even if
+          its author first proved the rate another way.
+      - description: "A source has the formula without a proof: the formula is attributed, and the statement is proved"
+        content: |
+          The coefficient c in Lemma 4 is the value, in our model, of a term
+          of the formal expansion in [source] (Eq. [number]), where n is our
+          J. That expansion is stated without a bound on its remainder.
+          Lemma 4 gives the bound, and we prove it in Appendix B.
+        explanation: |
+          The source is cited at the statement with what it has (the term,
+          in a formal expansion) and with the map of terms (its n is the
+          manuscript's J). The source proves nothing about the remainder, so
+          it is not cited in place of a proof. What is claimed is the proved
+          statement, not the formula. (All four examples are constructed for
+          this axiom.)
 
 theorems:
   - id: "T1_negative_space_is_meta"
