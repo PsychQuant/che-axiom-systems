@@ -27,11 +27,12 @@ Skill(skill="che-axiom-systems:axiom-based", args="mathematical-writing: <查詢
 | `A3_replacement_precondition` | 搬動之前必須先知道引用集；引用定址容器而非內容，編譯器兩者都不檢查 |
 | `A4_reading_order_dependence` | 陳述只能依賴前文；往後指只能說「在哪」、不能用「什麼」；修法是重排不是刪除（任何學科論文的推廣版：`academic-writing` 的 `A1_no_forward_dependence`）|
 | `A5_motivated_by_prefix` | 文章依序閱讀，不只是對錯：例子、定義、結果要在讀者已經有它回答的問題之後才出現；突然冒出的例子會破壞 flow，修法是重排或補承接句（A4 管用什麼、A5 管何時出現；任何學科論文的推廣版：`academic-writing` 的 `A2_motivated_by_prefix`）|
+| `A6_prior_result_attribution` | 五項義務：(1) 把結果寫成自己的之前先查文獻（教科書與綜述談這個題目的章節、已引用的文獻與其來源、一個也收預印本的書目索引），並留下查了什麼的紀錄；(2) 把來源換成本文的符號再比，拿不準算不算相關時當作相關；(3) 來源有這個結果、它的一部分、離它只差一段論證、或只陳述而沒有證明，就在陳述處引用並附定位，寫明對方有什麼、符號怎麼對應、本文加了什麼；(4) 只把超出全部來源的部分寫成新的，已被證明的結果與只差一段論證的結果都不列為貢獻；(5) 沒有證明的來源不能拿來代替證明 |
 | `T1_negative_space_is_meta` | 「這條假設不給什麼」的主語是假設，故為 meta-level，連它的反例見證也進 remark |
 
 ### 涵蓋（數字由 CI 重算，勿手改）
 
-- `mathematical_writing_axioms.yaml` · id · 篩選 `-` — 共 **6** 條，上表 **6** 條，未列 **0** 條
+- `mathematical_writing_axioms.yaml` · id · 篩選 `-` — 共 **7** 條，上表 **7** 條，未列 **0** 條
 
 每行的意思：`路徑` · 條目層級（`id`／`h2`–`h4`）· 篩選正規式（`-` ＝不篩）— 該檔符合條件的條目**共** N 條、**上表**列 M 條、**未列** N−M 條。`.github/workflows/validate.yml` 會重算這三個數並比對：**刪掉表中一列、少算一條、或把某列歸給錯的檔案，都會紅燈**。手寫的計數與省略清單已從下段移除——#29 的 R2 與 R3 各在那裡寫錯過一次（一次算少一條、一次省略清單與表格自相矛盾），這類錯誤靠人維護抓不住。
 

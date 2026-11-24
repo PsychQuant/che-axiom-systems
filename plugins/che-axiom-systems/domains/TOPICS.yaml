@@ -60,7 +60,9 @@
             命題精簡, 高度漂移, altitude, 修訂累積, repair accretion, remark 擺放,
             前向引用, forward reference, 引用方向, reading order,
             引用檢查, citation set, 區間引用, range reference,
-            flow, 行文順序, 例子擺放, worked example, motivation, 承接, transition]
+            flow, 行文順序, 例子擺放, worked example, motivation, 承接, transition,
+            已知結果, known result, 重複推導, re-derivation, prior result, 新穎性, novelty, 貢獻, contribution,
+            引用代替證明, cite instead of prove]
 - domain: musical-composition
   aliases: [作曲, 音樂理論]
   keywords: [和聲, harmony, 旋律, melody, 編曲, arrangement, 曲式, 歌詞配置, 音樂結構]
