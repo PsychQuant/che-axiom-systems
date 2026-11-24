@@ -512,14 +512,21 @@ axioms:
       (2) Compare. A source is compared with the manuscript's result after
       the two are put in the same terms: notation, units, scale,
       parametrization. A source is related to the result when, so compared,
-      it has the result; or a part of it (a special case, one of several
-      assertions, a weaker conclusion); or a statement from which the result
-      follows by an argument the author can write in a paragraph; or the
+      it has the result, whether stated as such or as the conclusion of a
+      general theorem whose assumptions hold in the manuscript's setting;
+      or a part of it (a special case, one of several assertions, a weaker
+      conclusion); or a statement from which the result follows by an
+      argument of at most a paragraph that the author knows; or the
       statement, or the formula the result is about, without a proof of it
       (a conjecture, an assertion, a formal or heuristic derivation,
       numerical evidence, or a proof for a different quantity with the same
-      expression). When it is unclear whether a source is related, it is
-      treated as related.
+      expression). When it is unclear whether a source is related, or how
+      closely, it is cited at the statement with what it has, and the
+      manuscript says that the relation is not settled; its claim about the
+      result is then worded subject to that. An earlier version of the same
+      work by the same authors (a preprint, a report, a thesis chapter) is
+      cited as the earlier version and is not a source in this sense; a
+      distinct earlier work by the same authors is a source like any other.
 
       (3) Cite at the statement. For each related source the manuscript
       gives, in the sentence that introduces the result or in a remark after
@@ -536,7 +543,11 @@ axioms:
       contributions. Neither is what follows from a proved source by a
       paragraph of argument: the manuscript writes that argument out and
       claims no more than the step. A new proof of a known result may be
-      claimed, as a proof. A result that the author knows to be in standard
+      claimed, as a proof. When a source only states the result or its
+      formula, the manuscript may claim the proved statement. When the
+      result is the conclusion of a general theorem, the verification of
+      its assumptions is the manuscript's own and may be claimed as that.
+      A result that the author knows to be in standard
       use in the field, and for which no proof is found in print, is said to
       be well known and is not claimed as new.
 
@@ -550,11 +561,17 @@ axioms:
     statement_formal: |
       Let R be a result of manuscript M and X a source; τ puts X in the
       terms of M.
-        Related(R, X)  ⇔  after τ, X has R, or a part of R, or a statement
-                          from which R follows by an argument of at most one
-                          paragraph known to the author, or the statement or
-                          the formula of R without a proof of it.
-                          Unclear  ⇒  Related.
+        Related(R, X)  ⇔  after τ, X has R (as stated, or as the conclusion
+                          of a general theorem whose assumptions hold for
+                          M), or a part of R, or a statement from which R
+                          follows by an argument of at most one paragraph
+                          known to the author, or the statement or the
+                          formula of R without a proof of it.
+                          Unclear  ⇒  M cites X at the statement of R with
+                          what X has, says that the relation is not
+                          settled, and words its claim subject to that.
+                          An earlier version of M by the same authors is
+                          cited as such and is not an X.
         Proves(X, S)   ⇔  X contains a proof of the statement S.
       Search:    ∀ R that M states without attribution, lists as a
                  contribution or calls new: before that, the author has
@@ -567,11 +584,15 @@ axioms:
                  locator, what X has, τ when the terms differ, and what M
                  adds; the abstract and the list of contributions agree.
       Novelty:   what M claims as new about R  ⊆  what R asserts beyond
-                 every X with Related(R, X). If some X proves R, R is
-                 attributed to X and R ∉ Contributions(M). If R follows from
-                 what X proves by an argument of at most one paragraph, M
-                 writes that argument out and claims the step only. A new
-                 proof may be in Contributions(M) as a proof. A result in
+                 every X with Related(R, X), together with the proof of what
+                 those X state and none of them proves. If some X proves R,
+                 R is attributed to X and R ∉ Contributions(M); a
+                 verification of the assumptions of X that M carries out
+                 may be in Contributions(M) as that. If R follows from what
+                 X proves by an argument of at most one paragraph, M writes
+                 that argument out and R ∉ Contributions(M). A new proof of
+                 a known result may be in Contributions(M) as a proof. A
+                 result in
                  standard use with no proof found in print is called well
                  known and R ∉ Contributions(M).
       Proof:     M may cite X in place of proving S only if Proves(X, S) and
