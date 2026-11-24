@@ -489,88 +489,182 @@ axioms:
 
   - id: "A6_prior_result_attribution"
     name: "A result already in the literature is cited, not claimed as new"
-    one_liner: "Before a result is stated as the manuscript's own, the literature is searched for it; a published result that is the same or more general is cited where the result is stated, and may be cited instead of proved."
+    one_liner: "Before a result is claimed as the manuscript's own, the literature is searched for it; a published result that gives it, or part of it, is cited beside the statement with what it gives, and the manuscript claims only what goes beyond it."
 
     statement_natural: |
       A result the author has derived looks new to the author, whether or not
-      it is. So before a manuscript states a theorem, lemma, formula or
-      expansion as its own, the literature is searched for it. A published
-      result is related to the manuscript's result in the sense of this axiom
-      when it stands in one of four relations to it (a closed list; a result
-      in none of the four is related work to be reviewed, not a result to be
-      attributed, and "similar" is not a fifth relation):
-        (1) Same: the two statements coincide after a change of notation,
-            scale or parametrization that the manuscript can write down.
-        (2) More general: the manuscript's statement follows from the
-            published one by specializing its model, assumptions or
-            parameters.
-        (3) Special case: the published statement follows from the
-            manuscript's in the same way, so the manuscript extends it.
-        (4) Same conclusion, different assumptions: the conclusions coincide
-            and neither set of assumptions contains the other.
-      When one of the four holds, the manuscript does three things at the
-      place where its own result is stated: it cites the published result
-      with a locator (theorem, equation or page), it names which relation
-      holds, and it gives the map between the two notations when they differ.
-      Under (1) and (2) the result is attributed to the source and is not
-      listed among the manuscript's contributions. The manuscript may then
-      cite instead of proving, on one condition: it checks that the
-      hypotheses of the published result cover the present setting, and says
-      so. A proof may still be given for self-containedness, and is then
-      labelled as a proof of a known result. Under (3) and (4) the manuscript
-      states exactly what it adds: the wider model, the weaker assumption, or
-      the case not covered. What the manuscript claims as new is only what
-      goes beyond the cited results.
+      it is. So before a manuscript claims a result as its own, the author
+      searches the literature for it, compares what is found with the result,
+      and writes the outcome beside the result.
+
+      Comparison. A published result is compared with the manuscript's result
+      after an explicit translation: the map of notation, units, scale and
+      parametrization under which the two are stated in the same terms. A
+      statement follows immediately from a published result when it is
+      obtained from the translated result by steps of four kinds only (a
+      closed list):
+        (d1) choosing values of its parameters;
+        (d2) restricting its model or its assumptions to a special case;
+        (d3) rearranging its conclusion by reversible algebra (solving for a
+             quantity, multiplying by a known factor, taking a root or a
+             logarithm of both sides);
+        (d4) weakening its conclusion to something it contains (one of
+             several assertions, convergence from convergence at a rate, the
+             leading term from an expansion, a bound from an exact value).
+      Anything that needs a further argument does not follow immediately.
+      What follows from what is judged on the statements, not on how their
+      assumptions are worded or listed.
+
+      The cases. They are tested in this order and the first that holds is
+      the case, so exactly one holds.
+        (K) Known. The manuscript's result follows immediately from the
+            published one. An identical result is the case in which no step
+            is needed.
+        (P) Partly known. (K) fails, and the published work carries part of
+            the manuscript's result. "Part" has four kinds (a closed list;
+            "similar" is not a fifth). When more than one holds, each is
+            named.
+            (P1) A case. The published result immediately gives the
+                 manuscript's result on some, but not all, of the settings
+                 that the manuscript's result covers. A published special
+                 case is of this kind, and so is a published result with
+                 the same or a stronger conclusion under assumptions that
+                 overlap the manuscript's without covering them.
+            (P2) A consequence. On all or some of the settings that the
+                 manuscript's result covers, the published result
+                 immediately gives a statement that the manuscript's
+                 conclusion implies and that does not imply it: one of
+                 several assertions, the leading term where the manuscript
+                 gives the next one, a bound that the manuscript sharpens,
+                 consistency where the manuscript gives a rate.
+            (P3) The main ingredient. The proof of the manuscript's result
+                 starts from the conclusion of the published result, or of
+                 several published results together, and reaches the
+                 manuscript's conclusion by a further argument.
+            (P4) The object. The published work contains the formula,
+                 expression or procedure that the manuscript's result is
+                 about, with a statement about it of another kind: a formal
+                 or heuristic derivation, an expansion with no control of
+                 its remainder, a conjecture, numerical evidence, or a
+                 statement about a different quantity that has the same
+                 expression.
+        (U) Unrelated. Neither (K) nor (P) holds. The published work is then
+            not cited as a source of the result; it may be discussed as
+            related work.
+      A published result that is used for one step inside a proof is a tool:
+      it is cited at that step and is not a case of this axiom. When it is
+      unclear whether a published result is a tool or the main ingredient
+      (P3), it is treated as the main ingredient; the cost is one sentence.
+
+      What the manuscript writes. Under (K) and (P) it writes four things
+      beside the statement of its result, that is, in the sentence that
+      introduces the theorem-like environment or in a remark after it, and
+      not inside the environment (A1, T1):
+        (w1) the citation, with a locator (theorem, equation or page);
+        (w2) the case, and under (P) the kind of part, said in the
+             manuscript's own words ("is known", "is the case ... of",
+             "the first assertion is due to", "the formula appears in ...
+             as a formal expansion"); the labels K and P1 to P4 belong to
+             this axiom, not to the manuscript;
+        (w3) the translation, when the two are not stated in the same terms;
+        (w4) under (K), the steps (d1) to (d4) that give the result, with
+             the check that the manuscript's setting satisfies the published
+             assumptions; under (P), which part is published and what the
+             manuscript adds to it.
+      Under (K) the result is attributed to the source and is not listed
+      among the manuscript's contributions, and (w4) takes the place of a
+      proof. A proof may still be given for self-containedness; it is then
+      labelled as a proof of a known result. Under (P) the manuscript proves
+      what it adds; the published part may be cited instead of proved, with
+      the same check of assumptions. When several published results are
+      related to one result, each is treated in this way, and the manuscript
+      claims as new only what goes beyond all of them.
+
+      The search. It is the author's duty. It is done before the result is
+      presented as the manuscript's own, for every result that is stated in
+      a theorem-like environment without attribution or is listed as a
+      contribution. It covers at least (a closed list):
+        (s1) the works the manuscript already cites on the topic, and the
+             sources those works give for the ingredients of the result;
+        (s2) the works that cite the main ones among them;
+        (s3) a search by the names under which the result would be known and
+             by the distinctive terms of its formula.
+      When the search finds nothing, the manuscript may present the result
+      as its own. A statement that no earlier source exists is worded as the
+      author's knowledge ("to our knowledge"), because a search does not
+      establish absence.
 
     statement_formal: |
-      Let R be a result stated in manuscript M, and let L be the published
-      literature. For R' ∈ L write
-        Same(R, R')      ⇔  R = τ(R') for an explicit map τ of notation,
-                            scale or parametrization
-        General(R, R')   ⇔  R' ⇒ R by specializing model, assumptions or
-                            parameters of R'
-        Special(R, R')   ⇔  R ⇒ R' in the same way
-        Parallel(R, R')  ⇔  Concl(R) = Concl(R') and neither Hyp(R) ⊆ Hyp(R')
-                            nor Hyp(R') ⊆ Hyp(R)
-        Rel(R, R')       ⇔  exactly one of the four holds.
-      Search:       ∀ R stated as M's own, L is searched for an R' with
-                    Rel(R, R') before R is so stated.
-      Citation:     Rel(R, R')  ⇒  at the statement of R, M gives
-                    (i) a citation of R' with a locator,
-                    (ii) which of the four relations holds,
-                    (iii) τ, when the notations differ.
-      Attribution:  Same(R, R') ∨ General(R, R')  ⇒  R ∉ Contributions(M).
-      Cite-not-prove:
-                    Same(R, R') ∨ General(R, R')  ⇒  M may omit the proof of R
-                    iff M verifies Setting(M) ⊨ Hyp(R') and states it;
-                    a proof that is kept is labelled as a proof of a known
-                    result.
-      Novelty:      Special(R, R') ∨ Parallel(R, R')  ⇒  M states
-                    New(R) := what R asserts that R' does not.
-      Closure:      ¬Rel(R, R')  ⇒  R' is not attributed as a source of R
-                    (it may still be reviewed as related work).
+      Let R be a result of manuscript M, with the set Set(R) of settings it
+      covers and conclusion Concl(R). Let R' be a published result, or
+      finitely many taken together, and τ the translation of R' into the
+      terms of M.
+        τ(R') ⊢ S   ⇔  S is obtained from τ(R') by steps (d1)–(d4) only.
+        K(R, R')    ⇔  τ(R') ⊢ R.
+        P1(R, R')   ⇔  ∃ A, ∅ ≠ A ⊊ Set(R):  τ(R') ⊢ R restricted to A.
+        P2(R, R')   ⇔  ∃ A, ∅ ≠ A ⊆ Set(R), ∃ W:  on A,  τ(R') ⊢ W,
+                        Concl(R) ⇒ W  and  W ⇏ Concl(R).
+        P3(R, R')   ⇔  the proof of R in M starts from Concl(R') and reaches
+                        Concl(R) by a further argument.
+        P4(R, R')   ⇔  R' contains the formula, expression or procedure that
+                        R is about, under a statement of another kind.
+        P(R, R')    ⇔  ¬K(R, R') ∧ (P1 ∨ P2 ∨ P3 ∨ P4)(R, R').
+        U(R, R')    ⇔  ¬K(R, R') ∧ ¬P(R, R').
+      Exactly one of K, P, U holds for each pair, by construction.
+      Search:       ∀ R that M states in a theorem-like environment without
+                    attribution or lists as a contribution: before R is so
+                    presented, the author searches by (s1)–(s3).
+      Writing:      K ∨ P  ⇒  beside the statement of R, and outside the
+                    environment, M gives (w1)–(w4).
+      Attribution:  K  ⇒  M attributes R to R'  and  R ∉ Contributions(M).
+      Proof:        K  ⇒  M may give (w4) in place of a proof of R; a proof
+                          that is kept is labelled as a proof of a known
+                          result.
+                    P  ⇒  M proves New(R, R'); the published part may be
+                          cited in place of a proof, with the check of
+                          assumptions of (w4).
+      Novelty:      what M claims as new about R  ⊆  ⋂ New(R, R') over all
+                    R' with K ∨ P, where New(R, R') is what R asserts beyond
+                    what τ(R') gives; under K, New(R, R') = ∅.
+      Closure:      U  ⇒  R' is not cited as a source of R; it may be
+                          discussed as related work.
+      Doubt:        if it is unclear whether P3 holds or R' is a tool at one
+                    step, P3 is taken to hold.
 
     rationale: |
       The order of work produces the defect. The author derives first and
       searches afterwards, if at all, and a derivation done independently
       feels like a discovery. A referee who knows the literature then finds a
-      known result presented as a contribution, and reads the rest of the
+      known result presented as a contribution and reads the rest of the
       manuscript with less trust; meanwhile the part that is new is buried
-      among results that are not. Citing costs the author nothing that
-      matters: a cited result needs no proof in the manuscript, the pages go
-      to what is new, and the reader is told how the manuscript's notation
-      maps onto the literature's, which is what makes the two comparable. The
-      relations are a closed list because "similar" is a judgment made by
-      feel, and the feel is wrong in both directions: it lets an author skip
-      a result that is in fact the same in other notation, and it lets an
-      author cite a merely neighbouring paper as if it carried the result.
-      The condition on citing instead of proving is there because a published
-      theorem is true under its own hypotheses, not under the manuscript's.
-      Occasion (2026-11-24): a lemma drafted as new, with its own proof, was
-      found by a literature sweep run after drafting to coincide, in the
-      special case checked, with a term published more than a decade earlier
-      in a more general model. The sweep was run because the author asked
-      whether anything had been missed, not because the workflow required it.
+      among results that are not. Citing costs the author little: under (K)
+      the check of assumptions replaces a proof, the pages go to what is new,
+      and the reader is told how the manuscript's notation maps onto the
+      literature's, which is what makes the two comparable. The cases are
+      tested in a fixed order, and "part" is a closed list, because
+      "similar" is a judgment made by feel, and the feel is wrong in both
+      directions: it lets an author skip a result that is the same in other
+      notation, and it lets an author cite a neighbouring paper as if it
+      carried the result. Immediate derivation is defined by its steps
+      because the alternative, comparing how the assumptions are listed,
+      lets one pair of results fit two cases with opposite duties. The duty
+      under (P) is deliberately the same for all four kinds, so that naming
+      more than one kind never changes what must be written. The search has
+      a stated minimum because without one the duty can never be shown to
+      have been met.
+      Occasion (2026-11-24): a coefficient that an author had derived, and
+      proved as part of a lemma, was found by a literature sweep run after
+      drafting to be the value, at the manuscript's model, of a term in a
+      general expansion published more than a decade earlier. The published
+      expansion is a formal one; the lemma is a statement with a controlled
+      remainder. That is case (P4): the formula is attributed, and the lemma
+      keeps its proof. The sweep was run because the author asked whether
+      anything had been missed, not because the workflow required it. An
+      earlier draft of this axiom listed four relations (same, more
+      general, special case, same conclusion under different assumptions);
+      an independent reading showed that an identical result fitted three of
+      them, that one pair could fit two with opposite duties, and that the
+      occasion itself fitted none.
 
     violations:
       - description: "A textbook result is stated as the manuscript's own and proved from scratch"
@@ -581,27 +675,47 @@ axioms:
           Proof. (One page.) …
           In Section 6 we list Proposition 1 among our contributions.
         explanation: |
-          Proposition 1 is the delta method. The relation is Same: no map of
-          notation is even needed. The manuscript gives no citation, proves
-          it in full, and counts it as a contribution. A reader who knows the
-          result now doubts the other items on that list. (The example is
-          constructed for this axiom; it is not taken from a manuscript.)
+          Proposition 1 is the delta method as textbooks state it for a
+          real-valued map: case (K), with at most steps (d1) and (d2). The
+          manuscript gives no citation, proves it in full, and counts it as
+          a contribution. A reader who knows the result now doubts the other
+          items on that list. (The example is constructed for this axiom; it
+          is not taken from a manuscript.)
 
     compliant:
-      - description: "The known result is cited with a locator; the proof is replaced by a check of its hypotheses; the contribution is what goes beyond it"
+      - description: "Case (K): the known result is cited with a locator, the steps and the check of assumptions replace the proof"
         content: |
-          By the delta method (van der Vaart, 1998, Theorem 3.1), whose
-          hypotheses hold here because g is differentiable at θ and
-          √n (T_n − θ) is asymptotically normal by Lemma 2,
-          √n (g(T_n) − g(θ)) converges in distribution to N(0, g′(θ)² σ²).
-          This first-order statement is known. Proposition 1 below gives the
-          term of order n⁻¹ in the variance, which the delta method does not.
+          The limit law of g(T_n) is known: it is the delta method
+          ([textbook], Theorem [number]), in the case of a real-valued map
+          and the rate √n. Its assumptions hold here, since g is
+          differentiable at θ and √n (T_n − θ) converges in distribution to
+          N(0, σ²) by Lemma 2. Hence √n (g(T_n) − g(θ)) converges in
+          distribution to N(0, g′(θ)² σ²). We do not repeat the proof.
         explanation: |
-          The known result is cited with its theorem number, its hypotheses
-          are checked against the present setting, and no proof is repeated.
-          The sentence that follows says what the manuscript adds. The
-          relation of Proposition 1 to the cited theorem is Special: the
-          theorem is the first-order part of it.
+          (w1) the citation and its locator; the bracketed reference stands
+          for whichever textbook the manuscript uses, because the example is
+          constructed. (w2) "is known ... in the case of". (w3) is not
+          needed: the two are stated in the same terms. (w4) the steps are
+          (d1), the rate, and (d2), the real-valued map, and the assumptions
+          are checked against Lemma 2. The result is not presented as a
+          proposition of the manuscript and is not among its contributions.
+      - description: "Case (P2): the published part is named and what the manuscript adds is stated beside the theorem"
+        content: |
+          Consistency of the estimator under (A1) and (A2) is known
+          ([source], Theorem [number]); it is the part of Theorem 1 that is
+          published. Theorem 1 adds the rate √n and the limit law, for which
+          (A3) is used.
+          Theorem 1. Under (A1), (A2) and (A3), √n (θ̂_n − θ) converges in
+          distribution to N(0, v(θ)).
+        explanation: |
+          The published result gives consistency under (A1) to (A3) by step
+          (d2). The conclusion of Theorem 1 implies consistency and is not
+          implied by it, so the kind is (P2). The four things are written in
+          the sentences before the theorem, not inside it: the citation, the
+          kind ("is the part ... that is published"), no translation being
+          needed, and what is added. Theorem 1 is proved in full; its
+          contribution is the rate and the limit law, not consistency. (The
+          example is constructed for this axiom.)
 
 theorems:
   - id: "T1_negative_space_is_meta"

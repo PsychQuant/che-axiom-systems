@@ -27,7 +27,7 @@ Skill(skill="che-axiom-systems:axiom-based", args="mathematical-writing: <查詢
 | `A3_replacement_precondition` | 搬動之前必須先知道引用集；引用定址容器而非內容，編譯器兩者都不檢查 |
 | `A4_reading_order_dependence` | 陳述只能依賴前文；往後指只能說「在哪」、不能用「什麼」；修法是重排不是刪除（任何學科論文的推廣版：`academic-writing` 的 `A1_no_forward_dependence`）|
 | `A5_motivated_by_prefix` | 文章依序閱讀，不只是對錯：例子、定義、結果要在讀者已經有它回答的問題之後才出現；突然冒出的例子會破壞 flow，修法是重排或補承接句（A4 管用什麼、A5 管何時出現；任何學科論文的推廣版：`academic-writing` 的 `A2_motivated_by_prefix`）|
-| `A6_prior_result_attribution` | 把結果寫成自己的之前先查文獻；已發表的結果與它是四種關係之一（相同、較一般、特例、同結論不同假設）時，在陳述處引用並附定位、說明關係與符號對照；相同或較一般時可以引用而不證明（要先核對對方的假設涵蓋本文情境）；只有超出的部分算新 |
+| `A6_prior_result_attribution` | 把結果寫成自己的之前先查文獻；已發表的結果直接給出本文結果（已知），或給出其中一部分（部分已知：一種情形、一個推論、主要材料、同一個式子），就在陳述旁（定理環境之外）引用並附定位、說明是哪一種、符號對照、對方給了什麼與本文加了什麼；已知的結果不列為貢獻，以核對假設代替證明；只有超出的部分算新 |
 | `T1_negative_space_is_meta` | 「這條假設不給什麼」的主語是假設，故為 meta-level，連它的反例見證也進 remark |
 
 ### 涵蓋（數字由 CI 重算，勿手改）
