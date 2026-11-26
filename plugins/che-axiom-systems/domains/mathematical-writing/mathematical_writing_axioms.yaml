@@ -707,6 +707,176 @@ axioms:
           statement, not the formula. (All four examples are constructed for
           this axiom.)
 
+  - id: "A7_general_case_first"
+    name: "The general case first, reduced to the simple case by a proposition"
+    one_liner: "When a general and a simple form of the setting are both in play, set out the general one, prove a proposition that reduces it to the simple one, and from then on treat only the simple one; the simple case comes first only when the two differ in kind."
+
+    statement_natural: |
+      A manuscript often has a general form of its setting and a simple
+      form that is a special case of it, each of which could carry a
+      treatment of its own. When the general form can be reduced to the
+      simple one, the order is fixed.
+        (1) The general form is set out first.
+        (2) A proposition states the reduction and is proved: a stated
+            transformation carries every instance of the general form to
+            an instance of the simple form, and each quantity the
+            manuscript studies is carried along by a stated rule (it is
+            unchanged, or it changes by a stated factor or map).
+        (3) The manuscript then says that it takes the simple form without
+            loss of generality, and from that point on it discusses only
+            the simple form. Results are stated for the simple form and
+            hold for the general one through the proposition.
+      Under this order nothing is derived twice, and the reader of the
+      simple case knows from the start how far it reaches.
+      The opposite order, the simple case in full and then its
+      generalization, is used only when the two differ in kind, that is,
+      when no proposition of the form (2) holds. A result has three parts,
+      its assumptions, its argument and its conclusion, and the general
+      case then differs from the simple one in at least one of them: it
+      needs an assumption that the simple case does not need; its argument
+      is not the simple argument carried over by a map; or its conclusion
+      has another form (another rate, a further term, a further
+      condition). This list of three is closed. In that situation the
+      simple case may come first, and the treatment of the general case
+      opens by saying which of the three is different.
+      Two things are defects under this axiom. One is the simple case
+      derived in full and the general case derived again, when the
+      reduction holds. The other is "without loss of generality" for a
+      form of the setting with no stated reduction behind it.
+      The axiom concerns forms of the setting that would each receive a
+      treatment of their own: a derivation, a section, a set of results. A
+      symmetry step of one line inside a single proof is outside it.
+      The reduction is an object-level statement, so by A1 it is a
+      proposition and not a remark. By A5 it comes right after the general
+      form, which raises the question it answers: why is the simple case
+      enough? When the reduction is already in the literature, it is cited
+      as A6 requires. The rules for the flow of an article in any
+      discipline, among them the frame for a discussion by cases
+      (A5_case_frame) and the rule that each topic is treated in one place
+      (A6_topic_once), are in academic-writing.
+
+    statement_formal: |
+      Let G be the general form of the setting (a class of instances),
+      S ⊆ G the simple form, and Q the quantities the manuscript studies.
+        Reduces(G, S)  ⇔  ∃ τ: G → S and rules ρ_g such that
+                          ∀ g ∈ G, ∀ q ∈ Q:  q(g) = ρ_g(q(τ(g))),
+                          with τ and ρ stated.
+      Order when Reduces(G, S):
+        pos(statement of G) < pos(Proposition R) < pos(first result on Q),
+        where R states and proves Reduces(G, S); "without loss of
+        generality" follows R; every later result is stated for S.
+        Prohibited:  a derivation for S followed by a second derivation
+                     for G;  "without loss of generality" with no R.
+      Order when ¬Reduces(G, S):
+        the treatment of S may precede that of G, and the treatment of G
+        opens by naming Diff ⊆ {assumption, argument, form of conclusion}
+        with Diff ≠ ∅. The set of three is closed.
+      Scope:  G and S would each receive a treatment of its own. A
+              symmetry step inside one proof is not constrained.
+
+    rationale: |
+      Simple first and general second makes the reader go through the
+      argument twice, and the second time is the first time with more
+      letters. While reading the simple case the reader cannot tell
+      whether it is the result or a warm-up, and every statement in it
+      carries the unspoken question "does this hold beyond the simple
+      case?". The reduction costs one proposition and settles that question
+      before the first result: from then on the reader knows the reach of
+      everything that follows, and the pages go to one derivation. The
+      simple-first order is kept for the situation in which it does real
+      work, when the general case is not the simple case in other
+      coordinates. There the simple case is a step the reader needs, and
+      saying what changes (an assumption, the argument, the form of the
+      conclusion) tells them what to look for in the general one.
+      "Without loss of generality" with no reduction behind it is a claim
+      without a proof: it may be true for the quantities at hand and false
+      for one added later, and the reader has no statement to check it
+      against.
+      Occasion (2026-11-26): the author, reading the flow of a manuscript,
+      in their words:
+        「先講一個general case，然後寫一個prop說明簡要的case可以涵蓋這個困難的case，
+        然後用WLOG只討論……的情況」
+        「先寫簡單的case再推廣好像順序比較差，這種情況只會發聲在複雜的case跟簡單的case有
+        本質上的差異的時候」
+
+    violations:
+      - description: "The standard case is derived in full and then derived again in general, although a change of location and scale reduces one to the other"
+        content: |
+          §3, The standard case. Let X_1, …, X_n be independent with density
+          f, symmetric about 0 with variance 1. [The mean squared errors of
+          the sample mean and of the sample median are derived, and their
+          ratio R_n(f). Two pages.]
+          §4, The general case. Let X_1, …, X_n be independent with density
+          (1/σ) f((x − μ)/σ). [The derivation of §3 is repeated with μ and
+          σ carried through. Each mean squared error is σ² times its value
+          in §3, and the ratio is again R_n(f).]
+        explanation: |
+          The reduction holds. Both estimators T satisfy
+          T(aX_1 + b, …, aX_n + b) = a T(X_1, …, X_n) + b for a > 0, so the
+          mean squared error of T as an estimator of μ under (μ, σ) is σ²
+          times its value under (0, 1), and the ratio does not depend on
+          (μ, σ). §4 repeats §3 with more letters, and the reader of §3 could
+          not tell whether R_n(f) was a property of the standard case alone.
+          (Constructed for this axiom; not taken from a manuscript.)
+      - description: "'Without loss of generality' with no reduction stated"
+        content: |
+          §2. Let X_1, …, X_n be independent with density
+          (1/σ) f((x − μ)/σ). Without loss of generality μ = 0 and σ = 1.
+          §3. [Results for the sample mean, the sample median, and the mean
+          of the observations that lie within 2 units of the sample
+          median.]
+        explanation: |
+          No proposition says why the standard case is enough. For the mean
+          and the median it is, by the argument above. The third estimator
+          uses a fixed cut-off of 2 units: it follows a change of location
+          but not a change of scale, so for it the claim is false, and
+          nothing in the text lets the reader see the difference.
+          (Constructed for this axiom.)
+
+    compliant:
+      - description: "The general form, a proposition that reduces it, then only the simple form"
+        content: |
+          §2. Let X_1, …, X_n be independent with density (1/σ) f((x − μ)/σ),
+          where f is symmetric about 0 with variance 1. The centre μ is
+          estimated by the sample mean and by the sample median.
+          Proposition 1 ([textbook], Section [number]). Let T be the sample
+          mean or the sample median. For every μ and every σ > 0, the mean
+          squared error of T as an estimator of μ under (μ, σ) is σ² times
+          its mean squared error under (0, 1). In particular the ratio of
+          the two mean squared errors does not depend on (μ, σ).
+          Proof. T(aX_1 + b, …, aX_n + b) = a T(X_1, …, X_n) + b for a > 0
+          and every b, and (X_i − μ)/σ has density f. ∎
+          We therefore take μ = 0 and σ = 1 without loss of generality.
+          §3. [The two mean squared errors and their ratio R_n(f), derived
+          once, for the standard case.]
+        explanation: |
+          The general form comes first, Proposition 1 states the map (centre
+          and rescale) and the rule for the quantity studied (multiply by
+          σ²; the ratio is unchanged), and after the sentence with "without
+          loss of generality" only the standard case is discussed. The
+          derivation appears once. The proposition is object-level, so it
+          is a proposition (A1), and it answers the question that the
+          general form raises (A5). The equivariance it rests on is in
+          standard use, so the heading carries a citation (A6); the
+          bracketed reference stands for whichever textbook the manuscript
+          uses, because the example is constructed.
+      - description: "The simple case first, because the general case differs in kind, and the difference is named"
+        content: |
+          §3. Independent observations. [The variance of the sample mean is
+          σ²/n; the comparison with the median follows.]
+          §4. Serially dependent observations. What changes is the form of
+          the conclusion: the variance of the sample mean is no longer
+          σ²/n, because the autocovariances of the series enter it, and no
+          map of the kind used in a reduction turns a dependent series into
+          an independent one while the two estimators follow it. [The
+          comparison under dependence.]
+        explanation: |
+          No proposition of the form (2) holds: the result under dependence
+          is not the independent result in other coordinates. The simple
+          case may therefore come first, and §4 opens by naming which of
+          the three parts differs (the form of the conclusion). (Constructed
+          for this axiom.)
+
 theorems:
   - id: "T1_negative_space_is_meta"
     name: "Claims about what a hypothesis does not give are meta-level"

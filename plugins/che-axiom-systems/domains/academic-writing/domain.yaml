@@ -2,7 +2,7 @@
 # format:   yaml(結構化 ASBE schema) | markdown(散文公理) | freeform(自訂體系)
 # maturity: bootstrapped(已符合 ASBE YAML schema，validate 跑 ERROR 級) | legacy(未遷移，validate 降級 WARNING)
 domain: academic-writing
-description: 學術論文寫作（任何學科的同儕讀者文章：論證的順序與結構；不前向依賴；每個元素由前文引出；文獻隨對象介紹、大範圍回顧放後；引言裡自己的結果在研究問題之後）
+description: 學術論文寫作（任何學科的同儕讀者文章：論證的順序與結構；不前向依賴；每個元素由前文引出；文獻隨對象介紹、大範圍回顧放後；引言裡自己的結果在研究問題之後；flow：分情況要有框架、一個主題一次講完、提出的問題不留著、重排的合法操作、貢獻清單與圖表附錄隨 flow 規劃）
 format: yaml
 maturity: bootstrapped
 entry_points:

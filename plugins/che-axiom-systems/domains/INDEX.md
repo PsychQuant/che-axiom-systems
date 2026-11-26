@@ -6,7 +6,7 @@
 |--------|--------|------|--------|----------|-------------|
 | `academic-presentation` | — | 學術會議報告（投影片＋講稿）的建構與交付公理 | yaml | bootstrapped | `CLAUDE.md` |
 | `academic-project` | — | 學術研究專案的管理（引用文獻的全文與正本、數字的來源紀錄、原始資料、不進 remote 的材料、封存、外部 repo 的角色、凍結的量測工具、改稿後編譯） | yaml | bootstrapped | `academic_project_axioms.yaml` |
-| `academic-writing` | — | 學術論文寫作（任何學科的同儕讀者文章：論證的順序與結構；不前向依賴；每個元素由前文引出；文獻隨對象介紹、大範圍回顧放後；引言裡自己的結果在研究問題之後） | yaml | bootstrapped | `academic_writing_axioms.yaml` |
+| `academic-writing` | — | 學術論文寫作（任何學科的同儕讀者文章：論證的順序與結構；不前向依賴；每個元素由前文引出；文獻隨對象介紹、大範圍回顧放後；引言裡自己的結果在研究問題之後；flow：分情況要有框架、一個主題一次講完、提出的問題不留著、重排的合法操作、貢獻清單與圖表附錄隨 flow 規劃） | yaml | bootstrapped | `academic_writing_axioms.yaml` |
 | `apa7-style` | — | APA 第七版寫作與引用格式規範 | yaml | bootstrapped | `CLAUDE.md` |
 | `asbe` | — | ASBE 方法論自身的公理化（self-bootstrap） | yaml | bootstrapped | `asbe_axioms_bootstrapped.yaml` |
 | `decision-making` | — | 決策理論：效用、偏好與悖論 | markdown | legacy | `axiomatization_of_decision_making.md` |
@@ -17,7 +17,7 @@
 | `mathematical-education` | — | 數學教育：學習與教學兩個子領域的範圍與引用規則（父領域，不放公理） | markdown | legacy | `README.md` |
 | `mathematical-learning` | `mathematical-education` | 數學學習：能力依賴與機率模型 | markdown | legacy | `axiomatization_of_mathematical_learning.md` |
 | `mathematical-teaching` | `mathematical-education` | 數學教學：一堂課怎麼排、從哪裡開始 | yaml | bootstrapped | `mathematical_teaching_axioms.yaml` |
-| `mathematical-writing` | — | 數學寫作（statement placement、修訂中的高度漂移、重置的引用前提、引用只向後、每個元素由前文引出、已有的結果要引用） | yaml | bootstrapped | `mathematical_writing_axioms.yaml` |
+| `mathematical-writing` | — | 數學寫作（statement placement、修訂中的高度漂移、重置的引用前提、引用只向後、每個元素由前文引出、已有的結果要引用、一般情況先講並以命題化約到簡單情況） | yaml | bootstrapped | `mathematical_writing_axioms.yaml` |
 | `musical-composition` | — | 音樂作曲與理論（日文） | freeform | legacy | `音楽作曲と理論の公理化.md` |
 | `note-writing` | — | 筆記寫作原則 | markdown | legacy | `README.md` |
 | `philosophy` | — | 哲學隨筆：他者作為起點 | freeform | legacy | `My Essey/…批判與重構.md` |

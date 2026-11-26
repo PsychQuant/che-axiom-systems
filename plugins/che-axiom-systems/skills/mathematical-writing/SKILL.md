@@ -1,6 +1,6 @@
 ---
 name: mathematical-writing
-description: "數學寫作的擺放與陳述紀律。動筆或修訂正式數學散文時使用——這段該放 theorem 還是 remark、命題陳述太長想精簡、修訂幾輪後但書越積越多、搬段落前要不要先查引用、「這條假設不給什麼」該寫在哪、counterexample 該擺哪裡、remark 引用了後面才出現的命題或數字、引言一開頭就丟出具體例子讀起來突兀。Use when writing or revising theorem/proposition/lemma/remark structure, trimming an overgrown statement, or relocating material in a manuscript. Covers statement placement by altitude, repair-driven altitude drift, the citation-set precondition for re-placement, backward-only dependence in reading order, and the rule that each element (especially a worked example) appears only after the question it answers (generalized to articles in any discipline by academic-writing)."
+description: "數學寫作的擺放與陳述紀律。動筆或修訂正式數學散文時使用——這段該放 theorem 還是 remark、命題陳述太長想精簡、修訂幾輪後但書越積越多、搬段落前要不要先查引用、「這條假設不給什麼」該寫在哪、counterexample 該擺哪裡、remark 引用了後面才出現的命題或數字、引言一開頭就丟出具體例子讀起來突兀、一般情況與簡單情況誰先講、能不能直接寫「不失一般性」。Use when writing or revising theorem/proposition/lemma/remark structure, trimming an overgrown statement, or relocating material in a manuscript. Covers statement placement by altitude, repair-driven altitude drift, the citation-set precondition for re-placement, backward-only dependence in reading order, and the rule that each element (especially a worked example) appears only after the question it answers (generalized to articles in any discipline by academic-writing)."
 argument-hint: "[自然語言 | axiom-ID]（裸呼叫＝載入本域待命）"
 ---
 
@@ -28,11 +28,12 @@ Skill(skill="che-axiom-systems:axiom-based", args="mathematical-writing: <查詢
 | `A4_reading_order_dependence` | 陳述只能依賴前文；往後指只能說「在哪」、不能用「什麼」；修法是重排不是刪除（任何學科論文的推廣版：`academic-writing` 的 `A1_no_forward_dependence`）|
 | `A5_motivated_by_prefix` | 文章依序閱讀，不只是對錯：例子、定義、結果要在讀者已經有它回答的問題之後才出現；突然冒出的例子會破壞 flow，修法是重排或補承接句（A4 管用什麼、A5 管何時出現；任何學科論文的推廣版：`academic-writing` 的 `A2_motivated_by_prefix`）|
 | `A6_prior_result_attribution` | 五項義務：(1) 把結果寫成自己的之前先查文獻（教科書與綜述談這個題目的章節、已引用的文獻與其來源、一個也收預印本的書目索引），並留下查了什麼的紀錄；(2) 把來源換成本文的符號再比，拿不準算不算相關時當作相關；(3) 來源有這個結果、它的一部分、離它只差一段論證、或只陳述而沒有證明，就在陳述處引用並附定位，寫明對方有什麼、符號怎麼對應、本文加了什麼；(4) 只把超出全部來源的部分寫成新的，已被證明的結果與只差一段論證的結果都不列為貢獻；(5) 沒有證明的來源不能拿來代替證明 |
+| `A7_general_case_first` | 設定有一般形式與簡單形式時：先寫一般形式，以一個命題把它化約到簡單形式（寫明變換與所研究的量怎麼跟著變），之後說「不失一般性」只談簡單形式。只有兩者有本質差異（化約命題不成立：假設、論證或結論的形式不同，封閉列舉）時才先寫簡單的，並在一般情況開頭說差在哪裡。沒有化約命題的「不失一般性」不行 |
 | `T1_negative_space_is_meta` | 「這條假設不給什麼」的主語是假設，故為 meta-level，連它的反例見證也進 remark |
 
 ### 涵蓋（數字由 CI 重算，勿手改）
 
-- `mathematical_writing_axioms.yaml` · id · 篩選 `-` — 共 **7** 條，上表 **7** 條，未列 **0** 條
+- `mathematical_writing_axioms.yaml` · id · 篩選 `-` — 共 **8** 條，上表 **8** 條，未列 **0** 條
 
 每行的意思：`路徑` · 條目層級（`id`／`h2`–`h4`）· 篩選正規式（`-` ＝不篩）— 該檔符合條件的條目**共** N 條、**上表**列 M 條、**未列** N−M 條。`.github/workflows/validate.yml` 會重算這三個數並比對：**刪掉表中一列、少算一條、或把某列歸給錯的檔案，都會紅燈**。手寫的計數與省略清單已從下段移除——#29 的 R2 與 R3 各在那裡寫錯過一次（一次算少一條、一次省略清單與表格自相矛盾），這類錯誤靠人維護抓不住。
 
@@ -44,6 +45,7 @@ Skill(skill="che-axiom-systems:axiom-based", args="mathematical-writing: <查詢
 |-----------|------|
 | 學習數學（認知、先備結構） | `mathematical-learning` |
 | 非數學的論文散文（哲學、實證論文）的前向依賴 | `academic-writing`（其 A1 推廣本域 A4）|
+| 整篇論文 flow 的紀律：分情況的框架、一個主題一次講完、提出的問題不留著、重排的合法操作、貢獻清單與圖表附錄、預告後文的完整實例 | `academic-writing`（A5–A9 與 A1 的範例）|
 | 私人筆記 | `note-writing` |
 | APA 引用格式 | `apa7-style` |
 | object-language / metalanguage 的**形式**區分 | `logic-and-language`（本域的 Altitude 是它在寫作工藝上的類比，非等同） |

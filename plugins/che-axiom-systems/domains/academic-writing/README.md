@@ -22,6 +22,11 @@ follow and check it.
 | `A2_motivated_by_prefix` | Each element of a scholarly article is called for by what precedes it | An example, a definition, a finding or a quotation arrives only after the reader holds the question it answers. Generalizes `mathematical-writing/A5_motivated_by_prefix`. |
 | `A3_literature_at_introduction` | Each object is introduced with its own literature; the broad review comes later | Where an object from prior work first appears, one or two sentences give its source and the property the article relies on; the wider review goes in a later section of its own. |
 | `A4_own_results_after_question` | In the Introduction, the article's own results come after the research question | Before the Introduction states the research question it gives what is known, the setting and the gap; what the article itself establishes comes after the question. |
+| `A5_case_frame` | A discussion by cases has a frame: announced, in order, exhaustive | Before the first case, the text names the question, the scope, the cases and their order; the cases are then discussed in that order, each once; together they cover the scope. |
+| `A6_topic_once` | Each topic is treated in one place | The ideas that add content about a topic stand together; once the flow has left a topic it does not come back to add to it. A backward reference, an announced continuation and the framing sections are not returns. |
+| `A7_no_open_question` | No question that the text raises is left open | A question the text has made the reader ask is closed where it arises: answered there or in the next idea, deferred to a named place, or declared open. The converse of A2. |
+| `A8_rearrangement_operations` | A flow is rearranged only by the listed operations | To make a flow read in order, ideas may be swapped, moved earlier, moved later, merged or split, each under its condition; nothing is deleted, duplicated or added. The list is closed, and it is a proposal for the author to cut or extend. |
+| `A9_contributions_displays_appendix` | The contributions, the figures and tables, and the appendix are planned with the flow | Each contribution is carried by at least one idea, each figure or table has one home idea, and each section says what of it goes to the appendix. |
 
 ## Provenance
 
@@ -41,6 +46,18 @@ review later) and A4 (in the Introduction, the article's own results after the
 research question) were added on 2026-11-23 at the author's request. Further axioms of article craft
 belong here when they hold across disciplines; axioms specific to formal
 mathematical exposition stay in `mathematical-writing`.
+
+A5 to A9 were added on 2026-11-26 at the author's request (issue #47). They are
+stated on the *flow* of an article, the ordered list of its ideas, and each can
+be decided on a given flow: a frame for a discussion by cases (A5), each topic
+treated in one place (A6), no question left open (A7, the converse of A2), the
+closed list of rearrangement operations (A8), and the list of contributions, the
+figures and tables and the appendix planned with the flow (A9). The list of
+operations in A8 is a proposal for the author to cut or extend. On the same day
+A1 received one more violation and one more compliant example, for the
+announcement of a complete worked example that is given later: the announcement
+is A1's exception (1), the roadmap, and not a third exception. The rule on the
+order of a general and a simple case is `mathematical-writing/A7_general_case_first`.
 
 Follows **SCD2 (add-only)**: axioms accumulate; existing ones are annotated, not
 rewritten. Validate structure and cross-domain consistency with `/axiom-validate`.

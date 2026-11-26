@@ -22,7 +22,9 @@
             哲學寫作, philosophy paper, 論文結構, 段落重排, 引用方向,
             flow, 行文順序, 例子擺放, motivation, 承接, transition, 開場例子,
             literature review, 文獻回顧, related work, 引用文獻放哪, 第一次介紹, introduce with citation,
-            引言, introduction, 研究問題, research question, 研究結果, 結果預告, 太早揭露, own results, preview of results]
+            引言, introduction, 研究問題, research question, 研究結果, 結果預告, 太早揭露, own results, preview of results,
+            分情況討論, case analysis, 情況的框架, 完整討論, exhaustive cases, 一次講完, 不回頭, 重複討論, 讀者困惑, 沒回答的問題, open question,
+            重排, rearrangement, 搬段落, 合併段落, 貢獻清單, contributions, 圖表規劃, 附錄, appendix, 預告實例, worked example]
 - domain: apa7-style
   aliases: [APA, apa7, APA格式]
   keywords: [引用格式, citation, 參考文獻, reference, in-text citation, DOI, 期刊格式, 學術格式規範, biblatex-apa-zh, 中文引用, 全形括號]
@@ -62,7 +64,8 @@
             引用檢查, citation set, 區間引用, range reference,
             flow, 行文順序, 例子擺放, worked example, motivation, 承接, transition,
             已知結果, known result, 重複推導, re-derivation, prior result, 新穎性, novelty, 貢獻, contribution,
-            引用代替證明, cite instead of prove]
+            引用代替證明, cite instead of prove,
+            一般情況, general case, 簡單情況, special case, 化約, reduction, 不失一般性, WLOG, without loss of generality]
 - domain: musical-composition
   aliases: [作曲, 音樂理論]
   keywords: [和聲, harmony, 旋律, melody, 編曲, arrangement, 曲式, 歌詞配置, 音樂結構]

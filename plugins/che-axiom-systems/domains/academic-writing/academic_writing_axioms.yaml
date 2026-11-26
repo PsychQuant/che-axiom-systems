@@ -32,6 +32,30 @@ meta:
     research question) was added on 2026-11-23, at the author's request, in
     their words:
       「在學術寫作的axiom裡面可以說通常是到引言的研究問題出來知後才會說一些自己的研究結果吧」
+    A5 to A9 (the flow of an article: a frame for a discussion by cases,
+    each topic treated in one place, no question left open, the legitimate
+    rearrangement operations, and the list of contributions, the figures
+    and tables and the appendix planned with the flow) were added on
+    2026-11-26, at the author's request, in their words, said while
+    reading the flow of a manuscript:
+      「你也順便把這個加入che-axioms裡面當作學術寫作需要注意的事情」
+      A5: 「如果要討論case的話需要有順序、完整的討論比較好」
+          「我講得沒有架構就是你討論case的時候不會有整個框架與照順序。」
+      A6: 「通常flow 一個case討論過就不太會回來討論，要講究一次講完」
+          「應該flow要順不要重複走回來，這是一個規則。」
+      A7: 「別人看到這裡的時候，不會覺得困惑（confusing），就是她們閱讀這個flow的時候
+          可以隨時提出問題，我們必須要照這這個flow的時候不會有困惑」
+      A8: 「flow本身為了要順是可以進行 rearrangement的，這可以寫成一個axiom說合理的
+          operation有哪些。」
+      A9: 「我發現flow需要有另外一個輔助的東西叫作contributions」
+          「你再flow的地方思考結構的時候也要想figure跟table可能是必要的」
+          「flow裡面也要說哪些東西要放在appendix」
+    On the same day two examples were added under A1 for the announcement
+    of a complete worked example that is given later. The announcement is
+    exception (1) of A1 and not a third exception. The author's words:
+      「這邊是前向引用的例外，因為這是後面有一個具體的完整example。……這是少數例外」
+    The rule on the order of a general and a simple case, from the same
+    reading, is mathematical-writing A7_general_case_first.
 
 # Primitive terms — undefined concepts that form the foundation
 primitives:
@@ -62,6 +86,27 @@ primitives:
     intuition: |
       A sentence that refers to a place later in the article ("in Section 6",
       "below", "as we will see").
+  - term: "Flow"
+    intuition: |
+      The ordered list of the ideas of an article, in reading order and
+      grouped by section: one line for what each stretch of the article
+      tells the reader. A flow can be written before the prose and expanded
+      into it, or read off prose that exists. An axiom stated on a flow
+      holds of an article when it holds of the article's flow.
+  - term: "Idea"
+    intuition: |
+      One entry of a flow: what one stretch of the article (a paragraph, or
+      a few sentences) tells the reader. A claim, a definition, a case, an
+      example or a step of the argument is an idea. An idea has a position
+      in the flow and a topic.
+  - term: "Topic"
+    intuition: |
+      What an idea adds content about: an object, a case or a question. The
+      topic is what the idea says something new about, not everything it
+      mentions. A flow gives each idea one topic label.
+  - term: "Display"
+    intuition: |
+      A figure or a table.
 
 axioms:
   - id: "A1_no_forward_dependence"
@@ -168,6 +213,25 @@ axioms:
           the claim in §4.3 is not intelligible now (not a promissory note).
           (Leibniz machine-proof manuscript for Synthese, 2026-10-10,
           commit 543f22b.)
+      - description: "The announcement of a later worked example is made to carry a definition (added 2026-11-26)"
+        content: |
+          §2: "Section 5 works a complete example on one data set. We call a
+          sample balanced when its groups are like those of that example."
+          §3: "For balanced samples the two estimators agree to the first
+          order."
+          §5: the example, with five groups of twelve observations each.
+        explanation: |
+          The first sentence of §2 is a roadmap and would be allowed. The
+          second makes the pointer supply content: what "balanced" means
+          lies in §5, so intro(balanced) is §5 and not §2, and the result in
+          §3 cannot be understood or checked when it is read. Exception (1)
+          fails because the pointer supplies content the reader needs at
+          that point, and exception (2) fails because the claim in §3 is not
+          intelligible where it stands. That the later passage is a complete
+          example does not make a third exception. The remedy is to state
+          the condition in §2 ("balanced: all groups have the same size")
+          and to keep the announcement. (Constructed for this axiom; not
+          taken from a manuscript.)
 
     compliant:
       - description: "The principle stated where it is first needed; the forward definition deleted; the later section refers back"
@@ -195,6 +259,26 @@ axioms:
           lies ahead. The fix reordered rather than deleted: the principle
           and its defence are both still in the article. (Same manuscript,
           commit a0f987a.)
+      - description: "A complete worked example given later is announced earlier, and nothing is taken from it (added 2026-11-26)"
+        content: |
+          §2: "The two estimators are defined for any grouped sample.
+          Section 5 works one data set through both of them, from the raw
+          observations to the two standard errors."
+          §3 and §4: the properties of the two estimators, stated and
+          derived in general. No sentence uses a group size, a value or a
+          step from Section 5.
+          §5: the worked example.
+        explanation: |
+          The announcement is exception (1), the roadmap. It names where the
+          question "what does this look like on data?" is treated and
+          supplies no content, so Needs(s_i) ∩ Content(s_j) = ∅, and every
+          sentence of §2 to §4 can be understood and checked without §5.
+          This is an instance of an existing exception and adds none: the
+          list of two stays closed. An earlier sentence that goes further
+          and states a claim whose only support is the example is judged
+          under exception (2), on whether the claim is intelligible where
+          it stands. (Constructed for this axiom; not taken from a
+          manuscript.)
 
   - id: "A2_motivated_by_prefix"
     name: "Each element of a scholarly article is called for by what precedes it"
@@ -537,3 +621,746 @@ axioms:
           is asked of the three rules, and the result that reduces them to
           two follows it directly. (Constructed for this axiom, like the
           violations.)
+
+  - id: "A5_case_frame"
+    name: "A discussion by cases has a frame: announced, in order, exhaustive"
+    one_liner: "Before the first case, the text names the question, the scope, the cases and their order; the cases are then discussed in that order, each once; together they cover the scope."
+
+    statement_natural: |
+      A discussion by cases is a stretch of an article in which one question
+      is answered separately under two or more conditions, each with a
+      discussion of its own. Such a stretch has a frame, and three things
+      hold of it.
+        (1) Announced. Before the first case is discussed, the text names
+            the question, says what range of situations the cases divide
+            (the scope), lists every case, and gives the order in which
+            they are taken.
+        (2) In order. The cases are discussed in the announced order. Each
+            case is discussed once, in one unbroken run of ideas. A second
+            split, by another condition, starts after the first is
+            finished or inside one of its cases, and has a frame of its
+            own.
+        (3) Exhaustive. Every situation in the scope falls under a listed
+            case. A listed case that is not discussed at its turn has one
+            of two dispositions, and this list is closed: deferred, with
+            the place where it is discussed (a forward pointer in the
+            sense of A1); or excluded, with the reason the article leaves
+            it out.
+      A situation in the scope that no listed case covers is a defect even
+      when every discussed case is correct. So is a case that is discussed
+      without having been listed.
+      A result that is stated under one condition and names the situation
+      it leaves out, with a pointer to where that situation is closed, is
+      not a discussion by cases: one case is discussed there, and the
+      pointer is governed by A1. The frame is required from two discussed
+      cases on.
+      The remedy is to write the frame and then to reorder: write the
+      announcement, bring the ideas of each case together, and put the
+      cases in the announced order, by the operations of A8. When the cases
+      turn out not to cover the scope, a case is added, or the scope in the
+      announcement is narrowed to what the cases cover.
+
+    statement_formal: |
+      Let q be a question and D a stretch of the flow that answers q under
+      conditions C_1, …, C_k with k ≥ 2, each C_i having ideas of its own,
+      Ideas(C_i) ⊆ D. Let Scope(q) be the set of situations about which q
+      is asked, as the announcement states it.
+        Announced:   ∃ idea a with pos(a) < pos(d) for every d in
+                     Ideas(C_1) ∪ … ∪ Ideas(C_k), and a states q, Scope(q),
+                     a list L = (C_1, …, C_m) with m ≥ k, and the order
+                     of L.
+        In order:    for discussed cases C_i before C_j in L:
+                     max pos(Ideas(C_i)) < min pos(Ideas(C_j)),
+                     and each Ideas(C_i) occupies consecutive positions.
+        Listed:      every case discussed in D is in L.
+        Exhaustive:  Scope(q) ⊆ C_1 ∪ … ∪ C_m, and every C_i in L is
+                     discussed in D, or Deferred(C_i, place), or
+                     Excluded(C_i, reason).
+                     Dispositions = {discussed, deferred, excluded} is
+                     closed.
+      Not a discussion by cases:  k = 1 with a pointer for the situation
+        left out; the pointer is judged under A1.
+      Remedy:  write a; then apply A8 until In order holds; if
+        Scope(q) ⊄ C_1 ∪ … ∪ C_m, add a case to L or narrow Scope(q) in a.
+
+    rationale: |
+      A reader inside an unframed case discussion does not know how many
+      cases are coming, whether the case being read is the last one, or
+      whether the situation they have in mind will be treated at all. Every
+      case can be correct and the reader still cannot see what the cases
+      add up to. The writer does not notice, because the writer holds the
+      whole division in mind before writing the first case. An unannounced
+      case reads as a digression, and a case discussed in two places makes
+      the reader go back to what they had taken as finished. Exhaustiveness
+      needs a stated scope, because without one there is nothing to compare
+      the cases with: "the cases cover everything" can be checked only
+      against a statement of what everything is. The dispositions are a
+      closed list because a case that is silently missing and a case that
+      is left out on purpose look the same to the reader unless the text
+      says which it is.
+
+    violations:
+      - description: "The cases arrive one at a time, with no announcement"
+        content: |
+          Idea 1. Among students in the lowest third on the earlier test,
+          the worked-example lessons raised the end-of-term score.
+          Idea 2. Among students in the highest third they made no
+          difference.
+          Idea 3. Among students in the middle third the gain was about
+          half that of the lowest third.
+        explanation: |
+          Condition (1) fails. At idea 2 the reader does not know whether a
+          middle group exists, or whether idea 2 ends the comparison, and
+          learns only at the end that the three thirds were the plan. Only
+          (1) fails: with an announcement that lists the cases in the order
+          lowest, highest, middle, the same three ideas would meet (2) and
+          (3). (Constructed for this axiom; not taken from a manuscript.)
+      - description: "Announced and exhaustive, but discussed out of order and one case in two places"
+        content: |
+          Idea 1. The effect is reported by prior score, for the students
+          who took the earlier test, in three groups: the lowest third, the
+          middle third and the highest third, in that order.
+          Idea 2. Lowest third: the lessons raised the score.
+          Idea 3. Highest third: no difference.
+          Idea 4. Lowest third again: the gain was still present one term
+          later.
+          Idea 5. Middle third: about half the gain of the lowest third.
+        explanation: |
+          Condition (2) fails twice. The highest third is taken before the
+          middle third, against the announced order, and the lowest third
+          is discussed in two runs (ideas 2 and 4). The announcement and
+          the coverage are in order: the three thirds contain every student
+          in the stated scope. (Constructed for this axiom.)
+      - description: "Announced and in order, but the cases do not cover the stated scope"
+        content: |
+          Idea 1. The effect is reported for every student who took the
+          earlier test, in two groups: students below the 25th percentile
+          of that test, then students above the 75th.
+          Idea 2. Below the 25th percentile: the lessons raised the score.
+          Idea 3. Above the 75th percentile: no difference.
+        explanation: |
+          Condition (3) fails. The stated scope is every student who took
+          the earlier test, and the half of them between the two
+          percentiles falls under no listed case. The reader cannot tell
+          whether the middle half was forgotten or left out on purpose.
+          Either a case is added, or the announcement lists the middle half
+          as excluded and says why. (Constructed for this axiom.)
+
+    compliant:
+      - description: "The frame first, the cases in the announced order, the left-out group listed as excluded, and a second split with a frame of its own"
+        content: |
+          Idea 1. The effect is reported by prior score for every student
+          in the sample. Students who took the earlier test are taken in
+          three groups, in this order: the lowest third, the middle third,
+          the highest third. Students who missed the earlier test (4% of
+          the sample) have no prior score and are left out of this
+          comparison.
+          Idea 2. Lowest third: the lessons raised the score, and the gain
+          was still present one term later.
+          Idea 3. Middle third: about half the gain of the lowest third.
+          Idea 4. Highest third: no difference.
+          Idea 5. Class size is examined next, as a second division of the
+          same sample: classes of 20 or fewer, then classes of more than
+          20. Every class is one or the other.
+          Idea 6. Classes of 20 or fewer.
+          Idea 7. Classes of more than 20.
+        explanation: |
+          Idea 1 names the question (the effect by prior score), the scope
+          (every student in the sample), the cases and their order, and it
+          lists the students with no prior score as excluded, with the
+          reason. Ideas 2 to 4 follow the announced order and each case has
+          one run; what the second violation said in two places about the
+          lowest third now stands together in idea 2. The second split
+          starts after the first is finished and has its own announcement
+          (idea 5), whose two cases cover every class. (Constructed for
+          this axiom, like the violations.)
+
+  - id: "A6_topic_once"
+    name: "Each topic is treated in one place"
+    one_liner: "The ideas that add content about a topic stand together; once the flow has left a topic it does not come back to add to it. A backward reference, an announced continuation and the framing sections are not returns."
+
+    statement_natural: |
+      In the body of an article each topic is treated once. The ideas that
+      add content about a topic (a claim, a case, a qualification, an
+      explanation) are consecutive in the flow: once the flow has moved to
+      another topic, it does not come back to say more about the first. A
+      return makes the reader reopen something they had taken as settled,
+      and what they read in between was read without the part that came
+      late.
+      Three things are not a return. The list is closed: anything else that
+      adds content about a topic after the flow has left it is a return and
+      a defect, however small the addition.
+        (1) Backward reference. A later idea with a topic of its own cites
+            what was established about the earlier topic: as a step, as a
+            value, or to say how its own topic relates to the earlier one.
+            This is the backward dependence that A1 asks for.
+        (2) Announced continuation. At the place where the flow leaves the
+            topic, the text says which part remains and where it is
+            treated, and the later place treats that part and nothing else
+            of the topic. The pointer is one of the two forward pointers of
+            A1. A claim stated in one section and defended in a later one,
+            and a case deferred in the frame of A5, are of this kind. Each
+            part is still treated once.
+        (3) Framing sections. The abstract, the Introduction, the section
+            that holds the broad review of A3, and the closing section (a
+            discussion or a conclusion) may take up a topic of the body: to
+            state it in advance, to place it in the literature, or to
+            interpret it. This list of four positions is closed. The order
+            inside the Introduction is governed by A4.
+      Whether two ideas share a topic is read from the topic labels of the
+      flow. The topic of an idea is what it adds content about, not what it
+      mentions: an idea that works the article's running example to show
+      the bias of an estimator has the bias as its topic.
+      The remedy is to bring the ideas together, not to delete the late
+      one. Either the late idea moves next to the earlier treatment and is
+      merged with it (A8), or, when it cannot move because it depends on
+      material in between, the earlier place says what remains and where,
+      which makes it an announced continuation.
+
+    statement_formal: |
+      Let d_1, …, d_M be the ideas of the flow in reading order, each with
+      one label topic(d_i). Let P = {abstract, Introduction, review
+      section, closing section} be the framing positions (closed), and B
+      the ideas outside P.
+        Once:   ∀ t, ∀ i < j < k with d_i, d_j, d_k ∈ B:
+                topic(d_i) = topic(d_k) = t  ∧  topic(d_j) ≠ t
+                ⇒  Continued(i, k, t)
+        Continued(i, k, t):  the last idea with topic t before d_j states
+                which part of t remains and names the place of d_k, and
+                the ideas with topic t from d_k on treat only that part.
+        Backward reference:  topic(d_k) ≠ t and d_k cites what an earlier
+                idea established about t. Once does not constrain it; it
+                is the backward dependence of A1.
+        Framing:  Once does not constrain the ideas in P.
+      Exceptions = {backward reference, announced continuation, framing
+      sections} is closed.
+      Remedy — bring together, do not delete:  if Once fails for (i, k, t),
+        either  move d_k next to d_i and merge the two (A8),
+        or      add, at the last idea with topic t before d_j, what
+                remains and where, so that Continued(i, k, t) holds.
+
+    rationale: |
+      A reader who has finished the part of an article on a topic files
+      what it said and reads on with that in hand. A later addition to the
+      same topic changes what was filed, and everything read in between was
+      read with the earlier, incomplete version. The writer returns to a
+      topic for reasons that have nothing to do with the reader: the
+      qualification was found late, or a referee asked for it, or the
+      second result needed the first to be amended. Each such addition is
+      correct where it stands, so no check of single sentences finds it.
+      The three exceptions are the cases in which the reader is not asked
+      to reopen anything. A backward reference uses the earlier topic
+      without changing it. An announced continuation told the reader, at
+      the time, that the topic was not finished. The framing sections are
+      read as summaries, reviews and interpretations of the body, which is
+      a use of them that readers expect. The list is closed because "a
+      small addition does no harm" is the argument every return makes for
+      itself.
+
+    violations:
+      - description: "A qualification of an earlier result appears two topics later"
+        content: |
+          §3, idea 1. Bias of estimator A: of order 1/n, and negative.
+          §3, idea 2. Variance of estimator A.
+          §4, idea 3. Bias of estimator B.
+          §4, idea 4. Variance of estimator B.
+          §4, idea 5. When the groups have unequal sizes, the bias of A can
+          have either sign.
+          §5, idea 6. The two estimators compared by mean squared error.
+        explanation: |
+          Idea 5 adds a claim about the bias of A, the topic of idea 1,
+          after the flow has gone through three other topics. It is not a
+          backward reference, because it says something new about the
+          earlier topic. Idea 1 did not announce that a part remained. §4
+          is not a framing section. The reader took "negative" from idea 1
+          and read ideas 2 to 4 with it. (Constructed for this axiom; not
+          taken from a manuscript.)
+
+    compliant:
+      - description: "The late idea is merged into the earlier treatment; the later section only cites it"
+        content: |
+          §3, idea 1. Bias of estimator A: of order 1/n; negative when the
+          groups have equal sizes, of either sign when they do not.
+          §3, idea 2. Variance of estimator A.
+          §4, idea 3. Bias of estimator B: of order 1/n as well, and
+          smaller in absolute value than the bias of A found in Section 3.
+          §4, idea 4. Variance of estimator B.
+          §5, idea 5. The two estimators compared by mean squared error.
+        explanation: |
+          Everything the flow says about the bias of A is in idea 1. Idea 3
+          has its own topic, the bias of B, and cites the bias of A to say
+          how the two relate: a backward reference. No claim of the
+          violation was deleted. (Constructed for this axiom.)
+      - description: "The part that cannot move is announced where the flow leaves the topic"
+        content: |
+          §3, idea 1. Bias of estimator A for groups of equal size: of
+          order 1/n, and negative. The case of unequal sizes needs the
+          weights defined in Section 4.2 and is treated there.
+          §3, idea 2. Variance of estimator A.
+          §4.1, idea 3. Bias and variance of estimator B.
+          §4.2, idea 4. The weights for groups of unequal size.
+          §4.2, idea 5. Bias of estimator A for groups of unequal size:
+          either sign.
+        explanation: |
+          Idea 5 depends on the weights of idea 4, so it cannot move up to
+          idea 1. Idea 1 says which part of the topic remains (unequal
+          sizes) and where it is treated, and idea 5 treats that part and
+          nothing else. The reader of ideas 2 to 4 knows that "negative" is
+          a statement about equal sizes. The pointer in idea 1 is a
+          promissory note in the sense of A1: the open case is fully
+          intelligible where it is stated. (Constructed for this axiom.)
+
+  - id: "A7_no_open_question"
+    name: "No question that the text raises is left open"
+    one_liner: "A question the text has made the reader ask is closed where it arises: answered there or in the next idea, deferred to a named place, or declared open."
+
+    statement_natural: |
+      A reader can stop at any point of an article and ask a question. At
+      no point may the flow leave the reader holding a question that the
+      text itself has made them ask. When the text raises a question, it
+      closes it before it moves on: the idea that raises the question, or
+      the idea right after it, does one of three things. This list is
+      closed.
+        (1) Answered. It answers the question, or it is the start of the
+            answer.
+        (2) Deferred. It says where in the article the question is
+            answered. The pointer is a forward pointer of A1, so the
+            question is fully intelligible where it is raised. In an
+            Introduction, the statement of what is not known is deferred
+            by the statement of the research question, which says that the
+            article answers it; the research question is deferred by the
+            roadmap, or answered under (1) by the statement of what the
+            article finds (A4). When one idea raises several questions, it
+            says in which order they are answered, and that defers all but
+            the first.
+        (3) Declared open. It says that the article does not answer the
+            question: a limitation, or a question for later work.
+      The text raises a question in four ways. This list is closed as
+      well, so that the rule can be checked idea by idea.
+        (a) It asks one, directly or by saying that something is unclear,
+            unknown or yet to be determined.
+        (b) It asserts a claim that goes beyond what an undergraduate
+            course in the field teaches, and gives no ground for it: no
+            reason, no citation, no derivation.
+        (c) It makes a choice among alternatives it has named, or departs
+            from what it has announced, and gives no reason.
+        (d) It states something that appears to conflict with what it
+            stated earlier, and does not say how the two stand together.
+      A question that a reader brings and that the text did not raise in
+      one of these four ways is outside this axiom. So is the abstract: it
+      is a summary, and each of its claims is taken up by the article as a
+      whole.
+      A2, which generalizes mathematical-writing A5_motivated_by_prefix,
+      says that an element arrives only after the question it answers.
+      This axiom is its converse: a question, once raised, does not wait.
+      A2 looks back from each answer to its question; this axiom looks
+      forward from each question to its answer. A flow can satisfy A2 and
+      fail here: the answer does come after its question, but several
+      sections later and with nothing said in between. A flow can also
+      satisfy this axiom and fail A2: an example placed before its question
+      leaves no question open. A1 allows the promissory note; this axiom
+      adds that a question is postponed only by saying so.
+      The remedy is to reorder or to say where. Either the answer moves
+      next to the question (A8), or the idea that raises the question gets
+      the pointer of (2) or the declaration of (3).
+
+    statement_formal: |
+      Let d_1, …, d_M be the ideas of the flow in reading order. Let
+      Raised(d_i) be the questions that d_i raises through a trigger in
+      T = {asked, ungrounded claim, unexplained choice, apparent conflict}
+      (closed).
+      The ideas of the abstract are not constrained.
+        Closed at once:  ∀ i, ∀ q ∈ Raised(d_i), ∃ d ∈ {d_i, d_{i+1}}:
+                         Answers(d, q)  ∨  StartsAnswer(d, q)
+                         ∨  Deferred(d, q, place)  ∨  DeclaredOpen(d, q)
+        Deferred(d, q, place):  d names place; every item needed to
+                         understand q is introduced no later than d_i (the
+                         pointer is E1 or E2 of A1); the idea at place
+                         answers q. For the statement of what is not
+                         known, place may be the article as a whole, named
+                         by the statement of the research question.
+        Dispositions = {answered, deferred, declared open} is closed.
+      Stated on prefixes: let Open(i) be the questions raised by
+      d_1, …, d_i and not answered by d_1, …, d_{i+1}. Every q ∈ Open(i)
+      is deferred or declared open by the idea that raised it or by the
+      idea right after that one.
+      Relation to A2:
+        A2:  ∀ element e, ∃ j < pos(e): d_j raises Q(e)    (from the answer
+                                                             back to the
+                                                             question)
+        A7:  ∀ q ∈ Raised(d_i): q is closed at d_i or d_{i+1}
+                                                            (from the
+                                                             question on to
+                                                             the answer)
+        Neither implies the other.
+      Remedy — reorder or say where:  if q ∈ Raised(d_i) is not closed,
+        either  move the idea that answers q to position i+1 (A8),
+        or      add to d_i the pointer (Deferred) or the declaration
+                (DeclaredOpen).
+
+    rationale: |
+      The writer knows that the answer is coming and so does not feel the
+      question as open. The reader does not know, and reads the next pages
+      with part of their attention on the question: was the choice
+      arbitrary, is the claim true, which of the two statements holds? What
+      they read meanwhile is weighed less well, and a careful reader starts
+      to distrust the text. One sentence at the place where the question
+      arises is enough to prevent this: it gives the reason, or it says
+      where the reason is, or it says that the article leaves the question
+      open. The four triggers are a closed list because "any question a
+      reader might have" cannot be checked, while "did this idea ask
+      something, assert something without a ground, choose without a
+      reason, or seem to contradict an earlier idea?" can be answered for
+      each idea in turn. A2 does not cover this. A2 is satisfied as soon as
+      every answer has its question somewhere before it, however far
+      before.
+
+    violations:
+      - description: "A choice among named alternatives is made without a reason, and the reason arrives seven ideas later"
+        content: |
+          Idea 1. Two summaries of the typical score are in use, the mean
+          and the median.
+          Idea 2. We use the median throughout.
+          Idea 3. The data: 40 schools, 1,900 students.
+          Ideas 4 to 8. The measures, the procedure, the descriptive
+          results.
+          Idea 9. The scores have heavy tails, and with heavy tails the
+          median varies less from sample to sample than the mean; this is
+          why the median was used.
+        explanation: |
+          Idea 2 makes a choice among the alternatives named in idea 1 and
+          gives no reason: trigger (c). Idea 3 moves on, and nothing in
+          idea 2 says where the reason is, so the reader carries "why the
+          median?" through ideas 3 to 8. A2 holds, since the reason in
+          idea 9 comes after the question it answers, and A1 holds, since
+          no idea leans on a later one. (Constructed for this axiom; not
+          taken from a manuscript.)
+      - description: "A later idea appears to conflict with an earlier one, and nothing says how the two stand together"
+        content: |
+          Idea 4. Estimator A is the more accurate of the two, by the
+          comparison of their mean squared errors to the first order.
+          Idea 7. In Table 2, estimator B has the smaller error at n = 20.
+          Idea 8. The computing time of the two estimators.
+        explanation: |
+          Idea 7 appears to conflict with idea 4: trigger (d). The reader
+          asks which statement holds, and idea 8 moves on to another topic
+          with nothing said about it. (Constructed for this axiom.)
+
+    compliant:
+      - description: "The three ways of closing a question: answered at once, deferred to a named place, declared open"
+        content: |
+          Answered. Idea 2. We use the median throughout, because the
+          scores have heavy tails, and with heavy tails the median varies
+          less from sample to sample than the mean.
+          Deferred. Idea 2. We use the median throughout. The reason is the
+          tail weight of the scores, which Section 4 documents.
+          Declared open. Idea 12. Whether the same choice is right for the
+          scores of other age groups is not examined in this article.
+        explanation: |
+          In the first version idea 2 gives the reason with the choice. In
+          the second it names the reason and says where the evidence is;
+          the question is intelligible where it stands, so the pointer is a
+          promissory note of A1. In the third the text raises a question
+          and says in the same idea that the article does not answer it. In
+          none of the three does the reader carry an unmarked question past
+          the next idea. (Constructed for this axiom.)
+      - description: "An apparent conflict is resolved in the idea that creates it"
+        content: |
+          Idea 4. Estimator A is the more accurate of the two, by the
+          comparison of their mean squared errors to the first order.
+          Idea 7. In Table 2, estimator B has the smaller error at n = 20.
+          The comparison of Section 2 is to the first order, and at n = 20
+          the terms it leaves out still matter; from n = 50 on, the same
+          table shows the smaller error for A.
+        explanation: |
+          Idea 4 is unchanged. Idea 7 says how its statement stands with
+          idea 4, by a backward reference, in the same idea that would
+          otherwise raise the question. (Constructed for this axiom.)
+
+  - id: "A8_rearrangement_operations"
+    name: "A flow is rearranged only by the listed operations"
+    one_liner: "To make a flow read in order, ideas may be swapped, moved earlier, moved later, merged or split, each under its condition; nothing is deleted, duplicated or added. The list is closed, and it is a proposal for the author to cut or extend."
+    status: "Proposal (2026-11-26). The principle is the author's; the list of operations was drafted for the author to cut or extend, by a later entry."
+
+    statement_natural: |
+      A flow may be rearranged so that it reads in order. Rearrangement is
+      the remedy that A1, A2, A5, A6 and A7 prescribe, and it is legitimate
+      when it is a sequence of the operations below, each applied under its
+      condition. A rearrangement changes the order and the grouping of
+      ideas and nothing else: every claim of the flow before is in the flow
+      after, exactly once, and no claim is new.
+      The operations. This list is closed: a change to a flow that is not a
+      sequence of these operations is not a legitimate rearrangement.
+        (R1) Swap. Two adjacent ideas, or two adjacent blocks of ideas,
+             exchange places. Condition: neither depends on the other (A1),
+             and neither raises the question the other answers (A2).
+        (R2) Move earlier. An idea, or a block, moves to an earlier
+             position. Condition: every item it depends on is introduced
+             before the new position (A1), and, if it answers a question,
+             that question is raised before the new position (A2).
+        (R3) Move later. An idea, or a block, moves to a later position.
+             Condition: no idea between the old position and the new one
+             depends on it (A1) or answers a question that only it raises
+             (A2).
+        (R4) Merge. Two adjacent ideas on the same topic become one idea.
+             Condition: the two have the same topic (A6), and every claim
+             of both is kept. Ideas that are not adjacent are first brought
+             together by R2 or R3.
+        (R5) Split. One idea becomes two adjacent ideas, each of which may
+             then move. Condition: every claim of the idea goes to exactly
+             one of the two.
+      Two common uses are sequences of these operations and are not
+      further operations. Putting a worked consequence (a corollary, an
+      example, a numerical illustration) next to the result it follows
+      from is R2 or R3 with that position as the target. Sending the
+      detail of an idea to the appendix is R5 followed by R3, with the
+      appendix plan of A9 updated.
+      Three conditions hold for every operation.
+        (i)   What cites the moved text is known before it moves
+              (mathematical-writing A3_replacement_precondition), and a
+              pointer that the move turns around is rewritten to point
+              backward.
+        (ii)  A case moves with its frame: when the order of the cases
+              changes, the announcement of A5 is rewritten to the new
+              order.
+        (iii) After the sequence, the flow is checked again against A1,
+              A2, A5, A6 and A7. The conditions of R1 to R3 keep A1 and A2
+              for the ideas that moved. They do not by themselves keep a
+              frame in order, a topic in one place, or a question next to
+              its answer.
+      Three changes are outside the list, whatever they do for the
+      smoothness of the flow. Deleting an idea removes a claim; the
+      remedies of A1, A2 and A6 are to reorder, not to delete. Stating an
+      idea in two places breaks A6. Inserting a sentence, such as the
+      transition that A2 allows as its other remedy or the pointer of A7,
+      adds text: those axioms permit it, it is not a rearrangement, and the
+      added sentence is judged as new content.
+
+    statement_formal: |
+      Let F = (d_1, …, d_M) be a flow and Claims(F) the collection of its
+      claims, counted with repetition. Write Dep(x, y) when x depends on an
+      item that y introduces (A1), and Ask(y, x) when y raises the question
+      that x answers (A2).
+        swap(x, y), x and y adjacent:    requires ¬Dep(x, y), ¬Dep(y, x),
+                                         ¬Ask(x, y), ¬Ask(y, x)
+        earlier(x, p), p < pos(x):       requires ∀ y: Dep(x, y) ⇒ pos(y) < p,
+                                         and, if x answers a question,
+                                         ∃ y: Ask(y, x) ∧ pos(y) < p
+        later(x, p), p > pos(x):         requires, for every y with
+                                         pos(x) < pos(y) ≤ p:  ¬Dep(y, x),
+                                         and ¬Ask(x, y) unless some z with
+                                         pos(z) < pos(x) also raises that
+                                         question
+        merge(x, y), x and y adjacent:   requires topic(x) = topic(y) and
+                                         Claims(x ⊕ y) = Claims(x) + Claims(y)
+        split(x) = (x′, x″):             requires Claims(x′) + Claims(x″)
+                                         = Claims(x)
+      Ops = {swap, earlier, later, merge, split} is closed.
+        Legitimate(F → F′)  ⇔  F′ is obtained from F by a finite sequence
+                               of operations in Ops, each meeting its
+                               requirement, and (i), (ii), (iii) hold.
+        Invariant:           Legitimate(F → F′)  ⇒  Claims(F′) = Claims(F)
+        Outside Ops:         delete(x):     Claims(F′) ⊊ Claims(F)
+                             duplicate(x):  breaks A6
+                             insert(s):     Claims(F′) ⊋ Claims(F); judged
+                                            under A2 or A7, not here.
+
+    rationale: |
+      The earlier axioms say "reorder, do not delete" and leave open what a
+      reordering is. In practice a flow is rearranged for smoothness under
+      time pressure, and three things go wrong without anyone deciding
+      them: a claim is dropped because it no longer fits anywhere, an idea
+      is moved across something it depends on, and a case is moved out of
+      its frame. A permission to "rearrange as needed" covers all three,
+      because every edit can be called a rearrangement. A closed list of
+      operations, each with a condition stated in terms of the axioms that
+      already exist, makes each step something that can be checked: the
+      step is one of five, and its condition holds or does not. The
+      invariant, that the claims before and after are the same, is what
+      separates rearranging from rewriting.
+      The list is a proposal. It was drafted from the author's request
+      that the legitimate operations be written down, and it is meant to be
+      cut or extended. R1 is the case of R2 over one position, stated with
+      a symmetric condition; it is listed because exchanging two
+      neighbouring blocks is the commonest rearrangement, and it can be
+      cut without loss. The two named uses are given as sequences so that
+      the list stays short.
+
+    violations:
+      - description: "An idea is moved earlier across an idea it depends on"
+        content: |
+          Before.
+          d1. The design: several groups of unequal size, with the same
+          variance within each group.
+          d2. The pooled estimator is a weighted average of the group
+          means.
+          d3. Its variance is smallest under the weights w_i defined in
+          Section 4.
+          d4. The design of the simulation.
+          d5. The weights are w_i = n_i / N, and the simulation of d4
+          shows that the result changes little when the group variances
+          differ moderately.
+          Change: d5 is moved to stand before d3.
+        explanation: |
+          The move is R2, and its condition fails: d5 depends on d4, the
+          design of the simulation, which is not before the new position.
+          The change repairs the forward dependence of d3 and creates a new
+          one, since the simulation is now cited before it is described.
+          (Constructed for this axiom; not taken from a manuscript.)
+      - description: "A flow is smoothed by deleting the idea that did not fit"
+        content: |
+          Same flow. Change: the sentence of d3 about the weights is
+          deleted, and d5 stays where it is.
+        explanation: |
+          The forward dependence is gone and so is a claim: the flow no
+          longer says under which weights the variance is smallest. Deletion
+          is not one of the five operations, and Claims(F′) ⊊ Claims(F).
+          (Constructed for this axiom.)
+
+    compliant:
+      - description: "Split, then move earlier: the dependence is turned backward and every claim is kept"
+        content: |
+          Step 1, R5. d5 is split into d5a (the weights are w_i = n_i / N)
+          and d5b (the simulation of d4 shows that the result changes
+          little when the group variances differ moderately).
+          Step 2, R2. d5a moves to stand between d2 and d3.
+          After.
+          d1. The design: several groups of unequal size, with the same
+          variance within each group.
+          d2. The pooled estimator is a weighted average of the group
+          means.
+          d5a. The weights are w_i = n_i / N.
+          d3. Its variance is smallest under these weights.
+          d4. The design of the simulation.
+          d5b. The simulation shows that the result changes little when the
+          group variances differ moderately.
+        explanation: |
+          R5: each claim of d5 is in exactly one of d5a and d5b. R2: d5a
+          depends only on the group sizes of d1, which come before the new
+          position, and the question it answers (with what weights?) is
+          raised by d2. The pointer in d3 now points backward, as condition
+          (i) asks, after a search showed that nothing else cited d5. The
+          flow says exactly what it said before, and the check of condition
+          (iii) finds no frame, topic or question disturbed. (Constructed
+          for this axiom.)
+
+  - id: "A9_contributions_displays_appendix"
+    name: "The contributions, the figures and tables, and the appendix are planned with the flow"
+    one_liner: "A flow comes with three lists tied to its ideas: each contribution is carried by at least one idea, each figure or table has one home idea, and each section says what of it goes to the appendix."
+
+    statement_natural: |
+      A flow is planned together with three lists, and each list is tied to
+      the ideas of the flow.
+        (1) Contributions. The list of what the article claims to add is
+            written with the flow. Each contribution is carried by at least
+            one idea of the body: an idea that states it and gives its
+            ground. A contribution that no idea carries is taken off the
+            list or given its idea.
+        (2) Figures and tables. The flow lists the displays of the article,
+            and each display has exactly one home idea: the idea whose
+            claim the display shows or supports, which says what the
+            display shows and refers to it. Other ideas may cite the
+            display afterwards. A display with no home idea is not in the
+            article.
+        (3) Appendix. For each section of the main text, the flow says what
+            of that section goes to the appendix (proofs, derivations,
+            further tables, further checks), or that nothing does. Each
+            appendix item has a home idea in the main text, which states
+            what the item establishes and points to it. No idea of the main
+            text depends on content of an appendix item that its home idea
+            does not state; this is A1 applied to the appendix, which the
+            reader meets last.
+      The three conditions are checked on the flow and its lists. The
+      converse of (1) is not required: an idea may establish something
+      that the article does not list as a contribution.
+      A2 already says when a figure or a table may appear, after the
+      question it answers. This axiom says which idea each display and each
+      appendix item belongs to, and that the list of contributions is
+      checked against the ideas. mathematical-writing
+      A6_prior_result_attribution governs what may be put on the list of
+      contributions; this axiom governs whether the flow delivers what is
+      on it.
+
+    statement_formal: |
+      Let F be the flow, K the list of contributions, V the list of
+      displays, X the list of appendix items, and Sec the sections of the
+      main text.
+        Carried:   ∀ c ∈ K, ∃ idea d in the body of F:  d states c and
+                   gives its ground.
+        Served:    ∀ v ∈ V, ∃! idea home(v) in F:  home(v) says what v
+                   shows and refers to v.
+        Planned:   ∀ s ∈ Sec, F records Appendix(s) ⊆ X (possibly ∅), and
+                   X = ∪_s Appendix(s).
+        Homed:     ∀ x ∈ X, ∃ idea home(x) in the main text that states
+                   what x establishes and points to x; and no idea of the
+                   main text depends on content of x that home(x) does not
+                   state (A1).
+      Not required:  that every idea of the body corresponds to some c ∈ K.
+      Remedy:  for c with no carrying idea, remove c from K or add the
+        idea; for v or x with no home, name the home idea or remove v or x;
+        for s with no record, write Appendix(s), which may be empty.
+
+    rationale: |
+      The list of contributions, the displays and the appendix are usually
+      made at other times than the argument: the contributions when the
+      Introduction is drafted, the figures when the analysis is run, the
+      appendix when the main text has grown too long. Each can then drift
+      from the flow. A contribution is promised in the Introduction and no
+      section delivers it. A figure remains from an earlier version and no
+      paragraph says what it shows. A proof is moved to an appendix and the
+      main text still leans on a step inside it. None of this shows when
+      the flow is read alone, because the flow does not mention what is
+      missing from it. Tying each list to named ideas makes the three
+      checks mechanical. It also makes the writer decide, while the
+      structure is still being planned, which ideas need a figure or a
+      table to be believed and which parts of a section a reader can do
+      without on a first reading.
+
+    violations:
+      - description: "A listed contribution that no idea carries, a figure that no idea names, and an appendix that the flow does not plan"
+        content: |
+          Contributions listed in the Introduction:
+            C1. Worked-example lessons raise the end-of-term score of
+                students in the lowest third.
+            C2. The gain is still present one term later.
+            C3. A new scale of mathematics anxiety is validated.
+          Flow of the body: ideas that establish C1 and C2. The scale of C3
+          is used as a covariate; no idea reports its validation.
+          Displays: Table 1 (scores by group), named by the idea for C1.
+          Figure 2 (attendance by month), named by no idea.
+          Appendix: Appendix B holds the wording of the items. The flow of
+          Section 3 (Method) says nothing about an appendix, and no idea
+          points to Appendix B.
+        explanation: |
+          Three conditions fail, one each. Carried: C3 has no idea that
+          states it and gives its ground. Served: Figure 2 has no home
+          idea. Planned and Homed: Section 3 records nothing for the
+          appendix, and Appendix B has no home in the main text. Table 1,
+          C1 and C2 are in order. (Constructed for this axiom; not taken
+          from a manuscript.)
+
+    compliant:
+      - description: "The same article with its three lists tied to ideas"
+        content: |
+          Contributions: C1, carried by idea 9; C2, carried by idea 11. The
+          validation of the scale is not claimed.
+          Displays: Table 1 (scores by group), home idea 9. Figure 1 (the
+          gain by third, at the end of term and one term later), home idea
+          11. The attendance figure is removed.
+          Appendix, by section:
+            Section 2 (Background): nothing.
+            Section 3 (Method): the wording of the items goes to
+            Appendix A; home idea 6 ("the scale has 12 items; their wording
+            is in Appendix A").
+            Section 4 (Results): the scores by school go to Appendix B;
+            home idea 10 ("the gain has the same sign in 36 of the 40
+            schools; the scores by school are in Appendix B").
+            Section 5 (Discussion): nothing.
+        explanation: |
+          Each contribution names the idea that carries it. Each display
+          has one home idea. Each section has a record, two of them empty,
+          and each appendix item has a home idea that states what the item
+          establishes, so that the main text can be read and checked
+          without opening the appendix. The contribution with no idea was
+          taken off the list, which is one of the two remedies. (Constructed
+          for this axiom, like the violation.)
