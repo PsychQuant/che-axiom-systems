@@ -277,6 +277,10 @@ axioms:
           question "what does this look like on data?" is treated and
           supplies no content, so Needs(s_i) ∩ Content(s_j) = ∅, and every
           sentence of §2 to §4 can be understood and checked without §5.
+          An announcement may name what the later section does, here which
+          quantities it computes (the two standard errors), as long as it
+          gives none of their values and nothing else that the reader needs
+          at that point.
           This is an instance of an existing exception and adds none: the
           list of two stays closed. An earlier sentence that goes further
           and states a claim whose only support is the example is judged
