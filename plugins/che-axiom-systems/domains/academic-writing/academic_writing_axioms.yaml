@@ -709,12 +709,14 @@ axioms:
           Idea 3. Among students in the middle third the gain was about
           half that of the lowest third.
         explanation: |
-          Condition (1) fails. At idea 2 the reader does not know whether a
-          middle group exists, or whether idea 2 ends the comparison, and
-          learns only at the end that the three thirds were the plan. Only
-          (1) fails: with an announcement that lists the cases in the order
-          lowest, highest, middle, the same three ideas would meet (2) and
-          (3). (Constructed for this axiom; not taken from a manuscript.)
+          Condition (1) fails, and with it the formal clause Listed, since
+          there is no list for the cases to be on. At idea 2 the reader does
+          not know whether a middle group exists, or whether idea 2 ends the
+          comparison, and learns only at the end that the three thirds were
+          the plan. Conditions (2) and (3) are not at fault: with an
+          announcement that lists the cases in the order lowest, highest,
+          middle, the same three ideas would meet both. (Constructed for
+          this axiom; not taken from a manuscript.)
       - description: "Announced and exhaustive, but discussed out of order and one case in two places"
         content: |
           Idea 1. The effect is reported by prior score, for the students
@@ -794,13 +796,14 @@ axioms:
             what was established about the earlier topic: as a step, as a
             value, or to say how its own topic relates to the earlier one.
             This is the backward dependence that A1 asks for.
-        (2) Announced continuation. At the place where the flow leaves the
-            topic, the text says which part remains and where it is
-            treated, and the later place treats that part and nothing else
-            of the topic. The pointer is one of the two forward pointers of
-            A1. A claim stated in one section and defended in a later one,
-            and a case deferred in the frame of A5, are of this kind. Each
-            part is still treated once.
+        (2) Announced continuation. Before the flow leaves the topic, the
+            text says which part remains and where it is treated, and the
+            later place treats that part and nothing else of the topic. The
+            pointer is one of the two forward pointers of A1. A claim
+            stated in one section and defended in a later one, a case
+            deferred in the frame of A5, and an appendix item that its home
+            idea points to (A9) are of this kind. Each part is still
+            treated once.
         (3) Framing sections. The abstract, the Introduction, the section
             that holds the broad review of A3, and the closing section (a
             discussion or a conclusion) may take up a topic of the body: to
@@ -825,9 +828,10 @@ axioms:
         Once:   ∀ t, ∀ i < j < k with d_i, d_j, d_k ∈ B:
                 topic(d_i) = topic(d_k) = t  ∧  topic(d_j) ≠ t
                 ⇒  Continued(i, k, t)
-        Continued(i, k, t):  the last idea with topic t before d_j states
-                which part of t remains and names the place of d_k, and
-                the ideas with topic t from d_k on treat only that part.
+        Continued(i, k, t):  an idea with topic t that stands before d_j,
+                in the run of ideas on t that d_i belongs to, states which
+                part of t remains and names the place of d_k, and the
+                ideas with topic t from d_k on treat only that part.
         Backward reference:  topic(d_k) ≠ t and d_k cites what an earlier
                 idea established about t. Once does not constrain it; it
                 is the backward dependence of A1.
@@ -836,8 +840,8 @@ axioms:
       sections} is closed.
       Remedy — bring together, do not delete:  if Once fails for (i, k, t),
         either  move d_k next to d_i and merge the two (A8),
-        or      add, at the last idea with topic t before d_j, what
-                remains and where, so that Continued(i, k, t) holds.
+        or      add, to an idea with topic t before d_j, what remains
+                and where, so that Continued(i, k, t) holds.
 
     rationale: |
       A reader who has finished the part of an article on a topic files

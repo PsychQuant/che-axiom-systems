@@ -745,7 +745,14 @@ axioms:
       form of the setting with no stated reduction behind it.
       The axiom concerns forms of the setting that would each receive a
       treatment of their own: a derivation, a section, a set of results. A
-      symmetry step of one line inside a single proof is outside it.
+      symmetry step of one line inside a single proof is outside it. So is
+      an example: a concrete instance that illustrates the general form is
+      an element under A5, not a treatment of the simple case.
+      The axiom is about a manuscript for peer readers. Teaching and
+      speaking are ordered by other rules, which it does not touch: for a
+      learner, mathematical-learning (Axiom M3, Conceptual Development)
+      goes from the concrete to the abstract, and a talk opens on a
+      concrete instance (academic-presentation A1_example_first).
       The reduction is an object-level statement, so by A1 it is a
       proposition and not a remark. By A5 it comes right after the general
       form, which raises the question it answers: why is the simple case
