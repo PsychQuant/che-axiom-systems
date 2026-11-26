@@ -709,45 +709,60 @@ axioms:
 
   - id: "A7_general_case_first"
     name: "The general case first, reduced to the simple case by a proposition"
-    one_liner: "When a general and a simple form of the setting are both in play, set out the general one, prove a proposition that reduces it to the simple one, and from then on treat only the simple one; the simple case comes first only when the two differ in kind."
+    one_liner: "When a general and a simple form of the setting are both treated, or the text says 'without loss of generality', set out the general form, prove a proposition that reduces it to the simple one for the quantities it holds for, and from then on treat only the simple form for those; the simple case comes first only when the two differ in kind."
 
     statement_natural: |
       A manuscript often has a general form of its setting and a simple
-      form that is a special case of it, each of which could carry a
-      treatment of its own. When the general form can be reduced to the
-      simple one, the order is fixed.
+      form that is a special case of it. This axiom applies in two
+      situations, and this list is closed.
+        (a) Two treatments. The manuscript gives, or plans, a treatment of
+            each of the two forms: a derivation, a section or a set of
+            results for the one and for the other.
+        (b) A restriction. The text restricts the setting of the results
+            that follow with "without loss of generality" or an equivalent
+            phrase ("it suffices to consider", "we may assume"), whether
+            or not the general form gets a treatment.
+      A restriction made inside one proof and used only in that proof is
+      outside the axiom.
+      The reduction is judged quantity by quantity. A quantity that the
+      manuscript studies is reducible when a stated transformation carries
+      every instance of the general form to an instance of the simple
+      form, and a stated rule gives the value of the quantity at the
+      general instance from its value at the simple one. The rule is
+      written down before the quantity is computed: it may use the
+      parameters of the instance and the transformation, and it may not
+      use the value it is meant to give. "Unchanged" and "multiplied by
+      the square of the scale" are rules; "equal to whatever the general
+      derivation gives" is not.
+      For the reducible quantities the order is fixed.
         (1) The general form is set out first.
-        (2) A proposition states the reduction and is proved: a stated
-            transformation carries every instance of the general form to
-            an instance of the simple form, and each quantity the
-            manuscript studies is carried along by a stated rule (it is
-            unchanged, or it changes by a stated factor or map).
+        (2) A proposition states the reduction and is proved: the
+            transformation, the rule, and the quantities for which they
+            hold.
         (3) The manuscript then says that it takes the simple form without
-            loss of generality, and from that point on it discusses only
-            the simple form. Results are stated for the simple form and
-            hold for the general one through the proposition.
+            loss of generality for those quantities, and from that point
+            on it discusses only the simple form for them. Results are
+            stated for the simple form and hold for the general one
+            through the proposition.
       Under this order nothing is derived twice, and the reader of the
       simple case knows from the start how far it reaches.
-      The opposite order, the simple case in full and then its
-      generalization, is used only when the two differ in kind, that is,
-      when no proposition of the form (2) holds. A result has three parts,
-      its assumptions, its argument and its conclusion, and the general
-      case then differs from the simple one in at least one of them: it
-      needs an assumption that the simple case does not need; its argument
-      is not the simple argument carried over by a map; or its conclusion
-      has another form (another rate, a further term, a further
-      condition). This list of three is closed. In that situation the
-      simple case may come first, and the treatment of the general case
-      opens by saying which of the three is different.
-      Two things are defects under this axiom. One is the simple case
-      derived in full and the general case derived again, when the
-      reduction holds. The other is "without loss of generality" for a
-      form of the setting with no stated reduction behind it.
-      The axiom concerns forms of the setting that would each receive a
-      treatment of their own: a derivation, a section, a set of results. A
-      symmetry step of one line inside a single proof is outside it. So is
-      an example: a concrete instance that illustrates the general form is
-      an element under A5, not a treatment of the simple case.
+      A quantity that is not reducible differs in kind between the two
+      forms. A result has three parts, its assumptions, its argument and
+      its conclusion, and for such a quantity the general case differs
+      from the simple one in at least one of them: it needs an assumption
+      that the simple case does not need; its argument is not the simple
+      argument carried over by a map; or its conclusion has another form
+      (another rate, a further term, a further condition). This list of
+      three is closed. For such a quantity the simple case may come first,
+      and the treatment of the general case opens by saying which of the
+      three is different. "Without loss of generality" is not said of it.
+      Two things are defects under this axiom. One is a reducible quantity
+      derived for the simple form and derived again for the general form.
+      The other is "without loss of generality" with no stated reduction
+      behind it, or said of a quantity that the stated reduction does not
+      cover.
+      An example is not a treatment of the simple case: a concrete
+      instance that illustrates the general form is an element under A5.
       The axiom is about a manuscript for peer readers. Teaching and
       speaking are ordered by other rules, which it does not touch: for a
       learner, mathematical-learning (Axiom M3, Conceptual Development)
@@ -757,29 +772,48 @@ axioms:
       proposition and not a remark. By A5 it comes right after the general
       form, which raises the question it answers: why is the simple case
       enough? When the reduction is already in the literature, it is cited
-      as A6 requires. The rules for the flow of an article in any
-      discipline, among them the frame for a discussion by cases
-      (A5_case_frame) and the rule that each topic is treated in one place
-      (A6_topic_once), are in academic-writing.
+      as A6 requires.
+      Repairing a violation changes content: the reduction is stated, the
+      results are restated for the simple form, and the second derivation
+      goes. That is a revision and not a rearrangement in the sense of
+      academic-writing A8_rearrangement_operations, which names restating
+      among the changes outside its list; only the move of the reduction
+      to its place is one of that axiom's operations. The rules for the
+      flow of an article in any discipline, among them the frame for a
+      discussion by cases (A5_case_frame) and the rule that each topic is
+      treated in one place (A6_topic_once), are in academic-writing. When
+      the simple and the general case are both treated because they differ
+      in kind, the two treatments are a discussion by cases and are
+      announced as that axiom asks.
 
     statement_formal: |
       Let G be the general form of the setting (a class of instances),
       S ⊆ G the simple form, and Q the quantities the manuscript studies.
-        Reduces(G, S)  ⇔  ∃ τ: G → S and rules ρ_g such that
-                          ∀ g ∈ G, ∀ q ∈ Q:  q(g) = ρ_g(q(τ(g))),
-                          with τ and ρ stated.
-      Order when Reduces(G, S):
-        pos(statement of G) < pos(Proposition R) < pos(first result on Q),
-        where R states and proves Reduces(G, S); "without loss of
-        generality" follows R; every later result is stated for S.
-        Prohibited:  a derivation for S followed by a second derivation
-                     for G;  "without loss of generality" with no R.
-      Order when ¬Reduces(G, S):
+        Applies  ⇔  (a) the manuscript has, or plans, a treatment of S and
+                        a treatment of G;  or
+                    (b) the text restricts the setting of later results to
+                        S by "without loss of generality" or an equivalent
+                        phrase.
+                    {(a), (b)} is closed. A restriction inside one proof,
+                    used only there, is not (b).
+        Reducible(q)  ⇔  ∃ τ: G → S and a rule ρ such that
+                         ∀ g ∈ G:  q(g) = ρ(g, q(τ(g))),
+                         where τ and ρ are stated, and ρ is given as a
+                         function of the parameters of g and of the value
+                         q(τ(g)) without reference to q(g).
+        Q_red = {q ∈ Q: Reducible(q)},  Q_kind = Q ∖ Q_red.
+      Order for q ∈ Q_red:
+        pos(statement of G) < pos(Proposition R) < pos(first result on q),
+        where R states τ, ρ and the q for which they hold, and proves it;
+        "without loss of generality" follows R and is said of Q_red only;
+        every later result on q is stated for S.
+        Prohibited:  a derivation of q for S and a second derivation of q
+                     for G;  "without loss of generality" with no R, or
+                     said of some q ∈ Q_kind.
+      Order for q ∈ Q_kind:
         the treatment of S may precede that of G, and the treatment of G
         opens by naming Diff ⊆ {assumption, argument, form of conclusion}
         with Diff ≠ ∅. The set of three is closed.
-      Scope:  G and S would each receive a treatment of its own. A
-              symmetry step inside one proof is not constrained.
 
     rationale: |
       Simple first and general second makes the reader go through the
@@ -795,6 +829,14 @@ axioms:
       coordinates. There the simple case is a step the reader needs, and
       saying what changes (an assumption, the argument, the form of the
       conclusion) tells them what to look for in the general one.
+      The reduction is judged for each quantity because a manuscript
+      rarely studies one thing. If the test were "every quantity reduces",
+      one quantity that does not would release all the others, and the
+      repeated derivation would be allowed again; if it were "some
+      quantity reduces", "without loss of generality" would be said of
+      quantities for which it is false. The rule has to be written before
+      the quantity is computed because otherwise any two results are
+      "related by a rule": the rule would be the answer itself.
       "Without loss of generality" with no reduction behind it is a claim
       without a proof: it may be true for the quantities at hand and false
       for one added later, and the reader has no statement to check it
@@ -818,14 +860,20 @@ axioms:
           σ carried through. Each mean squared error is σ² times its value
           in §3, and the ratio is again R_n(f).]
         explanation: |
-          The reduction holds. Both estimators T satisfy
+          Situation (a): each form has a treatment. Both quantities are
+          reducible. Each estimator T satisfies
           T(aX_1 + b, …, aX_n + b) = a T(X_1, …, X_n) + b for a > 0, so the
           mean squared error of T as an estimator of μ under (μ, σ) is σ²
-          times its value under (0, 1), and the ratio does not depend on
-          (μ, σ). §4 repeats §3 with more letters, and the reader of §3 could
-          not tell whether R_n(f) was a property of the standard case alone.
-          (Constructed for this axiom; not taken from a manuscript.)
-      - description: "'Without loss of generality' with no reduction stated"
+          times its value under (0, 1): the transformation is "centre and
+          rescale" and the rule is "multiply by σ²", both written before
+          any derivation. §4 repeats §3 with more letters, and the reader
+          of §3 could not tell whether R_n(f) was a property of the
+          standard case alone. The verdict would be the same if the
+          manuscript also studied a quantity that does not reduce: that
+          quantity would be treated on its own, and the two mean squared
+          errors would still be derived twice. (Constructed for this axiom;
+          not taken from a manuscript.)
+      - description: "'Without loss of generality' with no reduction stated, and said of a quantity that does not reduce"
         content: |
           §2. Let X_1, …, X_n be independent with density
           (1/σ) f((x − μ)/σ). Without loss of generality μ = 0 and σ = 1.
@@ -833,11 +881,14 @@ axioms:
           of the observations that lie within 2 units of the sample
           median.]
         explanation: |
-          No proposition says why the standard case is enough. For the mean
-          and the median it is, by the argument above. The third estimator
-          uses a fixed cut-off of 2 units: it follows a change of location
-          but not a change of scale, so for it the claim is false, and
-          nothing in the text lets the reader see the difference.
+          Situation (b): the text restricts the setting, and the general
+          form gets no treatment at all. No proposition says why the
+          standard case is enough. For the mean and the median it is, by
+          the rule above. The third estimator uses a fixed cut-off of 2
+          units: it follows a change of location but not a change of scale,
+          so no rule written beforehand gives its mean squared error under
+          (μ, σ) from its value under (0, 1), and of it the phrase is false.
+          Nothing in the text lets the reader see the difference.
           (Constructed for this axiom.)
 
     compliant:
@@ -853,35 +904,46 @@ axioms:
           the two mean squared errors does not depend on (μ, σ).
           Proof. T(aX_1 + b, …, aX_n + b) = a T(X_1, …, X_n) + b for a > 0
           and every b, and (X_i − μ)/σ has density f. ∎
-          We therefore take μ = 0 and σ = 1 without loss of generality.
+          For these two mean squared errors we therefore take μ = 0 and
+          σ = 1 without loss of generality.
           §3. [The two mean squared errors and their ratio R_n(f), derived
           once, for the standard case.]
         explanation: |
-          The general form comes first, Proposition 1 states the map (centre
-          and rescale) and the rule for the quantity studied (multiply by
-          σ²; the ratio is unchanged), and after the sentence with "without
-          loss of generality" only the standard case is discussed. The
-          derivation appears once. The proposition is object-level, so it
-          is a proposition (A1), and it answers the question that the
-          general form raises (A5). The equivariance it rests on is in
-          standard use, so the heading carries a citation (A6); the
-          bracketed reference stands for whichever textbook the manuscript
-          uses, because the example is constructed.
-      - description: "The simple case first, because the general case differs in kind, and the difference is named"
+          The general form comes first. Proposition 1 states the map
+          (centre and rescale), the rule (multiply by σ²; the ratio is
+          unchanged) and the quantities it holds for, and after the
+          sentence with "without loss of generality", which names those
+          quantities, only the standard case is discussed. The derivation
+          appears once. The proposition is object-level, so it is a
+          proposition (A1), and it answers the question that the general
+          form raises (A5). The equivariance it rests on is in standard
+          use, so the heading carries a citation (A6); the bracketed
+          reference stands for whichever textbook the manuscript uses,
+          because the example is constructed.
+      - description: "The simple case first, because the general case differs in kind; the two cases are announced and the difference is named"
         content: |
+          §2. The two estimators are compared in the two settings that the
+          manuscript considers, in this order: independent observations
+          (Section 3), and observations from a stationary series that are
+          serially dependent (Section 4).
           §3. Independent observations. [The variance of the sample mean is
           σ²/n; the comparison with the median follows.]
           §4. Serially dependent observations. What changes is the form of
           the conclusion: the variance of the sample mean is no longer
           σ²/n, because the autocovariances of the series enter it, and no
-          map of the kind used in a reduction turns a dependent series into
-          an independent one while the two estimators follow it. [The
-          comparison under dependence.]
+          transformation carries a dependent series to an independent one
+          with a rule for the two variances that can be written
+          beforehand. [The comparison under dependence.]
         explanation: |
-          No proposition of the form (2) holds: the result under dependence
-          is not the independent result in other coordinates. The simple
-          case may therefore come first, and §4 opens by naming which of
-          the three parts differs (the form of the conclusion). (Constructed
+          The variance of each estimator is not reducible: the result under
+          dependence is not the independent result in other coordinates.
+          The simple case may therefore come first, and §4 opens by naming
+          which of the three parts differs (the form of the conclusion).
+          Nothing is said to hold without loss of generality. The two
+          sections answer one question under two conditions, so they are a
+          discussion by cases in the sense of academic-writing A5, and §2
+          announces them: the question, the range (the two settings the
+          manuscript considers), the cases and their order. (Constructed
           for this axiom.)
 
 theorems:

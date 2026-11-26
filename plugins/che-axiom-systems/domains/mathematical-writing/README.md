@@ -23,7 +23,7 @@ exposition).
 | `A4_reading_order_dependence` | Dependence runs backward in reading order | A statement may lean only on what precedes it; a pointer ahead may say where, never use what. |
 | `A5_motivated_by_prefix` | Each element is called for by what precedes it | An article is read in order, not checked item by item: a concrete example, a definition or a result arrives only after the reader holds the question it answers. |
 | `A6_prior_result_attribution` | A result already in the literature is cited, not claimed as new | Before a result is presented as the manuscript's own, the literature is searched for it; a source that has the result, a part of it, a short step to it, or a statement of it without proof is cited at the statement with what it has; the manuscript claims only what goes beyond every source found, and never cites an unproved source in place of a proof. |
-| `A7_general_case_first` | The general case first, reduced to the simple case by a proposition | When a general and a simple form of the setting are both in play, set out the general one, prove a proposition that reduces it to the simple one, and from then on treat only the simple one; the simple case comes first only when the two differ in kind. |
+| `A7_general_case_first` | The general case first, reduced to the simple case by a proposition | When a general and a simple form of the setting are both treated, or the text says 'without loss of generality', set out the general form, prove a proposition that reduces it to the simple one for the quantities it holds for, and from then on treat only the simple form for those; the simple case comes first only when the two differ in kind. |
 
 ## Theorems
 
